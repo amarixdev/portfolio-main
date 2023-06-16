@@ -53,3 +53,10 @@
     margin-top: 0;
   }
 }
+
+/* Spotify */
+
+.sticky {
+  position: fixed;
+  top: 100px;
+}

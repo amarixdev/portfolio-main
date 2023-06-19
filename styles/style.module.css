@@ -60,3 +60,16 @@
   position: fixed;
   top: 100px;
 }
+
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-gap: 5px;
+}
+
+.gridItem {
+  background-color: orange;
+  height: 40px;
+  width: 40px;
+}

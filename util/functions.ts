@@ -9,3 +9,9 @@ export const capitalizeString = (str: string | undefined) => {
 
   return result;
 };
+
+export const truncateString = (string: string, num: number) => {
+  if (string?.length > num) {
+    return string.slice(0, num) + `...`;
+  } else return string;
+};

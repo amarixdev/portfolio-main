@@ -95,18 +95,32 @@ const Home: NextPage = () => {
             >
               <div className="w-full text-[#aaaaaa] px-10 flex flex-col gap-2 pb-20">
                 <p>
-                  A software developer based in North Carolina. Initially
-                  pursued medicine at the University of North Carolina - Chapel
-                  Hill from 2015 to 2019. Received an invitation to dental
-                  school in 2021, but took a gap year during the pandemic when I
-                  ultimately decided healthcare was not for me.{" "}
+                  A software developer based in North Carolina. I attended the
+                  University of North Carolina - Chapel Hill from 2015 to 2019
+                  where I initially pursued medicine in addition to being a
+                  full-time athlete. I was thankful to receive an invitation to
+                  attend Dental School in 2021, but took a gap year during the
+                  pandemic and ultimately decided healthcare was not the path
+                  for me.{" "}
                 </p>
                 <p>
-                  Around that time I began to gravitate towards programming and
-                  fell in love with the creative process — I found it to be the
-                  perfect balance between the intuitive and analytical halves of
-                  the brain. Seeing ideas become reality, at every scale, has
-                  been the most rewarding aspect of being a software developer.
+                  My journey into software development came after discovering
+                  Harvard&apos;s CS50 course online. Prior to this, I had
+                  written a few scripts and bots for computer games, but never
+                  fully committed to learning outside of gaming. I can
+                  confidently say that the course, especially Professor
+                  Malan&apos;s passionate teaching style re-ignited my love for
+                  programming.
+                </p>
+                <p>
+                  The most rewarding aspect to being a software developer thus
+                  far has been seeing my ideas become reality, at every scale.
+                  Witnessing others find use, or enjoyment out of the things I
+                  create is icing on top. I take immense pride in devoting my
+                  full attention and energy to each project I undertake, and my
+                  hope is that commitment shines through. If you have read to
+                  this point, thank you for taking the time to learn more about
+                  me and I look forward to connecting.
                 </p>
               </div>
             </Collapse>
@@ -138,7 +152,7 @@ const Home: NextPage = () => {
             >
               <div className="w-full text-[#aaaaaa] px-10 flex flex-col gap-3">
                 <ul>
-                  <li>Created PromoNinja.io</li>
+                  <li>Developed PromoNinja.io</li>
                   <li>Published co-author in the American Heart Association</li>
                   <li> 2x Atlantic Coast Conference (ACC) Silver Medalist</li>
                 </ul>

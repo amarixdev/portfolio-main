@@ -18,6 +18,7 @@ import { IoChatboxOutline } from "react-icons/io5";
 import { FiShare } from "react-icons/fi";
 import { GoGift } from "react-icons/go";
 import { useRouter } from "next/router";
+import { useMediaQuery } from "../../util/hooks";
 
 const RedditPost = ({
   title,
@@ -42,6 +43,7 @@ const RedditPost = ({
   const upvoteRef = useRef<HTMLDivElement>(null);
 
   const router = useRouter();
+  const isBreakPoint = useMediaQuery(1023);
 
   useEffect(() => {
     setUpvoteCounter(upvoteCount);
@@ -60,9 +62,13 @@ const RedditPost = ({
 
   return (
     <>
-      <div className={`w-full bg-[#151515] ${topPost || "mt-3"}`}>
+      <div
+        className={`w-full rounded-sm lg:border-2 bg-[#151515] ${
+          topPost || "mt-3"
+        }`}
+      >
         <div
-          className="w-full flex p-2 items-start gap-2"
+          className="w-full flex p-2 items-start gap-2 py-4"
           onClick={() => router.push(`/reddit/${title.toLowerCase()}`)}
         >
           <Image
@@ -73,7 +79,9 @@ const RedditPost = ({
             className="rounded-full"
           />
           <div>
-            <p className="font-semibold text-xs text-[#aaaaaa]">r/aboutme</p>
+            <p className="font-semibold text-xs lg:text-sm text-[#aaaaaa]">
+              r/aboutme
+            </p>
             <p className="text-xs text-[#aaaaaa]">
               {username} &#x2022; {time}
             </p>
@@ -83,10 +91,10 @@ const RedditPost = ({
           className="px-4"
           onClick={() => router.push(`/reddit/${title.toLowerCase()}`)}
         >
-          <p className="font-semibold text-lg">{title}</p>
+          <p className="font-semibold text-lg lg:text-xl">{title}</p>
           {children}
         </div>
-        <div className="w-full flex items-center px-4 justify-between">
+        <div className="w-full flex items-center py-3 px-4 justify-between">
           <div className="flex items-center">
             <div
               ref={upvoteRef}
@@ -161,15 +169,24 @@ const RedditPost = ({
               )}
             </div>
           </div>
-          <IoChatboxOutline size={22} color={"#777"} />
-          <div className="flex items-center gap-2">
+          {/* {isBreakPoint ? (
+            <IoChatboxOutline size={22} color={"#777"} />
+          ) : (
+            <div className="flex items-center gap-2 lg:hover:cursor-pointer">
+              <IoChatboxOutline size={22} color={"#777"} />
+              <p className="text-[#777] font-semibold text-sm ">Comment</p>
+            </div>
+          )}
+          <div className="flex items-center gap-2 lg:hover:cursor-pointer">
             <FiShare size={22} color={"#777"} />
-            <p className="text-[#777] font-semibold text-sm">Share</p>
-          </div>
+            <p className="text-[#777] font-semibold text-sm ">Share</p>
+          </div> */}
 
           <div className="flex items-center gap-2">
             <GoGift size={22} color={"#777"} />
-            <p className="text-[#777] font-semibold text-sm">Award</p>
+            <p className="text-[#777] font-semibold text-sm lg:hover:cursor-pointer">
+              Award
+            </p>
           </div>
         </div>
       </div>

@@ -26,3 +26,5 @@ export const useMediaQuery = (width: number) => {
 
   return targetReached;
 };
+
+

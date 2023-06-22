@@ -32,12 +32,17 @@ const RedditTabs = ({
         className="mt-3 bg-[#151515] text-[#808080] font-semibold "
         defaultIndex={tabIndex}
       >
-        <TabList display={"flex"} w="full" justifyContent={"space-evenly"}>
+        <TabList
+          display={"flex"}
+          w="full"
+          justifyContent={"space-evenly"}
+          className="rounded-sm py-2 lg:py-4 lg:border-2"
+        >
           <Tab onClick={() => handleSelect("about")}>
             <p
               className={`${
                 section === "about" ? "text-white" : "text-[#777777]"
-              } font-semibold transition-all duration-[400ms] ease-in-out`}
+              } lg:text-xl font-semibold transition-all duration-[400ms] ease-in-out`}
             >
               About
             </p>
@@ -47,7 +52,7 @@ const RedditTabs = ({
             <p
               className={`${
                 section === "experience" ? "text-white" : "text-[#777777]"
-              } font-semibold  transition-all duration-[400ms] ease-in-out`}
+              } lg:text-xl font-semibold  transition-all duration-[400ms] ease-in-out`}
             >
               Experience
             </p>
@@ -57,7 +62,7 @@ const RedditTabs = ({
             <p
               className={`${
                 section === "skills" ? "text-white" : "text-[#777777]"
-              } font-semibold transition-all duration-[400ms] ease-in-out`}
+              } lg:text-xl font-semibold transition-all duration-[400ms] ease-in-out`}
             >
               Skills
             </p>

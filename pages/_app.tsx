@@ -9,6 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <ChakraProvider theme={theme}>
+      {/* <div className={` fixed w-full bg-red-500 h-20 z-[999] `}></div> */}
       <Component {...pageProps} />
     </ChakraProvider>
   );

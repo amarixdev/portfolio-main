@@ -61,7 +61,6 @@
   top: 100px;
 }
 
-
 .gridContainer {
   display: grid;
   grid-template-columns: repeat(20, 1fr);
@@ -72,4 +71,88 @@
   background-color: orange;
   height: 40px;
   width: 40px;
+}
+
+.wrapper {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: 10px;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  justify-items: baseline;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.background {
+  transform: translateZ(-10px) scale(2);
+  z-index: -1;
+}
+
+.banner {
+  transform: translateZ(-10px) scale(2);
+  z-index: 999;
+  position: absolute;
+  top: 0px;
+}
+
+.options {
+  transform: translateZ(-10px) scale(2);
+  z-index: 9999;
+  position: absolute;
+}
+
+.foreground {
+  transform: translateZ(-5px) scale(1.5);
+  z-index: -1;
+  bottom: 20px;
+}
+
+.display {
+  transform: translateZ(-5px) scale(1.5);
+  z-index: 0;
+  position: absolute;
+  height: 500px;
+  bottom: -720px;
+}
+
+@media screen and (min-width: 1024px) {
+  .display {
+    bottom: -760;
+  }
+}
+
+.background {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.foreground {
+  position: absolute;
+  object-fit: cover;
+}
+
+.musicIcon {
+  box-shadow: 0 0 30px #dc304a;
+}
+
+.redditIcon {
+  box-shadow: 0 0 30px #ff5309;
+  border-radius: 1rem;
+}
+
+.twitterIcon {
+  box-shadow: 0 0 30px #26a7de;
+  border-radius: 1rem;
+}
+
+.deselectIcon {
+  box-shadow: none;
+  transition: all 0.4s ease-in-out;
 }

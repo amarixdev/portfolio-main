@@ -127,16 +127,37 @@
 
 .musicIcon {
   box-shadow: 0 0 30px #dc304a;
+  border-radius: 1rem;
+  transition: all 0.15s ease-in-out;
 }
 
 .redditIcon {
   box-shadow: 0 0 30px #ff5309;
   border-radius: 1rem;
+  transition: all 0.15s ease-in-out;
 }
 
 .twitterIcon {
   box-shadow: 0 0 30px #26a7de;
   border-radius: 1rem;
+  transition: all 0.15s ease-in-out;
+}
+
+.twitterIconBanner {
+  box-shadow: 0 0 15px #26a7de;
+  border-radius: 1rem;
+  transition: all 0.15s ease-in-out;
+}
+.redditIconBanner {
+  box-shadow: 0 0 15px #ff5309;
+  border-radius: 1rem;
+  transition: all 0.15s ease-in-out;
+}
+
+.musicIconBanner {
+  box-shadow: 0 0 15px #dc304a;
+  border-radius: 1rem;
+  transition: all 0.15s ease-in-out;
 }
 
 .deselectIcon {

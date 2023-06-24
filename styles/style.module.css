@@ -80,14 +80,6 @@
   perspective: 10px;
 }
 
-.header {
-  position: relative;
-  display: flex;
-  justify-items: baseline;
-  height: 100%;
-  transform-style: preserve-3d;
-}
-
 .background {
   transform: translateZ(-10px) scale(2);
   z-index: -1;
@@ -100,35 +92,30 @@
   top: 0px;
 }
 
-.options {
+/* .options {
   transform: translateZ(-10px) scale(2);
   z-index: 9999;
   position: absolute;
-}
+} */
 
-.foreground {
+.test {
   transform: translateZ(-5px) scale(1.5);
-  z-index: -1;
-  bottom: 20px;
 }
 
 .display {
   transform: translateZ(-5px) scale(1.5);
   z-index: 0;
-  position: absolute;
-  height: 500px;
-  bottom: -720px;
+  position: relative;
 }
 
-@media screen and (min-width: 1024px) {
+/* @media screen and (min-width: 1024px) {
   .display {
     bottom: -760;
   }
-}
+} */
 
 .background {
   position: absolute;
-  height: 100%;
   width: 100%;
   object-fit: cover;
 }

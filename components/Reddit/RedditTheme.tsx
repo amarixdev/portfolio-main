@@ -59,7 +59,7 @@ const RedditTheme = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center overflow-auto">
       {/* <RedditSort
         onOpenDrawer={openDrawer}
         setOpenDrawer={setOpenDrawer}
@@ -116,15 +116,15 @@ const RedditTheme = () => {
                 and medical researcher. I was grateful to receive an invitation
                 to attend Dental School in 2021, but after long consideration
                 and some time off during the pandemic I ultimately decided
-                healthcare was not for me.{" "}
+                against going into healthcare.{" "}
               </p>
               <p className="mt-4">
-                Since the career change, I have worked on a number of web
-                applications for both myself and others. As a software
-                developer, I get enjoyment out out of seeing my ideas manifest
-                at every scale and take pride in devoting my full attention and
-                energy to each project I undertake. Thank you for taking some
-                time to learn more about me and I look forward to connecting.
+                Since the career switch, I have worked on a number of web
+                applications for myself and others. As a software developer, I
+                get enjoyment out out of seeing my ideas manifest at every scale
+                and take pride in devoting my full attention and energy to each
+                project I undertake. Thank you for taking some time to learn
+                more about me and I look forward to connecting.
               </p>
             </RedditPost>
             <RedditPost title="Beyond Tech" time="16d" upvoteCount={60}>

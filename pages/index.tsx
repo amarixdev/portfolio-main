@@ -19,6 +19,8 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { FiChevronDown } from "react-icons/fi";
+import MusicThemeDesktop from "../components/Apple/Desktop/MusicTheme";
+import MusicThemeMobile from "../components/Apple/Mobile/MusicTheme";
 
 type Props = {};
 
@@ -34,13 +36,6 @@ const Home: NextPage = (props: Props) => {
   const [displayTitle, setDisplayTitle] = useState(false);
   const [displayBanner, setDisplayBanner] = useState(false);
   const [heroLoaded, setHeroLoaded] = useState(false);
-
-  // const themes: { [key: string]: ReactElement | null } = {
-  //   music: <HiMusicNote size={iconSizeBanner} />,
-  //   reddit: <FaRedditAlien size={iconSizeBanner} />,
-  //   twitter: <BsTwitter size={iconSizeBanner} />,
-  //   none: null,
-  // };
 
   interface Theme {
     [key: string]: { icon: ReactElement | null; style: string | null };
@@ -202,22 +197,30 @@ const Home: NextPage = (props: Props) => {
             />
 
             <div
-              className={`w-full relative bottom-20  pt-10 lg:pb-[160px] bg-black flex flex-col justify-top items-center `}
+              className={`w-full relative bottom-20  pt-10 bg-[#080808] flex flex-col justify-top items-center `}
             >
-              <div className="absolute top-0 bg-gradient-to-b bg-black h-[300px] w-full z-0"></div>
+              <div className="absolute top-0 bg-gradient-to-b from-[#87d3fe] to-black h-[4px] w-full z-0"></div>
               <div
                 ref={titleRef}
-                className={`w-full items-center justify-center flex flex-col gap-3 z-10 ${
+                className={`w-full text-[#dbdbdb] items-center justify-center flex flex-col gap-3 z-10 ${
                   displayTitle ? "opacity-100" : "opacity-0"
                 } transition duration-500 ease-in-out`}
               >
-                <p className=" font-medium  text-3xl lg:text-4xl">
+                <p className=" font-semibold text-3xl lg:text-4xl">
                   {" "}
                   Amari <span className="text-[#87d3fe]">DeV</span>aughn
                 </p>
-                <p className="font-extrabold text-5xl lg:text-6xl text-center text-[#87d3fe] ">
-                  Software <span className="text-white">DeV</span>eloper
-                </p>
+                <div className="block sm:flex font-extrabold text-5xl px-4 lg:text-6xl text-center text-transparent ">
+                  <p className="bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#4aafea] ">
+                    Software
+                  </p>{" "}
+                  <div className="ml-4 text-[#dbdbdb]">
+                    DeV
+                    <span className="bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#4aafea] text-transparent  ">
+                      eloper
+                    </span>
+                  </div>
+                </div>
 
                 <div
                   ref={themeSelectionRef}
@@ -225,9 +228,9 @@ const Home: NextPage = (props: Props) => {
                     displayTitle ? "opacity-100" : "opacity-0"
                   } w-full mt-10 lg:mt-14 flex flex-col items-center justify-center`}
                 >
-                  <h1 className="font-bold text-3xl min-w-[230px] ">
+                  <h1 className="font-bold flex items-center gap-2 relative left-2 justify-start text-xl lg:text-3xl min-w-[160px] lg:min-w-[230px] ">
                     {theme ? "Theme: " : "Choose Portfolio Theme"}
-                    <span className="font-extrabold">
+                    <span className="font-extrabold text-white">
                       {capitalizeString(theme)}
                     </span>
                   </h1>
@@ -262,28 +265,41 @@ const Home: NextPage = (props: Props) => {
                       <BsTwitter size={iconSize} />
                     </button>
                   </div>
+                  <div className="w-[90%] lg:w-[80%] h-[1px] bg-[#444444] relative top-10"></div>
                   {
                     <div className="mt-14 w-full flex justify-center">
-                      <h1
-                        className="font-medium text-xl"
-                        onClick={() => handleThemeSelection("none")}
-                      >
-                        No Theme
-                      </h1>
+                      <div className="from-[#080808] to-black bg-gradient-to-b w-full h-20">
+                        {themeLoading && !displayBanner && (
+                          <div className="z-[9999] w-full absolute flex items-start justify-center h-screen">
+                            <span
+                              className={`${style.loader} relative top-5`}
+                            ></span>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   }
                 </div>
               </div>
             </div>
             {themeLoading ? (
-              <div className="w-full absolute flex items-start lg:bottom-[-700px] justify-center h-screen">
-                <Spinner size={"xl"} thickness="2px" speed="0.65s" />
+              <div
+                ref={themeRef}
+                className={` w-full absolute h-screen flex items-center justify-center bg-black mt-[-100px] z-[0]`}
+              >
+                <span
+                  className={`${style.loader} ${
+                    displayBanner ? "opacity-100" : "opacity-0"
+                  } relative top-5`}
+                ></span>
               </div>
             ) : (
               <div
                 ref={themeRef}
-                className="w-full absolute bg-black lg:bottom-[-820px]"
+                className="w-full absolute bg-black mt-[-100px] z-[20]"
               >
+                {theme === "music" && isBreakPoint && <MusicThemeMobile />}
+                {theme === "music" && !isBreakPoint && <MusicThemeDesktop />}
                 {theme === "reddit" && <RedditTheme />}
               </div>
             )}

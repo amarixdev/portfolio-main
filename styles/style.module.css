@@ -1,6 +1,6 @@
 /* Apple Music Bars */
 
-.playing .bar {
+.barMobile {
   display: inline-block;
   position: relative;
   border-radius: 20px;
@@ -8,12 +8,28 @@
   width: 3.5px;
   height: 1px;
   overflow: hidden;
-  background: #dc304a;
+  background: #da2742;
   color: transparent;
   animation-name: pulse;
   animation-duration: 1.8s;
   animation-iteration-count: infinite;
 }
+
+.bar {
+  display: inline-block;
+  position: relative;
+  border-radius: 20px;
+  margin-right: 1px;
+  width: 3.5px;
+  height: 1px;
+  overflow: hidden;
+  background: white;
+  color: transparent;
+  animation-name: pulse;
+  animation-duration: 1.8s;
+  animation-iteration-count: infinite;
+}
+
 .n1 {
   animation-delay: 0.5s;
 }
@@ -126,7 +142,7 @@
 }
 
 .musicIcon {
-  box-shadow: 0 0 30px #dc304a;
+  box-shadow: 0 0 30px #da2742;
   border-radius: 1rem;
   transition: all 0.15s ease-in-out;
 }
@@ -155,7 +171,7 @@
 }
 
 .musicIconBanner {
-  box-shadow: 0 0 15px #dc304a;
+  box-shadow: 0 0 15px #da2742;
   border-radius: 1rem;
   transition: all 0.15s ease-in-out;
 }
@@ -163,4 +179,37 @@
 .deselectIcon {
   box-shadow: none;
   transition: all 0.4s ease-in-out;
+}
+
+/* Loader */
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 4px solid #fff;
+  border-right: 4px solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border-bottom: 4px solid #87d3fe;
+  border-left: 4px solid transparent;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

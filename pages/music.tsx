@@ -8,7 +8,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { MdWork, MdEmail } from "react-icons/md";
 import { Box, Button, Collapse, useDisclosure } from "@chakra-ui/react";
 import MusicBars from "../components/Apple/MusicBars";
-import MusicFooter from "../components/Apple/MusicFooter";
+import MusicFooter from "../components/Apple/Mobile/MusicFooter";
 import { FiChevronLeft } from "react-icons/fi";
 
 /* Apple */

@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: "black";
-}
-
 section {
   position: relative;
   display: flex;
@@ -13,3 +9,5 @@ section {
   height: 100%;
   transform-style: preserve-3d;
 }
+
+

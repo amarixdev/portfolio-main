@@ -99,6 +99,7 @@
 .background {
   transform: translateZ(-10px) scale(2);
   z-index: -1;
+
 }
 
 .banner {
@@ -114,14 +115,8 @@
   position: absolute;
 } */
 
-.test {
-  transform: translateZ(-5px) scale(1.5);
-}
-
 .display {
   transform: translateZ(-5px) scale(1.5);
-  z-index: 0;
-  position: relative;
 }
 
 /* @media screen and (min-width: 1024px) {

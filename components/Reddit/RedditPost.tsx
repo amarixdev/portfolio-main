@@ -76,6 +76,7 @@ const RedditPost = ({
             width={40}
             height={40}
             alt="software"
+            priority
             className="rounded-full"
           />
           <div>

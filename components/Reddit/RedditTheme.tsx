@@ -109,7 +109,7 @@ const RedditTheme = () => {
               time="4h"
               upvoteCount={42}
             >
-              <p>
+              <p className="text-sm lg:text-base">
                 A software developer based in North Carolina. I attended the
                 University of North Carolina - Chapel Hill from 2015 to 2019,
                 where I competed in track and field, was a pre-dental student,
@@ -118,13 +118,18 @@ const RedditTheme = () => {
                 and some time off during the pandemic I ultimately decided
                 against going into healthcare.{" "}
               </p>
-              <p className="mt-4">
-                Since the career switch, I have worked on a number of web
-                applications for myself and others. As a software developer, I
-                get enjoyment out out of seeing my ideas manifest at every scale
-                and take pride in devoting my full attention and energy to each
-                project I undertake. Thank you for taking some time to learn
-                more about me and I look forward to connecting.
+              <p className="mt-4 text-sm lg:text-base">
+                Since embarking on a new career path, I have been engaged in
+                creating a multitude of web applications, among them PromoNinja,
+                a platform that has garnered usage nationwide. As a software
+                developer, I get enjoyment out of seeing my ideas manifest at
+                every scale and take pride in devoting my full attention and
+                energy to each project I undertake. I am passionate about the
+                work I do, and eager to engage in a conversation about how I can
+                contribute to your needs or the growth of your company. If you
+                are interested in connecting, please refer to the
+                <span className="font-bold"> Contact</span> section for ways to
+                get in touch.
               </p>
             </RedditPost>
             <RedditPost title="Beyond Tech" time="16d" upvoteCount={60}>

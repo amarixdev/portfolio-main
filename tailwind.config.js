@@ -35,6 +35,11 @@ module.exports = {
       "4xl": "2200px",
       // => @media (min-width: 2200px) { ... }
     },
+    extend: {
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+      },
+    },
   },
   plugins: [require("tailwind-scrollbar-hide")],
 };

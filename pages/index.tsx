@@ -16,11 +16,14 @@ import {
   MenuItem,
   MenuList,
   Spinner,
+  Tooltip,
   useDisclosure,
 } from "@chakra-ui/react";
 import { FiChevronDown } from "react-icons/fi";
 import MusicThemeDesktop from "../components/Apple/Desktop/MusicTheme";
 import MusicThemeMobile from "../components/Apple/Mobile/MusicTheme";
+import TwitterTheme from "../components/Twitter/TwitterTheme";
+import { HiEllipsisHorizontal } from "react-icons/hi2";
 
 type Props = {};
 
@@ -107,11 +110,15 @@ const Home: NextPage = (props: Props) => {
   useEffect(() => {
     const wrapper = wrapperRef.current;
     const handleScroll = () => {
+      if (wrapper?.scrollTop === 0) {
+        setDisplayTitle(false);
+        return;
+      }
       if (titleRef.current) {
         const elementRect = titleRef.current.getBoundingClientRect();
         const isPastElement = isBreakPoint
           ? elementRect.top <= 630
-          : elementRect.top <= 680;
+          : elementRect.top <= 760;
         setDisplayTitle(isPastElement);
       }
 
@@ -137,10 +144,11 @@ const Home: NextPage = (props: Props) => {
           }}
           className={`${
             displayBanner ? "top-0" : "top-[-20%]"
-          } cursor-pointer transition-all duration-300 ease-in-out w-full shadow-black shadow-md  bg-[#161616] h-20 lg:gap-10 py-12 lg:p-10 px-4 fixed z-[999] flex justify-between  items-center`}
+          } cursor-pointer transition-all duration-300 ease-in-out w-full shadow-black shadow-md backdrop-blur-lg  bg-[#262626c8] h-20 lg:gap-10 py-12 lg:p-10 px-4 fixed z-[999] flex justify-between  items-center`}
         >
-          <p className="font-extrabold text-sm xs:text-base lg:text-3xl text-center text-[#87d3fe] ">
-            Software <span className="text-white">DeV</span>eloper
+          <p className="font-extrabold text-sm xs:text-base lg:text-3xl text-center ">
+            {/* Software <span className="text-white">DeV</span>eloper */}
+            Portfolio
           </p>
           <Menu>
             <MenuButton>
@@ -151,7 +159,7 @@ const Home: NextPage = (props: Props) => {
                   {themes[theme]?.icon}
                 </div>
 
-                <div className="flex items-center lg:gap-2 ">
+                <div className="flex items-center lg:gap-2 lg:pr-10 ">
                   <h1 className=" font-medium text-sm lg:text-2xl">Theme</h1>
                   <FiChevronDown size={20} />
                 </div>
@@ -173,19 +181,23 @@ const Home: NextPage = (props: Props) => {
         </div>
       }
       <div ref={wrapperRef} className={`${style.wrapper}`}>
+    
         <section>
-          <Image
-            priority
-            src={ParallaxBg}
-            alt="bg"
-            className={`${style.background} ${
-              heroLoaded ? "block" : "hidden"
-            } h-full lg:h-fit `}
-            onLoad={() => setHeroLoaded(true)}
-          />
+          {
+            <Image
+              priority
+              src={ParallaxBg}
+              alt="bg"
+              className={`${style.background} ${
+                heroLoaded ? "block" : "hidden"
+              } h-full lg:h-fit `}
+              onLoad={() => setHeroLoaded(true)}
+            />
+          }
+
           <div
             className={` absolute h-full lg:h-fit w-full xl:top-[-10%] 2xl:top-[-20%] 3xl:top-[-25%] ${
-              style.test
+              style.display
             } ${heroLoaded ? "block" : "hidden"}  `}
           >
             <Image
@@ -197,26 +209,40 @@ const Home: NextPage = (props: Props) => {
             />
 
             <div
-              className={`w-full relative bottom-20  pt-10 bg-[#080808] flex flex-col justify-top items-center `}
+              className={`w-full relative bottom-20  pt-10 bg-gradient-to-b backdrop-blur-sm lg:backdrop-blur-md from-[#080808de] via-[#080808] to-[#080808] lg:from-[#000000bf]   lg:via-[#080808] lg:to-[#080808] flex flex-col justify-top items-center `}
             >
-              <div className="absolute top-0 bg-gradient-to-b from-[#87d3fe] to-black h-[4px] w-full z-0"></div>
+              <div className="absolute w-full top-0 pb-8 flex items-start justify-center">
+                {isBreakPoint && (
+                  <HiEllipsisHorizontal
+                    size={35}
+                    color="#aaaaaa"
+                    onClick={() =>
+                      titleRef.current?.scrollIntoView({ behavior: "smooth" })
+                    }
+                  />
+                )}
+              </div>
+              {/* <div className="absolute top-0 bg-gradient-to-b from-[#049cf4] to-[black] h-[4px] w-full z-0"></div> */}
               <div
                 ref={titleRef}
-                className={`w-full text-[#dbdbdb] items-center justify-center flex flex-col gap-3 z-10 ${
+                className={`w-full mt-2  text-[#dbdbdb] items-center justify-center flex flex-col gap-3 z-10 ${
                   displayTitle ? "opacity-100" : "opacity-0"
-                } transition duration-500 ease-in-out`}
+                } transition duration-300 ease-in-out`}
               >
-                <p className=" font-semibold text-3xl lg:text-4xl">
-                  {" "}
-                  Amari <span className="text-[#87d3fe]">DeV</span>aughn
-                </p>
+                <div className="flex font-semibold text-3xl lg:text-4xl text-center text-transparent ">
+                  <p className="text-[#dbdbdb]">Amari</p>{" "}
+                  <div className="ml-2 bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#29aaf4] ">
+                    DeV
+                    <span className="text-[#dbdbdb]">aughn</span>
+                  </div>
+                </div>
                 <div className="block sm:flex font-extrabold text-5xl px-4 lg:text-6xl text-center text-transparent ">
-                  <p className="bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#4aafea] ">
+                  <p className="bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#29aaf4] ">
                     Software
                   </p>{" "}
                   <div className="ml-4 text-[#dbdbdb]">
                     DeV
-                    <span className="bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#4aafea] text-transparent  ">
+                    <span className="bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#29aaf4] text-transparent  ">
                       eloper
                     </span>
                   </div>
@@ -234,45 +260,51 @@ const Home: NextPage = (props: Props) => {
                       {capitalizeString(theme)}
                     </span>
                   </h1>
-                  <div className="flex mt-10 lg:mt-16 justify-evenly w-full">
-                    <button
-                      id="music"
-                      className={`${style.musicIcon} w-20 h-20 lg:w-24 lg:h-24 rounded-2xl flex items-center justify-center cursor-pointer`}
-                      onClick={() => {
-                        handleThemeSelection("music");
-                      }}
-                    >
-                      <HiMusicNote size={iconSize} />
-                    </button>
-                    <button
-                      id="reddit"
-                      className={`${style.redditIcon}  w-20 h-20 lg:w-24 lg:h-24 flex items-center justify-center rounded-2xl p-2 cursor-pointer`}
-                      onClick={() => {
-                        setThemeLoading(true);
-                        handleThemeSelection("reddit");
-                      }}
-                    >
-                      <FaRedditAlien size={iconSize} />
-                    </button>
-
-                    <button
-                      id="twitter"
-                      className={`${style.twitterIcon} w-20 h-20 lg:w-24 lg:h-24 flex items-center justify-center rounded-2xl p-2 cursor-pointer`}
-                      onClick={() => {
-                        handleThemeSelection("twitter");
-                      }}
-                    >
-                      <BsTwitter size={iconSize} />
-                    </button>
+                  <div className="flex mt-10 lg:mt-16 justify-evenly w-full lg:w-[60%]">
+                    <Tooltip label="Music Theme" openDelay={1000}>
+                      <button
+                        id="music"
+                        className={`${style.musicIcon} w-20 h-20 lg:w-24 lg:h-24 rounded-2xl flex items-center justify-center cursor-pointer`}
+                        onClick={() => {
+                          handleThemeSelection("music");
+                        }}
+                      >
+                        <HiMusicNote size={iconSize} />
+                      </button>
+                    </Tooltip>
+                    <Tooltip label="Reddit Theme" openDelay={1000}>
+                      <button
+                        id="reddit"
+                        className={`${style.redditIcon}  w-20 h-20 lg:w-24 lg:h-24 flex items-center justify-center rounded-2xl p-2 cursor-pointer`}
+                        onClick={() => {
+                          setThemeLoading(true);
+                          handleThemeSelection("reddit");
+                        }}
+                      >
+                        <FaRedditAlien size={iconSize} />
+                      </button>
+                    </Tooltip>
+                    <Tooltip label="Twitter Theme" openDelay={1000}>
+                      <button
+                        id="twitter"
+                        className={`${style.twitterIcon} w-20 h-20 lg:w-24 lg:h-24 flex items-center justify-center rounded-2xl p-2 cursor-pointer`}
+                        onClick={() => {
+                          handleThemeSelection("twitter");
+                        }}
+                      >
+                        <BsTwitter size={iconSize} />
+                      </button>
+                    </Tooltip>
                   </div>
-                  <div className="w-[90%] lg:w-[80%] h-[1px] bg-[#444444] relative top-10"></div>
+                  <div className="w-[90%] lg:w-[80%] h-[1px] bg-[#444444] relative top-10 lg:mb-20"></div>
+
                   {
                     <div className="mt-14 w-full flex justify-center">
                       <div className="from-[#080808] to-black bg-gradient-to-b w-full h-20">
                         {themeLoading && !displayBanner && (
-                          <div className="z-[9999] w-full absolute flex items-start justify-center h-screen">
+                          <div className="z-100 w-full absolute flex items-start justify-center h-screen">
                             <span
-                              className={`${style.loader} relative top-5`}
+                              className={`${style.loader} top-0 lg:top-[-85px]  relative `}
                             ></span>
                           </div>
                         )}
@@ -285,22 +317,23 @@ const Home: NextPage = (props: Props) => {
             {themeLoading ? (
               <div
                 ref={themeRef}
-                className={` w-full absolute h-screen flex items-center justify-center bg-black mt-[-100px] z-[0]`}
+                className={` w-full absolute h-screen flex items-center justify-center bg-black mt-[-100px] z-0`}
               >
                 <span
                   className={`${style.loader} ${
                     displayBanner ? "opacity-100" : "opacity-0"
-                  } relative top-5`}
+                  } relative top-5 `}
                 ></span>
               </div>
             ) : (
               <div
                 ref={themeRef}
-                className="w-full absolute bg-black mt-[-100px] z-[20]"
+                className="w-full absolute bg-black b mt-[-90px] z-[20]"
               >
                 {theme === "music" && isBreakPoint && <MusicThemeMobile />}
                 {theme === "music" && !isBreakPoint && <MusicThemeDesktop />}
                 {theme === "reddit" && <RedditTheme />}
+                {theme === "twitter" && <TwitterTheme />}
               </div>
             )}
           </div>

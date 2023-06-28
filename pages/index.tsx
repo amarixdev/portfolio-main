@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import Image from "next/image";
 import { ReactElement, useEffect, useRef, useState } from "react";
-import { BsTwitter } from "react-icons/bs";
+import { BsChevronBarDown, BsTwitter } from "react-icons/bs";
 import { FaRedditAlien } from "react-icons/fa";
 import { HiMusicNote } from "react-icons/hi";
 import RedditTheme from "../components/Reddit/RedditTheme";
@@ -63,6 +63,9 @@ const Home: NextPage = (props: Props) => {
     },
   };
 
+  const [showBackdrop, setShowBackdrop] = useState(true);
+  const [showBackdropText, setShowBackdropText] = useState(false);
+
   const [themeLoading, setThemeLoading] = useState(false);
   const [menuItems, setMenuItems] = useState(["Twitter", "Music", "None"]);
   const handleThemeSelection = (icon: string) => {
@@ -107,9 +110,19 @@ const Home: NextPage = (props: Props) => {
     }, 500);
   };
 
+  const [pageScrolled, setPageScrolled] = useState(false);
+
   useEffect(() => {
     const wrapper = wrapperRef.current;
+    let timer: NodeJS.Timeout;
+    if (wrapper?.scrollTop === 0 && heroLoaded) {
+      setShowBackdropText(true);
+    }
+
     const handleScroll = () => {
+      setPageScrolled(true);
+      clearTimeout(timer);
+      setShowBackdrop(false);
       if (wrapper?.scrollTop === 0) {
         setDisplayTitle(false);
         return;
@@ -132,8 +145,9 @@ const Home: NextPage = (props: Props) => {
 
     return () => {
       wrapper?.removeEventListener("scroll", handleScroll);
+      clearTimeout(timer);
     };
-  }, [titleRef, themeSelectionRef, isBreakPoint]);
+  }, [titleRef, themeSelectionRef, isBreakPoint, heroLoaded]);
 
   return (
     <div>
@@ -144,7 +158,7 @@ const Home: NextPage = (props: Props) => {
           }}
           className={`${
             displayBanner ? "top-0" : "top-[-20%]"
-          } cursor-pointer transition-all duration-300 ease-in-out w-full shadow-black shadow-md backdrop-blur-lg  bg-[#262626c8] h-20 lg:gap-10 py-12 lg:p-10 px-4 fixed z-[999] flex justify-between  items-center`}
+          } cursor-pointer transition-all duration-300 ease-in-out w-full shadow-black shadow-md backdrop-blur-lg  bg-[#262626c8] py-3 lg:py-5 lg:gap-10 px-4 fixed z-[999] flex justify-between  items-center`}
         >
           <p className="font-extrabold text-sm xs:text-base lg:text-3xl text-center ">
             {/* Software <span className="text-white">DeV</span>eloper */}
@@ -181,8 +195,32 @@ const Home: NextPage = (props: Props) => {
         </div>
       }
       <div ref={wrapperRef} className={`${style.wrapper}`}>
-    
-        <section>
+        {pageScrolled || (
+          <div
+            className={` z-[999] ${
+              showBackdrop ? "opacity-100" : "opacity-0"
+            } transition-opacity duration-300 flex text-center justify-center ease-out h-screen fixed bg-[#000000b9] w-full`}
+          >
+            <div
+              className={`${
+                showBackdropText ? "opacity-100" : "opacity-0"
+              } flex flex-col gap-10 justify-evenly w-[70%]`}
+            >
+              <h1 className="font-extrabold text-3xl lg:text-5xl">
+                Hi, Welcome to my portfolio!
+              </h1>
+              <div className="flex flex-col items-center gap-4 lg:gap-6">
+                <h1 className="font-bold text-2xl lg:text-4xl ">
+                  {" "}
+                  Scroll Down
+                </h1>
+                <FiChevronDown size={60} className={style.bounce} />
+              </div>
+            </div>
+          </div>
+        )}
+
+        <section className="">
           {
             <Image
               priority
@@ -205,7 +243,7 @@ const Home: NextPage = (props: Props) => {
               alt="fg"
               priority
               quality={100}
-              className={`relative object-cover h-full lg:h-fit w-full`}
+              className={`object-cover relative z-0 h-full lg:h-fit w-full`}
             />
 
             <div
@@ -219,6 +257,7 @@ const Home: NextPage = (props: Props) => {
                     onClick={() =>
                       titleRef.current?.scrollIntoView({ behavior: "smooth" })
                     }
+                    className="z-[999] relative"
                   />
                 )}
               </div>
@@ -226,15 +265,17 @@ const Home: NextPage = (props: Props) => {
               <div
                 ref={titleRef}
                 className={`w-full mt-2  text-[#dbdbdb] items-center justify-center flex flex-col gap-3 z-10 ${
-                  displayTitle ? "opacity-100" : "opacity-0"
+                  displayTitle ? "opacity-100 " : "opacity-0"
                 } transition duration-300 ease-in-out`}
               >
                 <div className="flex font-semibold text-3xl lg:text-4xl text-center text-transparent ">
                   <p className="text-[#dbdbdb]">Amari</p>{" "}
                   <div className="ml-2 bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#29aaf4] ">
                     DeV
-                    <span className="text-[#dbdbdb]">aughn</span>
                   </div>
+                  <span className="text-[#dbdbdb] relative right-[1px]">
+                    aughn
+                  </span>
                 </div>
                 <div className="block sm:flex font-extrabold text-5xl px-4 lg:text-6xl text-center text-transparent ">
                   <p className="bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#29aaf4] ">
@@ -264,7 +305,7 @@ const Home: NextPage = (props: Props) => {
                     <Tooltip label="Music Theme" openDelay={1000}>
                       <button
                         id="music"
-                        className={`${style.musicIcon} w-20 h-20 lg:w-24 lg:h-24 rounded-2xl flex items-center justify-center cursor-pointer`}
+                        className={`${style.glowIcon} w-20 h-20 lg:w-24 lg:h-24 rounded-2xl flex items-center justify-center cursor-pointer`}
                         onClick={() => {
                           handleThemeSelection("music");
                         }}
@@ -275,7 +316,7 @@ const Home: NextPage = (props: Props) => {
                     <Tooltip label="Reddit Theme" openDelay={1000}>
                       <button
                         id="reddit"
-                        className={`${style.redditIcon}  w-20 h-20 lg:w-24 lg:h-24 flex items-center justify-center rounded-2xl p-2 cursor-pointer`}
+                        className={`${style.glowIcon}  w-20 h-20 lg:w-24 lg:h-24 flex items-center justify-center rounded-2xl p-2 cursor-pointer`}
                         onClick={() => {
                           setThemeLoading(true);
                           handleThemeSelection("reddit");
@@ -287,7 +328,7 @@ const Home: NextPage = (props: Props) => {
                     <Tooltip label="Twitter Theme" openDelay={1000}>
                       <button
                         id="twitter"
-                        className={`${style.twitterIcon} w-20 h-20 lg:w-24 lg:h-24 flex items-center justify-center rounded-2xl p-2 cursor-pointer`}
+                        className={`${style.glowIcon} w-20 h-20 lg:w-24 lg:h-24 flex items-center justify-center rounded-2xl p-2 cursor-pointer`}
                         onClick={() => {
                           handleThemeSelection("twitter");
                         }}

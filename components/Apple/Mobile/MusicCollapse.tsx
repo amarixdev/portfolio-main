@@ -29,18 +29,16 @@ const MusicCollapse = ({
     <div
       className={`${
         top && "border-t-[0.5px]"
-      } border-b-[0.5px]  border-[#aaaaaa6a] w-full flex justify-start items-center py-4`}
+      } border-b-[0.5px] border-[#aaaaaa6a] w-full flex justify-start items-center`}
       onClick={() => handleCollapse(title)}
     >
       <div className="flex flex-col">
-        <div className="flex gap-3 items-center">
+        <div
+          className={`${isOpen && "bg-[#da2742]"} py-3 flex gap-3 items-center`}
+        >
           <div className="pl-5 text-[#aaaaaa]">
             {" "}
-            {isOpen && selectedCollapse === title ? (
-              <MusicBars />
-            ) : (
-              <p>{count}</p>
-            )}
+            {isOpen ? <MusicBars /> : <p>{count}</p>}
           </div>
           <p className="text-white absolute left-14">
             {capitalizeString(title)}
@@ -48,7 +46,7 @@ const MusicCollapse = ({
         </div>
 
         <Collapse in={isOpen && selectedCollapse === title} animateOpacity>
-          <div className="w-full text-[#aaaaaa] px-10 flex flex-col mt-6 ">
+          <div className="w-full text-[#aaaaaa] px-10 flex flex-col mt-3 pb-6 ">
             {children}
           </div>
         </Collapse>

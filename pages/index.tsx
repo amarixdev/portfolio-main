@@ -24,6 +24,8 @@ import MusicThemeDesktop from "../components/Apple/Desktop/MusicTheme";
 import MusicThemeMobile from "../components/Apple/Mobile/MusicTheme";
 import TwitterTheme from "../components/Twitter/TwitterTheme";
 import { HiEllipsisHorizontal } from "react-icons/hi2";
+import ProfilePicture from "../components/Twitter/ProfilePicture";
+import { profile } from "console";
 
 type Props = {};
 
@@ -148,9 +150,19 @@ const Home: NextPage = (props: Props) => {
       clearTimeout(timer);
     };
   }, [titleRef, themeSelectionRef, isBreakPoint, heroLoaded]);
+  const [profileOpen, setProfileOpen] = useState(false);
 
   return (
-    <div>
+    <div
+      className={`${
+        profileOpen && theme === "twitter" && "h-screen fixed z-[500]"
+      } `}
+    >
+      <ProfilePicture
+        setProfileOpen={setProfileOpen}
+        profileOpen={profileOpen}
+        theme={theme}
+      />
       {
         <div
           onClick={() => {
@@ -185,7 +197,10 @@ const Home: NextPage = (props: Props) => {
                   _hover={{ bgColor: "#333333" }}
                   bgColor={"#101010"}
                   key={item}
-                  onClick={() => handleThemeSelection(item)}
+                  onClick={() => {
+                    handleThemeSelection(item);
+                    setProfileOpen(false);
+                  }}
                 >
                   {capitalizeString(item)}
                 </MenuItem>

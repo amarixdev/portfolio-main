@@ -1,31 +1,29 @@
-import { NextPage } from "next";
-import Image from "next/image";
-import { ReactElement, useEffect, useRef, useState } from "react";
-import { BsChevronBarDown, BsTwitter } from "react-icons/bs";
-import { FaRedditAlien } from "react-icons/fa";
-import { HiMusicNote } from "react-icons/hi";
-import RedditTheme from "../components/Reddit/RedditTheme";
-import ParallaxBg from "../public/assets/profile-bg.png";
-import ParallaxFg from "../public/assets/profile-padding.png";
-import style from "../styles/style.module.css";
-import { capitalizeString } from "../util/functions";
-import { useMediaQuery } from "../util/hooks";
 import {
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
-  Spinner,
   Tooltip,
-  useDisclosure,
 } from "@chakra-ui/react";
+import { NextPage } from "next";
+import Image from "next/image";
+import { ReactElement, useEffect, useRef, useState } from "react";
+import { BsTwitter } from "react-icons/bs";
+import { FaRedditAlien } from "react-icons/fa";
 import { FiChevronDown } from "react-icons/fi";
+import { HiMusicNote } from "react-icons/hi";
+import { HiEllipsisHorizontal } from "react-icons/hi2";
 import MusicThemeDesktop from "../components/Apple/Desktop/MusicTheme";
 import MusicThemeMobile from "../components/Apple/Mobile/MusicTheme";
-import TwitterTheme from "../components/Twitter/TwitterTheme";
-import { HiEllipsisHorizontal } from "react-icons/hi2";
+import RedditTheme from "../components/Reddit/RedditTheme";
 import ProfilePicture from "../components/Twitter/ProfilePicture";
-import { profile } from "console";
+import TwitterTheme from "../components/Twitter/TwitterTheme";
+import ParallaxBg from "../public/assets/profile-bg.png";
+import ParallaxFg from "../public/assets/profile-padding.png";
+import style from "../styles/style.module.css";
+import { capitalizeString } from "../util/functions";
+import { useMediaQuery } from "../util/hooks";
+import Flower from "../public/assets/reddit-avatar.png";
 
 type Props = {};
 
@@ -49,15 +47,15 @@ const Home: NextPage = (props: Props) => {
   const themes: Theme = {
     music: {
       icon: <HiMusicNote size={iconSizeBanner} />,
-      style: `${style.musicIconBanner}`,
+      style: `${style.glowIcon}`,
     },
     reddit: {
       icon: <FaRedditAlien size={iconSizeBanner} />,
-      style: `${style.redditIconBanner}`,
+      style: `${style.glowIcon}`,
     },
     twitter: {
       icon: <BsTwitter size={iconSizeBanner} />,
-      style: `${style.twitterIconBanner}`,
+      style: `${style.glowIcon}`,
     },
     none: {
       icon: null,
@@ -132,8 +130,8 @@ const Home: NextPage = (props: Props) => {
       if (titleRef.current) {
         const elementRect = titleRef.current.getBoundingClientRect();
         const isPastElement = isBreakPoint
-          ? elementRect.top <= 630
-          : elementRect.top <= 760;
+          ? elementRect.top <= 500
+          : elementRect.top <= 630;
         setDisplayTitle(isPastElement);
       }
 
@@ -262,7 +260,7 @@ const Home: NextPage = (props: Props) => {
             />
 
             <div
-              className={`w-full relative bottom-20  pt-10 bg-gradient-to-b backdrop-blur-sm lg:backdrop-blur-md from-[#080808de] via-[#080808] to-[#080808] lg:from-[#000000bf]   lg:via-[#080808] lg:to-[#080808] flex flex-col justify-top items-center `}
+              className={`w-full relative bottom-20  pt-10 bg-gradient-to-b from-[#0c0c0c] to-black flex flex-col justify-top items-center `}
             >
               <div className="absolute w-full top-0 pb-8 flex items-start justify-center">
                 {isBreakPoint && (
@@ -279,42 +277,47 @@ const Home: NextPage = (props: Props) => {
               {/* <div className="absolute top-0 bg-gradient-to-b from-[#049cf4] to-[black] h-[4px] w-full z-0"></div> */}
               <div
                 ref={titleRef}
-                className={`w-full mt-2  text-[#dbdbdb] items-center justify-center flex flex-col gap-3 z-10 ${
-                  displayTitle ? "opacity-100 " : "opacity-0"
-                } transition duration-300 ease-in-out`}
+                className={`w-full mt-2  text-[#dbdbdb] items-center justify-center flex flex-col gap-3 z-10 `}
               >
-                <div className="flex font-semibold text-3xl lg:text-4xl text-center text-transparent ">
-                  <p className="text-[#dbdbdb]">Amari</p>{" "}
-                  <div className="ml-2 bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#29aaf4] ">
-                    DeV
-                  </div>
-                  <span className="text-[#dbdbdb] relative right-[1px]">
-                    aughn
-                  </span>
-                </div>
-                <div className="block sm:flex font-extrabold text-5xl px-4 lg:text-6xl text-center text-transparent ">
-                  <p className="bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#29aaf4] ">
-                    Software
-                  </p>{" "}
-                  <div className="ml-4 text-[#dbdbdb]">
-                    DeV
-                    <span className="bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#29aaf4] text-transparent  ">
-                      eloper
-                    </span>
-                  </div>
+                <div className={`${style.backgroundContainer}`}>
+                  <div className={`${style.stars}`}></div>
+                  <div className={`${style.twinkling}`}></div>
                 </div>
 
+                <div
+                  className={`${
+                    displayTitle ? "opacity-100 " : "opacity-0 "
+                  } transition-opacity duration-500 ease-in w-full flex flex-col items-center justify-center`}
+                >
+                  <div className="relative flex font-semibold text-3xl lg:text-6xl text-center text-transparent ">
+                    <p className="text-[#dbdbdb] relative ">Amari</p>{" "}
+                    <div className="ml-2 bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#29aaf4]  ">
+                      DeV
+                    </div>
+                    <span className="text-[#dbdbdb] relative right-[1px]">
+                      aughn
+                    </span>
+                  </div>
+                  <div className="relative sm:flex font-extrabold text-5xl px-4 lg:text-8xl text-center text-transparent ">
+                    <p className="bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#29aaf4] ">
+                      Software
+                    </p>{" "}
+                    <div className="ml-4 text-[#dbdbdb]">
+                      DeV
+                      <span className="bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#29aaf4] text-transparent  ">
+                        eloper
+                      </span>
+                    </div>
+                  </div>
+                </div>
                 <div
                   ref={themeSelectionRef}
                   className={`${
                     displayTitle ? "opacity-100" : "opacity-0"
-                  } w-full mt-10 lg:mt-14 flex flex-col items-center justify-center`}
+                  } transition-opacity duration-500 ease-in z-50 w-full mt-10 lg:mt-14 flex flex-col items-center justify-center`}
                 >
-                  <h1 className="font-bold flex items-center gap-2 relative left-2 justify-start text-xl lg:text-3xl min-w-[160px] lg:min-w-[230px] ">
-                    {theme ? "Theme: " : "Choose Portfolio Theme"}
-                    <span className="font-extrabold text-white">
-                      {capitalizeString(theme)}
-                    </span>
+                  <h1 className=" font-bold flex items-center gap-2 relative left-2 justify-start text-xl lg:text-3xl min-w-[160px] lg:min-w-[230px] ">
+                    {"Select portfolio theme"}
                   </h1>
                   <div className="flex mt-10 lg:mt-16 justify-evenly w-full lg:w-[60%]">
                     <Tooltip label="Music Theme" openDelay={1000}>
@@ -352,11 +355,11 @@ const Home: NextPage = (props: Props) => {
                       </button>
                     </Tooltip>
                   </div>
-                  <div className="w-[90%] lg:w-[80%] h-[1px] bg-[#444444] relative top-10 lg:mb-20"></div>
+                  <div className="w-[90%] lg:w-[80%] h-[1px] bg-[#444444] relative hidden lg:block lg:top-10 lg:mb-20"></div>
 
                   {
                     <div className="mt-14 w-full flex justify-center">
-                      <div className="from-[#080808] to-black bg-gradient-to-b w-full h-20">
+                      <div className=" w-full h-20 lg:h-0">
                         {themeLoading && !displayBanner && (
                           <div className="z-100 w-full absolute flex items-start justify-center h-screen">
                             <span
@@ -389,7 +392,12 @@ const Home: NextPage = (props: Props) => {
                 {theme === "music" && isBreakPoint && <MusicThemeMobile />}
                 {theme === "music" && !isBreakPoint && <MusicThemeDesktop />}
                 {theme === "reddit" && <RedditTheme />}
-                {theme === "twitter" && <TwitterTheme />}
+                {theme === "twitter" && (
+                  <TwitterTheme
+                    setProfileOpen={setProfileOpen}
+                    profileOpen={profileOpen}
+                  />
+                )}
               </div>
             )}
           </div>

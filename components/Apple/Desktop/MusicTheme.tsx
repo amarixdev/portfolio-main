@@ -10,7 +10,7 @@ import { GrGraphQl } from "react-icons/gr";
 import { capitalizeString } from "../../../util/functions";
 
 const MusicThemeDesktop = () => {
-  const musicThemeColor = "#da2742";
+  const musicThemeColor = "#279bda";
   const [currentSection, setCurrentSection] = useState("about");
 
   useEffect(() => {
@@ -70,7 +70,7 @@ const MusicThemeDesktop = () => {
             />
             <div className="w-[230px] h-[230px]">
               <h1 className="font-bold text-2xl">Amari DeVaughn</h1>
-              <h1 className={`font-medium text-2xl text-[#da2742]`}>
+              <h1 className={`font-medium text-2xl text-[#279bda]`}>
                 Software Developer
               </h1>
               <div className="flex items-center mt-1 text-sm font-medium">
@@ -89,7 +89,7 @@ const MusicThemeDesktop = () => {
                     className={`min-w-[120px] ${
                       currentSection === section.name
                         ? "bg-white"
-                        : `bg-[#da2742]`
+                        : `bg-[#279bda]`
                     } py-1 rounded-md`}
                     onClick={() => setCurrentSection(section.name)}
                   >
@@ -98,7 +98,7 @@ const MusicThemeDesktop = () => {
                       <p
                         className={`${
                           currentSection === section.name
-                            ? `text-[#da2742]`
+                            ? `text-[#279bda]`
                             : "text-white"
                         } font-medium text-sm`}
                       >

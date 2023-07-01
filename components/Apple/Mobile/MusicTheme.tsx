@@ -19,7 +19,7 @@ const MusicThemeMobile = () => {
   const [footer, setFooter] = useState("");
   const isBreakPoint = useMediaQuery(389);
   const iconSize = isBreakPoint ? 12 : 16;
-  const musicThemeColor = "#da2742";
+  const musicThemeColor = "#279bda";
   const [currentSection, setCurrentSection] = useState("about");
 
   const sections = [
@@ -78,7 +78,7 @@ const MusicThemeMobile = () => {
       </div>
       <div className="w-full flex flex-col items-center justify-center px-4 mt-6 mb-3">
         <p className="text-white font-medium text-xl">Amari DeVaughn</p>
-        <p className={`text-[#da2742] font-normal text-xl `}>
+        <p className={`text-[#279bda] font-normal text-xl `}>
           Software Developer
         </p>
         <div className="mt-4 flex justify-center gap-4 scroll-smooth  scrollbar-hide py-4 w-full">
@@ -87,7 +87,7 @@ const MusicThemeMobile = () => {
               key={section.name}
               className={`${
                 section.name === currentSection
-                  ? `bg-[#da2742]`
+                  ? `bg-[#279bda]`
                   : "bg-[#1f1f20]"
               } w-[150px] active:scale-95 transition-transform duration-200 ease-in-out px-2 py-[10px] rounded-lg`}
               onClick={() => {
@@ -100,7 +100,7 @@ const MusicThemeMobile = () => {
                   className={` ${
                     section.name === currentSection
                       ? "text-[#1f1f20]"
-                      : `text-[#da2742]`
+                      : `text-[#279bda]`
                   }  font-medium text-xs xs:text-sm`}
                 >
                   {capitalizeString(section.name)}

@@ -42,14 +42,14 @@ const MusicCollapse = ({
       <div className="flex flex-col w-full">
         <div
           className={`flex gap-3 items-center ${
-            isOpen && "bg-[#da2742]"
+            isOpen && "bg-[#279bda]"
           }  py-4`}
         >
           <div className="pl-5 text-[#aaaaaa] text-xs">
             {isOpen ? (
               <MusicBars />
             ) : hoverSong ? (
-              <BsFillPlayFill size={16} color="#dc304a" />
+              <BsFillPlayFill size={16} color="#279bda" />
             ) : (
               <p>{count}</p>
             )}

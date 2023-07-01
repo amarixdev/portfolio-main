@@ -34,7 +34,7 @@ const MusicCollapse = ({
     >
       <div className="flex flex-col">
         <div
-          className={`${isOpen && "bg-[#da2742]"} py-3 flex gap-3 items-center`}
+          className={`${isOpen && "bg-[#279bda]"} py-3 flex gap-3 items-center`}
         >
           <div className="pl-5 text-[#aaaaaa]">
             {" "}

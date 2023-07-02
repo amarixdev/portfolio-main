@@ -65,7 +65,7 @@ const MusicThemeMobile = () => {
   }, []);
 
   return (
-    <div className="h-screen bg-[black]">
+    <div className="bg-[black]">
       <div className="flex items-center justify-center lg:pt-6">
         <Image
           alt="profile"

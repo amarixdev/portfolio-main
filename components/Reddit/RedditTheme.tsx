@@ -1,24 +1,36 @@
 import Image from "next/image";
-import RedditGrid from "./RedditGrid";
-import Avatar from "../../public/assets/reddit-avatar.png";
+import { ReactElement, memo, useEffect, useState } from "react";
 import { BsFire } from "react-icons/bs";
-import _debounce from "lodash/debounce";
-import { ReactElement, useEffect, useRef, useState } from "react";
-import { truncateString } from "../../util/functions";
-import RedditBanner from "./RedditBanner";
 import { HiOutlineChevronDown } from "react-icons/hi";
+import { TbArrowBigUpLines, TbSword } from "react-icons/tb";
+import { TiStarburstOutline } from "react-icons/ti";
+import Avatar from "../../public/assets/reddit-avatar.png";
+import RedditGrid from "./RedditGrid";
 import RedditPost from "./RedditPost";
 import RedditTabs from "./RedditTabs";
-import RedditSort from "./RedditSort";
-import { TiStarburstOutline } from "react-icons/ti";
-import { TbArrowBigUpLines, TbSword } from "react-icons/tb";
-import { IconType } from "react-icons";
+import RedditSilver from "../../public/assets/reddit-silver.png";
+import RedditGold from "../../public/assets/reddit-gold.png";
+import RedditPlatinum from "../../public/assets/reddit-platinum.png";
+import AwardMobile from "./AwardMobile";
+import MyDrawer from "./AwardMobile";
+import { RedditAwardsState } from "../../util/types";
 
-const RedditTheme = () => {
-  const [showAvatar, setShowAvatar] = useState(true);
-  const [section, setSection] = useState("");
+const RedditTheme = ({
+  setOpenAwardsMobile,
+  onOpenAwardsDesktop,
+  section,
+  setSection,
+  awardsArray,
+}: {
+  openAwardsMobile: boolean;
+  setOpenAwardsMobile: (openAwardsMobile: boolean) => void;
+  onOpenAwardsDesktop: () => void;
+  section: string;
+  setSection: (value: string) => void;
+  awardsArray: RedditAwardsState;
+}) => {
   const [openDrawer, setOpenDrawer] = useState(false);
-
+  console.log("rendered");
   interface SortFilter {
     [key: string]: { title: string; icon: ReactElement };
   }
@@ -38,28 +50,13 @@ const RedditTheme = () => {
     },
   };
   const [filter, setFilter] = useState("hot");
-
+  // const awards = { Summary: [], "Beyond Tech": [] };
   const handleSelect = (section: string) => {
     setSection(section);
   };
-
-  useEffect(() => {
-    const handleScroll = _debounce(() => {
-      if (window.scrollY > 50) {
-        setShowAvatar(false);
-      } else {
-        setShowAvatar(true);
-      }
-    });
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
-    <div className="flex items-center justify-center overflow-auto">
+    <div className="flex relative items-center justify-center overflow-auto ">
+      <div className="w-full absolute top-0 bg-gradient-to-b from-black h-[100px]"></div>
       {/* <RedditSort
         onOpenDrawer={openDrawer}
         setOpenDrawer={setOpenDrawer}
@@ -71,16 +68,13 @@ const RedditTheme = () => {
       )}
       <RedditGrid />
       <div className={`flex flex-col z-[100] relative pt-4`}>
-        {/* <RedditBanner showAvatar={showAvatar} /> */}
         <Image
           height={180}
           width={180}
           alt="avatar"
           src={Avatar}
           priority
-          className={`relative transition-opacity duration-500 ease-in-out ${
-            showAvatar ? "opacity-100" : "opacity-0"
-          }`}
+          className={`relative transition-opacity duration-500 ease-in-out`}
         />
         <h1 className="text-2xl font-bold text-white px-4 relative bottom-2">
           Amari DeVaughn
@@ -88,7 +82,7 @@ const RedditTheme = () => {
         <p className="px-4 text-xs lg:text-sm lg:font-semibold">
           u/amarixdev&#x2022; 2,132 karma &#x2022; Oct 1, 2016
         </p>
-        <div className="w-full lg:max-w-[1000px] mt-6 flex flex-col bg-black">
+        <div className="w-full lg:max-w-[650px] mt-6 flex flex-col bg-black">
           <RedditTabs section={section} handleSelect={handleSelect} />
           <>
             <div className="flex items-center w-full gap-1 py-3 px-2 bg-[#010101]">
@@ -103,49 +97,59 @@ const RedditTheme = () => {
                 <HiOutlineChevronDown color="#aaaaaa" />
               </div>
             </div>
-            <RedditPost
-              title="Summary"
-              topPost={true}
-              time="4h"
-              upvoteCount={42}
-            >
-              <p className="text-sm lg:text-base">
-                A software developer based in North Carolina. I attended the
-                University of North Carolina - Chapel Hill from 2015 to 2019,
-                where I competed in track and field, was a pre-dental student,
-                and medical researcher. I was grateful to receive an invitation
-                to attend Dental School in 2021, but after long consideration
-                and some time off during the pandemic I ultimately decided
-                against going into healthcare.{" "}
-              </p>
-              <p className="mt-4 text-sm lg:text-base">
-                Since embarking on a new career path, I have been engaged in
-                creating a multitude of web applications, among them PromoNinja,
-                a platform that has garnered usage nationwide. As a software
-                developer, I get enjoyment out of seeing my ideas manifest at
-                every scale and take pride in devoting my full attention and
-                energy to each project I undertake. I am passionate about the
-                work I do, and eager to engage in a conversation about how I can
-                contribute to your needs or the growth of your company. If you
-                are interested in connecting, please refer to the
-                <span className="font-bold"> Contact</span> section for ways to
-                get in touch.
-              </p>
-            </RedditPost>
-            <RedditPost title="Beyond Tech" time="16d" upvoteCount={60}>
-              <ul className="text-sm lg:text-base">
-                <li>Published co-author in the American Heart Association</li>
-                <li>Atlantic Coast Conference (ACC) Silver Medalist</li>
-                <li>Nature Enthusiast</li>
-              </ul>
-            </RedditPost>
-            {/* <RedditPost title="Contact Information" time="3d" upvoteCount={21}>
-              <ul className="text-sm lg:text-base">
-                <li>-Developed PromoNinja.io</li>
-                <li>-Published co-author in the American Heart Association</li>
-                <li> -2x Atlantic Coast Conference (ACC) Silver Medalist</li>
-              </ul>
-            </RedditPost> */}
+            <div className="flex flex-col gap-5">
+              <RedditPost
+                title="Summary"
+                topPost={true}
+                time="4h"
+                upvoteCount={42}
+                defaultAwards={[RedditGold, RedditPlatinum]}
+                awardsArray={awardsArray}
+                setOpenAwardsMobile={setOpenAwardsMobile}
+                onOpenAwardsDesktop={onOpenAwardsDesktop}
+                setSection={setSection}
+              >
+                <p className="text-sm lg:text-base text-[#d2d2d2] lg:px-4">
+                  A 26 year-old software engineer born and raised in Greensboro,
+                  North Carolina. I attended the University of North Carolina -
+                  Chapel Hill from 2015 to 2019, where I competed in track and
+                  field, was a pre-dental student, and medical researcher. After
+                  receiving an invite to dental school in 2021, and
+                  contemplation during the pandemic, I ultimately decided that
+                  dentistry was not the career for me.
+                </p>
+                <p className="mt-4 text-sm lg:text-base text-[#d2d2d2] lg:px-4">
+                  Since embarking on a new career path, I have been engaged in
+                  creating a multitude of web applications, among them
+                  PromoNinja, a platform that has garnered usage nationwide. As
+                  a software developer, I get enjoyment out of seeing my ideas
+                  manifest at every scale and take pride in devoting my full
+                  attention and energy to each project I undertake. I am
+                  passionate about the work I do, and eager to engage in a
+                  conversation about how I can contribute to your needs or the
+                  growth of your company. If you are interested in connecting,
+                  please refer to the
+                  <span className="font-bold"> Contact</span> section for ways
+                  to get in touch.
+                </p>
+              </RedditPost>
+              <RedditPost
+                title="Beyond Tech"
+                time="16d"
+                upvoteCount={60}
+                defaultAwards={[RedditSilver, RedditSilver, RedditGold]}
+                awardsArray={awardsArray}
+                setOpenAwardsMobile={setOpenAwardsMobile}
+                onOpenAwardsDesktop={onOpenAwardsDesktop}
+                setSection={setSection}
+              >
+                <ul className="text-sm lg:text-base text-[#d2d2d2] lg:px-4">
+                  <li>Published co-author in the American Heart Association</li>
+                  <li>Atlantic Coast Conference (ACC) Silver Medalist</li>
+                  <li>Nature Enthusiast</li>
+                </ul>
+              </RedditPost>
+            </div>
           </>
         </div>
       </div>
@@ -153,4 +157,4 @@ const RedditTheme = () => {
   );
 };
 
-export default RedditTheme;
+export default memo(RedditTheme);

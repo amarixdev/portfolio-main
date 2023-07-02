@@ -1,5 +1,6 @@
 import { Tab, TabIndicator, TabList, Tabs } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { useMediaQuery } from "../../util/hooks";
 
 type Props = {};
 
@@ -10,6 +11,9 @@ const RedditTabs = ({
   section: string;
   handleSelect: (value: string) => void;
 }) => {
+  const isBreakPoint = useMediaQuery(1023);
+  const justifyContent = isBreakPoint ? "space-evenly" : "start";
+
   const [tabIndex, setTabIndex] = useState(0);
   useEffect(() => {
     switch (section) {
@@ -35,14 +39,14 @@ const RedditTabs = ({
         <TabList
           display={"flex"}
           w="full"
-          justifyContent={"space-evenly"}
-          className="rounded-sm py-2 lg:py-4 lg:border-2"
+          justifyContent={justifyContent}
+          className="rounded-sm py-2 lg:py-0 lg:border-[1px] hover:lg:border-[#777]"
         >
           <Tab onClick={() => handleSelect("about")}>
             <p
               className={`${
                 section === "about" ? "text-white" : "text-[#777777]"
-              } lg:text-xl font-semibold transition-all duration-[400ms] ease-in-out`}
+              }  rounded-lg lg:p-2 font-semibold transition-colors lg:transition-none duration-[400ms] lg:duration-0 ease-in-out`}
             >
               About
             </p>
@@ -52,7 +56,7 @@ const RedditTabs = ({
             <p
               className={`${
                 section === "experience" ? "text-white" : "text-[#777777]"
-              } lg:text-xl font-semibold  transition-all duration-[400ms] ease-in-out`}
+              } font-semibold transition-colors lg:transition-none duration-[400ms] lg:duration-0 ease-in-out`}
             >
               Experience
             </p>
@@ -62,18 +66,20 @@ const RedditTabs = ({
             <p
               className={`${
                 section === "skills" ? "text-white" : "text-[#777777]"
-              } lg:text-xl font-semibold transition-all duration-[400ms] ease-in-out`}
+              } font-semibold  transition-colors lg:transition-none duration-[400ms] lg:duration-0 ease-in-out`}
             >
               Skills
             </p>
           </Tab>
         </TabList>
-        <TabIndicator
-          mt="-1.5px"
-          height="3px"
-          bg="#26a7de"
-          borderRadius="5px"
-        />
+        {isBreakPoint && (
+          <TabIndicator
+            mt="-1.5px"
+            height="3px"
+            bg="#26a7de"
+            borderRadius="5px"
+          />
+        )}
       </Tabs>
     </>
   );

@@ -22,9 +22,12 @@ const RedditSort = ({
   setOpenDrawer: (value: boolean) => void;
   setFilter: (value: string) => void;
   filter: string;
+  
 }) => {
   const sortMenuRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(true);
+
+  
   useEffect(() => {
     const handleClickOutside = (event: any) => {
       setInView(true);

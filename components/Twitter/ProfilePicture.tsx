@@ -39,7 +39,7 @@ const ProfilePicture = ({
           alt="profile"
           width={300}
           height={300}
-          className="max-w-[250px] lg:max-w-[300px]"
+          className="max-w-[250px] lg:max-w-[300px] rounded-full"
         />
       </div>
     </div>

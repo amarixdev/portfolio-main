@@ -48,15 +48,15 @@ const Home: NextPage = () => {
   const themes: Theme = {
     music: {
       icon: <HiMusicNote size={iconSizeBanner} />,
-      style: `${style.glowIcon}`,
+      style: `${style.glowIconBanner}`,
     },
     reddit: {
       icon: <FaRedditAlien size={iconSizeBanner} />,
-      style: `${style.glowIcon}`,
+      style: `${style.glowIconBanner}`,
     },
     twitter: {
       icon: <BsTwitter size={iconSizeBanner} />,
-      style: `${style.glowIcon}`,
+      style: `${style.glowIconBanner}`,
     },
     none: {
       icon: null,
@@ -148,7 +148,7 @@ const Home: NextPage = () => {
     <div
       className={`${
         profileOpen && theme === "twitter" && "h-screen fixed z-[500]"
-      } `}
+      } bg-black`}
     >
       {isBreakPoint && <Overlay openAwardsMobile={openAwardsMobile} />}
       {isBreakPoint && (

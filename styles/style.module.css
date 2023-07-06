@@ -192,6 +192,12 @@
   transition: all 0.15s ease-in-out;
 }
 
+.glowIconBanner {
+  box-shadow: 0 0 10px #fff;
+  border-radius: 1rem;
+  transition: all 0.15s ease-in-out;
+}
+
 .twitterIconBanner {
   box-shadow: 0 0 15px #26a7de;
   border-radius: 1rem;
@@ -321,4 +327,3 @@
   -webkit-animation: move-background 70s linear infinite;
   animation: move-background 70s linear infinite;
 }
-

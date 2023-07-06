@@ -2,6 +2,7 @@ import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import React, { ReactElement, RefObject, useEffect } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { capitalizeString } from "../../util/functions";
+import { useMediaQuery } from "../../util/hooks";
 
 interface Theme {
   [key: string]: { icon: ReactElement | null; style: string | null };
@@ -44,24 +45,27 @@ const Banner = ({
     };
   }, [themeSelectionRef, wrapperRef, setDisplayBanner]);
 
+  const isBreakPoint = useMediaQuery(1023);
+
+  const bannerStyle = `${
+    displayBanner ? "top-0" : "top-[-20%]"
+  }  cursor-pointer transition-all duration-300 ease-in-out  w-full bg-[#000000b0] backdrop-blur-md border-b-[0.5px] border-[#aaaaaa50] py-3 lg:py-5 lg:gap-10 px-4 fixed z-[999] flex justify-between  items-center`;
+
   return (
-    <div
-      onClick={() => {
-        // wrapperRef.current?.scrollTo({ top: 0, behavior: "smooth" });
-      }}
-      className={`${
-        displayBanner ? "top-0" : "top-[-20%]"
-      } cursor-pointer transition-all duration-300 ease-in-out w-full shadow-black shadow-md backdrop-blur-lg  bg-[#262626c8] py-3 lg:py-5 lg:gap-10 px-4 fixed z-[999] flex justify-between  items-center`}
-    >
-      <p className="font-extrabold text-sm xs:text-base lg:text-3xl text-center ">
-        {/* Software <span className="text-white">DeV</span>eloper */}
+    <div className={` ${bannerStyle} `}>
+      <p
+        onClick={() => {
+          wrapperRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+        className="font-extrabold text-sm xs:text-base lg:text-3xl text-center "
+      >
         Portfolio
       </p>
       <Menu>
         <MenuButton>
           <div className="flex items-center gap-4 lg:gap-6">
             <div
-              className={`flex ${themes[theme]?.style} bg-black  rounded-full lg:rounded-2xl  items-center justify-center w-10 h-10  lg:w-14 lg:h-14`}
+              className={`flex ${themes[theme]?.style} rounded-full lg:rounded-2xl  items-center justify-center w-10 h-10  lg:w-14 lg:h-14`}
             >
               {themes[theme]?.icon}
             </div>

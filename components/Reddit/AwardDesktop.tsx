@@ -1,23 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
-import { BsCoin } from "react-icons/bs";
-import RedditSilver from "../../public/assets/reddit-silver.png";
-import RedditGold from "../../public/assets/reddit-gold.png";
-import RedditPlatinum from "../../public/assets/reddit-platinum.png";
-import Image from "next/image";
-import { capitalizeString } from "../../util/functions";
-import { RedditAwardsState } from "../../util/types";
-import { CoinVertical } from "@phosphor-icons/react";
 import {
-  Button,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
-  ModalOverlay,
+  ModalOverlay
 } from "@chakra-ui/react";
+import { CoinVertical } from "@phosphor-icons/react";
+import Image from "next/image";
+import React, { useState } from "react";
+import { AiOutlineClose } from "react-icons/ai";
+import RedditGold from "../../public/assets/reddit-gold.png";
+import RedditPlatinum from "../../public/assets/reddit-platinum.png";
+import RedditSilver from "../../public/assets/reddit-silver.png";
+import { capitalizeString } from "../../util/functions";
+import { RedditAwardsState } from "../../util/types";
 
 const AwardDesktop = ({
   isOpen,
@@ -30,11 +26,9 @@ const AwardDesktop = ({
   setAwardsArray: React.Dispatch<React.SetStateAction<RedditAwardsState>>;
   section: string;
 }) => {
-  const [give, setGive] = useState(false);
   const [selectedAward, setSelectedAward] = useState("silver");
   const selectAward = (award: string) => {
     setSelectedAward(award);
-    setGive(true);
   };
 
   const giveAward = () => {
@@ -43,7 +37,6 @@ const AwardDesktop = ({
       ...prev,
       [section]: [...prev[section], selectedAward],
     }));
-    setGive(false);
   };
 
   const awards = [
@@ -62,10 +55,8 @@ const AwardDesktop = ({
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-3 w-full">
                 <AiOutlineClose size={20} onClick={() => onClose()} />
-
                 <p className="font-semibold text-lg"> Awards</p>
               </div>
-
               <div className="flex items-center gap-2 px-4 py-1 bg-[#151515] rounded-xl">
                 <CoinVertical size={18} color="#f7c308" weight="fill" />
                 <p className="font-light text-sm">&#8734;</p>

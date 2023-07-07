@@ -1,16 +1,7 @@
-import {
-  Drawer,
-  DrawerBody,
-  DrawerContent,
-  DrawerHeader,
-  DrawerOverlay,
-} from "@chakra-ui/react";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { BsFire } from "react-icons/bs";
+import { TbArrowBigUpLines, TbSword } from "react-icons/tb";
 import { TiStarburstOutline } from "react-icons/ti";
-import { TbArrowBigUpLines } from "react-icons/tb";
-import { RiSwordLine } from "react-icons/ri";
-import { TbSword } from "react-icons/tb";
 
 const RedditSort = ({
   onOpenDrawer,
@@ -22,17 +13,12 @@ const RedditSort = ({
   setOpenDrawer: (value: boolean) => void;
   setFilter: (value: string) => void;
   filter: string;
-  
 }) => {
   const sortMenuRef = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(true);
 
-  
   useEffect(() => {
     const handleClickOutside = (event: any) => {
-      setInView(true);
       if (onOpenDrawer && !sortMenuRef.current?.contains(event.target)) {
-        setInView(false);
         setOpenDrawer(false);
       }
     };

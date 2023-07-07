@@ -8,16 +8,12 @@ import {
 } from "react-icons/tb";
 import Software from "../../public/assets/software.jpeg";
 
-import { Button, useDisclosure } from "@chakra-ui/react";
 import { GoGift } from "react-icons/go";
 import RedditGold from "../../public/assets/reddit-gold.png";
 import RedditPlatinum from "../../public/assets/reddit-platinum.png";
 import RedditSilver from "../../public/assets/reddit-silver.png";
 import { useMediaQuery } from "../../util/hooks";
-import AwardMobile from "./AwardMobile";
-import MyDrawer from "./AwardMobile";
 import { RedditAwardsState } from "../../util/types";
-import AwardDesktop from "./AwardDesktop";
 
 const RedditPost = ({
   title,
@@ -27,8 +23,7 @@ const RedditPost = ({
   upvoteCount,
   defaultAwards,
   awardsArray,
-  setOpenAwardsMobile,
-  onOpenAwardsDesktop,
+  openAwards,
   setSection,
 }: {
   title: string;
@@ -38,8 +33,8 @@ const RedditPost = ({
   upvoteCount: number;
   defaultAwards: StaticImageData[];
   awardsArray: RedditAwardsState;
-  setOpenAwardsMobile: (openAwardsMobile: any) => void;
-  onOpenAwardsDesktop: () => void;
+  openAwards: any;
+
   setSection: (value: string) => void;
 }) => {
   const username = "u/amarixdev";
@@ -321,7 +316,7 @@ const RedditPost = ({
             onClick={() => {
               setPostSelection(title);
               setSection(title);
-              isBreakPoint ? setOpenAwardsMobile(true) : onOpenAwardsDesktop();
+              isBreakPoint ? openAwards(true) : openAwards();
             }}
           >
             <GoGift size={22} color={"#777"} />

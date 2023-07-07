@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import { BsCoin } from "react-icons/bs";
 import RedditSilver from "../../public/assets/reddit-silver.png";
 import RedditGold from "../../public/assets/reddit-gold.png";
 import RedditPlatinum from "../../public/assets/reddit-platinum.png";
@@ -9,7 +8,7 @@ import { capitalizeString } from "../../util/functions";
 import { RedditAwardsState } from "../../util/types";
 import { CoinVertical } from "@phosphor-icons/react";
 
-const MyDrawer = ({
+const AwardMobile = ({
   openAwardsMobile,
   setOpenAwardsMobile,
   setAwardsArray,
@@ -43,8 +42,6 @@ const MyDrawer = ({
     }));
     setGive(false);
   };
-
-  console.log(give);
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -133,4 +130,4 @@ const MyDrawer = ({
   );
 };
 
-export default MyDrawer;
+export default AwardMobile;

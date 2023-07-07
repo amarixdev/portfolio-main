@@ -1,10 +1,8 @@
 import Image from "next/image";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { MdVerified } from "react-icons/md";
 import Profile from "../../public/assets/twitter-profile.jpg";
 import { capitalizeString } from "../../util/functions";
-
-type Props = {};
 
 const Tweet = ({ children, title }: { children: ReactNode; title: string }) => {
   return (

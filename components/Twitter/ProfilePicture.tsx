@@ -1,10 +1,6 @@
-import React from "react";
-import Profile from "../../public/assets/twitter-profile.jpg";
 import Image from "next/image";
-import { Button } from "@chakra-ui/react";
-import { AiFillCloseCircle, AiOutlineClose } from "react-icons/ai";
-
-type Props = {};
+import { AiFillCloseCircle } from "react-icons/ai";
+import Profile from "../../public/assets/twitter-profile.jpg";
 
 const ProfilePicture = ({
   setProfileOpen,
@@ -15,7 +11,6 @@ const ProfilePicture = ({
   profileOpen: boolean;
   theme: string;
 }) => {
-  console.log(profileOpen);
   return (
     <div
       className={`${

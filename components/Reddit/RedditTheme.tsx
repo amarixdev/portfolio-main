@@ -1,68 +1,34 @@
 import Image from "next/image";
-import { ReactElement, memo, useEffect, useState } from "react";
+import { memo, useState } from "react";
 import { BsFire } from "react-icons/bs";
-import { HiOutlineChevronDown } from "react-icons/hi";
-import { TbArrowBigUpLines, TbSword } from "react-icons/tb";
-import { TiStarburstOutline } from "react-icons/ti";
 import Avatar from "../../public/assets/reddit-avatar.png";
+import RedditGold from "../../public/assets/reddit-gold.png";
+import RedditPlatinum from "../../public/assets/reddit-platinum.png";
+import RedditSilver from "../../public/assets/reddit-silver.png";
+import { RedditAwardsState } from "../../util/types";
 import RedditGrid from "./RedditGrid";
 import RedditPost from "./RedditPost";
 import RedditTabs from "./RedditTabs";
-import RedditSilver from "../../public/assets/reddit-silver.png";
-import RedditGold from "../../public/assets/reddit-gold.png";
-import RedditPlatinum from "../../public/assets/reddit-platinum.png";
-import AwardMobile from "./AwardMobile";
-import MyDrawer from "./AwardMobile";
-import { RedditAwardsState } from "../../util/types";
 
 const RedditTheme = ({
-  setOpenAwardsMobile,
-  onOpenAwardsDesktop,
+  openAwards,
   section,
   setSection,
   awardsArray,
 }: {
-  openAwardsMobile: boolean;
-  setOpenAwardsMobile: (openAwardsMobile: boolean) => void;
-  onOpenAwardsDesktop: () => void;
+  openAwards: any;
   section: string;
   setSection: (value: string) => void;
   awardsArray: RedditAwardsState;
 }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
-  console.log("rendered");
-  interface SortFilter {
-    [key: string]: { title: string; icon: ReactElement };
-  }
-  const sortFilters: SortFilter = {
-    hot: { title: "HOT POSTS", icon: <BsFire color="#aaaaaa" size={20} /> },
-    new: {
-      title: "NEW POSTS",
-      icon: <TiStarburstOutline color={"#aaaaaa"} size={20} />,
-    },
-    top: {
-      title: "TOP POSTS",
-      icon: <TbArrowBigUpLines color="#aaaaaa" size={20} />,
-    },
-    controversial: {
-      title: "CONTROVERSIAL POSTS",
-      icon: <TbSword color="#aaaaaa" size={20} />,
-    },
-  };
-  const [filter, setFilter] = useState("hot");
-  // const awards = { Summary: [], "Beyond Tech": [] };
   const handleSelect = (section: string) => {
     setSection(section);
   };
   return (
-    <div className="flex relative items-center justify-center overflow-auto ">
+    <div className="flex relative items-center justify-center overflow-auto pb-20 lg:pb-0 ">
       <div className="w-full absolute top-0 bg-gradient-to-b from-black h-[100px]"></div>
-      {/* <RedditSort
-        onOpenDrawer={openDrawer}
-        setOpenDrawer={setOpenDrawer}
-        setFilter={setFilter}
-        filter={filter}
-      /> */}
+
       {openDrawer && (
         <div className="h-screen bg-[#0000006b] fixed z-[150] w-full"></div>
       )}
@@ -86,15 +52,11 @@ const RedditTheme = ({
           <RedditTabs section={section} handleSelect={handleSelect} />
           <>
             <div className="flex items-center w-full gap-1 py-3 px-2 bg-[#010101]">
-              {sortFilters[filter].icon}
-              <div
-                className="flex items-center gap-1"
-                onClick={() => setOpenDrawer((prev) => !prev)}
-              >
+              <BsFire color="#aaaaaa" size={18} />
+              <div className="flex items-center gap-1">
                 <p className=" text-xs font-bold text-[#aaaaaa]">
-                  {sortFilters[filter].title}
+                  {"HOT POSTS"}
                 </p>
-                <HiOutlineChevronDown color="#aaaaaa" />
               </div>
             </div>
             <div className="flex flex-col gap-5">
@@ -105,8 +67,7 @@ const RedditTheme = ({
                 upvoteCount={42}
                 defaultAwards={[RedditGold, RedditPlatinum]}
                 awardsArray={awardsArray}
-                setOpenAwardsMobile={setOpenAwardsMobile}
-                onOpenAwardsDesktop={onOpenAwardsDesktop}
+                openAwards={openAwards}
                 setSection={setSection}
               >
                 <p className="text-sm lg:text-base text-[#d2d2d2] lg:px-4">
@@ -139,8 +100,7 @@ const RedditTheme = ({
                 upvoteCount={60}
                 defaultAwards={[RedditSilver, RedditSilver, RedditGold]}
                 awardsArray={awardsArray}
-                setOpenAwardsMobile={setOpenAwardsMobile}
-                onOpenAwardsDesktop={onOpenAwardsDesktop}
+                openAwards={openAwards}
                 setSection={setSection}
               >
                 <ul className="text-sm lg:text-base text-[#d2d2d2] lg:px-4">

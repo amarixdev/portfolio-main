@@ -2,8 +2,6 @@ import { Tab, TabIndicator, TabList, Tabs } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useMediaQuery } from "../../util/hooks";
 
-type Props = {};
-
 const RedditTabs = ({
   section,
   handleSelect,

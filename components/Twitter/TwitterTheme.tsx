@@ -1,5 +1,4 @@
 import {
-  Button,
   Menu,
   MenuButton,
   MenuList,
@@ -8,20 +7,19 @@ import {
   TabList,
   TabPanel,
   TabPanels,
-  Tabs,
+  Tabs
 } from "@chakra-ui/react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AiOutlineLink } from "react-icons/ai";
 import { BsCalendar3 } from "react-icons/bs";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { MdVerified } from "react-icons/md";
-import Profile from "../../public/assets/twitter-profile.jpg";
-import Backdrop from "../../public/assets/twitter-backdrop2.jpg";
 import { RiUserUnfollowLine } from "react-icons/ri";
+import Backdrop from "../../public/assets/twitter-backdrop2.jpg";
+import Profile from "../../public/assets/twitter-profile.jpg";
 import { useMediaQuery } from "../../util/hooks";
 import Tweet from "./Tweet";
-import ProfilePicture from "./ProfilePicture";
 
 const TwitterTheme = ({
   profileOpen,
@@ -55,14 +53,14 @@ const TwitterTheme = ({
             loading="eager"
           />
         </div>
-        <div className="bottom-5 relative">
+        <div className=" relative bottom-8">
           <div className=" px-4 relative mt-1 flex w-full justify-between items-center">
             <Image
               src={Profile}
               alt="profile"
               height={avatarSizeMain}
               width={avatarSizeMain}
-              className="rounded-full cursor-pointer"
+              className="rounded-full cursor-pointer relative"
               priority
               loading="eager"
               onClick={() => {
@@ -74,7 +72,7 @@ const TwitterTheme = ({
                 {
                   <MenuButton
                     as={"button"}
-                    className={`px-4 rounded-2xl  border-[1px] border-[#aaaaaa86] "bg-black w-[100px] h-[30px] text-black `}
+                    className={`px-4 rounded-2xl mt-10 lg:mt-2  border-[1px] border-[#aaaaaa86] "bg-black w-[100px] h-[30px] text-black `}
                   >
                     {" "}
                     <p className={` ${"text-white"} text-sm font-semibold`}>
@@ -100,10 +98,10 @@ const TwitterTheme = ({
               <button
                 className={` rounded-2xl 
            bg-white
-             w-[100px] h-[30px]`}
+             w-[100px] h-[30px] mt-10 lg:mt-2 `}
                 onClick={() => setFollowing((prev) => !prev)}
               >
-                <p className={` text-black text-sm  font-semibold`}>
+                <p className={` text-black text-sm font-semibold`}>
                   {"Follow"}
                 </p>
               </button>

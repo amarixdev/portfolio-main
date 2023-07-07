@@ -1,20 +1,5 @@
 /* Apple Music Bars */
 
-.barMobile {
-  display: inline-block;
-  position: relative;
-  border-radius: 20px;
-  margin-right: 1px;
-  width: 3.5px;
-  height: 1px;
-  overflow: hidden;
-  background: #da2742;
-  color: transparent;
-  animation-name: pulse;
-  animation-duration: 1.8s;
-  animation-iteration-count: infinite;
-}
-
 .bar {
   display: inline-block;
   position: relative;
@@ -70,32 +55,7 @@
   }
 }
 
-/* Spotify */
-
-.sticky {
-  position: fixed;
-  top: 100px;
-}
-
-.gridContainer {
-  display: grid;
-  grid-template-columns: repeat(20, 1fr);
-  grid-gap: 5px;
-}
-
-.gridItem {
-  background-color: orange;
-  height: 40px;
-  width: 40px;
-}
-
-.wrapper {
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  perspective: 10px;
-}
-
+/* Landing Page Chevron  */
 .bounce {
   animation: bounce 3s infinite;
 }
@@ -125,28 +85,18 @@
   }
 }
 
-.banner {
-  transform: translateZ(-10px) scale(2);
-  z-index: 999;
-  position: absolute;
-  top: 0px;
-}
+/* Parallax Desktop  */
 
-/* .options {
-  transform: translateZ(-10px) scale(2);
-  z-index: 9999;
-  position: absolute;
-} */
+.wrapper {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: 10px;
+}
 
 .display {
   transform: translateZ(-5px) scale(1.5);
 }
-
-/* @media screen and (min-width: 1024px) {
-  .display {
-    bottom: -760;
-  }
-} */
 
 .background {
   position: absolute;
@@ -168,23 +118,7 @@
   position: fixed;
 }
 
-.musicIcon {
-  box-shadow: 0 0 30px #da2742;
-  border-radius: 1rem;
-  transition: all 0.15s ease-in-out;
-}
-
-.redditIcon {
-  box-shadow: 0 0 30px #ff5309;
-  border-radius: 1rem;
-  transition: all 0.15s ease-in-out;
-}
-
-.twitterIcon {
-  box-shadow: 0 0 30px #26a7de;
-  border-radius: 1rem;
-  transition: all 0.15s ease-in-out;
-}
+/* Icon Styles */
 
 .glowIcon {
   box-shadow: 0 0 30px #fff;
@@ -220,9 +154,9 @@
   transition: all 0.4s ease-in-out;
 }
 
-/* Loader */
+/* Loading animations */
 
-.loader {
+.loaderSpin {
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -230,9 +164,9 @@
   border-top: 4px solid #fff;
   border-right: 4px solid transparent;
   box-sizing: border-box;
-  animation: rotation 1s linear infinite;
+  animation: loadingRotate 1s linear infinite;
 }
-.loader::after {
+.loaderSpin::after {
   content: "";
   box-sizing: border-box;
   position: absolute;
@@ -244,7 +178,7 @@
   border-bottom: 4px solid #87d3fe;
   border-left: 4px solid transparent;
 }
-@keyframes rotation {
+@keyframes loadingRotate {
   0% {
     transform: rotate(0deg);
   }
@@ -253,40 +187,62 @@
   }
 }
 
-@keyframes move-background {
-  from {
-    -webkit-transform: translate3d(0px, 0px, 0px);
-  }
-  to {
-    -webkit-transform: translate3d(1000px, 0px, 0px);
-  }
+.loaderBrackets {
+  color: #fff;
+  font-family: Consolas, Menlo, Monaco, monospace;
+  font-weight: bold;
+  font-size: 78px;
+  opacity: 0.8;
 }
-@-webkit-keyframes move-background {
-  from {
-    -webkit-transform: translate3d(0px, 0px, 0px);
-  }
+.loaderBrackets:before {
+  content: "{";
+  display: inline-block;
+  animation: loadingPulse 0.4s alternate infinite ease-in-out;
+}
+
+.loaderBrackets:after {
+  content: "}";
+  display: inline-block;
+  animation: loadingPulse 0.4s 0.3s alternate infinite ease-in-out;
+}
+
+@keyframes loadingPulse {
   to {
-    -webkit-transform: translate3d(1000px, 0px, 0px);
+    transform: scale(0.8);
+    opacity: 0.5;
   }
 }
 
-@-moz-keyframes move-background {
-  from {
-    -webkit-transform: translate3d(0px, 0px, 0px);
+.loaderSlide {
+  display: inline-block;
+  position: relative;
+  background: rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+.loaderSlide::after {
+  content: "";
+  width: 192px;
+  height: 4.8px;
+  background: #29aaf4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  animation: loadingSlide 2s linear infinite;
+}
+
+@keyframes loadingSlide {
+  0% {
+    left: 0;
+    transform: translateX(-100%);
   }
-  to {
-    -webkit-transform: translate3d(1000px, 0px, 0px);
+  100% {
+    left: 100%;
+    transform: translateX(0%);
   }
 }
 
-@-webkit-keyframes move-background {
-  from {
-    -webkit-transform: translate3d(0px, 0px, 0px);
-  }
-  to {
-    -webkit-transform: translate3d(1000px, 0px, 0px);
-  }
-}
+/* Night Sky animation */
 
 .backgroundContainer {
   position: absolute;
@@ -326,4 +282,39 @@
   -o-animation: move-background 70s linear infinite;
   -webkit-animation: move-background 70s linear infinite;
   animation: move-background 70s linear infinite;
+}
+
+@keyframes move-background {
+  from {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+  }
+  to {
+    -webkit-transform: translate3d(1000px, 0px, 0px);
+  }
+}
+@-webkit-keyframes move-background {
+  from {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+  }
+  to {
+    -webkit-transform: translate3d(1000px, 0px, 0px);
+  }
+}
+
+@-moz-keyframes move-background {
+  from {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+  }
+  to {
+    -webkit-transform: translate3d(1000px, 0px, 0px);
+  }
+}
+
+@-webkit-keyframes move-background {
+  from {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+  }
+  to {
+    -webkit-transform: translate3d(1000px, 0px, 0px);
+  }
 }

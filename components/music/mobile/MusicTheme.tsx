@@ -8,8 +8,13 @@ import { capitalizeString } from "../../../util/functions";
 import { useMediaQuery } from "../../../util/hooks";
 import MusicCollapse from "./MusicCollapse";
 
-
-const MusicThemeMobile = () => {
+const MusicThemeMobile = ({
+  tutorial,
+  setTutorial,
+}: {
+  tutorial: boolean;
+  setTutorial: (tutorial: boolean) => void;
+}) => {
   const isBreakPoint = useMediaQuery(389);
   const iconSize = isBreakPoint ? 12 : 16;
   const musicThemeColor = "#279bda";
@@ -93,7 +98,13 @@ const MusicThemeMobile = () => {
         </div>
       </div>
       <div className="w-full flex flex-col justify-center">
-        <MusicCollapse title="summary" count={1} top={true}>
+        <MusicCollapse
+          tutorial={tutorial}
+          setTutorial={setTutorial}
+          title="summary"
+          count={1}
+          top={true}
+        >
           <p>
             A software developer based in North Carolina. I attended the
             University of North Carolina - Chapel Hill from 2015 to 2019, where
@@ -111,7 +122,12 @@ const MusicThemeMobile = () => {
             and I look forward to connecting.
           </p>
         </MusicCollapse>
-        <MusicCollapse title="beyond tech" count={2}>
+        <MusicCollapse
+          title="beyond tech"
+          count={2}
+          tutorial={tutorial}
+          setTutorial={setTutorial}
+        >
           <ul className=" list-disc">
             <li>Published co-author in the American Heart Association</li>
             <li>Atlantic Coast Conference (ACC) Silver Medalist</li>

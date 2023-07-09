@@ -43,8 +43,7 @@ const MobileApp = () => {
   const [profileOpen, setProfileOpen] = useState(false);
   const extendRef = useRef<HTMLDivElement>(null);
 
-  console.log(themes);
-
+  const [tutorial, setTutorial] = useState(true);
   return (
     <>
       {/* <Button
@@ -209,7 +208,12 @@ const MobileApp = () => {
                   ref={themeRef}
                   className="w-full absolute bg-black b top-[480px] z-[20]"
                 >
-                  {theme === "music" && <MusicThemeMobile />}
+                  {theme === "music" && (
+                    <MusicThemeMobile
+                      tutorial={tutorial}
+                      setTutorial={setTutorial}
+                    />
+                  )}
                   {theme === "reddit" && (
                     <RedditTheme
                       openAwards={setOpenAwardsMobile}

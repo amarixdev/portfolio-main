@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import style from "../../styles/style.module.css";
 
 const LoadingScreen = ({
@@ -5,11 +6,21 @@ const LoadingScreen = ({
 }: {
   heroImageLoaded: { background: boolean; foreground: boolean };
 }) => {
+  const [loading, setLoading] = useState(true);
   const { background, foreground } = heroImageLoaded;
+
+  useEffect(() => {
+    if (!background || !foreground) {
+      setLoading(true);
+    }
+    if (background && foreground) {
+      setLoading(false);
+    }
+  }, [background, foreground]);
 
   return (
     <>
-      {!background && !foreground && (
+      {loading && (
         <div
           className={` z-[999] gap-5 px-10 flex flex-col text-center items-center justify-center h-screen fixed bg-black w-full`}
         >

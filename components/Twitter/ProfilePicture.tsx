@@ -17,11 +17,11 @@ const ProfilePicture = ({
         profileOpen && theme === "twitter"
           ? "opacity-100 z-50"
           : "opacity-0 z-0"
-      } fixed h-screen w-full flex items-center justify-center`}
+      } fixed h-screen w-full bg-black flex items-center justify-center`}
     >
       <div className=" w-full sm:max-w-[50%] relative flex flex-col justify-center items-center h-[70%]">
         <AiFillCloseCircle
-          size={25}
+          size={30}
           color="#888"
           className="absolute top-4 left-4 cursor-pointer"
           onClick={() => {

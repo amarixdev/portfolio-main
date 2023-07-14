@@ -63,7 +63,9 @@ const RedditPost = ({
   };
 
   return (
-    <div className="lg:flex lg:border-[1px] rounded-sm  hover:lg:border-[#777]">
+    <div
+      className={`lg:flex lg:border-[1px] rounded-sm  hover:lg:border-[#777]`}
+    >
       <div className="hidden lg:block bg-[#0c0c0c]">
         <div className="flex p-3 flex-col justify-center items-center">
           <div

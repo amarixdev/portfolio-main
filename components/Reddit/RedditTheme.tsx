@@ -26,7 +26,7 @@ const RedditTheme = ({
     setSection(section);
   };
   return (
-    <div className="flex relative items-center justify-center overflow-auto pb-20 lg:pb-0 ">
+    <div className="flex relative items-center justify-center overflow-hidden pb-20 lg:pb-0 ">
       <div className="w-full absolute top-0 bg-gradient-to-b from-black h-[100px]"></div>
 
       {openDrawer && (

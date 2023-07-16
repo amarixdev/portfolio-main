@@ -15,7 +15,7 @@ const LandingPage = ({
         <div
           className={`z-[999] ${
             showBackdrop ? "block" : "hidden"
-          }  flex text-center justify-center h-screen fixed bg-[#000000b9] w-full`}
+          }  flex text-center justify-center h-screen fixed bg-[#000000b9] backdrop-blur-md w-full`}
         >
           <div className={` flex flex-col gap-10 justify-evenly w-[70%]`}>
             <h1 className="font-extrabold text-3xl lg:text-5xl">

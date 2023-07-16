@@ -1,5 +1,3 @@
-
-
 const Title = ({ displayTitle }: { displayTitle: boolean }) => {
   return (
     <div

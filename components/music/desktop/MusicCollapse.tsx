@@ -1,5 +1,11 @@
 import { Collapse, useDisclosure } from "@chakra-ui/react";
-import { ReactNode, useState } from "react";
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { BsFillPlayFill } from "react-icons/bs";
 import { capitalizeString } from "../../../util/functions";
 import MusicBars from "../MusicBars";
@@ -9,38 +15,71 @@ const MusicCollapse = ({
   title,
   top,
   count,
+  opened,
+  setOpened,
 }: {
   children: ReactNode;
   title: string;
   top?: boolean;
   count: number;
+  opened: string[];
+  setOpened: Dispatch<SetStateAction<string[]>>;
 }) => {
-  const handleCollapse = (title: string) => {
+  const handleCollapse = (title: string, state: string) => {
+    if (isOpen && state === "closed") {
+      return;
+    }
+    if (isOpen && state === "open") {
+      onToggle();
+    }
     onToggle();
     setSelectedCollapse(title);
+    if (!opened.includes(title))
+      setOpened((prev) => [...prev, title.toLowerCase()]);
+    if (opened.includes(title.toLowerCase()))
+      setOpened((prev) => prev.filter((item) => item !== title.toLowerCase()));
   };
 
   const { isOpen, onToggle } = useDisclosure();
   const [selectedCollapse, setSelectedCollapse] = useState("");
   const [hoverSong, setHoverSong] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  console.log(opened);
+
+  useEffect(() => {
+    if (opened.includes(title.toLowerCase())) {
+      setTimeout(() => {
+        onToggle();
+        setSelectedCollapse(title);
+      }, 200);
+    }
+  }, []);
 
   return (
     <div
       className={`border-[#aaaaaa6a] border-b-[0.5px] ${
         top && "border-t-[0.5px]"
-      } w-full flex justify-start items-center py-3 lg:cursor-pointer`}
-      onClick={() => handleCollapse(title)}
+      } w-full flex justify-start items-center py-3 ${
+        isOpen || "cursor-pointer"
+      }`}
+      onClick={() => handleCollapse(title, "closed")}
       onMouseEnter={() => {
-        setHoverSong(true);
+        if (!isOpen) {
+          setHoverSong(true);
+        }
       }}
       onMouseLeave={() => {
-        setHoverSong(false);
+        if (!isOpen) {
+          setHoverSong(false);
+        }
       }}
     >
       <div className="flex flex-col w-full">
         <div
-          className={`flex gap-3 items-center ${
-            isOpen && "bg-[#279bda]"
+          onClick={() => handleCollapse(title, "open")}
+          className={`flex gap-3 items-center select-none ${
+            isOpen && "bg-[#279bda] cursor-pointer"
           }  py-4`}
         >
           <div className="pl-5 text-[#aaaaaa] text-xs">

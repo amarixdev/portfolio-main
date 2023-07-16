@@ -1,5 +1,13 @@
 import { Collapse, useDisclosure } from "@chakra-ui/react";
-import { ReactNode, useCallback, useRef, useState } from "react";
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { BsHandIndexThumb } from "react-icons/bs";
 import style from "../../../styles/style.module.css";
 import { capitalizeString } from "../../../util/functions";
@@ -12,6 +20,8 @@ const MusicCollapse = ({
   count,
   tutorial,
   setTutorial,
+  opened,
+  setOpened,
 }: {
   children: ReactNode;
   title: string;
@@ -19,18 +29,42 @@ const MusicCollapse = ({
   count: number;
   tutorial: boolean;
   setTutorial: (tutorial: boolean) => void;
+  opened: string[];
+  setOpened: Dispatch<SetStateAction<string[]>>;
 }) => {
   const { isOpen, onToggle } = useDisclosure();
   const [selectedCollapse, setSelectedCollapse] = useState("");
-  const handleCollapseRef = useRef<(section: string) => void>();
-  handleCollapseRef.current = useCallback(
-    (section: string) => {
+  console.log(tutorial);
+  const [loading, setLoading] = useState(false);
+  const handleCollapse = (title: string, state: string) => {
+    if (isOpen && state === "closed") {
+      return;
+    }
+    if (isOpen && state === "open") {
       onToggle();
+    }
+    onToggle();
+    setSelectedCollapse(title);
+    if (tutorial !== undefined && setTutorial !== undefined) {
       setTutorial(false);
-      setSelectedCollapse(section);
-    },
-    [onToggle, setSelectedCollapse, setTutorial]
-  );
+    }
+
+    if (!opened.includes(title))
+      setOpened((prev) => [...prev, title.toLowerCase()]);
+    if (opened.includes(title.toLowerCase()))
+      setOpened((prev) => prev.filter((item) => item !== title.toLowerCase()));
+  };
+
+  useEffect(() => {
+    if (opened.includes(title.toLowerCase())) {
+      onToggle();
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
+      setSelectedCollapse(title);
+    }
+  }, []);
 
   return (
     <div
@@ -38,13 +72,14 @@ const MusicCollapse = ({
         top && "border-t-[0.5px]"
       } border-b-[0.5px] border-[#aaaaaa6a] flex justify-start items-center`}
       onClick={() => {
-        if (handleCollapseRef.current) {
-          handleCollapseRef?.current(title);
-        }
+        handleCollapse(title, "closed");
       }}
     >
       <div className="flex flex-col">
         <div
+          onClick={() => {
+            handleCollapse(title, "open");
+          }}
           className={`${
             isOpen && selectedCollapse === title && "bg-[#279bda]"
           } py-3 flex gap-3 w-screen items-center relative`}
@@ -76,11 +111,17 @@ const MusicCollapse = ({
           )}
         </div>
 
-        <Collapse in={isOpen && selectedCollapse === title} animateOpacity>
-          <div className="w-full text-[#aaaaaa] px-10 flex flex-col mt-3 pb-6 ">
-            {children}
-          </div>
-        </Collapse>
+        {loading ? (
+          <div className="h-screen animate-pulse bg-gradient-to-b from-[#131313]"></div>
+        ) : (
+          <Collapse in={isOpen && selectedCollapse === title} animateOpacity>
+            <div
+              className={`w-full text-[#aaaaaa] flex flex-col mt-3 pb-6 `}
+            >
+              {children}
+            </div>
+          </Collapse>
+        )}
       </div>
     </div>
   );

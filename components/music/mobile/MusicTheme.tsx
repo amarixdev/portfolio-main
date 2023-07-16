@@ -1,12 +1,16 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { BsFillPersonFill } from "react-icons/bs";
+import { BsFillPersonFill, BsGithub, BsLinkedin } from "react-icons/bs";
 import { GrGraphQl } from "react-icons/gr";
 import { MdWork } from "react-icons/md";
 import Profile from "../../../public/assets/album-cover.jpg";
 import { capitalizeString } from "../../../util/functions";
 import { useMediaQuery } from "../../../util/hooks";
 import MusicCollapse from "./MusicCollapse";
+import About from "./About";
+import Projects from "./Projects";
+import { AiOutlineMail } from "react-icons/ai";
+import Link from "next/link";
 
 const MusicThemeMobile = ({
   tutorial,
@@ -19,6 +23,8 @@ const MusicThemeMobile = ({
   const iconSize = isBreakPoint ? 12 : 16;
   const musicThemeColor = "#279bda";
   const [currentSection, setCurrentSection] = useState("about");
+  const [opened, setOpened] = useState([""]);
+  const [displaySocials, setDisplaySocials] = useState(false);
 
   const sections = [
     {
@@ -32,11 +38,11 @@ const MusicThemeMobile = ({
     },
 
     {
-      name: "experience",
+      name: "projects",
       icon: (
         <MdWork
           size={iconSize}
-          color={currentSection === "experience" ? "#1f1f20" : musicThemeColor}
+          color={currentSection === "projects" ? "#1f1f20" : musicThemeColor}
         />
       ),
     },
@@ -97,45 +103,33 @@ const MusicThemeMobile = ({
           ))}
         </div>
       </div>
-      <div className="w-full flex flex-col justify-center">
-        <MusicCollapse
+      {currentSection === "about" ? (
+        <About
           tutorial={tutorial}
           setTutorial={setTutorial}
-          title="summary"
-          count={1}
-          top={true}
-        >
-          <p>
-            A software developer based in North Carolina. I attended the
-            University of North Carolina - Chapel Hill from 2015 to 2019, where
-            I competed in track and field, was a pre-dental student, and medical
-            researcher. I was grateful to receive an invitation to attend Dental
-            School in 2021, but after long consideration and some time off
-            during the pandemic I ultimately decided healthcare was not for me.{" "}
-          </p>
-          <p>
-            Since the career change, I have worked on a number of web
-            applications for both myself and others. As a software developer, I
-            get enjoyment out out of seeing my ideas manifest at every scale and
-            take pride in devoting my full attention and energy to each project
-            I undertake. Thank you for taking some time to learn more about me
-            and I look forward to connecting.
-          </p>
-        </MusicCollapse>
-        <MusicCollapse
-          title="beyond tech"
-          count={2}
-          tutorial={tutorial}
-          setTutorial={setTutorial}
-        >
-          <ul className=" list-disc">
-            <li>Published co-author in the American Heart Association</li>
-            <li>Atlantic Coast Conference (ACC) Silver Medalist</li>
-            <li>Nature Enthusiast </li>
-          </ul>
-        </MusicCollapse>
-      </div>
-      {/* {isOpen && <MusicFooter section={footer} />} */}
+          opened={opened}
+          setOpened={setOpened}
+        />
+      ) : currentSection === "projects" ? (
+        <Projects      setTutorial={setTutorial}
+        tutorial={tutorial} opened={opened} setOpened={setOpened} />
+      ) : (
+        ""
+      )}
+      {
+        <div className="flex flex-col w-full justify-center items-center mt-[80px] gap-10">
+          <h1 className="font-extrabold text-2xl text-[#555555]">Contact Me</h1>
+          <div className={` pb-20 w-[50%] flex items-center justify-evenly`}>
+            <Link
+              href={"https://www.linkedin.com/in/amari-devaughn-319582191/"}
+              target="_blank"
+            >
+              <BsLinkedin size={30} color="#555555" />
+            </Link>
+            <AiOutlineMail size={30} color="#555555" />
+          </div>
+        </div>
+      }
     </div>
   );
 };

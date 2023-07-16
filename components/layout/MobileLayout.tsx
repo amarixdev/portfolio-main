@@ -18,6 +18,9 @@ import TwitterTheme from "../twitter/TwitterTheme";
 import NightSky from "./NightSky";
 import ThemeSelection from "./ThemeSelection";
 import Title from "./Title";
+import Link from "next/link";
+import { BsLinkedin } from "react-icons/bs";
+import { AiOutlineMail } from "react-icons/ai";
 
 const MobileApp = () => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -234,6 +237,7 @@ const MobileApp = () => {
           </div>
         )}
       </div>
+      
     </>
   );
 };

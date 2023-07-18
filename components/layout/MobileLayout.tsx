@@ -18,9 +18,6 @@ import TwitterTheme from "../twitter/TwitterTheme";
 import NightSky from "./NightSky";
 import ThemeSelection from "./ThemeSelection";
 import Title from "./Title";
-import Link from "next/link";
-import { BsLinkedin } from "react-icons/bs";
-import { AiOutlineMail } from "react-icons/ai";
 
 const MobileApp = () => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -28,12 +25,15 @@ const MobileApp = () => {
   const themeRef = useRef<HTMLDivElement>(null);
   const themeSelectionRef = useRef<HTMLDivElement>(null);
   const [displayBanner, setDisplayBanner] = useState(false);
+  const [selectedTitle, setSelectedTitle] = useState("");
+
   const [redditAwards, setRedditAwards] = useState<RedditAwardsState>({
     Summary: [],
     "Beyond Tech": [],
+    Promoninja: [],
   });
   const [openAwardsMobile, setOpenAwardsMobile] = useState(false);
-  const [section, setSection] = useState("");
+  const [section, setSection] = useState("about");
   const [heroImageLoaded, setHeroImageLoaded] = useState({
     background: false,
     foreground: false,
@@ -60,6 +60,7 @@ const MobileApp = () => {
         openAwardsMobile={openAwardsMobile}
         setOpenAwardsMobile={setOpenAwardsMobile}
         section={section}
+        selectedTitle={selectedTitle}
       />
       {<Overlay openAwardsMobile={openAwardsMobile} />}
 
@@ -78,6 +79,7 @@ const MobileApp = () => {
         themeSelectionRef={themeSelectionRef}
         wrapperRef={wrapperRef}
         setDisplayBanner={setDisplayBanner}
+        setSection = {setSection}
       />
       <div ref={wrapperRef} className="parallax">
         <LandingPage
@@ -161,7 +163,7 @@ const MobileApp = () => {
                               <div
                                 className={`${style.loaderSpin} top-0 relative `}
                               ></div>
-                              <Image
+                              {/* <Image
                                 src={Meme}
                                 width={80}
                                 height={80}
@@ -169,10 +171,10 @@ const MobileApp = () => {
                                 priority
                                 className={`${
                                   meme
-                                    ? "opacity-30 animate-pulse"
+                                    ? "opacity-0 animate-pulse"
                                     : "opacity-0"
                                 }`}
-                              />
+                              /> */}
                             </div>
                           </div>
                         )}
@@ -184,7 +186,7 @@ const MobileApp = () => {
               {themeLoading ? (
                 <div
                   ref={themeRef}
-                  className={`w-full absolute  bottom-[200px] z-[20] h-screen flex items-center justify-center`}
+                  className={`w-full absolute  bottom-[150px] z-[20] h-screen flex items-center justify-center`}
                 >
                   <div className="flex flex-col items-center justify-center">
                     <div
@@ -219,6 +221,8 @@ const MobileApp = () => {
                   )}
                   {theme === "reddit" && (
                     <RedditTheme
+                      selectedTitle={selectedTitle}
+                      setSelectedTitle={setSelectedTitle}
                       openAwards={setOpenAwardsMobile}
                       setSection={setSection}
                       section={section}
@@ -237,7 +241,6 @@ const MobileApp = () => {
           </div>
         )}
       </div>
-      
     </>
   );
 };

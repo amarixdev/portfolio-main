@@ -15,6 +15,7 @@ const Banner = ({
   wrapperRef,
   themeSelectionRef,
   setDisplayBanner,
+  setSection
 }: {
   displayBanner: boolean;
   themes: Theme;
@@ -25,6 +26,7 @@ const Banner = ({
   handleThemeSelection: (icon: string) => void;
   setProfileOpen: (profileOpen: boolean) => void;
   setDisplayBanner: (displayBanner: boolean) => void;
+  setSection: (section: string) => void;
 }) => {
   const isBreakPoint = useMediaQuery(1023);
   useEffect(() => {
@@ -49,7 +51,7 @@ const Banner = ({
 
   const bannerStyle = `${
     displayBanner ? `z-[9999]  opacity-100 ` : " z-0 opacity-0"
-  }  transition-all duration-300 ease-in-out  w-full bg-[#000000b0] backdrop-blur-md border-b-[0.5px] border-[#aaaaaa50] py-3 lg:py-5 lg:gap-10 px-4 fixed flex justify-between  items-center`;
+  }  transition-all duration-150 ease-in-out  w-full bg-[#000000b0] backdrop-blur-md border-b-[0.5px] border-[#aaaaaa50] py-3 lg:py-5 lg:gap-10 px-4 fixed flex justify-between  items-center`;
 
   return (
     <div className={` ${bannerStyle} `}>
@@ -85,6 +87,7 @@ const Banner = ({
               onClick={() => {
                 handleThemeSelection(item);
                 setProfileOpen(false);
+                setSection("about");
               }}
             >
               {capitalizeString(item)}

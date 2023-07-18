@@ -13,11 +13,13 @@ const AwardMobile = ({
   setOpenAwardsMobile,
   setAwardsArray,
   section,
+  selectedTitle,
 }: {
   openAwardsMobile: boolean;
   setOpenAwardsMobile: (value: boolean) => void;
   setAwardsArray: React.Dispatch<React.SetStateAction<RedditAwardsState>>;
   section: string;
+  selectedTitle: string;
 }) => {
   const awards = [
     { name: "silver", icon: RedditSilver, coins: "100" },
@@ -26,6 +28,7 @@ const AwardMobile = ({
   ];
 
   const awardsRef = useRef<HTMLDivElement>(null);
+  console.log(selectedTitle, "section");
 
   const [give, setGive] = useState(false);
   const [selectedAward, setSelectedAward] = useState("");
@@ -38,7 +41,7 @@ const AwardMobile = ({
     setOpenAwardsMobile(false);
     setAwardsArray((prev: any) => ({
       ...prev,
-      [section]: [...prev[section], selectedAward],
+      [selectedTitle]: [...prev[selectedTitle], selectedAward],
     }));
     setGive(false);
   };

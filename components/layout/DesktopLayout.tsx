@@ -30,6 +30,7 @@ const DesktopApp = () => {
   const isBreakPoint = useMediaQuery(1023);
   const [displayBanner, setDisplayBanner] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [selectedTitle, setSelectedTitle] = useState("");
 
   const [heroImageLoaded, setHeroImageLoaded] = useState({
     background: false,
@@ -39,6 +40,7 @@ const DesktopApp = () => {
   const [redditAwards, setRedditAwards] = useState<RedditAwardsState>({
     Summary: [],
     "Beyond Tech": [],
+    Promoninja: [],
   });
 
   const {
@@ -46,7 +48,7 @@ const DesktopApp = () => {
     onClose: onCloseAwardsDesktop,
     onOpen: onOpenAwardsDesktop,
   } = useDisclosure();
-  const [section, setSection] = useState("");
+  const [section, setSection] = useState("about");
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const { displayTitle, showBackdrop } = useHeroDisplay(wrapperRef, titleRef);
@@ -64,6 +66,7 @@ const DesktopApp = () => {
         onClose={onCloseAwardsDesktop}
         isOpen={isOpenAwardsDesktop}
         section={section}
+        selectedTitle={selectedTitle}
       />
       <ProfilePicture
         setProfileOpen={setProfileOpen}
@@ -77,6 +80,7 @@ const DesktopApp = () => {
         menuItems={menuItems}
         handleThemeSelection={handleThemeSelection}
         setProfileOpen={setProfileOpen}
+        setSection={setSection}
         themeSelectionRef={themeSelectionRef}
         wrapperRef={wrapperRef}
         setDisplayBanner={setDisplayBanner}
@@ -197,6 +201,8 @@ const DesktopApp = () => {
                     openAwards={onOpenAwardsDesktop}
                     setSection={setSection}
                     section={section}
+                    selectedTitle={selectedTitle}
+                    setSelectedTitle={setSelectedTitle}
                     awardsArray={redditAwards}
                   />
                 )}

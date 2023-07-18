@@ -24,7 +24,6 @@ const MusicThemeMobile = ({
   const musicThemeColor = "#279bda";
   const [currentSection, setCurrentSection] = useState("about");
   const [opened, setOpened] = useState([""]);
-  const [displaySocials, setDisplaySocials] = useState(false);
 
   const sections = [
     {
@@ -111,8 +110,12 @@ const MusicThemeMobile = ({
           setOpened={setOpened}
         />
       ) : currentSection === "projects" ? (
-        <Projects      setTutorial={setTutorial}
-        tutorial={tutorial} opened={opened} setOpened={setOpened} />
+        <Projects
+          setTutorial={setTutorial}
+          tutorial={tutorial}
+          opened={opened}
+          setOpened={setOpened}
+        />
       ) : (
         ""
       )}

@@ -125,9 +125,9 @@ const MusicThemeDesktop = () => {
                   href={"https://www.linkedin.com/in/amari-devaughn-319582191/"}
                   target="_blank"
                 >
-                  <BsLinkedin size={30} color="#555555" />
+                  <BsLinkedin size={50} color="#555555" />
                 </Link>
-                <AiOutlineMail size={30} color="#555555" />
+                <AiOutlineMail size={50} color="#555555" />
               </div>
             </div>
           }

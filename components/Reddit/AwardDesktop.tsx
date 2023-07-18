@@ -3,7 +3,7 @@ import {
   ModalBody,
   ModalContent,
   ModalHeader,
-  ModalOverlay
+  ModalOverlay,
 } from "@chakra-ui/react";
 import { CoinVertical } from "@phosphor-icons/react";
 import Image from "next/image";
@@ -20,11 +20,13 @@ const AwardDesktop = ({
   onClose,
   setAwardsArray,
   section,
+  selectedTitle,
 }: {
   isOpen: boolean;
   onClose: () => void;
   setAwardsArray: React.Dispatch<React.SetStateAction<RedditAwardsState>>;
   section: string;
+  selectedTitle: string;
 }) => {
   const [selectedAward, setSelectedAward] = useState("silver");
   const selectAward = (award: string) => {
@@ -35,9 +37,10 @@ const AwardDesktop = ({
     onClose();
     setAwardsArray((prev: any) => ({
       ...prev,
-      [section]: [...prev[section], selectedAward],
+      [selectedTitle]: [...prev[selectedTitle], selectedAward],
     }));
   };
+
 
   const awards = [
     { name: "silver", icon: RedditSilver, coins: "100" },

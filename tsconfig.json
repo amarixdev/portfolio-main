@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "util/hooks.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "util/hooks.tsx", "components/reddit/SliderComponent.tsx"],
   "exclude": ["node_modules"]
 }

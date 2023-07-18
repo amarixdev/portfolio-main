@@ -25,6 +25,8 @@ const RedditPost = ({
   awardsArray,
   openAwards,
   setSection,
+  selectedTitle,
+  setSelectedTitle,
 }: {
   title: string;
   children: ReactNode;
@@ -34,6 +36,8 @@ const RedditPost = ({
   defaultAwards: StaticImageData[];
   awardsArray: RedditAwardsState;
   openAwards: any;
+  setSelectedTitle: (value: string) => void;
+  selectedTitle: string;
 
   setSection: (value: string) => void;
 }) => {
@@ -157,7 +161,7 @@ const RedditPost = ({
         </div>
       </div>
       <div
-        className={`w-full rounded-sm lg:rounded-none  bg-[#151515] ${
+        className={`w-full rounded-sm lg:rounded-none  bg-[#161616] ${
           topPost || "mt-3 lg:mt-0"
         }`}
       >
@@ -215,8 +219,8 @@ const RedditPost = ({
           </div>
         </div>
 
-        <div className="px-4">
-          <p className="font-semibold text-lg lg:text-xl text-[#d2d2d2] lg:px-4">
+        <div className="">
+          <p className="font-semibold text-lg lg:text-xl text-[#d2d2d2] px-4">
             {title}
           </p>
           {children}
@@ -317,7 +321,7 @@ const RedditPost = ({
             className="flex items-center gap-2 cursor-pointer px-3 py-1 lg:py-2 lg:hover:bg-[#333333a4] rounded-sm"
             onClick={() => {
               setPostSelection(title);
-              setSection(title);
+              setSelectedTitle(title);
               isBreakPoint ? openAwards(true) : openAwards();
             }}
           >

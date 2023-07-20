@@ -22,6 +22,7 @@ import TwitterTheme from "../twitter/TwitterTheme";
 import NightSky from "./NightSky";
 import ThemeSelection from "./ThemeSelection";
 import Title from "./Title";
+import AppPreviews from "../twitter/AppPreviews";
 
 const DesktopApp = () => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -30,8 +31,9 @@ const DesktopApp = () => {
   const isBreakPoint = useMediaQuery(1023);
   const [displayBanner, setDisplayBanner] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [previewsOpen, setPreviewsOpen] = useState(false);
+  const [imageIndex, setImageIndex] = useState("0");
   const [selectedTitle, setSelectedTitle] = useState("");
-
   const [heroImageLoaded, setHeroImageLoaded] = useState({
     background: false,
     foreground: false,
@@ -54,7 +56,7 @@ const DesktopApp = () => {
   const { displayTitle, showBackdrop } = useHeroDisplay(wrapperRef, titleRef);
   const { menuItems, handleThemeSelection, themeLoading, themes, theme, meme } =
     useThemeSelection();
-
+  const [displayTweet, setDisplayTweet] = useState(true);
   return (
     <div
       className={`${
@@ -73,13 +75,26 @@ const DesktopApp = () => {
         profileOpen={profileOpen}
         theme={theme}
       />
+      <AppPreviews
+        setPreviewsOpen={setPreviewsOpen}
+        previewsOpen={previewsOpen}
+        displayTweet={displayTweet}
+        setDisplayTweet={setDisplayTweet}
+        theme={theme}
+        imageIndex={imageIndex}
+        setImageIndex={setImageIndex}
+      />
       <Banner
         displayBanner={displayBanner}
+        setDisplayTweet={setDisplayTweet}
         themes={themes}
         theme={theme}
         menuItems={menuItems}
         handleThemeSelection={handleThemeSelection}
+        profileOpen={profileOpen}
+        previewsOpen={previewsOpen}
         setProfileOpen={setProfileOpen}
+        setPreviewOpen={setPreviewsOpen}
         setSection={setSection}
         themeSelectionRef={themeSelectionRef}
         wrapperRef={wrapperRef}
@@ -210,6 +225,9 @@ const DesktopApp = () => {
                   <TwitterTheme
                     setProfileOpen={setProfileOpen}
                     profileOpen={profileOpen}
+                    previewsOpen={previewsOpen}
+                    setPreviewsOpen={setPreviewsOpen}
+                    setImageIndex={setImageIndex}
                   />
                 )}
               </div>

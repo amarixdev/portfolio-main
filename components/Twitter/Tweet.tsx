@@ -4,7 +4,17 @@ import { MdVerified } from "react-icons/md";
 import Profile from "../../public/assets/twitter-profile.jpg";
 import { capitalizeString } from "../../util/functions";
 
-const Tweet = ({ children, title }: { children: ReactNode; title: string }) => {
+const Tweet = ({
+  children,
+  title,
+  reply,
+  preview,
+}: {
+  children: ReactNode;
+  title: string;
+  reply?: boolean;
+  preview?: boolean;
+}) => {
   return (
     <div className="w-full flex gap-2 border-b-[1px] pb-10 pt-2">
       <Image
@@ -22,13 +32,28 @@ const Tweet = ({ children, title }: { children: ReactNode; title: string }) => {
               Amari DeVaughn
             </h1>
             <MdVerified color="#26a7de" size={13} />
-            <p className="text-[#6b6b6b] text-xs xs:text-sm lg:text-base whitespace-nowrap ">
-              @amarixdev • 10h
-            </p>
+            {preview || (
+              <p className="text-[#6b6b6b] text-xs xs:text-sm lg:text-base whitespace-nowrap ">
+                @amarixdev • 10h
+              </p>
+            )}
           </div>
-          <p className="text-xs xs:text-sm lg:text-base  text-[#26a7de]">
-            #{capitalizeString(title)}
-          </p>
+
+          {reply && (
+            <div className="flex items-center gap-1">
+              <p className="text-xs xs:text-sm lg:text-base  text-[#888]">
+                Replying to
+              </p>
+              <p className="text-xs xs:text-sm lg:text-base  text-[#26a7de]">
+                @amarixdev
+              </p>
+            </div>
+          )}
+          {
+            <p className="text-xs xs:text-sm lg:text-base  text-[#26a7de]">
+              #{capitalizeString(title)}
+            </p>
+          }
           {children}
         </div>
       </div>

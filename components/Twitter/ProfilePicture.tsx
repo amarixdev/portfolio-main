@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { AiFillCloseCircle } from "react-icons/ai";
+import { AiFillCloseCircle, AiOutlineClose } from "react-icons/ai";
 import Profile from "../../public/assets/twitter-profile.jpg";
+import { useMediaQuery } from "../../util/hooks";
 
 const ProfilePicture = ({
   setProfileOpen,
@@ -11,23 +12,23 @@ const ProfilePicture = ({
   profileOpen: boolean;
   theme: string;
 }) => {
+  const isBreakPoint = useMediaQuery(1023);
+  const iconSize = isBreakPoint ? 30 : 20;
   return (
     <div
       className={`${
-        profileOpen && theme === "twitter"
-          ? "opacity-100 z-50"
-          : "opacity-0 z-0"
-      } fixed h-screen w-full bg-black flex items-center justify-center`}
+        profileOpen && theme === "twitter" ? "block" : "hidden"
+      } fixed z-50 h-screen w-full bg-black flex items-center justify-center`}
     >
       <div className=" w-full sm:max-w-[50%] relative flex flex-col justify-center items-center h-[70%]">
-        <AiFillCloseCircle
-          size={30}
-          color="#888"
-          className="absolute top-4 left-4 cursor-pointer"
+        <div
           onClick={() => {
             setProfileOpen(false);
           }}
-        />
+          className="cursor-pointer absolute p-2 top-0 left-0 rounded-full bg-black hover:bg-[#202020]"
+        >
+          <AiOutlineClose size={iconSize} color="white" />
+        </div>
 
         <Image
           src={Profile}

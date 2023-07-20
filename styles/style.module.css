@@ -250,6 +250,7 @@
   left: 0;
   bottom: 0;
   right: 0;
+  z-index: 0;
 }
 
 .stars {
@@ -395,7 +396,6 @@
   transition: all 0.2s ease-out;
 }
 
-/* The slider */
 .slider {
   width: 27px;
   height: 27px;
@@ -414,6 +414,54 @@
 }
 
 .checkbox:checked + .switch .slider {
+  left: calc(50% - 27px / 2 + 10px);
+  top: calc(50% - 27px / 2);
+}
+
+/* Mobile Switch - Twitter */
+
+.switchContainerTwitter {
+  width: 51px;
+  height: 30px;
+  position: relative;
+}
+
+/* Hide default HTML checkbox */
+.checkboxTwitter {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.switchTwitter {
+  width: 51px;
+  height: 30px;
+  display: block;
+  background-color: #e9e9eb;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+
+.sliderTwitter {
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  left: calc(50% - 27px / 2 - 10px);
+  top: calc(50% - 27px / 2);
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15), 0px 3px 1px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+.checkboxTwitter:checked + .switchTwitter {
+  background-color: #279bda;
+}
+
+.checkboxTwitter:checked + .switchTwitter .sliderTwitter {
   left: calc(50% - 27px / 2 + 10px);
   top: calc(50% - 27px / 2);
 }

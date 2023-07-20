@@ -7,12 +7,12 @@ import {
   TabList,
   TabPanel,
   TabPanels,
-  Tabs
+  Tabs,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { useState } from "react";
-import { AiOutlineLink } from "react-icons/ai";
-import { BsCalendar3 } from "react-icons/bs";
+import { AiOutlineLink, AiOutlineMail } from "react-icons/ai";
+import { BsCalendar3, BsLinkedin } from "react-icons/bs";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { MdVerified } from "react-icons/md";
 import { RiUserUnfollowLine } from "react-icons/ri";
@@ -20,19 +20,28 @@ import Backdrop from "../../public/assets/twitter-backdrop2.jpg";
 import Profile from "../../public/assets/twitter-profile.jpg";
 import { useMediaQuery } from "../../util/hooks";
 import Tweet from "./Tweet";
+import About from "./About";
+import Projects from "./Projects";
+import Link from "next/link";
 
 const TwitterTheme = ({
   profileOpen,
   setProfileOpen,
+  previewsOpen,
+  setPreviewsOpen,
+  setImageIndex,
 }: {
   profileOpen: boolean;
   setProfileOpen: (profileOpen: boolean) => void;
+  previewsOpen: boolean;
+  setPreviewsOpen: (profileOpen: boolean) => void;
+  setImageIndex: (imageIndex: string) => void;
 }) => {
   const isBreakPoint = useMediaQuery(1023);
   const [following, setFollowing] = useState(false);
   const [section, setSection] = useState("about");
   const avatarSizeMain = isBreakPoint ? 70 : 120;
-
+  const socialIconSize = isBreakPoint ? 30 : 50;
   const handleSelect = (section: string) => {
     setSection(section);
   };
@@ -181,7 +190,7 @@ const TwitterTheme = ({
                     section === "experience" ? "text-white" : "text-[#777777]"
                   } font-semibold text-xs xs:text-sm lg:text-base  active:text-[#222222] transition-all duration-[400ms] ease-in-out`}
                 >
-                  Experience
+                  Projects
                 </p>
               </Tab>
               <Tab
@@ -208,76 +217,34 @@ const TwitterTheme = ({
             />
             <TabPanels>
               <TabPanel>
-                <div className="flex flex-col gap-2">
-                  <Tweet title="summary">
-                    <p className="text-xs xs:text-sm lg:text-base mt-4">
-                      A software developer based in North Carolina. I attended
-                      the University of North Carolina - Chapel Hill from 2015
-                      to 2019, where I competed in track and field, was a
-                      pre-dental student, and medical researcher. I was grateful
-                      to receive an invitation to attend Dental School in 2021,
-                      but after long consideration and some time off during the
-                      pandemic I ultimately decided healthcare was not for me.{" "}
-                    </p>
-                    <p className="text-xs xs:text-sm lg:text-base mt-4">
-                      Since the career change, I have worked on a number of web
-                      applications for both myself and others. As a software
-                      developer, I get enjoyment out out of seeing my ideas
-                      manifest at every scale and take pride in devoting my full
-                      attention and energy to each project I undertake. Thank
-                      you for taking some time to learn more about me and I look
-                      forward to connecting.
-                    </p>
-                  </Tweet>
-                  <Tweet title="beyondTech">
-                    <div className="text-xs xs:text-sm flex flex-col gap-2 lg:text-base mt-4">
-                      <p>
-                        Published co-author in the American Heart Association
-                      </p>
-                      <p>Atlantic Coast Conference (ACC) Silver Medalist</p>
-                      <p>Nature Enthusiast </p>
-                    </div>
-                  </Tweet>
-                </div>
+                <About />
               </TabPanel>
               <TabPanel>
-                <div className="flex flex-col gap-2">
-                  <Tweet title="summary">
-                    <p className="text-xs xs:text-sm lg:text-base mt-4">
-                      A software developer based in North Carolina. I attended
-                      the University of North Carolina - Chapel Hill from 2015
-                      to 2019, where I competed in track and field, was a
-                      pre-dental student, and medical researcher. I was grateful
-                      to receive an invitation to attend Dental School in 2021,
-                      but after long consideration and some time off during the
-                      pandemic I ultimately decided healthcare was not for me.{" "}
-                    </p>
-                    <p className="text-xs xs:text-sm lg:text-base mt-4">
-                      Since the career change, I have worked on a number of web
-                      applications for both myself and others. As a software
-                      developer, I get enjoyment out out of seeing my ideas
-                      manifest at every scale and take pride in devoting my full
-                      attention and energy to each project I undertake. Thank
-                      you for taking some time to learn more about me and I look
-                      forward to connecting.
-                    </p>
-                  </Tweet>
-                  <Tweet title="beyondTech">
-                    <ul className="text-xs xs:text-sm lg:text-base list-disc mt-4">
-                      <li>
-                        Published co-author in the American Heart Association
-                      </li>
-                      <li>Atlantic Coast Conference (ACC) Silver Medalist</li>
-                      <li>Nature Enthusiast </li>
-                    </ul>
-                  </Tweet>
-                </div>
+                <Projects
+                  previewsOpen={previewsOpen}
+                  setPreviewsOpen={setPreviewsOpen}
+                  setImageIndex={setImageIndex}
+                />
               </TabPanel>
               <TabPanel>
                 <p>three!</p>
               </TabPanel>
             </TabPanels>
           </Tabs>
+        </div>
+        <div className="flex flex-col w-full justify-center items-center gap-10 lg:pt-5">
+          <h1 className="font-extrabold text-2xl text-[#555555]">Contact Me</h1>
+          <div
+            className={` pb-[200px] lg:pb-[80px] w-[40%] lg:w-[20%] flex items-center justify-evenly`}
+          >
+            <Link
+              href={"https://www.linkedin.com/in/amari-devaughn-319582191/"}
+              target="_blank"
+            >
+              <BsLinkedin size={socialIconSize} color="#555555" />
+            </Link>
+            <AiOutlineMail size={socialIconSize} color="#555555" />
+          </div>
         </div>
       </div>
     </>

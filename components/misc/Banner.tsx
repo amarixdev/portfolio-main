@@ -12,10 +12,14 @@ const Banner = ({
   menuItems,
   handleThemeSelection,
   setProfileOpen,
+  setPreviewOpen,
   wrapperRef,
   themeSelectionRef,
   setDisplayBanner,
-  setSection
+  setDisplayTweet,
+  profileOpen,
+  previewsOpen,
+  setSection,
 }: {
   displayBanner: boolean;
   themes: Theme;
@@ -24,8 +28,13 @@ const Banner = ({
   wrapperRef: RefObject<HTMLDivElement>;
   themeSelectionRef: RefObject<HTMLDivElement>;
   handleThemeSelection: (icon: string) => void;
+  profileOpen: boolean;
+  previewsOpen: boolean;
   setProfileOpen: (profileOpen: boolean) => void;
+  setPreviewOpen: (previewOpen: boolean) => void;
   setDisplayBanner: (displayBanner: boolean) => void;
+  setDisplayTweet: (displayTweet: boolean) => void;
+
   setSection: (section: string) => void;
 }) => {
   const isBreakPoint = useMediaQuery(1023);
@@ -54,15 +63,21 @@ const Banner = ({
   }  transition-all duration-150 ease-in-out  w-full bg-[#000000b0] backdrop-blur-md border-b-[0.5px] border-[#aaaaaa50] py-3 lg:py-5 lg:gap-10 px-4 fixed flex justify-between  items-center`;
 
   return (
-    <div className={` ${bannerStyle} `}>
-      <p
-        onClick={() => {
-          wrapperRef.current?.scrollTo({ top: 0, behavior: "smooth" });
-        }}
-        className="font-extrabold text-sm xs:text-base lg:text-3xl text-center cursor-pointer "
-      >
-        Portfolio
-      </p>
+    <div className={`${bannerStyle} select-none `}>
+      {
+        <p
+          onClick={() => {
+            if (previewsOpen || profileOpen) {
+              return;
+            } else {
+              wrapperRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+          className="font-extrabold text-sm xs:text-base lg:text-3xl text-center cursor-pointer "
+        >
+          Portfolio
+        </p>
+      }
       <Menu>
         <MenuButton>
           <div className="flex items-center gap-4 lg:gap-6 cursor-pointer">
@@ -87,6 +102,12 @@ const Banner = ({
               onClick={() => {
                 handleThemeSelection(item);
                 setProfileOpen(false);
+                if (!isBreakPoint) {
+                  setDisplayTweet(true);
+                } else {
+                  setDisplayTweet(false);
+                }
+                setPreviewOpen(false);
                 setSection("about");
               }}
             >

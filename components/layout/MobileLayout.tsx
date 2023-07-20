@@ -18,6 +18,7 @@ import TwitterTheme from "../twitter/TwitterTheme";
 import NightSky from "./NightSky";
 import ThemeSelection from "./ThemeSelection";
 import Title from "./Title";
+import AppPreviews from "../twitter/AppPreviews";
 
 const MobileApp = () => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -26,7 +27,6 @@ const MobileApp = () => {
   const themeSelectionRef = useRef<HTMLDivElement>(null);
   const [displayBanner, setDisplayBanner] = useState(false);
   const [selectedTitle, setSelectedTitle] = useState("");
-
   const [redditAwards, setRedditAwards] = useState<RedditAwardsState>({
     Summary: [],
     "Beyond Tech": [],
@@ -43,7 +43,10 @@ const MobileApp = () => {
     useThemeSelection();
 
   const { displayTitle, showBackdrop } = useHeroDisplay(wrapperRef, titleRef);
+  const [displayTweet, setDisplayTweet] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [previewsOpen, setPreviewsOpen] = useState(false);
+  const [imageIndex, setImageIndex] = useState("0");
   const extendRef = useRef<HTMLDivElement>(null);
 
   const [tutorial, setTutorial] = useState(true);
@@ -64,22 +67,37 @@ const MobileApp = () => {
       />
       {<Overlay openAwardsMobile={openAwardsMobile} />}
 
+      {/* Twitter Theme Only */}
       <ProfilePicture
         setProfileOpen={setProfileOpen}
         profileOpen={profileOpen}
         theme={theme}
       />
+
+      <AppPreviews
+        displayTweet={displayTweet}
+        setDisplayTweet={setDisplayTweet}
+        setPreviewsOpen={setPreviewsOpen}
+        previewsOpen={previewsOpen}
+        theme={theme}
+        setImageIndex={setImageIndex}
+        imageIndex={imageIndex}
+      />
       <Banner
         displayBanner={displayBanner}
+        setDisplayTweet={setDisplayTweet}
         themes={themes}
         theme={theme}
         menuItems={menuItems}
         handleThemeSelection={handleThemeSelection}
+        profileOpen={profileOpen}
+        previewsOpen={previewsOpen}
         setProfileOpen={setProfileOpen}
+        setPreviewOpen={setPreviewsOpen}
         themeSelectionRef={themeSelectionRef}
         wrapperRef={wrapperRef}
         setDisplayBanner={setDisplayBanner}
-        setSection = {setSection}
+        setSection={setSection}
       />
       <div ref={wrapperRef} className="parallax">
         <LandingPage
@@ -163,18 +181,6 @@ const MobileApp = () => {
                               <div
                                 className={`${style.loaderSpin} top-0 relative `}
                               ></div>
-                              {/* <Image
-                                src={Meme}
-                                width={80}
-                                height={80}
-                                alt="meme"
-                                priority
-                                className={`${
-                                  meme
-                                    ? "opacity-0 animate-pulse"
-                                    : "opacity-0"
-                                }`}
-                              /> */}
                             </div>
                           </div>
                         )}
@@ -233,6 +239,9 @@ const MobileApp = () => {
                     <TwitterTheme
                       setProfileOpen={setProfileOpen}
                       profileOpen={profileOpen}
+                      previewsOpen={previewsOpen}
+                      setPreviewsOpen={setPreviewsOpen}
+                      setImageIndex={setImageIndex}
                     />
                   )}
                 </div>

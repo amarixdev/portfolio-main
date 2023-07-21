@@ -131,22 +131,10 @@
   border-radius: 1rem;
   transition: all 0.15s ease-in-out;
 }
-
-.twitterIconBanner {
-  box-shadow: 0 0 15px #26a7de;
-  border-radius: 1rem;
-  transition: all 0.15s ease-in-out;
-}
-.redditIconBanner {
-  box-shadow: 0 0 15px #ff5309;
-  border-radius: 1rem;
-  transition: all 0.15s ease-in-out;
-}
-
-.musicIconBanner {
-  box-shadow: 0 0 15px #da2742;
-  border-radius: 1rem;
-  transition: all 0.15s ease-in-out;
+@media (max-width: 390px) {
+  .glowIconBanner {
+    border-radius: 0.75rem;
+  }
 }
 
 .deselectIcon {
@@ -155,37 +143,6 @@
 }
 
 /* Loading animations */
-
-.loaderSpin {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: inline-block;
-  border-top: 4px solid #fff;
-  border-right: 4px solid transparent;
-  box-sizing: border-box;
-  animation: loadingRotate 1s linear infinite;
-}
-.loaderSpin::after {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border-bottom: 4px solid #87d3fe;
-  border-left: 4px solid transparent;
-}
-@keyframes loadingRotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 .loaderBrackets {
   color: #fff;
@@ -219,6 +176,7 @@
   background: rgba(255, 255, 255, 0.15);
   overflow: hidden;
 }
+
 .loaderSlide::after {
   content: "";
   width: 192px;

@@ -34,7 +34,6 @@ const MusicCollapse = ({
 }) => {
   const { isOpen, onToggle } = useDisclosure();
   const [selectedCollapse, setSelectedCollapse] = useState("");
-  console.log(tutorial);
   const [loading, setLoading] = useState(false);
   const handleCollapse = (title: string, state: string) => {
     if (isOpen && state === "closed") {

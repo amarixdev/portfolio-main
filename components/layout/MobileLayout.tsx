@@ -44,6 +44,7 @@ const MobileApp = () => {
 
   const { displayTitle, showBackdrop } = useHeroDisplay(wrapperRef, titleRef);
   const [displayTweet, setDisplayTweet] = useState(false);
+  const [displaySection, setDisplaySection] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [previewsOpen, setPreviewsOpen] = useState(false);
   const [imageIndex, setImageIndex] = useState("0");
@@ -84,6 +85,7 @@ const MobileApp = () => {
         imageIndex={imageIndex}
       />
       <Banner
+        themeLoading={themeLoading}
         displayBanner={displayBanner}
         setDisplayTweet={setDisplayTweet}
         themes={themes}
@@ -98,6 +100,9 @@ const MobileApp = () => {
         wrapperRef={wrapperRef}
         setDisplayBanner={setDisplayBanner}
         setSection={setSection}
+        section={section}
+        displaySection={displaySection}
+        setDisplaySection={setDisplaySection}
       />
       <div ref={wrapperRef} className="parallax">
         <LandingPage
@@ -105,6 +110,7 @@ const MobileApp = () => {
           showBackdrop={showBackdrop}
         />
         <LoadingScreen heroImageLoaded={heroImageLoaded} />
+
         <div id="group1" className="parallax__group">
           <div className="parallax__layer parallax__layer--base">
             <Image
@@ -170,50 +176,21 @@ const MobileApp = () => {
                     />
                   </div>
 
-                  <div className="w-[90%] lg:w-[80%] h-[1px] bg-[#444444] relative hidden lg:block lg:top-10 lg:mb-20"></div>
-
-                  {
-                    <div className="mt-10 lg:mt-6 w-full flex justify-center">
-                      <div className=" w-full h-20 lg:h-0">
-                        {themeLoading && !displayBanner && (
-                          <div className="z-100 w-full lg:w-9/12 absolute flex items-start justify-center">
-                            <div className="flex flex-col items-center gap-8">
-                              <div
-                                className={`${style.loaderSpin} top-0 relative `}
-                              ></div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  }
+                  {themeLoading ? (
+                    <span
+                      className={`${style.loaderSlide} w-[90%] lg:w-[80%] h-[1px] bg-[#444444] relative  top-[38px]  `}
+                    ></span>
+                  ) : (
+                    <div
+                      className={` ${
+                        theme || displayBanner || "opacity-0"
+                      } w-[90%] lg:w-[80%] h-[1px] bg-[#444444] relative  top-[38px]`}
+                    ></div>
+                  )}
                 </div>
               </div>
               {themeLoading ? (
-                <div
-                  ref={themeRef}
-                  className={`w-full absolute  bottom-[150px] z-[20] h-screen flex items-center justify-center`}
-                >
-                  <div className="flex flex-col items-center justify-center">
-                    <div
-                      className={`  ${style.loaderSpin} ${
-                        displayBanner ? "opacity-100" : "opacity-0"
-                      } relative border-2`}
-                    ></div>
-                    <Image
-                      src={Meme}
-                      width={80}
-                      height={80}
-                      alt="meme"
-                      priority
-                      className={`${
-                        displayBanner && meme
-                          ? "opacity-30 animate-pulse"
-                          : "opacity-0"
-                      } mt-8`}
-                    />
-                  </div>
-                </div>
+                <div ref={themeRef}></div>
               ) : (
                 <div
                   ref={themeRef}
@@ -223,6 +200,10 @@ const MobileApp = () => {
                     <MusicThemeMobile
                       tutorial={tutorial}
                       setTutorial={setTutorial}
+                      setSection={setSection}
+                      section={section}
+                      setDisplaySection={setDisplaySection}
+                      wrapperRef={wrapperRef}
                     />
                   )}
                   {theme === "reddit" && (
@@ -233,6 +214,8 @@ const MobileApp = () => {
                       setSection={setSection}
                       section={section}
                       awardsArray={redditAwards}
+                      wrapperRef={wrapperRef}
+                      setDisplaySection={setDisplaySection}
                     />
                   )}
                   {theme === "twitter" && (
@@ -242,6 +225,10 @@ const MobileApp = () => {
                       previewsOpen={previewsOpen}
                       setPreviewsOpen={setPreviewsOpen}
                       setImageIndex={setImageIndex}
+                      setSection={setSection}
+                      section={section}
+                      wrapperRef={wrapperRef}
+                      setDisplaySection={setDisplaySection}
                     />
                   )}
                 </div>

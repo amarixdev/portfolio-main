@@ -1,11 +1,11 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 import { BsFillPersonFill, BsGithub, BsLinkedin } from "react-icons/bs";
 import { GrGraphQl } from "react-icons/gr";
 import { MdWork } from "react-icons/md";
 import Profile from "../../../public/assets/album-cover.jpg";
 import { capitalizeString } from "../../../util/functions";
-import { useMediaQuery } from "../../../util/hooks";
+import { useDisplaySection, useMediaQuery } from "../../../util/hooks";
 import MusicCollapse from "./MusicCollapse";
 import About from "./About";
 import Projects from "./Projects";
@@ -15,15 +15,25 @@ import Link from "next/link";
 const MusicThemeMobile = ({
   tutorial,
   setTutorial,
+  section,
+  setSection,
+  setDisplaySection,
+  wrapperRef,
 }: {
   tutorial: boolean;
   setTutorial: (tutorial: boolean) => void;
+  section: string;
+  setSection: (section: string) => void;
+  setDisplaySection: (tutorial: boolean) => void;
+  wrapperRef: RefObject<HTMLDivElement>;
 }) => {
   const isBreakPoint = useMediaQuery(389);
   const iconSize = isBreakPoint ? 12 : 16;
   const musicThemeColor = "#279bda";
-  const [currentSection, setCurrentSection] = useState("about");
   const [opened, setOpened] = useState([""]);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useDisplaySection(wrapperRef.current, sectionRef.current, setDisplaySection);
 
   const sections = [
     {
@@ -31,7 +41,7 @@ const MusicThemeMobile = ({
       icon: (
         <BsFillPersonFill
           size={iconSize}
-          color={currentSection === "about" ? "#1f1f20" : musicThemeColor}
+          color={section === "about" ? "#1f1f20" : musicThemeColor}
         />
       ),
     },
@@ -41,7 +51,7 @@ const MusicThemeMobile = ({
       icon: (
         <MdWork
           size={iconSize}
-          color={currentSection === "projects" ? "#1f1f20" : musicThemeColor}
+          color={section === "projects" ? "#1f1f20" : musicThemeColor}
         />
       ),
     },
@@ -50,7 +60,7 @@ const MusicThemeMobile = ({
       icon: (
         <GrGraphQl
           size={iconSize}
-          color={currentSection === "skills" ? "#1f1f20" : musicThemeColor}
+          color={section === "skills" ? "#1f1f20" : musicThemeColor}
         />
       ),
     },
@@ -73,43 +83,44 @@ const MusicThemeMobile = ({
         <p className={`text-[#279bda] font-normal text-xl `}>
           Software Developer
         </p>
-        <div className="mt-4 flex justify-center gap-4 scroll-smooth  scrollbar-hide py-4 w-full">
-          {sections.map((section) => (
+        <div
+          ref={sectionRef}
+          className="mt-4 flex justify-center gap-4 scroll-smooth  scrollbar-hide py-4 w-full"
+        >
+          {sections.map((sections) => (
             <button
-              key={section.name}
+              key={sections.name}
               className={`${
-                section.name === currentSection
-                  ? `bg-[#279bda]`
-                  : "bg-[#1f1f20]"
+                sections.name === section ? `bg-[#279bda]` : "bg-[#1f1f20]"
               } w-[150px] active:scale-95 transition-transform duration-200 ease-in-out px-2 py-[10px] rounded-lg`}
               onClick={() => {
-                setCurrentSection(section.name);
+                setSection(sections.name);
               }}
             >
               <div className="flex w-full items-center justify-center gap-1">
-                {section.icon}
+                {sections.icon}
                 <p
                   className={` ${
-                    section.name === currentSection
+                    sections.name === section
                       ? "text-[#1f1f20]"
                       : `text-[#279bda]`
                   }  font-medium text-xs xs:text-sm`}
                 >
-                  {capitalizeString(section.name)}
+                  {capitalizeString(sections.name)}
                 </p>
               </div>
             </button>
           ))}
         </div>
       </div>
-      {currentSection === "about" ? (
+      {section === "about" ? (
         <About
           tutorial={tutorial}
           setTutorial={setTutorial}
           opened={opened}
           setOpened={setOpened}
         />
-      ) : currentSection === "projects" ? (
+      ) : section === "projects" ? (
         <Projects
           setTutorial={setTutorial}
           tutorial={tutorial}

@@ -146,3 +146,27 @@ export const useThemeSelection = () => {
     meme,
   };
 };
+
+export const useDisplaySection = (
+  wrapper: HTMLDivElement | null,
+  section: HTMLDivElement | null,
+  setDisplaySection: (displaySection: boolean) => void
+) => {
+  const isBreakPoint = useMediaQuery(1023);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (section) {
+        const elementRect = section.getBoundingClientRect();
+        setDisplaySection(
+          isBreakPoint ? elementRect.top < 20 : elementRect.top < 50
+        );
+      }
+    };
+
+    wrapper?.addEventListener("scroll", handleScroll);
+
+    return () => {
+      wrapper?.removeEventListener("scroll", handleScroll);
+    };
+  });
+};

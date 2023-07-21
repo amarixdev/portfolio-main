@@ -10,7 +10,7 @@ import {
   Tabs,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import { useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 import { AiOutlineLink, AiOutlineMail } from "react-icons/ai";
 import { BsCalendar3, BsLinkedin } from "react-icons/bs";
 import { HiOutlineLocationMarker } from "react-icons/hi";
@@ -18,7 +18,7 @@ import { MdVerified } from "react-icons/md";
 import { RiUserUnfollowLine } from "react-icons/ri";
 import Backdrop from "../../public/assets/twitter-backdrop2.jpg";
 import Profile from "../../public/assets/twitter-profile.jpg";
-import { useMediaQuery } from "../../util/hooks";
+import { useDisplaySection, useMediaQuery } from "../../util/hooks";
 import Tweet from "./Tweet";
 import About from "./About";
 import Projects from "./Projects";
@@ -30,21 +30,36 @@ const TwitterTheme = ({
   previewsOpen,
   setPreviewsOpen,
   setImageIndex,
+  setSection,
+  section,
+  setDisplaySection,
+  wrapperRef,
 }: {
   profileOpen: boolean;
   setProfileOpen: (profileOpen: boolean) => void;
   previewsOpen: boolean;
   setPreviewsOpen: (profileOpen: boolean) => void;
   setImageIndex: (imageIndex: string) => void;
+  setSection: (section: string) => void;
+  section: string;
+  setDisplaySection: (tutorial: boolean) => void;
+  wrapperRef: RefObject<HTMLDivElement>;
 }) => {
   const isBreakPoint = useMediaQuery(1023);
   const [following, setFollowing] = useState(false);
-  const [section, setSection] = useState("about");
   const avatarSizeMain = isBreakPoint ? 70 : 120;
   const socialIconSize = isBreakPoint ? 30 : 50;
+  const sectionRef = useRef<HTMLDivElement>(null);
+  useDisplaySection(wrapperRef.current, sectionRef.current, setDisplaySection);
   const handleSelect = (section: string) => {
     setSection(section);
   };
+
+  const [reloadFlag, setReloadFlag] = useState(false);
+
+  useEffect(() => {
+    setReloadFlag(true);
+  }, []);
 
   return (
     <>
@@ -164,7 +179,12 @@ const TwitterTheme = ({
               </div>
             </div>
           </div>
-          <Tabs position="relative" variant="unstyled" className="mt-3">
+          <Tabs
+            ref={sectionRef}
+            position="relative"
+            variant="unstyled"
+            className="mt-3"
+          >
             <TabList display={"flex"} w="full" justifyContent={"space-evenly"}>
               <Tab
                 onClick={() => handleSelect("about")}
@@ -180,14 +200,14 @@ const TwitterTheme = ({
                 </p>
               </Tab>
               <Tab
-                onClick={() => handleSelect("experience")}
+                onClick={() => handleSelect("projects")}
                 className="lg:hover:bg-[#aaaaaa28]"
               >
                 {" "}
                 <p
-                  onClick={() => handleSelect("experience")}
+                  onClick={() => handleSelect("projects")}
                   className={`${
-                    section === "experience" ? "text-white" : "text-[#777777]"
+                    section === "projects" ? "text-white" : "text-[#777777]"
                   } font-semibold text-xs xs:text-sm lg:text-base  active:text-[#222222] transition-all duration-[400ms] ease-in-out`}
                 >
                   Projects

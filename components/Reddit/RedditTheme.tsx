@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { memo, useState } from "react";
+import { RefObject, memo, useEffect, useRef, useState } from "react";
 import { BsFire, BsLinkedin } from "react-icons/bs";
 import Avatar from "../../public/assets/reddit-avatar.png";
 
@@ -10,7 +10,7 @@ import { RedditAwardsState } from "../../util/types";
 import About from "./About";
 import Projects from "./Projects";
 import RedditTabs from "./RedditTabs";
-import { useMediaQuery } from "../../util/hooks";
+import { useDisplaySection, useMediaQuery } from "../../util/hooks";
 
 const RedditTheme = ({
   openAwards,
@@ -19,6 +19,8 @@ const RedditTheme = ({
   awardsArray,
   selectedTitle,
   setSelectedTitle,
+  wrapperRef,
+  setDisplaySection,
 }: {
   openAwards: any;
   section: string;
@@ -26,6 +28,8 @@ const RedditTheme = ({
   setSelectedTitle: (value: string) => void;
   selectedTitle: string;
   awardsArray: RedditAwardsState;
+  setDisplaySection: (tutorial: boolean) => void;
+  wrapperRef: RefObject<HTMLDivElement>;
 }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const handleSelect = (section: string) => {
@@ -33,8 +37,16 @@ const RedditTheme = ({
   };
 
   const isBreakPoint = useMediaQuery(1023);
-
+  const sectionRef = useRef<HTMLDivElement>(null);
+  useDisplaySection(wrapperRef.current, sectionRef.current, setDisplaySection);
   const socialIconSize = isBreakPoint ? 30 : 50;
+
+  const [reloadFlag, setReloadFlag] = useState(false);
+
+  useEffect(() => {
+    setReloadFlag(true);
+  }, []);
+
   return (
     <>
       <div className="flex relative items-center justify-center overflow-hidden pb-20 lg:pb-0 ">
@@ -65,7 +77,10 @@ const RedditTheme = ({
           <p className="px-4 text-xs lg:text-sm lg:font-semibold">
             u/amarixdev&#x2022; 2,132 karma &#x2022; Oct 1, 2016
           </p>
-          <div className="min-w-full lg:w-[650px] mt-6 flex flex-col bg-black relative">
+          <div
+            ref={sectionRef}
+            className="min-w-full lg:w-[650px] mt-6 flex flex-col bg-black relative"
+          >
             <RedditTabs section={section} handleSelect={handleSelect} />
             <>
               <div className="flex items-center w-full gap-1 py-3 px-2 bg-[#010101]">

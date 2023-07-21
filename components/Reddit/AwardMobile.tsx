@@ -28,7 +28,6 @@ const AwardMobile = ({
   ];
 
   const awardsRef = useRef<HTMLDivElement>(null);
-  console.log(selectedTitle, "section");
 
   const [give, setGive] = useState(false);
   const [selectedAward, setSelectedAward] = useState("");

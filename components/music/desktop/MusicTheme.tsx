@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 import { BsFillPersonFill, BsLinkedin } from "react-icons/bs";
 import { FaReact } from "react-icons/fa";
 import { GrGraphQl } from "react-icons/gr";
@@ -10,11 +10,24 @@ import About from "./About";
 import Projects from "./Projects";
 import Link from "next/link";
 import { AiOutlineMail } from "react-icons/ai";
+import { useDisplaySection } from "../../../util/hooks";
 
-const MusicThemeDesktop = () => {
+const MusicThemeDesktop = ({
+  section,
+  setSection,
+  wrapperRef,
+  setDisplaySection,
+}: {
+  section: string;
+  setSection: (section: string) => void;
+  wrapperRef: RefObject<HTMLDivElement>;
+  setDisplaySection: (displaySection: boolean) => void;
+}) => {
   const musicThemeColor = "#279bda";
-  const [currentSection, setCurrentSection] = useState("about");
+  // const [section, setCurrentSection] = useState("about");
   const [opened, setOpened] = useState([""]);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  useDisplaySection(wrapperRef.current, sectionRef.current, setDisplaySection);
 
   const sections = [
     {
@@ -22,7 +35,7 @@ const MusicThemeDesktop = () => {
       icon: (
         <BsFillPersonFill
           size={16}
-          color={currentSection === "about" ? musicThemeColor : "white"}
+          color={section === "about" ? musicThemeColor : "white"}
         />
       ),
     },
@@ -32,7 +45,7 @@ const MusicThemeDesktop = () => {
       icon: (
         <MdWork
           size={16}
-          color={currentSection === "projects" ? musicThemeColor : "white"}
+          color={section === "projects" ? musicThemeColor : "white"}
         />
       ),
     },
@@ -41,7 +54,7 @@ const MusicThemeDesktop = () => {
       icon: (
         <GrGraphQl
           size={16}
-          color={currentSection === "skills" ? musicThemeColor : "white"}
+          color={section === "skills" ? musicThemeColor : "white"}
         />
       ),
     },
@@ -74,27 +87,25 @@ const MusicThemeDesktop = () => {
                   Made with React
                 </p>
               </div>
-              <div className="flex gap-2 items-center mt-16">
-                {sections.map((section) => (
+              <div ref={sectionRef} className="flex gap-2 items-center mt-16">
+                {sections.map((sections) => (
                   <button
-                    key={section.name}
+                    key={sections.name}
                     className={`min-w-[120px] ${
-                      currentSection === section.name
-                        ? "bg-white"
-                        : `bg-[#279bda]`
+                      section === sections.name ? "bg-white" : `bg-[#279bda]`
                     } py-1 rounded-md`}
-                    onClick={() => setCurrentSection(section.name)}
+                    onClick={() => setSection(sections.name)}
                   >
                     <div className="flex w-full items-center justify-center gap-1">
-                      {section.icon}
+                      {sections.icon}
                       <p
                         className={`${
-                          currentSection === section.name
+                          section === sections.name
                             ? `text-[#279bda]`
                             : "text-white"
                         } font-medium text-sm`}
                       >
-                        {capitalizeString(section.name)}
+                        {capitalizeString(sections.name)}
                       </p>
                     </div>
                   </button>
@@ -103,9 +114,9 @@ const MusicThemeDesktop = () => {
             </div>
           </div>
         </div>
-        {currentSection === "about" ? (
+        {section === "about" ? (
           <About opened={opened} setOpened={setOpened} />
-        ) : currentSection === "projects" ? (
+        ) : section === "projects" ? (
           <Projects opened={opened} setOpened={setOpened} />
         ) : (
           ""

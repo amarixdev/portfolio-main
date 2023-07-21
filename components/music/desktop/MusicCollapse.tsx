@@ -45,7 +45,6 @@ const MusicCollapse = ({
   const [hoverSong, setHoverSong] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  console.log(opened);
 
   useEffect(() => {
     if (opened.includes(title.toLowerCase())) {

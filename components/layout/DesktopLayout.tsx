@@ -30,6 +30,7 @@ const DesktopApp = () => {
   const themeSelectionRef = useRef<HTMLDivElement>(null);
   const isBreakPoint = useMediaQuery(1023);
   const [displayBanner, setDisplayBanner] = useState(false);
+  const [displaySection, setDisplaySection] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [previewsOpen, setPreviewsOpen] = useState(false);
   const [imageIndex, setImageIndex] = useState("0");
@@ -85,6 +86,7 @@ const DesktopApp = () => {
         setImageIndex={setImageIndex}
       />
       <Banner
+        themeLoading={themeLoading}
         displayBanner={displayBanner}
         setDisplayTweet={setDisplayTweet}
         themes={themes}
@@ -96,9 +98,12 @@ const DesktopApp = () => {
         setProfileOpen={setProfileOpen}
         setPreviewOpen={setPreviewsOpen}
         setSection={setSection}
+        section={section}
         themeSelectionRef={themeSelectionRef}
         wrapperRef={wrapperRef}
         setDisplayBanner={setDisplayBanner}
+        displaySection={displaySection}
+        setDisplaySection={setDisplaySection}
       />
       <LoadingScreen heroImageLoaded={heroImageLoaded} />
       <div ref={wrapperRef} className={`${style.wrapper}`}>
@@ -189,28 +194,21 @@ const DesktopApp = () => {
                 ref={themeRef}
                 className={` ${
                   displayBanner ? "opacity-100" : "opacity-0"
-                } w-full absolute h-screen flex items-center justify-center bg-black mt-[-100px] z-0`}
-              >
-                <div className="flex flex-col items-center gap-8">
-                  <div className={`${style.loaderSpin} top-0 relative `}></div>
-                  <Image
-                    src={Meme}
-                    width={80}
-                    height={80}
-                    alt="meme"
-                    priority
-                    className={`${
-                      meme ? "opacity-30 animate-pulse" : "opacity-0"
-                    }`}
-                  />
-                </div>
-              </div>
+                } w-full absolute h-screen flex items-center justify-center z-0`}
+              ></div>
             ) : (
               <div
                 ref={themeRef}
                 className="w-full absolute bg-black b mt-[-230px] z-[20]"
               >
-                {theme === "music" && <MusicThemeDesktop />}
+                {theme === "music" && (
+                  <MusicThemeDesktop
+                    section={section}
+                    setSection={setSection}
+                    wrapperRef={wrapperRef}
+                    setDisplaySection={setDisplaySection}
+                  />
+                )}
                 {theme === "reddit" && (
                   <RedditTheme
                     openAwards={onOpenAwardsDesktop}
@@ -219,6 +217,8 @@ const DesktopApp = () => {
                     selectedTitle={selectedTitle}
                     setSelectedTitle={setSelectedTitle}
                     awardsArray={redditAwards}
+                    setDisplaySection={setDisplaySection}
+                    wrapperRef={wrapperRef}
                   />
                 )}
                 {theme === "twitter" && (
@@ -228,6 +228,10 @@ const DesktopApp = () => {
                     previewsOpen={previewsOpen}
                     setPreviewsOpen={setPreviewsOpen}
                     setImageIndex={setImageIndex}
+                    setSection={setSection}
+                    section={section}
+                    setDisplaySection={setDisplaySection}
+                    wrapperRef={wrapperRef}
                   />
                 )}
               </div>

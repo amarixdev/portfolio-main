@@ -105,9 +105,9 @@ const Projects = ({
       >
         <div className="flex absolute right-5 top-[160px] justify-start py-3">
           <div
-            className={` flex items-center font-medium justify-between gap-6`}
+            className={` flex items-center font-medium justify-between gap-3`}
           >
-            <p className="text-[#aaaaaa]">Toggle View</p>
+            <p className="text-[#aaaaaa] hidden base:block">Toggle View</p>
             <div className={style.switchContainer}>
               <input
                 type="checkbox"

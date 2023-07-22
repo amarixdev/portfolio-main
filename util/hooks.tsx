@@ -1,5 +1,7 @@
 import {
+  Dispatch,
   RefObject,
+  SetStateAction,
   useCallback,
   useEffect,
   useLayoutEffect,
@@ -72,7 +74,9 @@ export const useHeroDisplay = (
   return { showBackdrop, displayTitle };
 };
 
-export const useThemeSelection = () => {
+export const useThemeSelection = (
+  setSection: Dispatch<SetStateAction<string>>
+) => {
   const isBreakPoint = useMediaQuery(1023);
   const [theme, setTheme] = useState("");
   const [meme, setMeme] = useState(false);
@@ -103,6 +107,7 @@ export const useThemeSelection = () => {
       setThemeLoading(false);
       return;
     }
+    setSection("about");
     setTheme(icon);
     setThemeLoading(true);
     const musicIcon = document.getElementById("music");

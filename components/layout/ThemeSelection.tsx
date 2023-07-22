@@ -9,10 +9,14 @@ const ThemeSelection = ({
   themes,
   handleThemeSelection,
   extendRef,
+  setIsPlaying,
+  audioLocked,
 }: {
   themes: Theme;
   handleThemeSelection: (theme: string) => void;
   extendRef?: RefObject<HTMLDivElement>;
+  setIsPlaying?: (isPlaying: boolean) => void;
+  audioLocked?: boolean;
 }) => {
   const extendDiv = () => {
     if (extendRef?.current) {
@@ -32,6 +36,10 @@ const ThemeSelection = ({
               onClick={() => {
                 handleThemeSelection(theme);
                 extendDiv();
+
+                if (setIsPlaying && !audioLocked) {
+                  setIsPlaying(false);
+                }
               }}
             >
               {themes[theme].icon}

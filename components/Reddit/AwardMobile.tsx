@@ -67,11 +67,11 @@ const AwardMobile = ({
           ref={awardsRef}
           className={` text-[#d2d2d2] ${
             openAwardsMobile ? "bottom-0" : "bottom-[-300px]"
-          } transition-all duration-300 ease-in-out w-full fixed h-[300px] rounded-t-3xl bg-[#222222]  z-[999]`}
+          } transition-all duration-300 ease-in-out w-full fixed h-[300px] rounded-t-3xl bg-[#222222]  z-[9999]`}
         >
           <div className="border-b-[1px] py-4  px-4 ">
             <div className="flex justify-between items-center">
-              <div className="flex items-center gap-3 w-full">
+              <div className="flex items-center gap-3 w-fit pl-3">
                 <AiOutlineClose
                   size={20}
                   onClick={() => {
@@ -89,7 +89,7 @@ const AwardMobile = ({
             </div>
           </div>
           <div className=" relative">
-            <div className="flex gap-2 pt-2 pb-[150px] relative px-2">
+            <div className="flex gap-2 pt-2 pb-[150px] relative px-4">
               {awards.map((award) => (
                 <button
                   key={award.name}

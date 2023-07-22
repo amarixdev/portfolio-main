@@ -4,7 +4,7 @@ const NightSky = () => {
   return (
     <div className={`${style.backgroundContainer}`}>
       <div className={`${style.stars}`}></div>
-      <div className={`${style.twinkling}`}></div>
+      {/* <div className={`${style.twinkling}`}></div> */}
     </div>
   );
 };

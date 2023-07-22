@@ -1,24 +1,32 @@
+import { Button } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import Meme from "../../public/assets/meme.png";
+import { BsPauseFill, BsPlayFill } from "react-icons/bs";
+import { FaLock, FaUnlockAlt } from "react-icons/fa";
+import Profile from "../../public/assets/album-cover.jpg";
 import ParallaxBg from "../../public/assets/profile-bg.png";
 import ParallaxFg from "../../public/assets/profile-padding.png";
 import style from "../../styles/style.module.css";
-import { useHeroDisplay, useThemeSelection } from "../../util/hooks";
+import {
+  useHeroDisplay,
+  useMediaQuery,
+  useThemeSelection,
+} from "../../util/hooks";
 import { RedditAwardsState } from "../../util/types";
 import Banner from "../misc/Banner";
 import LandingPage from "../misc/LandingPage";
 import LoadingScreen from "../misc/LoadingScreen";
 import Overlay from "../misc/Overlay";
+import AudioPlayer from "../music/AudioPlayerMobile";
 import MusicThemeMobile from "../music/mobile/MusicTheme";
 import AwardMobile from "../reddit/AwardMobile";
 import RedditTheme from "../reddit/RedditTheme";
+import AppPreviews from "../twitter/AppPreviews";
 import ProfilePicture from "../twitter/ProfilePicture";
 import TwitterTheme from "../twitter/TwitterTheme";
 import NightSky from "./NightSky";
 import ThemeSelection from "./ThemeSelection";
 import Title from "./Title";
-import AppPreviews from "../twitter/AppPreviews";
 
 const MobileApp = () => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -40,7 +48,7 @@ const MobileApp = () => {
   });
   const { background, foreground } = heroImageLoaded;
   const { menuItems, handleThemeSelection, themeLoading, themes, theme, meme } =
-    useThemeSelection();
+    useThemeSelection(setSection);
 
   const { displayTitle, showBackdrop } = useHeroDisplay(wrapperRef, titleRef);
   const [displayTweet, setDisplayTweet] = useState(false);
@@ -49,8 +57,54 @@ const MobileApp = () => {
   const [previewsOpen, setPreviewsOpen] = useState(false);
   const [imageIndex, setImageIndex] = useState("0");
   const extendRef = useRef<HTMLDivElement>(null);
-
   const [tutorial, setTutorial] = useState(true);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [audioLocked, setAudioLocked] = useState(false);
+  const [unlockIcon, setUnlockIcon] = useState(false);
+  const mdBreakPoint = useMediaQuery(767);
+  const lockIconSize = mdBreakPoint ? 20 : 25;
+  const playIconSize = mdBreakPoint ? 30 : 35;
+
+  const togglePlay = () => {
+    handleTap("play");
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const [tapEffectLock, setTapEffectLock] = useState(false);
+  const [tapEffectPlay, setTapEffectPlay] = useState(false);
+
+  const handleTap = (btn: string) => {
+    if (btn === "lock") {
+      if (!audioLocked && !lockScreenHide) {
+        setLockScreen(true);
+      }
+      setTapEffectLock(true);
+      setTimeout(() => {
+        setTapEffectLock(false);
+      }, 150);
+    }
+
+    if (btn === "play") {
+      setTapEffectPlay(true);
+      setTimeout(() => {
+        setTapEffectPlay(false);
+      }, 150);
+    }
+  };
+
+  const [lockScreen, setLockScreen] = useState(false);
+  const [lockScreenCheck, setLockScreenCheck] = useState(false);
+  const [lockScreenHide, setLockScreenHide] = useState(false);
+  const lockScreenCheckRef = useRef<HTMLInputElement>(null);
+
   return (
     <>
       {/* <Button
@@ -59,6 +113,53 @@ const MobileApp = () => {
       >
         DEBUG
       </Button> */}
+      {theme === "music" || audioLocked ? (
+        <AudioPlayer audioRef={audioRef} />
+      ) : null}
+      {lockScreenHide || (
+        <div
+          className={` ${
+            lockScreen ? "opacity-100 z-[999]" : "opacity-0 z-0 "
+          } select-none transition-all duration-300 ease-in-out min-h-screen w-full fixed backdrop-blur-lg bg-[#000000bb] flex items-center justify-center flex-col gap-8`}
+        >
+          <div className="flex text-xl md:text-2xl flex-col justify-center items-center font-semibold">
+            <p>Music Player Locked</p>
+            <p>Across Themes</p>
+          </div>
+
+          <Button
+            p={6}
+            onClick={() => {
+              if (lockScreenCheck) {
+                setLockScreenHide(true);
+              }
+              setLockScreen(false);
+            }}
+          >
+            OK
+          </Button>
+          <div
+            className="flex items-center relative top-[100px] gap-2"
+            onClick={() => {
+              if (lockScreenCheckRef.current) {
+                lockScreenCheckRef.current.click();
+              }
+            }}
+          >
+            <p className=" font-medium ">Don&apos;t show again</p>
+            <input
+              onClick={() => {
+                if (lockScreenCheckRef.current) {
+                  lockScreenCheckRef.current.click();
+                }
+              }}
+              type="checkbox"
+              onChange={() => setLockScreenCheck((prev) => !prev)}
+              ref={lockScreenCheckRef}
+            />
+          </div>
+        </div>
+      )}
       <AwardMobile
         setAwardsArray={setRedditAwards}
         openAwardsMobile={openAwardsMobile}
@@ -103,8 +204,100 @@ const MobileApp = () => {
         section={section}
         displaySection={displaySection}
         setDisplaySection={setDisplaySection}
+        setIsPlaying={setIsPlaying}
       />
-      <div ref={wrapperRef} className="parallax">
+      {themeLoading && !audioLocked ? (
+        <></>
+      ) : (
+        <div
+          className={`${
+            theme === "music" ? "block" : audioLocked ? "block" : "hidden"
+          } ${
+            previewsOpen ? "opacity-0 z-0" : "opacity-100  z-[9990]"
+          } fixed bottom-0 overflow-hidden h-[65px] md:h-[80px] flex items-center justify-between px-4 border-t-[0.5px] border-[#353535ad] w-full bg-[#0000007c] backdrop-blur-md`}
+        >
+          <div className="flex items-center gap-2">
+            <Image
+              src={Profile}
+              alt="album-cover"
+              width={60}
+              priority
+              className="rounded-xl p-2 md:min-w-[80px]"
+            />
+            <p className=" font-medium md:text-lg">Coding Music </p>
+          </div>
+
+          <button
+            disabled={unlockIcon || lockScreen}
+            className={` ${
+              tapEffectLock
+                ? "bg-[#84848487] scale-90"
+                : "bg-[#00000000] scale-100"
+            } min-h-[50px] transition-all duration-150 ease-in-out group rounded-full min-w-[50px] flex items-center justify-center `}
+            onClick={() => {
+              handleTap("lock");
+              if (audioLocked && theme !== "music") {
+                setUnlockIcon(true);
+                setTimeout(() => {
+                  setAudioLocked(false);
+                  setUnlockIcon(false);
+                  setIsPlaying(false);
+                }, 750);
+              } else {
+                setAudioLocked((prev) => !prev);
+              }
+            }}
+          >
+            {unlockIcon ? (
+              <FaUnlockAlt
+                size={lockIconSize}
+                className=" transition-transform duration-150"
+              />
+            ) : audioLocked ? (
+              <FaLock
+                size={lockIconSize}
+                className={`${
+                  tapEffectLock ? "scale-[0.85]" : "scale-100"
+                } transition-transform duration-150`}
+              />
+            ) : (
+              <FaUnlockAlt
+                size={lockIconSize}
+                className={`${
+                  tapEffectLock ? "scale-[0.85]" : "scale-100"
+                } transition-transform duration-150`}
+              />
+            )}
+          </button>
+
+          <button
+            className={` ${
+              tapEffectPlay
+                ? "bg-[#84848487] scale-90"
+                : "bg-[#00000000] scale-100"
+            } min-h-[50px] transition-all duration-150 ease-in-out group rounded-full min-w-[50px] flex items-center justify-center `}
+            onClick={() => togglePlay()}
+          >
+            {isPlaying ? (
+              <BsPauseFill
+                size={playIconSize}
+                className="group-active:scale-90 transition-transform duration-150"
+              />
+            ) : (
+              <BsPlayFill
+                size={playIconSize}
+                className="group-active:scale-90 transition-transform duration-150"
+              />
+            )}
+          </button>
+        </div>
+      )}
+      <div
+        ref={wrapperRef}
+        className={`parallax ${
+          background && foreground ? "overflow-y-auto" : "overflow-y-hidden"
+        } `}
+      >
         <LandingPage
           heroImageLoaded={heroImageLoaded}
           showBackdrop={showBackdrop}
@@ -135,6 +328,7 @@ const MobileApp = () => {
                   : "hidden"
               } h-full lg:h-fit w-full object-cover`}
               priority
+              quality={50}
               onLoad={() =>
                 setHeroImageLoaded((prev) => ({ ...prev, background: true }))
               }
@@ -173,6 +367,8 @@ const MobileApp = () => {
                       themes={themes}
                       handleThemeSelection={handleThemeSelection}
                       extendRef={extendRef}
+                      setIsPlaying={setIsPlaying}
+                      audioLocked={audioLocked}
                     />
                   </div>
 

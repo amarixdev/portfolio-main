@@ -6,6 +6,7 @@ import DColor2 from "../../../public/assets/promoninja/desktop/desktop-color2.pn
 import DColor3 from "../../../public/assets/promoninja/desktop/desktop-color3.png";
 import DCategory from "../../../public/assets/promoninja/desktop/desktop-category.png";
 import DOffers from "../../../public/assets/promoninja/desktop/desktop-offers.png";
+import DOffers2 from "../../../public/assets/promoninja/desktop/desktop-offers2.png";
 import DSponsor1 from "../../../public/assets/promoninja/desktop/desktop-sponsor1.png";
 import DSponsor2 from "../../../public/assets/promoninja/desktop/desktop-sponsor2.png";
 
@@ -14,6 +15,7 @@ import MColor2 from "../../../public/assets/promoninja/mobile/mobile-color2.png"
 import MColor3 from "../../../public/assets/promoninja/mobile/mobile-color3.png";
 import MCategory from "../../../public/assets/promoninja/mobile/mobile-category.png";
 import MOffers from "../../../public/assets/promoninja/mobile/mobile-offers.png";
+import MOffers2 from "../../../public/assets/promoninja/mobile/mobile-offers2.png";
 import MSponsor1 from "../../../public/assets/promoninja/mobile/mobile-sponsor1.png";
 import MSponsor2 from "../../../public/assets/promoninja/mobile/mobile-sponsor2.png";
 
@@ -46,6 +48,7 @@ const Projects = ({
     DColor2,
     DColor3,
     DOffers,
+    DOffers2,
     DSponsor1,
     DSponsor2,
     DCategory,
@@ -55,10 +58,30 @@ const Projects = ({
     MColor2,
     MColor3,
     MOffers,
+    MOffers2,
     MSponsor1,
     MSponsor2,
     MCategory,
   ];
+
+  const [tapEffectBack, setTapEffectBack] = useState(false);
+  const [tapEffectForward, setTapEffectForward] = useState(false);
+
+  const handleTap = (dir: string) => {
+    if (dir === "back") {
+      setTapEffectBack(true);
+      setTimeout(() => {
+        setTapEffectBack(false);
+      }, 150);
+    }
+
+    if (dir === "fwd") {
+      setTapEffectForward(true);
+      setTimeout(() => {
+        setTapEffectForward(false);
+      }, 150);
+    }
+  };
 
   const handleToggle = (event: ChangeEvent<HTMLInputElement>) => {
     setMobileView(event.target.checked);
@@ -105,7 +128,7 @@ const Projects = ({
           </div>
 
           <div className="flex items-center sm:justify-start justify-between pt-5 px-5 pr-10 w-full ">
-            <div className="flex justify-start py-3">
+            <button className="flex justify-start py-3">
               <div className={` flex items-center justify-between`}>
                 <div className={style.switchContainer}>
                   <input
@@ -119,13 +142,16 @@ const Projects = ({
                   </label>
                 </div>
               </div>
-            </div>
+            </button>
             <div className="w-[30%] flex flex-col items-center">
               <div className="flex w-full justify-between sm:max-w-[50px] min-w-[140px]">
                 <BsFillSkipBackwardFill
-                  className="cursor-pointer active:scale-90 transition-all duration-200 ease-in-out active:fill-white "
+                  className={` ${
+                    tapEffectBack ? "fill-[white]" : "bg-[#00000000]"
+                  }  cursor-pointer active:scale-90 transition-all duration-150 ease-in`}
                   size={40}
                   onClick={() => {
+                    handleTap("back");
                     if (imageIndex === 0) {
                       setImageIndex(desktopPreviews.length - 1);
                     } else {
@@ -134,9 +160,12 @@ const Projects = ({
                   }}
                 />
                 <BsFillSkipForwardFill
-                  className="cursor-pointer active:scale-90 transition-all duration-200 ease-in-out active:fill-white"
+                  className={`${
+                    tapEffectForward ? "fill-[white]" : "bg-[#00000000] "
+                  } cursor-pointer active:scale-90 transition-all duration-150 ease-in`}
                   size={40}
                   onClick={() => {
+                    handleTap("fwd");
                     if (imageIndex === desktopPreviews.length - 1) {
                       setImageIndex(0);
                     } else {

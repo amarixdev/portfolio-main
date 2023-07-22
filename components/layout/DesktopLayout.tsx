@@ -56,8 +56,30 @@ const DesktopApp = () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const { displayTitle, showBackdrop } = useHeroDisplay(wrapperRef, titleRef);
   const { menuItems, handleThemeSelection, themeLoading, themes, theme, meme } =
-    useThemeSelection();
+    useThemeSelection(setSection);
   const [displayTweet, setDisplayTweet] = useState(true);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const togglePlay = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const music = () => {
+    return (
+      <>
+        <audio ref={audioRef} src={"audio/lofibeat.mp3"} loop />
+      </>
+    );
+  };
+
   return (
     <div
       className={`${
@@ -123,6 +145,7 @@ const DesktopApp = () => {
               onLoad={() =>
                 setHeroImageLoaded((prev) => ({ ...prev, background: true }))
               }
+              quality={20}
             />
           }
 

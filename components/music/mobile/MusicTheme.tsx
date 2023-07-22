@@ -11,6 +11,7 @@ import About from "./About";
 import Projects from "./Projects";
 import { AiOutlineMail } from "react-icons/ai";
 import Link from "next/link";
+import AudioPlayer from "../AudioPlayerMobile";
 
 const MusicThemeMobile = ({
   tutorial,

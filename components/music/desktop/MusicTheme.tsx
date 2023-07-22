@@ -11,6 +11,7 @@ import Projects from "./Projects";
 import Link from "next/link";
 import { AiOutlineMail } from "react-icons/ai";
 import { useDisplaySection } from "../../../util/hooks";
+import AudioPlayer from "../AudioPlayer";
 
 const MusicThemeDesktop = ({
   section,
@@ -62,7 +63,7 @@ const MusicThemeDesktop = ({
 
   return (
     <div>
-      <div className="pb-28 pl-20  relative flex flex-col items-center justify-center overflow-auto bg-gradient-to-b from-[#050505] via-[#1c1c1c] to-[#1c1c1c]">
+      <div className="pb-28 pl-20  relative flex flex-col items-center justify-center overflow-auto bg-gradient-to-b bg-black">
         <div className={`flex flex-col z-[100] relative w-full pl-12`}>
           <div className="flex gap-14 items-center">
             <Image
@@ -73,6 +74,9 @@ const MusicThemeDesktop = ({
               priority
               className={`relative rounded-md transition-opacity duration-500 ease-in-out `}
             />
+            <div className="absolute right-[200px] top-0">
+              <AudioPlayer />
+            </div>
             <div className="w-[230px] h-[230px]">
               <h1 className="font-bold text-2xl">Amari DeVaughn</h1>
               <h1 className={`font-medium text-2xl text-[#279bda]`}>
@@ -122,8 +126,8 @@ const MusicThemeDesktop = ({
           ""
         )}
       </div>
-      <div className="flex w-full justify-center h-screen ">
-        <div className="flex w-full justify-start bg-gradient-to-b from-[#1c1c1c] to-[black] h-screen">
+      <div className="flex w-full justify-center">
+        <div className="flex w-full justify-start bg-gradient-to-b ">
           {
             <div className="flex flex-col w-full items-center gap-10">
               <h1 className="font-extrabold text-2xl text-[#555555]">

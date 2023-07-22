@@ -6,6 +6,7 @@ import DColor2 from "../../../public/assets/promoninja/desktop/desktop-color2.pn
 import DColor3 from "../../../public/assets/promoninja/desktop/desktop-color3.png";
 import DCategory from "../../../public/assets/promoninja/desktop/desktop-category.png";
 import DOffers from "../../../public/assets/promoninja/desktop/desktop-offers.png";
+import DOffers2 from "../../../public/assets/promoninja/desktop/desktop-offers2.png";
 import DSponsor1 from "../../../public/assets/promoninja/desktop/desktop-sponsor1.png";
 import DSponsor2 from "../../../public/assets/promoninja/desktop/desktop-sponsor2.png";
 
@@ -14,6 +15,7 @@ import MColor2 from "../../../public/assets/promoninja/mobile/mobile-color2.png"
 import MColor3 from "../../../public/assets/promoninja/mobile/mobile-color3.png";
 import MCategory from "../../../public/assets/promoninja/mobile/mobile-category.png";
 import MOffers from "../../../public/assets/promoninja/mobile/mobile-offers.png";
+import MOffers2 from "../../../public/assets/promoninja/mobile/mobile-offers2.png";
 import MSponsor1 from "../../../public/assets/promoninja/mobile/mobile-sponsor1.png";
 import MSponsor2 from "../../../public/assets/promoninja/mobile/mobile-sponsor2.png";
 import CMSPreview from "../../../public/assets/promoninja/extraction.gif";
@@ -43,6 +45,7 @@ const Projects = ({
     DColor2,
     DColor3,
     DOffers,
+    DOffers2,
     DSponsor1,
     DSponsor2,
     DCategory,
@@ -52,6 +55,7 @@ const Projects = ({
     MColor2,
     MColor3,
     MOffers,
+    MOffers2,
     MSponsor1,
     MSponsor2,
     MCategory,

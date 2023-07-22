@@ -25,6 +25,7 @@ const Banner = ({
   displaySection,
   setDisplaySection,
   themeLoading,
+  setIsPlaying,
 }: {
   displayBanner: boolean;
   themes: Theme;
@@ -44,6 +45,7 @@ const Banner = ({
   displaySection: boolean;
   setDisplaySection: (displaySection: boolean) => void;
   themeLoading: boolean;
+  setIsPlaying?: (isPlaying: boolean) => void;
 }) => {
   const isBreakPoint = useMediaQuery(1023);
   useEffect(() => {
@@ -106,9 +108,7 @@ const Banner = ({
           <MenuButton>
             <div className="flex items-center gap-4 lg:gap-6 cursor-pointer">
               <div
-                className={`flex ${
-                  themes[theme]?.style
-                } absolute ${
+                className={`flex ${themes[theme]?.style} absolute ${
                   displaySection && section === "about"
                     ? "right-[154px] lg:right-[275px]"
                     : displaySection && section === "projects"
@@ -175,6 +175,9 @@ const Banner = ({
                     setDisplayTweet(true);
                   } else {
                     setDisplayTweet(false);
+                  }
+                  if (setIsPlaying) {
+                    setIsPlaying(false);
                   }
                   setPreviewOpen(false);
                   setSection("about");

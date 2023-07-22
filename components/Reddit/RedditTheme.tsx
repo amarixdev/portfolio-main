@@ -50,7 +50,7 @@ const RedditTheme = ({
   return (
     <>
       <div className="flex relative items-center justify-center overflow-hidden pb-20 lg:pb-0 ">
-        <div className="w-full absolute top-0 bg-gradient-to-b from-black h-[100px]"></div>
+        <div className="w-full absolute top-0 z-[100] bg-gradient-to-b from-black  via-[#04385fd9] to-[#00000000] h-[110px]"></div>
         <Image
           src={Grid}
           priority
@@ -69,7 +69,7 @@ const RedditTheme = ({
             alt="avatar"
             src={Avatar}
             priority
-            className={`relative`}
+            className={`relative z-[100]`}
           />
           <h1 className="text-2xl font-bold text-white px-4 relative bottom-2">
             Amari DeVaughn

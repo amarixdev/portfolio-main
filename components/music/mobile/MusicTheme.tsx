@@ -12,6 +12,7 @@ import Projects from "./Projects";
 import { AiOutlineMail } from "react-icons/ai";
 import Link from "next/link";
 import AudioPlayer from "../AudioPlayerMobile";
+import Skills from "./Skills";
 
 const MusicThemeMobile = ({
   tutorial,
@@ -123,6 +124,13 @@ const MusicThemeMobile = ({
         />
       ) : section === "projects" ? (
         <Projects
+          setTutorial={setTutorial}
+          tutorial={tutorial}
+          opened={opened}
+          setOpened={setOpened}
+        />
+      ) : section === "skills" ? (
+        <Skills
           setTutorial={setTutorial}
           tutorial={tutorial}
           opened={opened}

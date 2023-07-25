@@ -12,6 +12,7 @@ import Link from "next/link";
 import { AiOutlineMail } from "react-icons/ai";
 import { useDisplaySection } from "../../../util/hooks";
 import AudioPlayer from "../AudioPlayer";
+import Skills from "../desktop/Skills";
 
 const MusicThemeDesktop = ({
   section,
@@ -122,6 +123,8 @@ const MusicThemeDesktop = ({
           <About opened={opened} setOpened={setOpened} />
         ) : section === "projects" ? (
           <Projects opened={opened} setOpened={setOpened} />
+        ) : section === "skills" ? (
+          <Skills opened={opened} setOpened={setOpened} />
         ) : (
           ""
         )}

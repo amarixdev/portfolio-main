@@ -36,20 +36,20 @@ const RedditTabs = ({
         position="relative"
         minW={"100%"}
         variant="unstyled"
-        className="mt-3 bg-[#151515] text-[#808080] font-semibold border-b-[0.5px] lg:border-b-0 border-[#3a3a3aba]"
+        className="mt-3 bg-[#151515] text-[#808080] font-semibold border-b-[0.5px] lg:border-b-0 border-[#4e4e4eba]"
         defaultIndex={tabIndex}
       >
         <TabList
           display={"flex"}
-          w="full"
+          minW="full"
           justifyContent={justifyContent}
-          className="rounded-sm px-10 lg:px-0 py-2 lg:py-0 lg:border-[1px] hover:lg:border-[#777]"
+          className="rounded-sm px-10 lg:px-0 py-[10px] lg:py-0 lg:border-[1px] hover:lg:border-[#777]"
         >
           <Tab px={1} py={paddingY} onClick={() => handleSelect("about")}>
             <div
               className={` ${
                 section === "about" && "lg:bg-[#4d4d4d] lg:hover:bg-[#4d4d4d]"
-              } flex items-center rounded-3xl lg:hover:bg-[#2c2c2c] text-sm lg:font-bold  lg:px-2 lg:py-1 gap-1`}
+              } flex items-center rounded-3xl lg:hover:bg-[#2c2c2c] text-base lg:font-bold lg:px-2 lg:py-1 gap-1`}
             >
               {isBreakPoint || (
                 <IoPersonCircleOutline
@@ -72,7 +72,7 @@ const RedditTabs = ({
               className={` ${
                 section === "projects" &&
                 "lg:bg-[#4d4d4d] lg:hover:bg-[#4d4d4d]"
-              } flex items-center rounded-3xl lg:font-bold text-sm  lg:hover:bg-[#2c2c2c] lg:px-2 lg:py-1 gap-1`}
+              } flex items-center rounded-3xl lg:font-bold lg:hover:bg-[#2c2c2c] text-base lg:px-2 lg:py-1 gap-1`}
             >
               {isBreakPoint || (
                 <HiOutlineCodeBracketSquare
@@ -94,7 +94,7 @@ const RedditTabs = ({
             <div
               className={` ${
                 section === "skills" && "lg:bg-[#4d4d4d] lg:hover:bg-[#4d4d4d]"
-              } lg:font-bold text-sm flex items-center rounded-3xl lg:hover:bg-[#2c2c2c] lg:px-2 lg:py-1 gap-1`}
+              } lg:font-bold flex items-center rounded-3xl lg:hover:bg-[#2c2c2c] text-base lg:px-2 lg:py-1 gap-1`}
             >
               {isBreakPoint || (
                 <GrGraphQl

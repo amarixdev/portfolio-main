@@ -11,6 +11,8 @@ import About from "./About";
 import Projects from "./Projects";
 import RedditTabs from "./RedditTabs";
 import { useDisplaySection, useMediaQuery } from "../../util/hooks";
+import Skills from "./Skills";
+import { GrGraphQl } from "react-icons/gr";
 
 const RedditTheme = ({
   openAwards,
@@ -49,8 +51,8 @@ const RedditTheme = ({
 
   return (
     <>
-      <div className="flex relative items-center justify-center overflow-hidden pb-20 lg:pb-0 ">
-        <div className="w-full absolute top-0 z-[100] bg-gradient-to-b from-black  via-[#04385fd9] to-[#00000000] h-[110px]"></div>
+      <div className="flex min-w-full relative items-center justify-center overflow-hidden pb-20 lg:pb-0 ">
+        <div className=" w-full absolute top-0 z-[100] bg-gradient-to-b from-black  via-[#04385fd9] to-[#00000000] h-[110px]"></div>
         <Image
           src={Grid}
           priority
@@ -79,15 +81,19 @@ const RedditTheme = ({
           </p>
           <div
             ref={sectionRef}
-            className="min-w-full lg:w-[650px] mt-6 flex flex-col bg-black relative"
+            className="w-screen lg:w-[650px] mt-6 flex flex-col bg-black relative"
           >
             <RedditTabs section={section} handleSelect={handleSelect} />
             <>
-              <div className="flex items-center w-full gap-1 py-3 px-2 bg-[#010101]">
-                <BsFire color="#aaaaaa" size={18} />
+              <div
+                className={`flex items-center w-full gap-1 py-3 ${
+                  section === "skills" ? "pl-4" : "pl-2"
+                } bg-[#010101]`}
+              >
+                {section === "skills" || <BsFire color="#aaaaaa" size={18} />}
                 <div className="flex items-center gap-1">
                   <p className=" text-xs font-bold text-[#aaaaaa]">
-                    {"HOT POSTS"}
+                    {section === "skills" ? "TROPHIES" : "HOT POSTS"}
                   </p>
                 </div>
               </div>
@@ -108,8 +114,16 @@ const RedditTheme = ({
                   selectedTitle={selectedTitle}
                   setSelectedTitle={setSelectedTitle}
                 />
+              ) : section === "skills" ? (
+                <Skills
+                  awardsArray={awardsArray}
+                  openAwards={openAwards}
+                  setSection={setSection}
+                  selectedTitle={selectedTitle}
+                  setSelectedTitle={setSelectedTitle}
+                />
               ) : (
-                <Projects
+                <About
                   awardsArray={awardsArray}
                   openAwards={openAwards}
                   setSection={setSection}

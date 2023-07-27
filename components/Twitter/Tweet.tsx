@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import { MdVerified } from "react-icons/md";
 import Profile from "../../public/assets/twitter-profile.jpg";
 import { capitalizeString } from "../../util/functions";
+import { useMediaQuery } from "../../util/hooks";
 
 const Tweet = ({
   children,
@@ -15,6 +16,8 @@ const Tweet = ({
   reply?: boolean;
   preview?: boolean;
 }) => {
+  const isBreakPoint = useMediaQuery(1023);
+  const iconSize = isBreakPoint ? 13 : 18;
   return (
     <div className="w-full flex gap-2 border-b-[1px] pb-10 pt-2">
       <Image
@@ -28,12 +31,12 @@ const Tweet = ({
       <div className=" w-full">
         <div className="flex flex-col">
           <div className="flex items-center gap-1">
-            <h1 className="font-bold text-xs xs:text-sm lg:text-base whitespace-nowrap">
+            <h1 className="font-bold text-xs xs:text-sm lg:text-lg whitespace-nowrap">
               Amari DeVaughn
             </h1>
-            <MdVerified color="#26a7de" size={13} />
+            <MdVerified color="#26a7de" size={iconSize} />
             {preview || (
-              <p className="text-[#6b6b6b] text-xs xs:text-sm lg:text-base whitespace-nowrap ">
+              <p className="text-[#838383] text-xs xs:text-sm lg:text-lg whitespace-nowrap ">
                 @amarixdev • 10h
               </p>
             )}
@@ -41,16 +44,16 @@ const Tweet = ({
 
           {reply && (
             <div className="flex items-center gap-1">
-              <p className="text-xs xs:text-sm lg:text-base  text-[#888]">
+              <p className="text-xs xs:text-sm lg:text-lg  text-[#888]">
                 Replying to
               </p>
-              <p className="text-xs xs:text-sm lg:text-base  text-[#26a7de]">
+              <p className="text-xs xs:text-sm lg:text-lg  text-[#26a7de]">
                 @amarixdev
               </p>
             </div>
           )}
           {
-            <p className="text-xs xs:text-sm lg:text-base  text-[#26a7de]">
+            <p className="text-xs xs:text-sm lg:text-lg  text-[#26a7de]">
               #{capitalizeString(title)}
             </p>
           }

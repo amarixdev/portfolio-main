@@ -111,7 +111,7 @@ const Skills = ({
     wordpress: {
       image: Wordpress,
       name: "Wordpress",
-      award: "Master of Pluginsphere",
+      award: "Lord of Pluginsphere",
     },
     prisma: {
       image: Prisma,

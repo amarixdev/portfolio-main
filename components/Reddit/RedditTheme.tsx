@@ -81,7 +81,7 @@ const RedditTheme = ({
           </p>
           <div
             ref={sectionRef}
-            className="w-screen lg:w-[650px] mt-6 flex flex-col bg-black relative"
+            className="w-screen sm:w-[650px] mt-6 flex flex-col bg-black relative"
           >
             <RedditTabs section={section} handleSelect={handleSelect} />
             <>

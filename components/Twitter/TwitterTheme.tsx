@@ -23,6 +23,7 @@ import Tweet from "./Tweet";
 import About from "./About";
 import Projects from "./Projects";
 import Link from "next/link";
+import Skills from "./Skills";
 
 const TwitterTheme = ({
   profileOpen,
@@ -54,7 +55,7 @@ const TwitterTheme = ({
   const handleSelect = (section: string) => {
     setSection(section);
   };
-
+  const verifiedIconSize = isBreakPoint ? 18 : 20;
   const [reloadFlag, setReloadFlag] = useState(false);
 
   useEffect(() => {
@@ -135,7 +136,7 @@ const TwitterTheme = ({
             <div className="flex flex-col items-start justify-center">
               <div className="flex items-center gap-1">
                 <h1 className="font-extrabold text-xl">Amari DeVaughn</h1>
-                <MdVerified color="#26a7de" />
+                <MdVerified color="#26a7de" size={verifiedIconSize} />
               </div>
               <h3 className="text-[#777777]">@amarixdev</h3>
               <p className="text-sm lg:text-base">
@@ -247,7 +248,7 @@ const TwitterTheme = ({
                 />
               </TabPanel>
               <TabPanel>
-                <p>three!</p>
+                <Skills />
               </TabPanel>
             </TabPanels>
           </Tabs>

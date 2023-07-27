@@ -1,4 +1,3 @@
-
 import DCategory from "../../public/assets/promoninja/desktop/desktop-category.png";
 import DColor1 from "../../public/assets/promoninja/desktop/desktop-color1.png";
 import DColor2 from "../../public/assets/promoninja/desktop/desktop-color2.png";
@@ -47,7 +46,7 @@ const Projects = ({
   return (
     <div>
       <Tweet title="promoninja">
-        <p className="pb-2 text-sm">
+        <p className="pb-2 text-xs xs:text-sm lg:text-lg">
           PromoNinja is an an all-in-one application for anyone who enjoys
           podcasts and saving money. If you are interested in learning more
           about the project,

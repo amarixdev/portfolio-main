@@ -21,8 +21,9 @@ import ProfilePicture from "../twitter/ProfilePicture";
 import TwitterTheme from "../twitter/TwitterTheme";
 import NightSky from "./NightSky";
 import ThemeSelection from "./ThemeSelection";
-import Title from "./Title";
+import Title from "./DesktopTitle";
 import AppPreviews from "../twitter/AppPreviews";
+import DesktopTitle from "./DesktopTitle";
 
 const DesktopApp = () => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -86,6 +87,7 @@ const DesktopApp = () => {
         profileOpen && theme === "twitter" && "h-screen fixed z-[500]"
       } bg-black `}
     >
+
       <AwardDesktop
         setAwardsArray={setRedditAwards}
         onClose={onCloseAwardsDesktop}
@@ -150,7 +152,7 @@ const DesktopApp = () => {
           }
 
           <div
-            className={` absolute h-full lg:h-fit w-full xl:top-[-10%] 2xl:top-[-20%] 3xl:top-[-25%] ${
+            className={`absolute h-full lg:h-fit w-full xl:top-[-10%] 2xl:top-[-20%] 3xl:top-[-25%] ${
               style.display
             } ${background && foreground ? "block" : "hidden"}  `}
           >
@@ -167,7 +169,7 @@ const DesktopApp = () => {
             />
 
             <div
-              className={`w-full relative bottom-20  pt-10 bg-black flex flex-col justify-top items-center `}
+              className={`w-full relative bottom-24  pt-10 bg-gradient-to-tr bg-black flex flex-col justify-top items-center `}
             >
               <div className="absolute w-full top-3 pb-8 flex items-start justify-center">
                 {isBreakPoint && (
@@ -181,19 +183,19 @@ const DesktopApp = () => {
               </div>
               <div
                 ref={titleRef}
-                className={`w-full mt-2 relative lg:px-24 z-10   text-[#dbdbdb] items-center justify-center flex flex-col gap-3 `}
+                className={`w-full mt-2 relative z-10  pb-[250px]  text-[#dbdbdb] flex flex-col gap-3 `}
               >
                 <NightSky />
-                <Title displayTitle={displayTitle} />
+                <DesktopTitle displayTitle={displayTitle} />
                 <div
                   ref={themeSelectionRef}
                   className={`${
                     displayTitle ? "opacity-100" : "opacity-0"
-                  } transition-opacity duration-500 ease-in z-50 w-full mt-10 lg:mt-14 flex flex-col items-center justify-center`}
+                  } transition-opacity duration-500 ease-in z-50 w-full flex flex-col items-center justify-center`}
                 >
-                  <div className="w-full  flex-col lg:flex-row lg:justify-start flex items-center justify-center pb-[250px]">
-                    <div className="w-full justify-start items-start flex gap-14 ">
-                      <h1 className=" font-bold whitespace-nowrap flex items-center mt-5 gap-2 relative left-2 justify-start text-xl lg:text-3xl ">
+                  <div className="flex w-[30%] pb-10">
+                    <div className="w-full justify-center items-center flex flex-col gap-14 ">
+                      <h1 className="  font-light whitespace-nowrap flex items-center mt-5 gap-2 relative left-2 justify-start text-xl lg:text-3xl ">
                         {"Select portfolio theme"}
                       </h1>
                       <ThemeSelection
@@ -202,12 +204,20 @@ const DesktopApp = () => {
                       />
                     </div>
                   </div>
+                </div>
+                <div className="w-full flex items-center justify-center">
                   {themeLoading ? (
                     <span
-                      className={`${style.loaderSlide} w-[90%] lg:w-[80%] h-[1px] bg-[#444444] relative hidden lg:block bottom-[160px] lg:mb-20`}
+                      className={`${style.loaderSlide} ${
+                        displayBanner ? "opacity-0" : "opacity-100"
+                      } w-[90%] lg:w-[80%] h-[1px] bg-[#444444] relative hidden lg:block`}
                     ></span>
                   ) : (
-                    <div className="w-[90%] lg:w-[80%] h-[1px] bg-[#444444] relative hidden lg:block bottom-[160px] lg:mb-20"></div>
+                    <div
+                      className={` ${
+                        displayBanner ? "opacity-0" : "opacity-100"
+                      } w-[90%] lg:w-[80%] h-[1px] bg-[#444444] relative hidden lg:block `}
+                    ></div>
                   )}
                 </div>
               </div>
@@ -216,7 +226,7 @@ const DesktopApp = () => {
               <div
                 ref={themeRef}
                 className={` ${
-                  displayBanner ? "opacity-100" : "opacity-0"
+                  displayBanner ? "opacity-100" : "opacity-100"
                 } w-full absolute h-screen flex items-center justify-center z-0`}
               ></div>
             ) : (

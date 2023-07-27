@@ -52,9 +52,11 @@ const Banner = ({
     const wrapper = wrapperRef.current;
     const handleScroll = () => {
       const breakPointMobile = 50;
-      const breakPointDesktop = 350;
+      const breakPointDesktop = 110;
       if (themeSelectionRef.current) {
         const elementRect = themeSelectionRef.current.getBoundingClientRect();
+        console.log(elementRect.bottom);
+
         if (isBreakPoint) {
           setDisplayBanner(elementRect.bottom < breakPointMobile);
         } else {

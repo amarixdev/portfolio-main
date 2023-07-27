@@ -26,7 +26,8 @@ import ProfilePicture from "../twitter/ProfilePicture";
 import TwitterTheme from "../twitter/TwitterTheme";
 import NightSky from "./NightSky";
 import ThemeSelection from "./ThemeSelection";
-import Title from "./Title";
+import Title from "./DesktopTitle";
+import MobileTitle from "./MobileTitle";
 
 const MobileApp = () => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -122,9 +123,11 @@ const MobileApp = () => {
             lockScreen ? "opacity-100 z-[999]" : "opacity-0 z-0 "
           } select-none transition-all duration-300 ease-in-out min-h-screen w-full fixed backdrop-blur-lg bg-[#000000bb] flex items-center justify-center flex-col gap-8`}
         >
-          <div className="flex text-xl md:text-2xl flex-col justify-center items-center font-semibold">
-            <p>Music Player Locked</p>
-            <p>Across Themes</p>
+          <div className="flex flex-col justify-center items-center w-[80%] ">
+            <p className="text-xl md:text-2xl font-semibold">Display Locked</p>
+            <p className="text-[#aaaaaa] text-lg md:text-xl text-center">
+              Audio player will persist across themes
+            </p>
           </div>
 
           <Button
@@ -352,7 +355,7 @@ const MobileApp = () => {
                 className={`w-full mt-2 pt-14 top-0 absolute lg:px-24 z-10 text-[#dbdbdb] items-center justify-center flex flex-col gap-3 `}
               >
                 <NightSky />
-                <Title displayTitle={displayTitle} />
+                <MobileTitle displayTitle={displayTitle} />
                 <div
                   ref={themeSelectionRef}
                   className={`${
@@ -360,7 +363,7 @@ const MobileApp = () => {
                   } transition-opacity duration-500 ease-in z-50 w-full mt-10 lg:mt-14 flex flex-col items-center justify-center`}
                 >
                   <div className="w-full items-center justify-center lg:items-start flex flex-col lg:flex-row ">
-                    <h1 className=" font-bold flex items-center  lg:mt-5 gap-2 relative left-2 justify-start text-xl lg:text-3xl min-w-[160px] lg:w-[40%] ">
+                    <h1 className=" font-light flex items-center  lg:mt-5 gap-2 relative left-2 justify-start text-xl lg:text-3xl min-w-[160px] lg:w-[40%] ">
                       {"Select portfolio theme"}
                     </h1>
                     <ThemeSelection

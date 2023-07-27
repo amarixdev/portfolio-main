@@ -26,7 +26,7 @@ const ThemeSelection = ({
   const isBreakPoint = useMediaQuery(1023);
 
   return (
-    <div className="flex mt-10 lg:mt-0 lg:gap-14 justify-evenly lg:justify-start w-full ">
+    <div className="flex mt-10 lg:mt-0 lg:gap-14 justify-evenly  w-full ">
       {Object.keys(themes).map((theme) => (
         <div key={theme}>
           {isBreakPoint ? (

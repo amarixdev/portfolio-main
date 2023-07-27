@@ -148,7 +148,7 @@ const Skills = ({
           className="pl-4 flex w-full items-center gap-4 py-2"
         >
           <div className="rounded-2xl p-4 bg-[#222222]">
-            <Image width={50} src={skills[skillKey].image} alt="html" />
+            <Image width={50} height={50} src={skills[skillKey].image} alt="html" className="min-h-[50px]" />
           </div>
           <div className="flex flex-col">
             <p className="font-semibold text-xl text-[#d2d2d2]">

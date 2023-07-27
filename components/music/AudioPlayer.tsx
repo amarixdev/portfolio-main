@@ -21,7 +21,7 @@ const AudioPlayerMobile = () => {
       <audio ref={audioRef} src={"audio/lofibeat.mp3"} loop />
       <button onClick={togglePlay}>
         {isPlaying ? (
-          <HiSpeakerWave color="29aaf4" size={35} />
+          <HiSpeakerWave color="#29aaf4" size={35} />
         ) : (
           <HiOutlineSpeakerXMark size={35} />
         )}

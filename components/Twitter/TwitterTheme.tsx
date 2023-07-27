@@ -63,9 +63,9 @@ const TwitterTheme = ({
   }, []);
 
   return (
-    <>
+    <div className="w-full flex items-center justify-center ">
       <div
-        className={`lg:px-[160px] xl:px-[280px] bg-[#060606]  ${
+        className={`lg:w-[800px] 2xl:w-[1000px] bg-[#060606] ${
           profileOpen ? "opacity-0 z-0" : "opacity-100 z-50"
         } `}
       >
@@ -268,7 +268,7 @@ const TwitterTheme = ({
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -211,7 +211,7 @@ const Projects = ({
               className="w-full"
             >
               <Button className="flex p-3 py-8 items-center justify-start w-full  gap-2">
-                <FiExternalLink />
+                <BsGithub />
                 View Code
               </Button>
             </Link>

@@ -100,7 +100,7 @@
 
 .background {
   position: absolute;
-  transform: translateZ(-10px) scale(2);
+  transform: translateZ(-15px) scale(2);
   z-index: -1;
   width: 100%;
   object-fit: cover;

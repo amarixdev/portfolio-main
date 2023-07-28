@@ -26,6 +26,7 @@ const Banner = ({
   setDisplaySection,
   themeLoading,
   setIsPlaying,
+  displayContact,
 }: {
   displayBanner: boolean;
   themes: Theme;
@@ -46,6 +47,7 @@ const Banner = ({
   setDisplaySection: (displaySection: boolean) => void;
   themeLoading: boolean;
   setIsPlaying?: (isPlaying: boolean) => void;
+  displayContact?: boolean;
 }) => {
   const isBreakPoint = useMediaQuery(1023);
   useEffect(() => {
@@ -73,7 +75,11 @@ const Banner = ({
   }, [themeSelectionRef, wrapperRef, setDisplayBanner, isBreakPoint, theme]);
 
   const bannerStyle = `${
-    displayBanner ? `z-[9998]  opacity-100` : " z-0 opacity-0"
+    displayBanner && !displayContact
+      ? `z-[9999] opacity-100`
+      : displayBanner && displayContact
+      ? "z-[999] opacity-100"
+      : " z-0 opacity-0"
   }  transition-all duration-150 ease-in-out  w-full bg-[#000000b0] backdrop-blur-md 
    border-b-[0.5px] border-[#aaaaaa50]
    py-3 lg:py-5 lg:gap-10 px-4 fixed flex justify-between  items-center`;

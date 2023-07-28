@@ -1,6 +1,13 @@
-import { useDisclosure } from "@chakra-ui/react";
+import {
+  Button,
+  Input,
+  Spinner,
+  Textarea,
+  Tooltip,
+  useDisclosure,
+} from "@chakra-ui/react";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Meme from "../../public/assets/meme.png";
 import ParallaxBg from "../../public/assets/profile-bg.png";
 import ParallaxFg from "../../public/assets/profile-padding.png";
@@ -24,6 +31,8 @@ import ThemeSelection from "./ThemeSelection";
 import Title from "./DesktopTitle";
 import AppPreviews from "../twitter/AppPreviews";
 import DesktopTitle from "./DesktopTitle";
+import Carousel from "../misc/Carousel";
+import ContactForm from "../misc/ContactForm";
 
 const DesktopApp = () => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -32,6 +41,7 @@ const DesktopApp = () => {
   const isBreakPoint = useMediaQuery(1023);
   const [displayBanner, setDisplayBanner] = useState(false);
   const [displaySection, setDisplaySection] = useState(false);
+  const [displayContact, setDisplayContact] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [previewsOpen, setPreviewsOpen] = useState(false);
   const [imageIndex, setImageIndex] = useState("0");
@@ -59,27 +69,7 @@ const DesktopApp = () => {
   const { menuItems, handleThemeSelection, themeLoading, themes, theme, meme } =
     useThemeSelection(setSection);
   const [displayTweet, setDisplayTweet] = useState(true);
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  const music = () => {
-    return (
-      <>
-        <audio ref={audioRef} src={"audio/lofibeat.mp3"} loop />
-      </>
-    );
-  };
+  const [copied, setCopied] = useState(false);
 
   return (
     <div
@@ -87,7 +77,29 @@ const DesktopApp = () => {
         profileOpen && theme === "twitter" && "h-screen fixed z-[500]"
       } bg-black `}
     >
+      <button
+        onClick={() => setDisplayContact((prev) => !prev)}
+        className={`${
+          (displayTitle && theme) || displayContact
+            ? "opacity-100"
+            : "opacity-0 "
+        } backdrop-blur-md active:scale-90 fixed bottom-5 font-normal shadow-2xl shadow-black text-lg bg-[#29aaf4c0] hover:bg-[#2fb3ff] cursor-pointer transition-all duration-300 ease-in-out flex items-center justify-center right-5 w-32 h-10 rounded-full z-[9999]`}
+      >
+        <p onClick={() => setCopied(false)}>
+          {displayContact ? "Close" : "Contact"}{" "}
+        </p>
+      </button>
 
+      <div
+        className={`${
+          displayContact
+            ? "opacity-100 z-[9999] bottom-[80px] scale-100 "
+            : "opacity-0 z-0 bottom-[-200px] scale-50"
+        }  rounded-2xl fixed border-[0.5px] right-5 h-[550px] w-[400px] transition-all duration-300 ease-in-out  backdrop-blur-lg bg-[#0000008f] flex`}
+      >
+        {<Carousel displayContact={displayContact} />}
+        <ContactForm copied={copied} setCopied={setCopied} />
+      </div>
       <AwardDesktop
         setAwardsArray={setRedditAwards}
         onClose={onCloseAwardsDesktop}

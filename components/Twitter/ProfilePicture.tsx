@@ -18,7 +18,7 @@ const ProfilePicture = ({
     <div
       className={`${
         profileOpen && theme === "twitter" ? "block" : "hidden"
-      } fixed z-50 h-screen w-full bg-black flex items-center justify-center`}
+      } fixed z-[9999] h-screen w-full bg-black flex items-center justify-center`}
     >
       <div className=" w-full sm:max-w-[50%] relative flex flex-col justify-center items-center h-[70%]">
         <div

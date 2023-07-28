@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { BsPauseFill, BsPlayFill } from "react-icons/bs";
+import { BsFillChatRightFill, BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { FaLock, FaUnlockAlt } from "react-icons/fa";
 import Profile from "../../public/assets/album-cover.jpg";
 import ParallaxBg from "../../public/assets/profile-bg.png";
@@ -26,8 +26,10 @@ import ProfilePicture from "../twitter/ProfilePicture";
 import TwitterTheme from "../twitter/TwitterTheme";
 import NightSky from "./NightSky";
 import ThemeSelection from "./ThemeSelection";
-import Title from "./DesktopTitle";
 import MobileTitle from "./MobileTitle";
+import Carousel from "../misc/Carousel";
+import ContactForm from "../misc/ContactForm";
+import { AiOutlineClose } from "react-icons/ai";
 
 const MobileApp = () => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -79,32 +81,37 @@ const MobileApp = () => {
     }
   };
 
-  const [tapEffectLock, setTapEffectLock] = useState(false);
-  const [tapEffectPlay, setTapEffectPlay] = useState(false);
+  const [tapEffect, setTapEffect] = useState({
+    lock: false,
+    play: false,
+    chat: false,
+  });
 
   const handleTap = (btn: string) => {
     if (btn === "lock") {
-      if (!audioLocked && !lockScreenHide) {
-        setLockScreen(true);
-      }
-      setTapEffectLock(true);
+      setTapEffect((prev) => ({ ...prev, lock: true }));
       setTimeout(() => {
-        setTapEffectLock(false);
+        setTapEffect((prev) => ({ ...prev, lock: false }));
       }, 150);
     }
 
     if (btn === "play") {
-      setTapEffectPlay(true);
+      setTapEffect((prev) => ({ ...prev, play: true }));
       setTimeout(() => {
-        setTapEffectPlay(false);
+        setTapEffect((prev) => ({ ...prev, play: false }));
+      }, 150);
+    }
+
+    if (btn === "chat") {
+      setTapEffect((prev) => ({ ...prev, chat: true }));
+      setTimeout(() => {
+        setTapEffect((prev) => ({ ...prev, chat: false }));
       }, 150);
     }
   };
 
-  const [lockScreen, setLockScreen] = useState(false);
-  const [lockScreenCheck, setLockScreenCheck] = useState(false);
-  const [lockScreenHide, setLockScreenHide] = useState(false);
-  const lockScreenCheckRef = useRef<HTMLInputElement>(null);
+  const [displayContact, setDisplayContact] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   return (
     <>
@@ -114,55 +121,41 @@ const MobileApp = () => {
       >
         DEBUG
       </Button> */}
+      <button
+        onClick={() => {
+          handleTap("chat");
+          setDisplayContact((prev) => !prev);
+        }}
+        className={`${
+          (displayTitle && theme) || displayContact
+            ? "opacity-100"
+            : "opacity-0 "
+        } backdrop-blur-md fixed ${
+          theme === "music" || audioLocked ? "bottom-20" : "bottom-5"
+        } ${
+          tapEffect.chat ? "scale-90 bg-[#29aaf4]" : "scale-100 bg-[#29aaf4a0]"
+        } text-base font-medium shadow-2xl shadow-black transition-all duration-150 ease-in-out flex items-center justify-center right-5 w-16 h-10 rounded-full z-[9999]`}
+      >
+        <p onClick={() => setCopied(false)}>
+          {displayContact ? (
+            <AiOutlineClose size={20} />
+          ) : (
+            <BsFillChatRightFill size={16} />
+          )}
+        </p>
+      </button>
+      <div
+        className={`${
+          displayContact ? "opacity-100 z-[9998] " : "opacity-0 z-0"
+        } fixed h-full w-full transition-all duration-300 ease-in-out backdrop-blur-lg bg-[#0000008f] flex`}
+      >
+        {<Carousel displayContact={displayContact} />}
+        <ContactForm copied={copied} setCopied={setCopied} />
+      </div>
       {theme === "music" || audioLocked ? (
         <AudioPlayer audioRef={audioRef} />
       ) : null}
-      {lockScreenHide || (
-        <div
-          className={` ${
-            lockScreen ? "opacity-100 z-[999]" : "opacity-0 z-0 "
-          } select-none transition-all duration-300 ease-in-out min-h-screen w-full fixed backdrop-blur-lg bg-[#000000bb] flex items-center justify-center flex-col gap-8`}
-        >
-          <div className="flex flex-col justify-center items-center w-[80%] ">
-            <p className="text-xl md:text-2xl font-semibold">Display Locked</p>
-            <p className="text-[#aaaaaa] text-lg md:text-xl text-center">
-              Audio player will persist across themes
-            </p>
-          </div>
 
-          <Button
-            p={6}
-            onClick={() => {
-              if (lockScreenCheck) {
-                setLockScreenHide(true);
-              }
-              setLockScreen(false);
-            }}
-          >
-            OK
-          </Button>
-          <div
-            className="flex items-center relative top-[100px] gap-2"
-            onClick={() => {
-              if (lockScreenCheckRef.current) {
-                lockScreenCheckRef.current.click();
-              }
-            }}
-          >
-            <p className=" font-medium ">Don&apos;t show again</p>
-            <input
-              onClick={() => {
-                if (lockScreenCheckRef.current) {
-                  lockScreenCheckRef.current.click();
-                }
-              }}
-              type="checkbox"
-              onChange={() => setLockScreenCheck((prev) => !prev)}
-              ref={lockScreenCheckRef}
-            />
-          </div>
-        </div>
-      )}
       <AwardMobile
         setAwardsArray={setRedditAwards}
         openAwardsMobile={openAwardsMobile}
@@ -191,6 +184,7 @@ const MobileApp = () => {
       <Banner
         themeLoading={themeLoading}
         displayBanner={displayBanner}
+        displayContact={displayContact}
         setDisplayTweet={setDisplayTweet}
         themes={themes}
         theme={theme}
@@ -209,7 +203,7 @@ const MobileApp = () => {
         setDisplaySection={setDisplaySection}
         setIsPlaying={setIsPlaying}
       />
-      {themeLoading && !audioLocked ? (
+      {displayContact || (themeLoading && !audioLocked) ? (
         <></>
       ) : (
         <div
@@ -231,9 +225,9 @@ const MobileApp = () => {
           </div>
 
           <button
-            disabled={unlockIcon || lockScreen}
+            disabled={unlockIcon}
             className={` ${
-              tapEffectLock
+              tapEffect.lock
                 ? "bg-[#84848487] scale-90"
                 : "bg-[#00000000] scale-100"
             } min-h-[50px] transition-all duration-150 ease-in-out group rounded-full min-w-[50px] flex items-center justify-center `}
@@ -260,14 +254,14 @@ const MobileApp = () => {
               <FaLock
                 size={lockIconSize}
                 className={`${
-                  tapEffectLock ? "scale-[0.85]" : "scale-100"
+                  tapEffect.lock ? "scale-[0.85]" : "scale-100"
                 } transition-transform duration-150`}
               />
             ) : (
               <FaUnlockAlt
                 size={lockIconSize}
                 className={`${
-                  tapEffectLock ? "scale-[0.85]" : "scale-100"
+                  tapEffect.lock ? "scale-[0.85]" : "scale-100"
                 } transition-transform duration-150`}
               />
             )}
@@ -275,7 +269,7 @@ const MobileApp = () => {
 
           <button
             className={` ${
-              tapEffectPlay
+              tapEffect.play
                 ? "bg-[#84848487] scale-90"
                 : "bg-[#00000000] scale-100"
             } min-h-[50px] transition-all duration-150 ease-in-out group rounded-full min-w-[50px] flex items-center justify-center `}

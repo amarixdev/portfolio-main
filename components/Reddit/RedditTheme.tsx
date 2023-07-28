@@ -135,20 +135,6 @@ const RedditTheme = ({
           </div>
         </div>
       </div>
-      <div className="flex flex-col w-full justify-center items-center gap-10 lg:pt-5">
-        <h1 className="font-extrabold text-2xl text-[#555555]">Contact Me</h1>
-        <div
-          className={` pb-[200px] lg:pb-[80px] w-[40%] lg:w-[20%] flex items-center justify-evenly`}
-        >
-          <Link
-            href={"https://www.linkedin.com/in/amari-devaughn-319582191/"}
-            target="_blank"
-          >
-            <BsLinkedin size={socialIconSize} color="#555555" />
-          </Link>
-          <AiOutlineMail size={socialIconSize} color="#555555" />
-        </div>
-      </div>
     </>
   );
 };

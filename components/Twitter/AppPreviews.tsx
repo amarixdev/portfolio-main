@@ -106,7 +106,7 @@ const AppPreviews = ({
   return (
     <div
       className={`${
-        previewsOpen && theme === "twitter" ? "block z-50" : "hidden z-0"
+        previewsOpen && theme === "twitter" ? "block z-[9999]" : "hidden z-0"
       } select-none fixed h-screen w-full bg-black flex items-center justify-center`}
     >
       {isBreakPoint && (

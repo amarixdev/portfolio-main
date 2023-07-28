@@ -129,28 +129,7 @@ const MusicThemeDesktop = ({
           ""
         )}
       </div>
-      <div className="flex w-full justify-center">
-        <div className="flex w-full justify-start bg-gradient-to-b ">
-          {
-            <div className="flex flex-col w-full items-center gap-10">
-              <h1 className="font-extrabold text-2xl text-[#555555]">
-                Contact Me
-              </h1>
-              <div
-                className={` pb-20 w-[20%] flex items-center justify-evenly`}
-              >
-                <Link
-                  href={"https://www.linkedin.com/in/amari-devaughn-319582191/"}
-                  target="_blank"
-                >
-                  <BsLinkedin size={50} color="#555555" />
-                </Link>
-                <AiOutlineMail size={50} color="#555555" />
-              </div>
-            </div>
-          }
-        </div>
-      </div>
+      <div className="h-[50vh]"></div>
     </div>
   );
 };

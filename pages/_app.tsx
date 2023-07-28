@@ -8,9 +8,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   if (typeof window === "undefined") React.useLayoutEffect = () => {};
 
   return (
-    <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <>
+      <ChakraProvider theme={theme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </>
   );
 }
 

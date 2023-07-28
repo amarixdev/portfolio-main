@@ -1,0 +1,52 @@
+@-webkit-keyframes scroll {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(calc(-250px * 7));
+    transform: translateX(calc(-250px * 7));
+  }
+}
+@keyframes scroll {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(calc(-250px * 7));
+    transform: translateX(calc(-250px * 7));
+  }
+}
+.carousel {
+  margin: auto;
+  overflow: hidden;
+  position: absolute;
+}
+.carousel::before,
+.carousel::after {
+  height: 100px;
+  position: absolute;
+  width: 200px;
+  z-index: 2;
+}
+.carousel::after {
+  right: 0;
+  top: 0;
+  -webkit-transform: rotateZ(180deg);
+  transform: rotateZ(180deg);
+}
+.carousel::before {
+  left: 0;
+  top: 0;
+}
+.carousel .carouselTrack {
+  -webkit-animation: scroll 100s linear infinite;
+  animation: scroll 100s linear infinite;
+  display: flex;
+  width: calc(250px * 14);
+}
+.carousel .emblem {
+  height: 100px;
+  width: 150px;
+}

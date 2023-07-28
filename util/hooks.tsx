@@ -12,6 +12,7 @@ import style from "../styles/style.module.css";
 import { HiMusicNote } from "react-icons/hi";
 import { FaRedditAlien } from "react-icons/fa";
 import { BsTwitter } from "react-icons/bs";
+import { useToast } from "@chakra-ui/react";
 
 export const useMediaQuery = (width: number) => {
   const [targetReached, setTargetReached] = useState(true);
@@ -175,3 +176,4 @@ export const useDisplaySection = (
     };
   });
 };
+

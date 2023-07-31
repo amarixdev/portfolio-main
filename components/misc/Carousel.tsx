@@ -11,8 +11,8 @@ const Carousel = ({ displayContact }: { displayContact: boolean }) => {
   return (
     <div
       className={`${style.carousel} ${
-        displayContact && !isBreakPoint ? "block" : "hidden"
-      } h-[50px] top-0 pt-[12px] lg:pt-[6px] w-full lg:w-[400px] bg-gradient-to-r to-[#041b28] shadow-black shadow-2xl from-[#279bda]`}
+        displayContact  ? "block" : "hidden"
+      } h-[50px] rounded-t-2xl top-0 pt-[12px] lg:pt-[6px] w-full lg:w-[400px] bg-black border-b-[1px] shadow-xl shadow-[#ffffff26]`}
     >
       <div className={`${style.carouselTrack}`}>
         <div className={`${style.emblem}`}>

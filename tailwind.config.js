@@ -39,6 +39,9 @@ module.exports = {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
+      fontFamily: {
+        cursive: ["Yesteryear"],
+      },
     },
   },
   plugins: [require("tailwind-scrollbar-hide")],

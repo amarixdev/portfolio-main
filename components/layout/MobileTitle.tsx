@@ -18,7 +18,7 @@ const Title = ({ displayTitle }: { displayTitle: boolean }) => {
         </p>{" "}
         <div className="ml-4 text-[#dbdbdb]">
           DeV
-          <span className="bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#29aaf4] text-transparent  ">
+          <span className="bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#29aaf4] text-transparent px-2 right-2 relative ">
             eloper
           </span>
         </div>

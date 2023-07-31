@@ -10,7 +10,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Meme from "../../public/assets/meme.png";
 import ParallaxBg from "../../public/assets/profile-bg.png";
-import ParallaxFg from "../../public/assets/profile-padding.png";
+import ParallaxFg from "../../public/assets/profile-FG.png";
 import style from "../../styles/style.module.css";
 import {
   useHeroDisplay,
@@ -33,6 +33,16 @@ import AppPreviews from "../twitter/AppPreviews";
 import DesktopTitle from "./DesktopTitle";
 import Carousel from "../misc/Carousel";
 import ContactForm from "../misc/ContactForm";
+import RedditThemeDesktop from "../reddit/RedditThemeDesktop";
+import TwitterThemeDesktop from "../twitter/TwitterThemeDesktop";
+import {
+  HiChevronDown,
+  HiChevronUp,
+  HiOutlineChevronDoubleUp,
+} from "react-icons/hi";
+import { FiChevronsUp, FiChevronsDown } from "react-icons/fi";
+import { LuMailPlus } from "react-icons/lu";
+import { AiOutlineClose } from "react-icons/ai";
 
 const DesktopApp = () => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -71,11 +81,13 @@ const DesktopApp = () => {
   const [displayTweet, setDisplayTweet] = useState(true);
   const [copied, setCopied] = useState(false);
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   return (
     <div
       className={`${
         profileOpen && theme === "twitter" && "h-screen fixed z-[500]"
-      } bg-black `}
+      }  bg-black `}
     >
       <button
         onClick={() => setDisplayContact((prev) => !prev)}
@@ -83,19 +95,31 @@ const DesktopApp = () => {
           (displayTitle && theme) || displayContact
             ? "opacity-100"
             : "opacity-0 "
-        } backdrop-blur-md active:scale-90 fixed bottom-5 font-normal shadow-2xl shadow-black text-lg bg-[#29aaf4c0] hover:bg-[#2fb3ff] cursor-pointer transition-all duration-300 ease-in-out flex items-center justify-center right-5 w-32 h-10 rounded-full z-[9999]`}
+        } backdrop-blur-md active:scale-90 ${
+          style.contactForm
+        } fixed bottom-5 font-normal w-32 shadow-2xl text-lg hover:bg-[#0f0f0f] cursor-pointer transition-all duration-150 ease-in-out flex items-center justify-center right-5 h-10 rounded-full z-[9999]`}
       >
-        <p onClick={() => setCopied(false)}>
-          {displayContact ? "Close" : "Contact"}{" "}
+        <p
+          onClick={() => {
+            setCopied(false);
+          }}
+        >
+          {displayContact ? (
+            <AiOutlineClose size={25} />
+          ) : (
+            <LuMailPlus size={25} />
+          )}{" "}
         </p>
       </button>
 
       <div
         className={`${
           displayContact
-            ? "opacity-100 z-[9999] bottom-[80px] scale-100 "
-            : "opacity-0 z-0 bottom-[-200px] scale-50"
-        }  rounded-2xl fixed border-[0.5px] right-5 h-[550px] w-[400px] transition-all duration-300 ease-in-out  backdrop-blur-lg bg-[#0000008f] flex`}
+            ? "opacity-100 z-[9999] bottom-[80px] "
+            : "opacity-0 z-0 bottom-[-200px] "
+        }  rounded-2xl fixed border-[0.5px] right-5 h-[550px] w-[400px] transition-all duration-300 ease-in-out ${
+          style.contactForm
+        } flex`}
       >
         {<Carousel displayContact={displayContact} />}
         <ContactForm copied={copied} setCopied={setCopied} />
@@ -142,7 +166,10 @@ const DesktopApp = () => {
         setDisplaySection={setDisplaySection}
       />
       <LoadingScreen heroImageLoaded={heroImageLoaded} />
-      <div ref={wrapperRef} className={`${style.wrapper}`}>
+      <div
+        ref={wrapperRef}
+        className={`${style.wrapper} overflow-x-hidden  overflow-y-auto h-screen `}
+      >
         <LandingPage
           heroImageLoaded={heroImageLoaded}
           showBackdrop={showBackdrop}
@@ -159,19 +186,20 @@ const DesktopApp = () => {
               onLoad={() =>
                 setHeroImageLoaded((prev) => ({ ...prev, background: true }))
               }
-              quality={20}
+              quality={10}
             />
           }
 
           <div
             className={`absolute h-full lg:h-fit w-full xl:top-[-10%] 2xl:top-[-20%] 3xl:top-[-25%] ${
               style.display
-            } ${background && foreground ? "block" : "hidden"}  `}
+            }  ${background && foreground ? "block" : "hidden"}  `}
           >
             <Image
               src={ParallaxFg}
               alt="fg"
               priority
+              quality={30}
               className={` ${
                 background && foreground ? "block" : "hidden"
               } object-cover relative z-0 h-full lg:h-fit w-full`}
@@ -197,15 +225,24 @@ const DesktopApp = () => {
                 ref={titleRef}
                 className={`w-full mt-2 relative z-10  pb-[250px]  text-[#dbdbdb] flex flex-col gap-3 `}
               >
-                <NightSky />
+                <video
+                  className="top w-full h-full top-0 absolute"
+                  src={"/video/space-bg.mp4"}
+                  muted
+                  loop
+                  playsInline
+                  controls={false}
+                  ref={videoRef}
+                  autoPlay
+                ></video>
                 <DesktopTitle displayTitle={displayTitle} />
                 <div
                   ref={themeSelectionRef}
                   className={`${
                     displayTitle ? "opacity-100" : "opacity-0"
-                  } transition-opacity duration-500 ease-in z-50 w-full flex flex-col items-center justify-center`}
+                  } transition-opacity duration-500 ease-in  relative w-full flex flex-col items-center justify-center`}
                 >
-                  <div className="flex w-[30%] pb-10">
+                  <div className="flex w-[30%] pb-10 ">
                     <div className="w-full justify-center items-center flex flex-col gap-14 ">
                       <h1 className="  font-light whitespace-nowrap flex items-center mt-5 gap-2 relative left-2 justify-start text-xl lg:text-3xl ">
                         {"Select portfolio theme"}
@@ -213,6 +250,7 @@ const DesktopApp = () => {
                       <ThemeSelection
                         themes={themes}
                         handleThemeSelection={handleThemeSelection}
+                        videoRef={videoRef}
                       />
                     </div>
                   </div>
@@ -244,7 +282,8 @@ const DesktopApp = () => {
             ) : (
               <div
                 ref={themeRef}
-                className="w-full absolute bg-black b mt-[-230px] z-[20]"
+                className={`absolute
+             w-full bg-black b mt-[-300px] z-[20]`}
               >
                 {theme === "music" && (
                   <MusicThemeDesktop
@@ -255,7 +294,7 @@ const DesktopApp = () => {
                   />
                 )}
                 {theme === "reddit" && (
-                  <RedditTheme
+                  <RedditThemeDesktop
                     openAwards={onOpenAwardsDesktop}
                     setSection={setSection}
                     section={section}
@@ -267,7 +306,7 @@ const DesktopApp = () => {
                   />
                 )}
                 {theme === "twitter" && (
-                  <TwitterTheme
+                  <TwitterThemeDesktop
                     setProfileOpen={setProfileOpen}
                     profileOpen={profileOpen}
                     previewsOpen={previewsOpen}
@@ -277,6 +316,7 @@ const DesktopApp = () => {
                     section={section}
                     setDisplaySection={setDisplaySection}
                     wrapperRef={wrapperRef}
+                    setDisplayContact={setDisplayContact}
                   />
                 )}
               </div>

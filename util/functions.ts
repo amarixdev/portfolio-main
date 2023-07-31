@@ -15,3 +15,27 @@ export const truncateString = (string: string, num: number) => {
     return string.slice(0, num) + `...`;
   } else return string;
 };
+
+export const getCurrentDate = () => {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const now = new Date();
+  const month = months[now.getMonth()];
+  const dayOfMonth = String(now.getDate()).padStart(2, "0");
+  const year = now.getFullYear();
+  const formattedDate = `${month} ${dayOfMonth}, ${year}`;
+
+  return formattedDate;
+};

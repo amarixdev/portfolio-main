@@ -88,14 +88,15 @@
 /* Parallax Desktop  */
 
 .wrapper {
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
   perspective: 10px;
 }
 
 .display {
   transform: translateZ(-5px) scale(1.5);
+}
+
+.cancelDisplay {
+  transform: translateZ(0px) scale(1);
 }
 
 .background {
@@ -118,12 +119,34 @@
   position: fixed;
 }
 
+.contactForm {
+  box-shadow: 0 0 10px #ffffff80;
+  border-radius: 1rem;
+  background-color: black;
+}
+
 /* Icon Styles */
 
 .glowIcon {
-  box-shadow: 0 0 30px #fff;
+  box-shadow: 0 0 15px #fff;
   border-radius: 1rem;
   transition: all 0.15s ease-in-out;
+}
+
+@media (min-width: 1024px) {
+  .glowIcon:hover {
+    box-shadow: 0 0 15px #fff;
+    border-radius: 1rem;
+    transition: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .glowIcon {
+    box-shadow: 0 0 25px #fff;
+    border-radius: 1rem;
+    transition: all 0.15s ease-in-out;
+  }
 }
 
 .glowIconBanner {
@@ -185,6 +208,7 @@
   position: absolute;
   top: 0;
   left: 0;
+
   box-sizing: border-box;
   animation: loadingSlide 2s linear infinite;
 }

@@ -69,7 +69,7 @@ const MusicThemeMobile = ({
   ];
 
   return (
-    <div className="bg-[black] pb-20 lg:pb-0">
+    <div className="bg-[black] pb-[200px] lg:pb-0">
       <div className="flex items-center justify-center lg:pt-6">
         <Image
           alt="profile"

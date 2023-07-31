@@ -159,16 +159,18 @@ const Skills = () => {
   };
 
   return (
-    <>
-      {Object.keys(skills).map((skillKey) => (
+    <div className="pt-6">
+      {Object.keys(skills).map((skillKey, index) => (
         <div
           key={skills[skillKey].name}
-          className="w-full flex flex-col border-b-[1px] py-4"
+          className={`w-full flex flex-col border-b-[1px] ${
+            index === 0 ? "px-4 pb-4" : "p-4"
+          }`}
         >
           <div className="flex flex-col">
             <div className="flex items-center gap-3 pl-10">
               <FaRetweet color="#747474" size={20} />
-              <p className="font-extrabold text-xs xs:text-sm lg:text-base text-[#838383]">
+              <p className="font-bold text-xs xs:text-sm lg:text-base text-[#838383]">
                 Amari DeVaughn Retweeted
               </p>
             </div>
@@ -184,17 +186,17 @@ const Skills = () => {
               <div className=" w-full">
                 <div className="flex flex-col ">
                   <div className="flex items-center gap-1">
-                    <h1 className="font-bold text-xs xs:text-sm lg:text-lg whitespace-nowrap">
+                    <h1 className="font-bold text-xs xs:text-sm lg:text-base 2xl:text-lg whitespace-nowrap">
                       {skills[skillKey].name}
                     </h1>
                     <MdVerified color="#ecc526" size={iconSize} />
                     {
-                      <p className="text-[#838383] text-xs xs:text-sm lg:text-lg whitespace-nowrap ">
+                      <p className="text-[#838383] text-xs xs:text-sm lg:text-base 2xl:text-lg whitespace-nowrap ">
                         {`@${skills[skillKey].name.toLowerCase()} • 10h`}
                       </p>
                     }
                   </div>
-                  <p className="text-xs xs:text-sm lg:text-lg">
+                  <p className="text-xs xs:text-sm lg:text-base 2xl:text-lg">
                     {skills[skillKey].tweet}
                     <span className="pl-1 text-[#279bda]">
                       {skills[skillKey].hashtag}
@@ -206,7 +208,7 @@ const Skills = () => {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

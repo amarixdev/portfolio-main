@@ -46,7 +46,7 @@ const Projects = ({
   return (
     <div>
       <Tweet title="promoninja">
-        <p className="pb-2 text-xs xs:text-sm lg:text-lg">
+        <p className=" text-xs xs:text-sm lg:text-base 2xl:text-lg py-4">
           PromoNinja is an an all-in-one application for anyone who enjoys
           podcasts and saving money. If you are interested in learning more
           about the project,
@@ -64,11 +64,11 @@ const Projects = ({
             </span>
           </Link>
         </p>
-        <div className="max-h-[300px] sm:max-h-[400px] md:max-h-[500px] lg:max-h-[650px] w-full grid-cols-2 grid-rows-2 grid rounded-2xl overflow-hidden ">
+        <div className="gap-1 max-h-[300px] sm:max-h-[400px] md:max-h-[500px] lg:max-h-[650px] w-full grid-cols-2 grid-rows-2 grid rounded-2xl overflow-hidden ">
           {desktopPreviews.slice(0, 4).map((image, index) => (
             <div
               key={image.src}
-              className="h-fit border-2 border-black"
+              className="h-fit"
               onClick={() => {
                 setImageIndex(transformIndex(index));
                 setPreviewsOpen(true);
@@ -77,18 +77,19 @@ const Projects = ({
               <Image
                 src={image}
                 alt="promoninja-previews"
-                className="cursor-pointer"
+                className="cursor-pointer hover:opacity-80 transition-all duration-300"
+                priority
               />
             </div>
           ))}
         </div>
       </Tweet>
       <Tweet title="promoninja" reply={true}>
-        <div className="max-h-[300px] sm:max-h-[400px] md:max-h-[500px] lg:max-h-[650px] w-full grid-cols-2 grid-rows-2 grid rounded-2xl overflow-hidden ">
+        <div className="pt-4 gap-1 max-h-[300px] sm:max-h-[400px] md:max-h-[500px] lg:max-h-[650px] w-full grid-cols-2 grid-rows-2 grid rounded-2xl overflow-hidden ">
           {desktopPreviews.slice(4, 8).map((image, index) => (
             <div
               key={image.src}
-              className="h-fit border-2 border-black"
+              className="h-fit"
               onClick={() => {
                 setImageIndex(transformIndex(index + 4));
                 setPreviewsOpen(true);
@@ -97,33 +98,36 @@ const Projects = ({
               <Image
                 src={image}
                 alt="promoninja-previews"
-                className="cursor-pointer"
+                className="cursor-pointer hover:opacity-80 transition-all duration-300"
+                priority
               />
             </div>
           ))}
         </div>
-        <div className="flex flex-col gap-4 pt-10 w-full items-start">
-          <Link
-            href={"https://promoninja.io"}
-            target="_blank"
-            className="w-full"
-          >
-            <Button className="flex p-3 py-8 sm:py-10 items-center justify-start w-full  gap-2 sm:gap-4">
-              <FiExternalLink size={iconSize} />
-              <p className="sm:text-lg">Visit Site</p>
-            </Button>
-          </Link>
+        <div className="flex flex-col gap-4 pt-10 w-full items-center">
+          <div className="w-[80%] lg:w-[60%] flex flex-col gap-5">
+            <Link
+              href={"https://promoninja.io"}
+              target="_blank"
+              className="w-full"
+            >
+              <Button className="flex p-3 py-8 sm:py-10 lg:py-6 items-center justify-start w-full  gap-2 sm:gap-4">
+                <FiExternalLink size={iconSize} />
+                <p className="sm:text-lg lg:text-base">Visit Site</p>
+              </Button>
+            </Link>
 
-          <Link
-            href={"https://github.com/amarixdev/promoninja-FE"}
-            target="_blank"
-            className="w-full"
-          >
-            <Button className="flex p-3 py-8 sm:py-10 items-center justify-start w-full gap-2 sm:gap-4">
-              <BsGithub size={iconSize} />
-              <p className="sm:text-lg">View Code</p>
-            </Button>
-          </Link>
+            <Link
+              href={"https://github.com/amarixdev/promoninja-FE"}
+              target="_blank"
+              className="w-full"
+            >
+              <Button className="flex p-3 py-8 sm:py-10 lg:py-6 items-center justify-start w-full gap-2 sm:gap-4">
+                <BsGithub size={iconSize} />
+                <p className="sm:text-lg lg:text-base">View Code</p>
+              </Button>
+            </Link>
+          </div>
         </div>
       </Tweet>
     </div>

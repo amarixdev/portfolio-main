@@ -107,7 +107,7 @@ const Projects = ({
         selectedTitle={selectedTitle}
         setSelectedTitle={setSelectedTitle}
       >
-        <div className="flex absolute right-5 top-[160px] justify-start py-3">
+        <div className="flex absolute lg:right-16 right-5 top-[160px] justify-start py-3">
           <div
             className={` flex items-center font-medium justify-between gap-3`}
           >
@@ -125,7 +125,7 @@ const Projects = ({
             </div>
           </div>
         </div>
-        <div className=" relative overflow-x-clip min-w-full">
+        <div className=" relative overflow-x-hidden min-w-full ">
           <div className="w-full flex items-center justify-between">
             <div className="absolute top-5 right-0 rounded-3xl bg-[#000000b3] py-1 px-2 text-xs z-50">
               {`${1 + (Number(imageIndex) / 100) * -1}  / ${
@@ -134,7 +134,7 @@ const Projects = ({
             </div>
             {displayRightArrow && (
               <div
-                className="active:scale-95 lg:active:scale-100 absolute cursor-pointer rounded-full bg-[#f2f2f2] z-50 top-[50%] left-0"
+                className="active:scale-95 lg:active:scale-100 absolute cursor-pointer rounded-full bg-[#f2f2f2] z-50 top-[50%] left-1 lg:left-4"
                 onClick={() => swipe("left")}
               >
                 <BiChevronLeft size={45} color="#666" />
@@ -142,7 +142,7 @@ const Projects = ({
             )}
             {displayLeftArrow && (
               <div
-                className="active:scale-95 lg:active:scale-100 absolute cursor-pointer rounded-full bg-[#f2f2f2] z-50 top-[50%] right-0"
+                className="active:scale-95 lg:active:scale-100 absolute cursor-pointer rounded-full bg-[#f2f2f2] z-50 top-[50%] right-1 lg:right-4"
                 onClick={() => swipe("right")}
               >
                 <BiChevronRight size={45} color="#666" />

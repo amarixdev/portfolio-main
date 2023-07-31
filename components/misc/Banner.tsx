@@ -57,7 +57,6 @@ const Banner = ({
       const breakPointDesktop = 110;
       if (themeSelectionRef.current) {
         const elementRect = themeSelectionRef.current.getBoundingClientRect();
-        console.log(elementRect.bottom);
 
         if (isBreakPoint) {
           setDisplayBanner(elementRect.bottom < breakPointMobile);
@@ -76,7 +75,7 @@ const Banner = ({
 
   const bannerStyle = `${
     displayBanner && !displayContact
-      ? `z-[9999] opacity-100`
+      ? `z-[9998] opacity-100`
       : displayBanner && displayContact
       ? "z-[999] opacity-100"
       : " z-0 opacity-0"

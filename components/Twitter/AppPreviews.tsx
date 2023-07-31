@@ -200,7 +200,7 @@ const AppPreviews = ({
         )}
         <div className="flex justify-center relative w-full items-center min-h-full ">
           {isBreakPoint || (
-            <div className="flex absolute right-36 top-[104px] justify-start py-3 z-[999]">
+            <div className="flex absolute right-36 top-[20px] justify-start py-3 z-[999]">
               <div
                 className={` flex items-center font-medium justify-between gap-6`}
               >
@@ -265,11 +265,11 @@ const AppPreviews = ({
             </div>
           )}
 
-          <div className=" w-full sm:max-w-[800px] relative flex flex-col justify-center items-center h-[50%]">
-            <div className=" relative overflow-x-clip min-w-full">
+          <div className=" w-full sm:max-w-[800px] lg:max-w-[1000px] relative flex flex-col justify-center items-center h-full">
+            <div className=" relative overflow-x-hidden min-w-full">
               {isBreakPoint || (
                 <div className="w-full flex items-center justify-between">
-                  <div className="absolute top-10 right-0 rounded-3xl bg-[#000000b3] py-1 px-2 text-xs z-50">
+                  <div className="absolute top-10 right-20 rounded-3xl bg-[#000000b3] py-1 px-2 text-xs z-50">
                     {`${1 + (Number(imageIndex) / 100) * -1}  / ${
                       desktopPreviews.length
                     }`}
@@ -278,7 +278,7 @@ const AppPreviews = ({
               )}
 
               <div
-                className="flex items-center w-full relative "
+                className="flex items-center w-full relative"
                 ref={imageSliderRef}
               >
                 {mobileView
@@ -288,20 +288,23 @@ const AppPreviews = ({
                           <Image
                             src={preview}
                             alt="promoninja-preview"
-                            className="object-contain h-[50%] lg:h-[500px] "
-                            width={300}
+                            className="object-contain h-[600px] "
+                            width={200}
                             priority
                           />
                         </div>
                       </div>
                     ))
                   : desktopPreviews.map((preview, index) => (
-                      <div className={`flex items min-w-full`} key={index}>
+                      <div
+                        className={`flex items-center justify-center min-w-full`}
+                        key={index}
+                      >
                         <Image
                           src={preview}
                           alt="promoninja-preview"
                           className="pt-2 object-contain"
-                          width={2000}
+                          width={800}
                           priority
                         />
                       </div>

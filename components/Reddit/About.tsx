@@ -6,8 +6,6 @@ import RedditGold from "../../public/assets/reddit-gold.png";
 import RedditPlatinum from "../../public/assets/reddit-platinum.png";
 import RedditSilver from "../../public/assets/reddit-silver.png";
 
-type Props = {};
-
 const About = ({
   awardsArray,
   openAwards,

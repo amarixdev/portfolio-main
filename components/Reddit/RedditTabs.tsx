@@ -1,11 +1,9 @@
 import { Tab, TabIndicator, TabList, Tabs } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { useMediaQuery } from "../../util/hooks";
-import { BsPerson } from "react-icons/bs";
-import { GoPerson } from "react-icons/go";
-import { IoPersonCircleOutline } from "react-icons/io5";
-import { HiOutlineCodeBracketSquare } from "react-icons/hi2";
+import { useEffect, useState } from "react";
 import { GrGraphQl } from "react-icons/gr";
+import { HiOutlineCodeBracketSquare } from "react-icons/hi2";
+import { IoPersonCircleOutline } from "react-icons/io5";
+import { useMediaQuery } from "../../util/hooks";
 
 const RedditTabs = ({
   section,
@@ -36,7 +34,7 @@ const RedditTabs = ({
         position="relative"
         minW={"100%"}
         variant="unstyled"
-        className="mt-3 bg-[#151515] text-[#808080] font-semibold border-b-[0.5px] lg:border-b-0 border-[#4e4e4eba]"
+        className="mt-3 lg:mt-0 bg-[#151515] text-[#808080] font-semibold border-b-[0.5px] lg:border-b-0 border-[#4e4e4eba]"
         defaultIndex={tabIndex}
       >
         <TabList
@@ -89,28 +87,31 @@ const RedditTabs = ({
               </p>
             </div>
           </Tab>
-          <Tab px={1} py={paddingY} onClick={() => handleSelect("skills")}>
-            {" "}
-            <div
-              className={` ${
-                section === "skills" && "lg:bg-[#4d4d4d] lg:hover:bg-[#4d4d4d]"
-              } lg:font-bold flex items-center rounded-3xl lg:hover:bg-[#2c2c2c] text-base lg:px-2 lg:py-1 gap-1`}
-            >
-              {isBreakPoint || (
-                <GrGraphQl
-                  size={23}
-                  color={section === "skills" ? "#d6d6d6" : "#777777"}
-                />
-              )}
-              <p
-                className={`${
-                  section === "skills" ? "text-[#d6d6d6]" : "text-[#777777]"
-                } font-semibold transition-colors lg:transition-none duration-[400ms] lg:duration-0 ease-in-out`}
+          {isBreakPoint && (
+            <Tab px={1} py={paddingY} onClick={() => handleSelect("skills")}>
+              {" "}
+              <div
+                className={` ${
+                  section === "skills" &&
+                  "lg:bg-[#4d4d4d] lg:hover:bg-[#4d4d4d]"
+                } lg:font-bold flex items-center rounded-3xl lg:hover:bg-[#2c2c2c] text-base lg:px-2 lg:py-1 gap-1`}
               >
-                Skills
-              </p>
-            </div>
-          </Tab>
+                {isBreakPoint || (
+                  <GrGraphQl
+                    size={23}
+                    color={section === "skills" ? "#d6d6d6" : "#777777"}
+                  />
+                )}
+                <p
+                  className={`${
+                    section === "skills" ? "text-[#d6d6d6]" : "text-[#777777]"
+                  } font-semibold transition-colors lg:transition-none duration-[400ms] lg:duration-0 ease-in-out`}
+                >
+                  Skills
+                </p>
+              </div>
+            </Tab>
+          )}
         </TabList>
         {isBreakPoint && (
           <TabIndicator

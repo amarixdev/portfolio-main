@@ -4,6 +4,7 @@ import React from "react";
 import { theme } from "../styles/chakra/theme";
 import "../styles/globals.css";
 
+
 function MyApp({ Component, pageProps }: AppProps) {
   if (typeof window === "undefined") React.useLayoutEffect = () => {};
 

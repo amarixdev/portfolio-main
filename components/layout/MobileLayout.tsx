@@ -1,11 +1,11 @@
 import { Button } from "@chakra-ui/react";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsFillChatRightFill, BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { FaLock, FaUnlockAlt } from "react-icons/fa";
 import Profile from "../../public/assets/album-cover.jpg";
 import ParallaxBg from "../../public/assets/profile-bg.png";
-import ParallaxFg from "../../public/assets/profile-padding.png";
+import ParallaxFg from "../../public/assets/profile-FG.png";
 import style from "../../styles/style.module.css";
 import {
   useHeroDisplay,
@@ -29,7 +29,8 @@ import ThemeSelection from "./ThemeSelection";
 import MobileTitle from "./MobileTitle";
 import Carousel from "../misc/Carousel";
 import ContactForm from "../misc/ContactForm";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiFillMail, AiOutlineClose } from "react-icons/ai";
+import { LuMailPlus } from "react-icons/lu";
 
 const MobileApp = () => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -68,6 +69,19 @@ const MobileApp = () => {
   const mdBreakPoint = useMediaQuery(767);
   const lockIconSize = mdBreakPoint ? 20 : 25;
   const playIconSize = mdBreakPoint ? 30 : 35;
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    const wrapper = wrapperRef.current;
+    const playVideo = () => {
+      if (video?.paused) {
+        video?.play();
+      }
+    };
+    wrapper?.addEventListener("scroll", playVideo);
+    return () => wrapper?.removeEventListener("scroll", playVideo);
+  }, [displayTitle]);
 
   const togglePlay = () => {
     handleTap("play");
@@ -140,16 +154,16 @@ const MobileApp = () => {
           {displayContact ? (
             <AiOutlineClose size={20} />
           ) : (
-            <BsFillChatRightFill size={16} />
+            <LuMailPlus size={20} />
           )}
         </p>
       </button>
       <div
         className={`${
           displayContact ? "opacity-100 z-[9998] " : "opacity-0 z-0"
-        } fixed h-full w-full transition-all duration-300 ease-in-out backdrop-blur-lg bg-[#0000008f] flex`}
+        } fixed h-full w-full transition-all duration-300 ease-in-out backdrop-blur-lg bg-[#000000cd] flex`}
       >
-        {<Carousel displayContact={displayContact} />}
+        {/* {<Carousel displayContact={displayContact} />} */}
         <ContactForm copied={copied} setCopied={setCopied} />
       </div>
       {theme === "music" || audioLocked ? (
@@ -203,14 +217,16 @@ const MobileApp = () => {
         setDisplaySection={setDisplaySection}
         setIsPlaying={setIsPlaying}
       />
-      {displayContact || (themeLoading && !audioLocked) ? (
+      {themeLoading && !audioLocked ? (
         <></>
       ) : (
         <div
           className={`${
             theme === "music" ? "block" : audioLocked ? "block" : "hidden"
           } ${
-            previewsOpen ? "opacity-0 z-0" : "opacity-100  z-[9990]"
+            previewsOpen || displayContact
+              ? "opacity-0 z-0"
+              : "opacity-100  z-[9990]"
           } fixed bottom-0 overflow-hidden h-[65px] md:h-[80px] flex items-center justify-between px-4 border-t-[0.5px] border-[#353535ad] w-full bg-[#0000007c] backdrop-blur-md`}
         >
           <div className="flex items-center gap-2">
@@ -310,6 +326,7 @@ const MobileApp = () => {
                 background && foreground ? "block" : "hidden"
               } h-full absolute top-[10%] lg:h-fit w-full object-cover`}
               priority
+              quality={50}
               onLoad={() =>
                 setHeroImageLoaded((prev) => ({ ...prev, foreground: true }))
               }
@@ -325,7 +342,7 @@ const MobileApp = () => {
                   : "hidden"
               } h-full lg:h-fit w-full object-cover`}
               priority
-              quality={50}
+              quality={10}
               onLoad={() =>
                 setHeroImageLoaded((prev) => ({ ...prev, background: true }))
               }
@@ -348,7 +365,17 @@ const MobileApp = () => {
                 ref={titleRef}
                 className={`w-full mt-2 pt-14 top-0 absolute lg:px-24 z-10 text-[#dbdbdb] items-center justify-center flex flex-col gap-3 `}
               >
-                <NightSky />
+                {/* <NightSky /> */}
+                <video
+                  className="top w-full h-full top-0 absolute"
+                  src={"/video/space-bg.mp4"}
+                  muted
+                  loop
+                  playsInline
+                  controls={false}
+                  ref={videoRef}
+                  // autoPlay={true}
+                ></video>
                 <MobileTitle displayTitle={displayTitle} />
                 <div
                   ref={themeSelectionRef}
@@ -366,6 +393,7 @@ const MobileApp = () => {
                       extendRef={extendRef}
                       setIsPlaying={setIsPlaying}
                       audioLocked={audioLocked}
+                      videoRef={videoRef}
                     />
                   </div>
 
@@ -409,6 +437,7 @@ const MobileApp = () => {
                       awardsArray={redditAwards}
                       wrapperRef={wrapperRef}
                       setDisplaySection={setDisplaySection}
+                      audioLocked={audioLocked}
                     />
                   )}
                   {theme === "twitter" && (
@@ -422,6 +451,7 @@ const MobileApp = () => {
                       section={section}
                       wrapperRef={wrapperRef}
                       setDisplaySection={setDisplaySection}
+                      audioLocked={audioLocked}
                     />
                   )}
                 </div>

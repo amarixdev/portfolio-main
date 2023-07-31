@@ -2,7 +2,7 @@ const DesktopTitle = ({ displayTitle }: { displayTitle: boolean }) => {
   return (
     <div
       className={`${
-        displayTitle ? "opacity-100 " : "opacity-0 "
+        displayTitle ? "opacity-100" : "opacity-0 "
       }  transition-opacity duration-500 ease-in w-full flex flex-col items-center`}
     >
       {/* <div className="  relative flex font-light text-3xl lg:text-8xl 2xl:text-9xl text-center lg:text-left ">
@@ -15,7 +15,7 @@ const DesktopTitle = ({ displayTitle }: { displayTitle: boolean }) => {
         </p>{" "}
         <div className="ml-4 text-[#dbdbdb]">
           DeV
-          <span className="bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#29aaf4] text-transparent  ">
+          <span className="bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#29aaf4] text-transparent relative right-2 px-2">
             eloper
           </span>
         </div>

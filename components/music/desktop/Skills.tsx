@@ -143,7 +143,8 @@ const Skills = ({
             <Image
               src={skills[skillKey].image}
               alt={`${skills[skillKey].name}`}
-              className="object-contain "
+              className="object-contain"
+              priority
             />
           </div>
           <div className="absolute bottom-[-55px]">

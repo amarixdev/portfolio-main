@@ -1,4 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import emailjs from "@emailjs/browser";
 import { ENV } from "../../environment";
 import { AiOutlineCopy } from "react-icons/ai";
@@ -8,6 +14,7 @@ import { useMediaQuery } from "../../util/hooks";
 const ContactForm = ({
   copied,
   setCopied,
+
 }: {
   copied: boolean;
   setCopied: (copied: boolean) => void;
@@ -159,7 +166,7 @@ const ContactForm = ({
 
   return (
     <div className="w-full flex flex-col relative pt-24 lg:pt-16 items-center ">
-      <p className="font-light text-4xl"> Let&apos;s Chat</p>
+      <p className="font-bold text-4xl"> Let&apos;s Chat</p>
       <div className="flex items-center">
         <p className="font-light text-lg text-[#bcbcbc] rounded-3xl px-4">
           amaridev@alumni.unc.edu
@@ -248,7 +255,7 @@ const ContactForm = ({
             />
           </div>
           <div>
-            <h3 className="font-medium"> Type your message </h3>
+            <h3 className="font-medium"> Message </h3>
             <Textarea
               onChange={(e) => {
                 setFormText((prev) => ({
@@ -258,7 +265,7 @@ const ContactForm = ({
                 setCopied(false);
               }}
               ref={messageRef}
-              placeholder="Message"
+              placeholder="Hello, Amari"
               value={formText.message}
               resize={"none"}
             />
@@ -281,7 +288,7 @@ const ContactForm = ({
             }}
             onMouseUp={() => setFlashHeader(false)}
           >
-            Submit
+            Send
           </Button>
         </div>
       </form>

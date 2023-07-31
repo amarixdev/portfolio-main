@@ -19,7 +19,11 @@ const Tweet = ({
   const isBreakPoint = useMediaQuery(1023);
   const iconSize = isBreakPoint ? 13 : 18;
   return (
-    <div className="w-full flex gap-2 border-b-[1px] pb-10 pt-2">
+    <div
+      className={`w-full flex border-b-[1px] pb-10 pt-6 px-4 gap-4 ${
+        preview && "gap-4"
+      } `}
+    >
       <Image
         src={Profile}
         alt={"profile"}
@@ -31,12 +35,12 @@ const Tweet = ({
       <div className=" w-full">
         <div className="flex flex-col">
           <div className="flex items-center gap-1">
-            <h1 className="font-bold text-xs xs:text-sm lg:text-lg whitespace-nowrap">
+            <h1 className="font-bold text-xs xs:text-sm lg:text-base 2xl:text-lg whitespace-nowrap">
               Amari DeVaughn
             </h1>
             <MdVerified color="#26a7de" size={iconSize} />
             {preview || (
-              <p className="text-[#838383] text-xs xs:text-sm lg:text-lg whitespace-nowrap ">
+              <p className="text-[#838383] text-xs xs:text-sm lg:text-base 2xl:text-lg whitespace-nowrap ">
                 @amarixdev • 10h
               </p>
             )}
@@ -44,16 +48,16 @@ const Tweet = ({
 
           {reply && (
             <div className="flex items-center gap-1">
-              <p className="text-xs xs:text-sm lg:text-lg  text-[#888]">
+              <p className="text-xs xs:text-sm lg:text-base 2xl:text-lg text-[#888]">
                 Replying to
               </p>
-              <p className="text-xs xs:text-sm lg:text-lg  text-[#26a7de]">
+              <p className="text-xs xs:text-sm lg:text-base 2xl:text-lg  text-[#26a7de]">
                 @amarixdev
               </p>
             </div>
           )}
           {
-            <p className="text-xs xs:text-sm lg:text-lg  text-[#26a7de]">
+            <p className="text-xs xs:text-sm lg:text-base 2xl:text-lg  text-[#26a7de]">
               #{capitalizeString(title)}
             </p>
           }

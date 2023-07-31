@@ -23,6 +23,7 @@ const RedditTheme = ({
   setSelectedTitle,
   wrapperRef,
   setDisplaySection,
+  audioLocked,
 }: {
   openAwards: any;
   section: string;
@@ -32,6 +33,7 @@ const RedditTheme = ({
   awardsArray: RedditAwardsState;
   setDisplaySection: (tutorial: boolean) => void;
   wrapperRef: RefObject<HTMLDivElement>;
+  audioLocked?: boolean;
 }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const handleSelect = (section: string) => {
@@ -51,32 +53,35 @@ const RedditTheme = ({
 
   return (
     <>
-      <div className="flex min-w-full relative items-center justify-center overflow-hidden pb-20 lg:pb-0 ">
-        <div className=" w-full absolute top-0 z-[100] bg-gradient-to-b from-black  via-[#04385fd9] to-[#00000000] h-[110px]"></div>
+      <div
+        className={` bg-gradient-to-b from-black flex min-w-full relative items-center justify-center overflow-hidden ${
+          isBreakPoint && audioLocked ? "pb-40" : "pb-20"
+        } lg:pb-0 `}
+      >
+        <div className="w-full lg:hidden absolute top-0 z-[100] bg-gradient-to-b from-black via-[#04385fd9] to-[#00000000] h-[90px]"></div>
         <Image
           src={Grid}
           priority
           alt="backdrop-grid"
-          className="absolute top-0  w-full h-[280px]"
+          className="absolute top-0 w-full h-[280px] lg:hidden"
         />
 
         {openDrawer && (
-          <div className="h-screen bg-[#0000006b] fixed z-[150] w-full"></div>
+          <div className="h-screen bg-[#0000006b]  fixed z-[150] w-full"></div>
         )}
-        {/* <RedditGrid /> */}
-        <div className={`flex flex-col relative pt-4`}>
+        <div className={`flex flex-col relative `}>
           <Image
             height={180}
             width={180}
             alt="avatar"
             src={Avatar}
             priority
-            className={`relative z-[100]`}
+            className={`relative z-[100] lg:w-[240px] lg:right-10 lg:hidden`}
           />
-          <h1 className="text-2xl font-bold text-white px-4 relative bottom-2">
+          <h1 className="text-2xl font-bold text-white px-4 relative bottom-2 lg:hidden">
             Amari DeVaughn
           </h1>
-          <p className="px-4 text-xs lg:text-sm lg:font-semibold">
+          <p className="px-4 text-xs lg:text-sm lg:font-semibold lg:hidden">
             u/amarixdev&#x2022; 2,132 karma &#x2022; Oct 1, 2016
           </p>
           <div

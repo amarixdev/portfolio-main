@@ -23,6 +23,7 @@ import Wordpress from "../../public/assets/skills/wordpress.png";
 import MongoDB from "../../public/assets/skills/mongodb.png";
 import { truncateString } from "../../util/functions";
 import { BsExplicitFill } from "react-icons/bs";
+import { useMediaQuery } from "../../util/hooks";
 
 interface SkillType {
   image: StaticImageData;
@@ -139,7 +140,8 @@ const Skills = ({
       award: "BaaS Boss",
     },
   };
-
+  const isBreakPoint = useMediaQuery(1023);
+  const iconSize = isBreakPoint ? 50 : 30;
   return (
     <div className=" bg-[#161616] flex flex-col gap-5 pt-4">
       {Object.keys(skills).map((skillKey) => (
@@ -148,7 +150,14 @@ const Skills = ({
           className="pl-4 flex w-full items-center gap-4 py-2"
         >
           <div className="rounded-2xl p-4 bg-[#222222]">
-            <Image width={50} height={50} src={skills[skillKey].image} alt="html" className="min-h-[50px]" />
+            <Image
+              width={iconSize}
+              height={iconSize}
+              src={skills[skillKey].image}
+              alt="html"
+              className="min-h-[50px] lg:min-h-[30px] "
+              priority
+            />
           </div>
           <div className="flex flex-col">
             <p className="font-semibold text-xl text-[#d2d2d2]">

@@ -1,18 +1,16 @@
 import Image from "next/image";
-import { RefObject, useEffect, useRef, useState } from "react";
-import { BsFillPersonFill, BsLinkedin } from "react-icons/bs";
+import { RefObject, useRef, useState } from "react";
+import { BsFillPersonFill } from "react-icons/bs";
 import { FaReact } from "react-icons/fa";
 import { GrGraphQl } from "react-icons/gr";
 import { MdWork } from "react-icons/md";
-import AlbumCover from "../../../public/assets/album-cover.jpg";
+import AlbumCover from "../../../public/images/music/album-cover.jpg";
 import { capitalizeString } from "../../../util/functions";
+import { useDisplaySection } from "../../../util/hooks";
+import AudioPlayer from "../shared/AudioPlayer";
+import Skills from "../shared/Skills";
 import About from "./About";
 import Projects from "./Projects";
-import Link from "next/link";
-import { AiOutlineMail } from "react-icons/ai";
-import { useDisplaySection } from "../../../util/hooks";
-import AudioPlayer from "../AudioPlayer";
-import Skills from "../desktop/Skills";
 
 const MusicThemeDesktop = ({
   section,
@@ -26,7 +24,6 @@ const MusicThemeDesktop = ({
   setDisplaySection: (displaySection: boolean) => void;
 }) => {
   const musicThemeColor = "#279bda";
-  // const [section, setCurrentSection] = useState("about");
   const [opened, setOpened] = useState([""]);
   const sectionRef = useRef<HTMLDivElement>(null);
   useDisplaySection(wrapperRef.current, sectionRef.current, setDisplaySection);
@@ -124,12 +121,12 @@ const MusicThemeDesktop = ({
         ) : section === "projects" ? (
           <Projects opened={opened} setOpened={setOpened} />
         ) : section === "skills" ? (
-          <Skills opened={opened} setOpened={setOpened} />
+          <Skills />
         ) : (
           ""
         )}
       </div>
-      <div className="h-[50vh]"></div>
+      <div className="h-[40vh]"></div>
     </div>
   );
 };

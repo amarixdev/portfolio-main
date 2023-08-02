@@ -1,18 +1,14 @@
 import Image from "next/image";
-import { RefObject, useEffect, useRef, useState } from "react";
-import { BsFillPersonFill, BsGithub, BsLinkedin } from "react-icons/bs";
+import { RefObject, useRef, useState } from "react";
+import { BsFillPersonFill } from "react-icons/bs";
 import { GrGraphQl } from "react-icons/gr";
 import { MdWork } from "react-icons/md";
-import Profile from "../../../public/assets/album-cover.jpg";
+import Profile from "../../../public/images/music/album-cover.jpg";
 import { capitalizeString } from "../../../util/functions";
 import { useDisplaySection, useMediaQuery } from "../../../util/hooks";
-import MusicCollapse from "./MusicCollapse";
 import About from "./About";
 import Projects from "./Projects";
-import { AiOutlineMail } from "react-icons/ai";
-import Link from "next/link";
-import AudioPlayer from "../AudioPlayerMobile";
-import Skills from "./Skills";
+import Skills from "../shared/Skills";
 
 const MusicThemeMobile = ({
   tutorial,
@@ -130,12 +126,7 @@ const MusicThemeMobile = ({
           setOpened={setOpened}
         />
       ) : section === "skills" ? (
-        <Skills
-          setTutorial={setTutorial}
-          tutorial={tutorial}
-          opened={opened}
-          setOpened={setOpened}
-        />
+        <Skills />
       ) : (
         ""
       )}

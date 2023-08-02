@@ -3,15 +3,13 @@ import {
   Dispatch,
   ReactNode,
   SetStateAction,
-  useCallback,
   useEffect,
-  useRef,
   useState,
 } from "react";
 import { BsHandIndexThumb } from "react-icons/bs";
 import style from "../../../styles/style.module.css";
 import { capitalizeString } from "../../../util/functions";
-import MusicBars from "../MusicBars";
+import MusicBars from "../shared/MusicBars";
 
 const MusicCollapse = ({
   children,
@@ -114,9 +112,7 @@ const MusicCollapse = ({
           <div className="h-screen animate-pulse bg-gradient-to-b from-[#131313]"></div>
         ) : (
           <Collapse in={isOpen && selectedCollapse === title} animateOpacity>
-            <div
-              className={`w-full text-[#aaaaaa] flex flex-col mt-3 pb-6 `}
-            >
+            <div className={`w-full text-[#aaaaaa] flex flex-col mt-3 pb-6 `}>
               {children}
             </div>
           </Collapse>

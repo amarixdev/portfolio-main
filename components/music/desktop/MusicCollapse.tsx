@@ -8,7 +8,7 @@ import {
 } from "react";
 import { BsFillPlayFill } from "react-icons/bs";
 import { capitalizeString } from "../../../util/functions";
-import MusicBars from "../MusicBars";
+import MusicBars from "../shared/MusicBars";
 
 const MusicCollapse = ({
   children,
@@ -43,8 +43,6 @@ const MusicCollapse = ({
   const { isOpen, onToggle } = useDisclosure();
   const [selectedCollapse, setSelectedCollapse] = useState("");
   const [hoverSong, setHoverSong] = useState(false);
-  const [loading, setLoading] = useState(false);
-
 
   useEffect(() => {
     if (opened.includes(title.toLowerCase())) {
@@ -53,6 +51,7 @@ const MusicCollapse = ({
         setSelectedCollapse(title);
       }, 200);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

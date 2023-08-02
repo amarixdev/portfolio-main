@@ -1,10 +1,10 @@
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
-import { RefObject, useEffect, useState } from "react";
+import { RefObject, useEffect } from "react";
 import { FiChevronDown } from "react-icons/fi";
-import { capitalizeString } from "../../util/functions";
-import { Theme } from "../../util/types";
-import { useMediaQuery } from "../../util/hooks";
 import style from "../../styles/style.module.css";
+import { capitalizeString } from "../../util/functions";
+import { useMediaQuery } from "../../util/hooks";
+import { Theme } from "../../util/types";
 
 const Banner = ({
   displayBanner,
@@ -55,9 +55,9 @@ const Banner = ({
     const handleScroll = () => {
       const breakPointMobile = 50;
       const breakPointDesktop = 110;
+
       if (themeSelectionRef.current) {
         const elementRect = themeSelectionRef.current.getBoundingClientRect();
-
         if (isBreakPoint) {
           setDisplayBanner(elementRect.bottom < breakPointMobile);
         } else {

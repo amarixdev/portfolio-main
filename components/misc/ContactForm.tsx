@@ -1,14 +1,12 @@
-import React, {
-  Dispatch,
-  SetStateAction,
+import { Button, Input, Spinner, Textarea } from "@chakra-ui/react";
+import emailjs from "@emailjs/browser";
+import {
   useEffect,
   useRef,
-  useState,
+  useState
 } from "react";
-import emailjs from "@emailjs/browser";
-import { ENV } from "../../environment";
 import { AiOutlineCopy } from "react-icons/ai";
-import { Button, Input, Spinner, Textarea } from "@chakra-ui/react";
+import { ENV } from "../../environment";
 import { useMediaQuery } from "../../util/hooks";
 
 const ContactForm = ({

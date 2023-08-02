@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import Profile from "../../../public/assets/album-cover.jpg";
+import Profile from "../../../public/images/music/album-cover.jpg";
 import { capitalizeString } from "../../../util/functions";
 
 const MusicFooter = ({ section }: { section: string }) => {

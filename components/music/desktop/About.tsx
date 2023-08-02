@@ -1,7 +1,5 @@
-import React, { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 import MusicCollapse from "./MusicCollapse";
-
-type Props = {};
 
 const About = ({
   opened,

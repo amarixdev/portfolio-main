@@ -25,7 +25,7 @@ const LoadingScreen = ({
           className={`overflow-hidden h-screen z-[999] gap-5 px-10 flex flex-col text-center items-center justify-center fixed bg-black w-full`}
         >
           <div className={`flex flex-col justify-evenly`}>
-            <span className={`${style.loader}`}></span>
+            <span className={`${style.loaderBrackets}`}></span>
           </div>
           <h1 className="text-center font-extrabold text-3xl text-[#aaaaaa]">
             Portfolio Loading ...

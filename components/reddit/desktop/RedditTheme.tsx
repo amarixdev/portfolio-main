@@ -25,6 +25,7 @@ const RedditTheme = ({
   wrapperRef,
   setDisplaySection,
   audioLocked,
+  easeIn,
 }: {
   openAwards: any;
   section: string;
@@ -35,6 +36,7 @@ const RedditTheme = ({
   setDisplaySection: (tutorial: boolean) => void;
   wrapperRef: RefObject<HTMLDivElement>;
   audioLocked?: boolean;
+  easeIn: boolean;
 }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const handleSelect = (section: string) => {
@@ -61,7 +63,11 @@ const RedditTheme = ({
   };
 
   return (
-    <div className="">
+    <div
+      className={`${
+        easeIn ? "opacity-20" : "opacity-100"
+      } transition-all duration-300 ease-in`}
+    >
       <div
         className={` bg-gradient-to-b from-black flex min-w-full  justify-center items-center relative overflow-hidden pb-0 `}
       >

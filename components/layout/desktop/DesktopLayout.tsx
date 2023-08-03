@@ -59,13 +59,15 @@ const DesktopApp = () => {
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const { displayTitle, showBackdrop } = useHeroDisplay(wrapperRef, titleRef);
+  const [easeIn, setEaseIn] = useState(false);
   const { menuItems, handleThemeSelection, themeLoading, themes, theme, meme } =
-    useThemeSelection(setSection);
+    useThemeSelection(setSection, setEaseIn);
   const [displayTweet, setDisplayTweet] = useState(true);
   const [copied, setCopied] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const displayRef = useRef<HTMLDivElement>(null);
-  const [stopScroll, setStopScroll] = useState(true);
+
+  console.log(easeIn);
   return (
     <div
       className={`${
@@ -275,6 +277,7 @@ const DesktopApp = () => {
                     setSection={setSection}
                     wrapperRef={wrapperRef}
                     setDisplaySection={setDisplaySection}
+                    easeIn={easeIn}
                   />
                 )}
                 {theme === "reddit" && (
@@ -287,6 +290,7 @@ const DesktopApp = () => {
                     awardsArray={redditAwards}
                     setDisplaySection={setDisplaySection}
                     wrapperRef={wrapperRef}
+                    easeIn={easeIn}
                   />
                 )}
                 {theme === "twitter" && (
@@ -301,6 +305,7 @@ const DesktopApp = () => {
                     setDisplaySection={setDisplaySection}
                     wrapperRef={wrapperRef}
                     setDisplayContact={setDisplayContact}
+                    easeIn={easeIn}
                   />
                 )}
               </div>

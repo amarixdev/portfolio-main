@@ -17,6 +17,7 @@ const MusicThemeMobile = ({
   setSection,
   setDisplaySection,
   wrapperRef,
+  easeIn,
 }: {
   tutorial: boolean;
   setTutorial: (tutorial: boolean) => void;
@@ -24,6 +25,7 @@ const MusicThemeMobile = ({
   setSection: (section: string) => void;
   setDisplaySection: (tutorial: boolean) => void;
   wrapperRef: RefObject<HTMLDivElement>;
+  easeIn: boolean;
 }) => {
   const isBreakPoint = useMediaQuery(389);
   const iconSize = isBreakPoint ? 12 : 16;
@@ -65,7 +67,11 @@ const MusicThemeMobile = ({
   ];
 
   return (
-    <div className="bg-[black] pb-[200px] lg:pb-0">
+    <div
+      className={`${
+        easeIn ? "opacity-20" : "opacity-100"
+      } transition-all duration-300 ease-in-out  bg-[black] pb-[200px] lg:pb-0`}
+    >
       <div className="flex items-center justify-center lg:pt-6">
         <Image
           alt="profile"

@@ -17,11 +17,13 @@ const MusicThemeDesktop = ({
   setSection,
   wrapperRef,
   setDisplaySection,
+  easeIn,
 }: {
   section: string;
   setSection: (section: string) => void;
   wrapperRef: RefObject<HTMLDivElement>;
   setDisplaySection: (displaySection: boolean) => void;
+  easeIn: boolean;
 }) => {
   const musicThemeColor = "#279bda";
   const [opened, setOpened] = useState([""]);
@@ -60,7 +62,11 @@ const MusicThemeDesktop = ({
   ];
 
   return (
-    <div>
+    <div
+      className={`${
+        easeIn ? "opacity-20 " : "opacity-100"
+      } transition-all duration-300 ease-in`}
+    >
       <div className="pb-28 pl-20  relative flex flex-col items-center justify-center overflow-auto bg-gradient-to-b bg-black">
         <div className={`flex flex-col z-[100] relative w-full pl-12`}>
           <div className="flex gap-14 items-center">

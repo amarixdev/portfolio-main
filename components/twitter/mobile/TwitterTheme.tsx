@@ -34,6 +34,7 @@ const TwitterTheme = ({
   setDisplaySection,
   wrapperRef,
   audioLocked,
+  easeIn,
 }: {
   profileOpen: boolean;
   setProfileOpen: (profileOpen: boolean) => void;
@@ -45,6 +46,7 @@ const TwitterTheme = ({
   setDisplaySection: (tutorial: boolean) => void;
   wrapperRef: RefObject<HTMLDivElement>;
   audioLocked?: boolean;
+  easeIn: boolean;
 }) => {
   const isBreakPoint = useMediaQuery(1023);
   const [following, setFollowing] = useState(false);
@@ -62,7 +64,11 @@ const TwitterTheme = ({
   }, []);
 
   return (
-    <div className="flex">
+    <div
+      className={`${
+        easeIn ? "opacity-20" : "opacity-100"
+      } transition-all duration-300 ease-in-out `}
+    >
       <div
         className={`${
           isBreakPoint && audioLocked ? "pb-40" : "pb-0"

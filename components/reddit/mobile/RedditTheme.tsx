@@ -21,6 +21,7 @@ const RedditTheme = ({
   wrapperRef,
   setDisplaySection,
   audioLocked,
+  easeIn,
 }: {
   openAwards: any;
   section: string;
@@ -31,6 +32,7 @@ const RedditTheme = ({
   setDisplaySection: (tutorial: boolean) => void;
   wrapperRef: RefObject<HTMLDivElement>;
   audioLocked?: boolean;
+  easeIn: boolean;
 }) => {
   const handleSelect = (section: string) => {
     setSection(section);
@@ -49,7 +51,9 @@ const RedditTheme = ({
   return (
     <>
       <div
-        className={` bg-gradient-to-b from-black flex min-w-full relative items-center justify-center overflow-hidden ${
+        className={`${
+          easeIn ? "opacity-20" : "opacity-100"
+        } transition-all duration-300 ease-in-out  bg-gradient-to-b from-black flex min-w-full relative items-center justify-center overflow-hidden ${
           isBreakPoint && audioLocked ? "pb-40" : "pb-20"
         } `}
       >

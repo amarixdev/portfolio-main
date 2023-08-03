@@ -42,6 +42,7 @@ const TwitterThemeDesktop = ({
   wrapperRef,
   audioLocked,
   setDisplayContact,
+  easeIn,
 }: {
   profileOpen: boolean;
   setProfileOpen: (profileOpen: boolean) => void;
@@ -54,6 +55,7 @@ const TwitterThemeDesktop = ({
   wrapperRef: RefObject<HTMLDivElement>;
   audioLocked?: boolean;
   setDisplayContact: (displayContact: any) => void;
+  easeIn: boolean;
 }) => {
   const isBreakPoint = useMediaQuery(1023);
   const [following, setFollowing] = useState(false);
@@ -97,7 +99,11 @@ const TwitterThemeDesktop = ({
     google: { hover: false, following: false, mouseLeave: false },
   });
   return (
-    <div className="flex w-full">
+    <div
+      className={`flex w-full ${
+        easeIn ? "opacity-20" : "opacity-100"
+      } transition-all duration-300 ease-in relative`}
+    >
       <div className="w-full min-h-full max-w-[25%] border-r-[1px] clear-left flex justify-center">
         <div className=" select-none h-full  w-full flex flex-col items-center relative ">
           <div className=" flex flex-col items-start justify-center">

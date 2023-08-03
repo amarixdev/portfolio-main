@@ -49,8 +49,9 @@ const MobileApp = () => {
     foreground: false,
   });
   const { background, foreground } = heroImageLoaded;
+  const [easeIn, setEaseIn] = useState(false);
   const { menuItems, handleThemeSelection, themeLoading, themes, theme, meme } =
-    useThemeSelection(setSection);
+    useThemeSelection(setSection, setEaseIn);
 
   const { displayTitle, showBackdrop } = useHeroDisplay(wrapperRef, titleRef);
   const [displayTweet, setDisplayTweet] = useState(false);
@@ -417,6 +418,7 @@ const MobileApp = () => {
                       section={section}
                       setDisplaySection={setDisplaySection}
                       wrapperRef={wrapperRef}
+                      easeIn={easeIn}
                     />
                   )}
                   {theme === "reddit" && (
@@ -430,6 +432,7 @@ const MobileApp = () => {
                       wrapperRef={wrapperRef}
                       setDisplaySection={setDisplaySection}
                       audioLocked={audioLocked}
+                      easeIn={easeIn}
                     />
                   )}
                   {theme === "twitter" && (
@@ -444,6 +447,7 @@ const MobileApp = () => {
                       wrapperRef={wrapperRef}
                       setDisplaySection={setDisplaySection}
                       audioLocked={audioLocked}
+                      easeIn={easeIn}
                     />
                   )}
                 </div>

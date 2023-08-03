@@ -76,7 +76,8 @@ export const useHeroDisplay = (
 };
 
 export const useThemeSelection = (
-  setSection: Dispatch<SetStateAction<string>>
+  setSection: Dispatch<SetStateAction<string>>,
+  setEaseIn?: (easeIn: boolean) => void
 ) => {
   const isBreakPoint = useMediaQuery(1023);
   const [theme, setTheme] = useState("");
@@ -138,9 +139,18 @@ export const useThemeSelection = (
       redditIcon?.classList.add(`${style.deselectIcon}`);
     }
 
-    setTimeout(() => {
-      setThemeLoading(false);
-    }, 500);
+    setTimeout(
+      () => {
+        setThemeLoading(false);
+        if (setEaseIn) {
+          setEaseIn(true);
+          setTimeout(() => {
+            setEaseIn(false);
+          }, 25);
+        }
+      },
+      isBreakPoint ? 350 : 400
+    );
   };
 
   return {
@@ -176,4 +186,3 @@ export const useDisplaySection = (
     };
   });
 };
-

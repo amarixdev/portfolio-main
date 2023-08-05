@@ -6,7 +6,7 @@ import {
   TbArrowBigUp,
   TbArrowBigUpFilled,
 } from "react-icons/tb";
-import Software from "../../../public/images/reddit/software.jpg";
+import Graphic1 from "../../../public/images/reddit/software.jpg";
 
 import { GoGift } from "react-icons/go";
 import RedditGold from "../../../public/images/reddit/reddit-gold.png";
@@ -24,9 +24,8 @@ const RedditPost = ({
   defaultAwards,
   awardsArray,
   openAwards,
-  setSection,
-  selectedTitle,
   setSelectedTitle,
+  subreddit,
 }: {
   title: string;
   children: ReactNode;
@@ -38,6 +37,7 @@ const RedditPost = ({
   openAwards: any;
   setSelectedTitle: (value: string) => void;
   selectedTitle: string;
+  subreddit: { name: string; image: StaticImageData };
 
   setSection: (value: string) => void;
 }) => {
@@ -168,16 +168,16 @@ const RedditPost = ({
         <div className="w-full px-4 flex flex-col gap-1 mb-2">
           <div className="flex  pt-2 items-start gap-2">
             <Image
-              src={Software}
+              src={subreddit.image}
               width={40}
               height={40}
               alt="software"
               priority
-              className="rounded-full"
+              className="max-h-[30px] max-w-[30px] rounded-full object-cover"
             />
             <div>
               <p className="font-semibold text-xs lg:text-sm text-[#aaaaaa]">
-                r/aboutme
+                {`r/${subreddit.name}`}
               </p>
               <p className="text-xs text-[#aaaaaa]">
                 {username} &#x2022; {time}

@@ -3,6 +3,7 @@ import RedditPlatinum from "../../../public/images/reddit/reddit-platinum.png";
 import RedditSilver from "../../../public/images/reddit/reddit-silver.png";
 import { RedditAwardsState } from "../../../util/types";
 import RedditPost from "./RedditPost";
+import AboutGraphic from "../../../public/images/reddit/about-graphic.png";
 
 const About = ({
   awardsArray,
@@ -17,6 +18,7 @@ const About = ({
   setSelectedTitle: (value: string) => void;
   selectedTitle: string;
 }) => {
+  const subreddit = { name: "aboutme", image: AboutGraphic };
   return (
     <div className="flex flex-col gap-5">
       <RedditPost
@@ -30,6 +32,7 @@ const About = ({
         setSection={setSection}
         selectedTitle={selectedTitle}
         setSelectedTitle={setSelectedTitle}
+        subreddit={subreddit}
       >
         <p className="text-sm lg:text-base text-[#d2d2d2] px-4">
           A 26 year-old software engineer born and raised in Greensboro, North
@@ -63,6 +66,7 @@ const About = ({
         setSection={setSection}
         selectedTitle={selectedTitle}
         setSelectedTitle={setSelectedTitle}
+        subreddit={subreddit}
       >
         <ul className="text-sm lg:text-base text-[#d2d2d2] px-4">
           <li>Published co-author in the American Heart Association</li>

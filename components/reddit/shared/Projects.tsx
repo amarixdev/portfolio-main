@@ -16,6 +16,7 @@ import { FiExternalLink } from "react-icons/fi";
 import style from "../../../styles/style.module.css";
 import { useMediaQuery } from "../../../util/hooks";
 import { desktopPreviews, mobilePreviews } from "../../../util/image-slider";
+import ProjectsGraphic from "../../../public/images/reddit/project-graphic.jpeg";
 
 const Projects = ({
   awardsArray,
@@ -43,7 +44,7 @@ const Projects = ({
   };
 
   const isBreakPoint = useMediaQuery(1023);
-
+  const subreddit = { name: "projects", image: ProjectsGraphic };
   useEffect(() => {
     const translateXValue = `${imageIndex}%`;
     if (imageSliderRef.current) {
@@ -71,6 +72,7 @@ const Projects = ({
         setSection={setSection}
         selectedTitle={selectedTitle}
         setSelectedTitle={setSelectedTitle}
+        subreddit={subreddit}
       >
         <div className="flex absolute lg:right-16 right-5 top-[160px] justify-start py-3">
           <div

@@ -208,7 +208,7 @@ const DesktopApp = () => {
               <div
                 ref={titleRef}
                 className={`w-full mt-2 relative z-10 ${
-                  theme ? "pb-[300px] 2xl:pb-[450px]" : `pb-0`
+                  theme ? "pb-[300px] 2xl:pb-[600px]" : `pb-0 2xl:pb-[200px]`
                 }  transition-all duration-1000 ease-in-out  text-[#dbdbdb] flex flex-col gap-3 `}
               >
                 <video
@@ -269,7 +269,7 @@ const DesktopApp = () => {
               <div
                 ref={themeRef}
                 className={`absolute
-             w-full bg-black mt-[-350px] 2xl:mt-[-500px] z-[20]`}
+             w-full bg-black mt-[-350px] 2xl:mt-[-650px] z-[20]`}
               >
                 {theme === "music" && (
                   <MusicThemeDesktop

@@ -67,11 +67,11 @@ const TwitterTheme = ({
     <div
       className={`${
         easeIn ? "opacity-20" : "opacity-100"
-      } transition-all duration-300 ease-in-out `}
+      } transition-all duration-200 ease-in-out `}
     >
       <div
         className={`${
-          isBreakPoint && audioLocked ? "pb-40" : "pb-0"
+          audioLocked ? "pb-40" : "pb-20"
         } w-full overflow-scroll flex items-center justify-center relative`}
       >
         <div

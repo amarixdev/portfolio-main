@@ -53,7 +53,7 @@ const RedditTheme = ({
       <div
         className={`${
           easeIn ? "opacity-20" : "opacity-100"
-        } transition-all duration-300 ease-in-out  bg-gradient-to-b from-black flex min-w-full relative items-center justify-center overflow-hidden ${
+        } transition-all duration-200 ease-in-out  bg-gradient-to-b from-black flex min-w-full relative items-center justify-center overflow-hidden ${
           isBreakPoint && audioLocked ? "pb-40" : "pb-20"
         } `}
       >

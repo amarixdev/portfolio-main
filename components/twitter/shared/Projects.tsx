@@ -85,27 +85,20 @@ const Projects = ({
           ))}
         </div>
         <div className="flex flex-col gap-4 pt-10 w-full items-center">
-          <div className="w-[80%] lg:w-[60%] flex flex-col gap-5">
+          <div className="lg:hover:bg-[#141414] transition-all duration-150 ease-in-out w-full border-[1px] px-1 py-1 items-center justify-center rounded-lg flex flex-col gap-5 sm:gap-8">
             <Link
               href={"https://promoninja.io"}
               target="_blank"
               className="w-full"
             >
-              <Button className="flex p-3 py-8 sm:py-10 lg:py-6 items-center justify-start w-full  gap-2 sm:gap-4">
-                <FiExternalLink size={iconSize} />
-                <p className="sm:text-lg lg:text-base">Visit Site</p>
-              </Button>
-            </Link>
-
-            <Link
-              href={"https://github.com/amarixdev/promoninja-FE"}
-              target="_blank"
-              className="w-full"
-            >
-              <Button className="flex p-3 py-8 sm:py-10 lg:py-6 items-center justify-start w-full gap-2 sm:gap-4">
-                <BsGithub size={iconSize} />
-                <p className="sm:text-lg lg:text-base">View Code</p>
-              </Button>
+              <button className="flex flex-col px-2 py-1 gap-1 w-full">
+                <h3 className="text-xs xs:text-sm sm:text-base  font-medium text-[#888] ">
+                  promoninja.io
+                </h3>
+                <h3 className="text-xs xs:text-sm sm:text-base">
+                  Save Money. Support Creators
+                </h3>
+              </button>
             </Link>
           </div>
         </div>

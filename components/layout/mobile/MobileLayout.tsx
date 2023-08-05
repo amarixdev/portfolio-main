@@ -408,7 +408,7 @@ const MobileApp = () => {
               ) : (
                 <div
                   ref={themeRef}
-                  className="w-full absolute bg-black b top-[480px] z-[20]"
+                  className="w-full absolute top-[480px] z-[20]"
                 >
                   {theme === "music" && (
                     <MusicThemeMobile

@@ -77,7 +77,7 @@ export const useHeroDisplay = (
 
 export const useThemeSelection = (
   setSection: Dispatch<SetStateAction<string>>,
-  setEaseIn?: (easeIn: boolean) => void
+  setEaseIn: (easeIn: boolean) => void
 ) => {
   const isBreakPoint = useMediaQuery(1023);
   const [theme, setTheme] = useState("");

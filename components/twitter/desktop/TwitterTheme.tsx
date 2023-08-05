@@ -18,7 +18,7 @@ import { MdVerified } from "react-icons/md";
 import { RiUserUnfollowLine } from "react-icons/ri";
 import HomeIcon from "../../../public/images/twitter/twitter-home.png";
 import MessageIcon from "../../../public/images/twitter/twitter-message.png";
-import { desktopPreviews } from "../../../util/image-slider";
+import { twitterPreviews } from "../../../util/image-slider";
 import Backdrop from "../../../public/images/twitter/twitter-backdrop.jpg";
 import { FaTwitter } from "react-icons/fa";
 import AppleProfile from "../../../public/images/twitter/apple-profile.jpeg";
@@ -101,8 +101,8 @@ const TwitterThemeDesktop = ({
   return (
     <div
       className={`flex w-full ${
-        easeIn ? "opacity-20" : "opacity-100"
-      } transition-all duration-300 ease-in relative`}
+        easeIn ? "opacity-40" : "opacity-100 "
+      } transition-all duration-200 ease-in relative`}
     >
       <div className="w-full min-h-full max-w-[25%] border-r-[1px] clear-left flex justify-center">
         <div className=" select-none h-full  w-full flex flex-col items-center relative ">
@@ -155,7 +155,7 @@ const TwitterThemeDesktop = ({
               alt="backdrop"
               className="object-cover object-top h-full w-full"
               priority
-              loading="eager"
+              quality={50}
             />
           </div>
           <div className=" relative">
@@ -166,11 +166,11 @@ const TwitterThemeDesktop = ({
                 height={avatarSizeMain}
                 width={avatarSizeMain}
                 className="rounded-full cursor-pointer relative"
-                priority
-                loading="eager"
                 onClick={() => {
                   setProfileOpen(true);
                 }}
+                quality={50}
+                priority
               />
               {following ? (
                 <Menu>
@@ -332,7 +332,7 @@ const TwitterThemeDesktop = ({
       <div className="max-w-[30%] min-h-full border-l-[1px] flex justify-start pl-6">
         <div className="w-[90%] flex flex-col items-center gap-5">
           <div className="h-[200px] cursor-pointer w-[90%] rounded-3xl grid grid-cols-3 grid-rows-2 gap-1 overflow-hidden">
-            {desktopPreviews.slice(0, 6).map((img, index) => (
+            {twitterPreviews.map((img, index) => (
               <div
                 key={index}
                 onClick={() => {
@@ -343,7 +343,8 @@ const TwitterThemeDesktop = ({
                 <Image
                   alt={img.src}
                   src={img}
-                  className="w-full h-full object-cover "
+                  className="w-full h-full object-cover"
+                  quality={1}
                   priority
                 />
               </div>
@@ -459,6 +460,13 @@ const TwitterThemeDesktop = ({
       </div>
     </div>
   );
+  
 };
 
+export const getStaticProps  = () => {
+    
+}
+
 export default TwitterThemeDesktop;
+
+

@@ -64,8 +64,8 @@ const MusicThemeDesktop = ({
   return (
     <div
       className={`${
-        easeIn ? "opacity-20 " : "opacity-100"
-      } transition-all duration-300 ease-in`}
+        easeIn ? "opacity-40 " : "opacity-100"
+      } transition-all duration-200 ease-in`}
     >
       <div className="pb-28 pl-20  relative flex flex-col items-center justify-center overflow-auto bg-gradient-to-b bg-black">
         <div className={`flex flex-col z-[100] relative w-full pl-12`}>

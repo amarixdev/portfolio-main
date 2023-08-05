@@ -263,7 +263,7 @@ const ContactForm = ({
                 setCopied(false);
               }}
               ref={messageRef}
-              placeholder="Hello, Amari"
+              placeholder="Hello Amari"
               value={formText.message}
               resize={"none"}
             />

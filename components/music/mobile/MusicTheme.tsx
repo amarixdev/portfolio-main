@@ -70,7 +70,7 @@ const MusicThemeMobile = ({
     <div
       className={`${
         easeIn ? "opacity-20" : "opacity-100"
-      } transition-all duration-300 ease-in-out  bg-[black] pb-[200px] lg:pb-0`}
+      } transition-all duration-200 ease-in-out  bg-[black] pb-[200px] lg:pb-0`}
     >
       <div className="flex items-center justify-center lg:pt-6">
         <Image

@@ -1,4 +1,4 @@
-import DCategory from "../public/images/promoninja/desktop/desktop-category.png";
+import DCategory from "../public/images/promoninja/desktop/desktop-category.jpg";
 import DColor1 from "../public/images/promoninja/desktop/desktop-color1.png";
 import DColor2 from "../public/images/promoninja/desktop/desktop-color2.png";
 import DColor3 from "../public/images/promoninja/desktop/desktop-color3.png";
@@ -15,6 +15,13 @@ import MOffers from "../public/images/promoninja/mobile/mobile-offers.png";
 import MOffers2 from "../public/images/promoninja/mobile/mobile-offers2.png";
 import MSponsor1 from "../public/images/promoninja/mobile/mobile-sponsor1.png";
 import MSponsor2 from "../public/images/promoninja/mobile/mobile-sponsor2.png";
+
+import Preview1 from "../public/images/promoninja/preview/desktop-color1-preview.png";
+import Preview2 from "../public/images/promoninja/preview/desktop-color2-preview.png";
+import Preview3 from "../public/images/promoninja/preview/desktop-color3-preview.png";
+import Preview4 from "../public/images/promoninja/preview/desktop-category-preview.jpg";
+import Preview5 from "../public/images/promoninja/preview/desktop-offers-preview.png";
+import Preview6 from "../public/images/promoninja/preview/desktop-offers2-preview.png";
 
 export const desktopPreviews = [
   DColor1,
@@ -35,4 +42,13 @@ export const mobilePreviews = [
   MOffers2,
   MSponsor1,
   MSponsor2,
+];
+
+export const twitterPreviews = [
+  Preview1,
+  Preview2,
+  Preview3,
+  Preview4,
+  Preview5,
+  Preview6,
 ];

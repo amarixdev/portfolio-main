@@ -56,7 +56,7 @@ const Tweet = ({
               </p>
             </div>
           )}
-          {
+          { reply || 
             <p className="text-xs xs:text-sm lg:text-base 2xl:text-lg  text-[#26a7de]">
               #{capitalizeString(title)}
             </p>

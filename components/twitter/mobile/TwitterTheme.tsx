@@ -71,7 +71,7 @@ const TwitterTheme = ({
     >
       <div
         className={`${
-          audioLocked ? "pb-40" : "pb-20"
+          audioLocked ? "pb-40" : "pb-24"
         } w-full overflow-scroll flex items-center justify-center relative`}
       >
         <div

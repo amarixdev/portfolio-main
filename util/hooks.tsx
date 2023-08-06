@@ -186,3 +186,33 @@ export const useDisplaySection = (
     };
   });
 };
+
+export const useContactIcon = (
+  wrapper: HTMLDivElement | null,
+  setDisplayContactIcon: (value: boolean) => void
+) => {
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        wrapper &&
+        wrapper.clientHeight !== undefined &&
+        wrapper.scrollTop !== undefined &&
+        wrapper.scrollHeight !== undefined &&
+        wrapper.clientHeight + wrapper.scrollTop >= wrapper.scrollHeight - 20
+      ) {
+        if (setDisplayContactIcon) {
+          setDisplayContactIcon(false);
+        }
+      } else {
+        if (setDisplayContactIcon) {
+          setDisplayContactIcon(true);
+        }
+      }
+    };
+
+    wrapper?.addEventListener("scroll", handleScroll);
+    return () => {
+      wrapper?.removeEventListener("scroll", handleScroll);
+    };
+  });
+};

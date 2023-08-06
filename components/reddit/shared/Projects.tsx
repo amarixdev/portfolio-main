@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, RefObject, useEffect, useRef, useState } from "react";
 
 import RedditGold from "../../../public/images/reddit/reddit-gold.png";
 import RedditPlatinum from "../../../public/images/reddit/reddit-platinum.png";
@@ -59,8 +59,9 @@ const Projects = ({
   const handleToggle = (event: ChangeEvent<HTMLInputElement>) => {
     setMobileView(event.target.checked);
   };
+
   return (
-    <div className="flex flex-col gap-5 select-none ">
+    <div className="flex flex-col gap-5 select-none">
       <RedditPost
         title="Promoninja"
         topPost={true}

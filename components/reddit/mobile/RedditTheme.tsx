@@ -55,7 +55,7 @@ const RedditTheme = ({
         className={`${
           easeIn ? "opacity-20" : "opacity-100"
         } transition-all duration-200 ease-in-out  bg-gradient-to-b from-black flex min-w-full relative items-center justify-center overflow-hidden ${
-          isBreakPoint && audioLocked ? "pb-40" : "pb-20"
+          isBreakPoint && audioLocked ? "pb-40" : "pb-24"
         } `}
       >
         <div className="w-full  absolute top-0 z-[100] bg-gradient-to-b from-black via-[#04385fd9] to-[#00000000] h-[90px]"></div>
@@ -80,9 +80,7 @@ const RedditTheme = ({
             Amari DeVaughn
           </h1>
           <p className="px-4 text-xs ">
-            {` u/amarixdev&#x2022; 2,132 karma &#x2022; ${
-              getCurrentDate().fullDate
-            }`}
+            {` u/amarixdev • 2,132 karma • ${getCurrentDate().fullDate}`}
           </p>
           <div
             ref={sectionRef}

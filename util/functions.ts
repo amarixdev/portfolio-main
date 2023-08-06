@@ -46,3 +46,7 @@ export const getCurrentDate = () => {
 
   return date;
 };
+
+export const transformIndex = (index: number) => {
+  return (index * -100).toString();
+};

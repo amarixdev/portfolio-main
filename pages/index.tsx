@@ -9,8 +9,6 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
         <title>Amari DeVaughn</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>

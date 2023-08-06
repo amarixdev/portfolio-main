@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import MusicCollapse from "./MusicCollapse";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { desktopPreviews, mobilePreviews } from "../../../util/image-slider";
 import style from "../../../styles/style.module.css";
 import {
@@ -66,18 +66,17 @@ const Projects = ({
                 <Image
                   src={mobilePreviews[imageIndex]}
                   alt="promoninja"
-                  priority
                   className="object-contain object-top max-h-[200px] min-h-[200px] sm:max-h-[300px] md:max-h-[400px]"
                 />
               </div>
             ) : (
               <Image
-                priority
                 src={desktopPreviews[imageIndex]}
                 alt="promoninja"
                 className="object-contain xs:object-cover object-top max-h-[200px] min-h-[200px] sm:max-h-[300px] md:max-h-[400px]"
               />
             )}
+
             <div className="absolute bottom-[-20px]  w-full flex items-center justify-center">
               {desktopPreviews.map((_, index) => (
                 <BsDot

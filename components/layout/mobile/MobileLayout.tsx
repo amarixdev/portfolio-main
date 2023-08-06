@@ -4,15 +4,16 @@ import { AiOutlineClose } from "react-icons/ai";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { FaLock, FaUnlockAlt } from "react-icons/fa";
 import { LuMailPlus } from "react-icons/lu";
-import Profile from "../../../public/images/music/album-cover.jpg";
 import ParallaxBg from "../../../public/images/hero-bg.jpg";
 import ParallaxFg from "../../../public/images/hero-fg.png";
+import Profile from "../../../public/images/music/album-cover.jpg";
 import loaders from "../../../styles/loaders.module.css";
 
 import {
+  useContactIcon,
   useHeroDisplay,
   useMediaQuery,
-  useThemeSelection,
+  useThemeSelection
 } from "../../../util/hooks";
 import { RedditAwardsState } from "../../../util/types";
 import Banner from "../../misc/Banner";
@@ -20,15 +21,15 @@ import ContactForm from "../../misc/ContactForm";
 import LandingPage from "../../misc/LandingPage";
 import LoadingScreen from "../../misc/LoadingScreen";
 import Overlay from "../../misc/Overlay";
-import AudioPlayer from "../../music/shared/AudioPlayerMobile";
 import MusicThemeMobile from "../../music/mobile/MusicTheme";
+import AudioPlayer from "../../music/shared/AudioPlayerMobile";
 import AwardMobile from "../../reddit/mobile/AwardMobile";
 import RedditTheme from "../../reddit/mobile/RedditTheme";
+import TwitterTheme from "../../twitter/mobile/TwitterTheme";
 import AppPreviews from "../../twitter/shared/AppPreviews";
 import ProfilePicture from "../../twitter/shared/ProfilePicture";
-import TwitterTheme from "../../twitter/mobile/TwitterTheme";
-import MobileTitle from "./MobileTitle";
 import ThemeSelection from "../shared/ThemeSelection";
+import MobileTitle from "./MobileTitle";
 
 const MobileApp = () => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -56,6 +57,9 @@ const MobileApp = () => {
   const { displayTitle, showBackdrop } = useHeroDisplay(wrapperRef, titleRef);
   const [displayTweet, setDisplayTweet] = useState(false);
   const [displaySection, setDisplaySection] = useState(false);
+  const [displayContactIcon, setDisplayContactIcon] = useState(true);
+  useContactIcon(wrapperRef.current, setDisplayContactIcon);
+
   const [profileOpen, setProfileOpen] = useState(false);
   const [previewsOpen, setPreviewsOpen] = useState(false);
   const [imageIndex, setImageIndex] = useState("0");
@@ -134,20 +138,21 @@ const MobileApp = () => {
       >
         DEBUG
       </Button> */}
+
       <button
         onClick={() => {
           handleTap("chat");
           setDisplayContact((prev) => !prev);
         }}
-        className={`${
-          (displayTitle && theme) || displayContact
-            ? "opacity-100"
-            : "opacity-0 "
+        className={`  ${
+          (displayTitle && theme && displayContactIcon) || displayContact
+            ? "opacity-100 z-[9999]"
+            : "opacity-0 z-0"
         } backdrop-blur-md fixed ${
           theme === "music" || audioLocked ? "bottom-20" : "bottom-5"
         } ${
           tapEffect.chat ? "scale-90 bg-[#29aaf4]" : "scale-100 bg-[#29aaf4a0]"
-        } text-base font-medium shadow-2xl shadow-black transition-all duration-150 ease-in-out flex items-center justify-center right-5 w-16 h-10 rounded-full z-[9999]`}
+        } text-base font-medium shadow-2xl shadow-black transition-all duration-150 ease-in-out flex items-center justify-center right-5 w-16 h-10 rounded-full `}
       >
         <p onClick={() => setCopied(false)}>
           {displayContact ? (
@@ -167,7 +172,6 @@ const MobileApp = () => {
       {theme === "music" || audioLocked ? (
         <AudioPlayer audioRef={audioRef} />
       ) : null}
-
       <AwardMobile
         setAwardsArray={setRedditAwards}
         openAwardsMobile={openAwardsMobile}
@@ -175,14 +179,12 @@ const MobileApp = () => {
         selectedTitle={selectedTitle}
       />
       {<Overlay openAwardsMobile={openAwardsMobile} />}
-
       {/* Twitter Theme Only */}
       <ProfilePicture
         setProfileOpen={setProfileOpen}
         profileOpen={profileOpen}
         theme={theme}
       />
-
       <AppPreviews
         displayTweet={displayTweet}
         setDisplayTweet={setDisplayTweet}

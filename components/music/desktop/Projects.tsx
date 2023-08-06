@@ -65,7 +65,6 @@ const Projects = ({
                 <Image
                   alt="promoninja-previews"
                   src={mobilePreviews[imageIndex]}
-                  priority
                   width={200}
                   className={` ${
                     isBreakPoint
@@ -79,7 +78,6 @@ const Projects = ({
                 alt="promoninja-previews"
                 src={desktopPreviews[imageIndex]}
                 width={800}
-                priority
                 className={`${
                   isBreakPoint
                     ? "min-w-[700px] max-h-[300px]"

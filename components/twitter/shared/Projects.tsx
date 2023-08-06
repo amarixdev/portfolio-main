@@ -7,6 +7,7 @@ import { BsGithub } from "react-icons/bs";
 import { FiExternalLink } from "react-icons/fi";
 import { useMediaQuery } from "../../../util/hooks";
 import Tweet from "./Tweet";
+import { transformIndex } from "../../../util/functions";
 
 const Projects = ({
   setPreviewsOpen,
@@ -19,12 +20,8 @@ const Projects = ({
   const iconBreakPoint = useMediaQuery(639);
   const iconSize = iconBreakPoint ? 15 : 20;
 
-  const transformIndex = (index: number) => {
-    return (index * -100).toString();
-  };
-
   return (
-    <div className="pb-8">
+    <div className="">
       <Tweet title="promoninja">
         <p className=" text-xs xs:text-sm lg:text-base 2xl:text-lg py-4">
           PromoNinja is an an all-in-one application for anyone who enjoys
@@ -91,7 +88,7 @@ const Projects = ({
               target="_blank"
               className="w-full"
             >
-              <button className="flex flex-col px-2 py-1 gap-1 w-full">
+              <button className="flex flex-col items-start px-2 py-1 gap-1 w-full">
                 <h3 className="text-xs xs:text-sm sm:text-base  font-medium text-[#888] ">
                   promoninja.io
                 </h3>

@@ -3,7 +3,7 @@ import Tweet from "./Tweet";
 
 const About = () => {
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col">
       <Tweet title="summary">
         <p className="text-xs xs:text-sm lg:text-base 2xl:text-lg mt-4">
           A 26 year-old software developer based in Greensboro, NC.

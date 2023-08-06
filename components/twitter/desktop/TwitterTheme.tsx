@@ -29,7 +29,7 @@ import { useDisplaySection, useMediaQuery } from "../../../util/hooks";
 import About from "../shared/About";
 import Projects from "../shared/Projects";
 import Skills from "../shared/Skills";
-import { getCurrentDate } from "../../../util/functions";
+import { getCurrentDate, transformIndex } from "../../../util/functions";
 
 const TwitterThemeDesktop = ({
   profileOpen,
@@ -72,10 +72,6 @@ const TwitterThemeDesktop = ({
   useEffect(() => {
     setReloadFlag(true);
   }, []);
-
-  const transformIndex = (index: number) => {
-    return (index * -100).toString();
-  };
 
   const trendingTopics = [
     { title: "Trending in United States", topic: "UFOs", tweets: "249K" },

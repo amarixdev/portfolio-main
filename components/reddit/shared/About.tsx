@@ -4,6 +4,7 @@ import RedditSilver from "../../../public/images/reddit/reddit-silver.png";
 import { RedditAwardsState } from "../../../util/types";
 import RedditPost from "./RedditPost";
 import AboutGraphic from "../../../public/images/reddit/about-graphic.png";
+import { RefObject, useEffect } from "react";
 
 const About = ({
   awardsArray,
@@ -19,6 +20,7 @@ const About = ({
   selectedTitle: string;
 }) => {
   const subreddit = { name: "aboutme", image: AboutGraphic };
+
   return (
     <div className="flex flex-col gap-5">
       <RedditPost
@@ -34,7 +36,7 @@ const About = ({
         setSelectedTitle={setSelectedTitle}
         subreddit={subreddit}
       >
-        <div className="gap-4 flex flex-col">
+        <div className="gap-4 flex flex-col ">
           <p className="text-sm lg:text-base text-[#d2d2d2] px-4">
             A 26 year-old software developer based in Greensboro, NC.
           </p>

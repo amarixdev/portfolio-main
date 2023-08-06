@@ -29,6 +29,7 @@ import { useDisplaySection, useMediaQuery } from "../../../util/hooks";
 import About from "../shared/About";
 import Projects from "../shared/Projects";
 import Skills from "../shared/Skills";
+import { getCurrentDate } from "../../../util/functions";
 
 const TwitterThemeDesktop = ({
   profileOpen,
@@ -232,7 +233,7 @@ const TwitterThemeDesktop = ({
                   <div className="flex gap-[3px] items-center">
                     <BsCalendar3 color="#777" size={10} />
                     <p className="text-sm text-[#777777]">
-                      Joined October 1996
+                      {`Joined ${getCurrentDate().monthYear}`}
                     </p>
                   </div>
                 </div>
@@ -460,13 +461,8 @@ const TwitterThemeDesktop = ({
       </div>
     </div>
   );
-  
 };
 
-export const getStaticProps  = () => {
-    
-}
+export const getStaticProps = () => {};
 
 export default TwitterThemeDesktop;
-
-

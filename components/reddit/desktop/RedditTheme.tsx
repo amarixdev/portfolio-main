@@ -178,7 +178,7 @@ const RedditTheme = ({
                         <div className="flex items-center gap-1 mt-1">
                           <GiCakeSlice size={12} color="#29aaf4" />
                           <p className="text-[#8a8a8a] text-xs font-normal">
-                            {getCurrentDate()}
+                            {getCurrentDate().fullDate}
                           </p>
                         </div>
                       </div>

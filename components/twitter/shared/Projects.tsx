@@ -24,7 +24,7 @@ const Projects = ({
   };
 
   return (
-    <div>
+    <div className="pb-8">
       <Tweet title="promoninja">
         <p className=" text-xs xs:text-sm lg:text-base 2xl:text-lg py-4">
           PromoNinja is an an all-in-one application for anyone who enjoys

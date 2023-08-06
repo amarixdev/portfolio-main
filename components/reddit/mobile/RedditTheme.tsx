@@ -10,6 +10,7 @@ import About from "../shared/About";
 import Projects from "../shared/Projects";
 import RedditTabs from "../shared/RedditTabs";
 import Skills from "../shared/Skills";
+import { getCurrentDate } from "../../../util/functions";
 
 const RedditTheme = ({
   openAwards,
@@ -79,7 +80,9 @@ const RedditTheme = ({
             Amari DeVaughn
           </h1>
           <p className="px-4 text-xs ">
-            u/amarixdev&#x2022; 2,132 karma &#x2022; Oct 1, 2016
+            {` u/amarixdev&#x2022; 2,132 karma &#x2022; ${
+              getCurrentDate().fullDate
+            }`}
           </p>
           <div
             ref={sectionRef}

@@ -147,9 +147,9 @@ const Projects = ({
                 ))}
           </div>
         </div>
-        <div className="w-full px-4 relative">
+        <div className="w-full px-4 relative text-[#d2d2d2] text-sm lg:text-base ">
           <h1 className="font-extrabold text-lg py-3">Description</h1>
-          <p className="pb-2">
+          <p className="pb-2 ">
             PromoNinja is an an all-in-one application for anyone who enjoys
             podcasts and saving money. If you are interested in learning more
             about the project,
@@ -165,7 +165,7 @@ const Projects = ({
                 }  `}
               >
                 {" "}
-                {isBreakPoint ? "tap" : "click"} this link.
+                {isBreakPoint ? "tap" : "visit"} this link.
               </span>
             </Link>
           </p>

@@ -18,24 +18,31 @@ export const truncateString = (string: string, num: number) => {
 
 export const getCurrentDate = () => {
   const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
+    "January",
+    "February",
+    "March",
+    "April",
     "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
   const now = new Date();
   const month = months[now.getMonth()];
   const dayOfMonth = String(now.getDate()).padStart(2, "0");
   const year = now.getFullYear();
-  const formattedDate = `${month} ${dayOfMonth}, ${year}`;
+  const fullDate = `${month.slice(0, 3)} ${dayOfMonth}, ${year}`;
+  const monthYear = `${month} ${year}`;
 
-  return formattedDate;
+  const date = {
+    fullDate,
+    monthYear,
+    year,
+  };
+
+  return date;
 };

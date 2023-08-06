@@ -5,7 +5,7 @@ import { FaReact } from "react-icons/fa";
 import { GrGraphQl } from "react-icons/gr";
 import { MdWork } from "react-icons/md";
 import AlbumCover from "../../../public/images/music/album-cover.jpg";
-import { capitalizeString } from "../../../util/functions";
+import { capitalizeString, getCurrentDate } from "../../../util/functions";
 import { useDisplaySection } from "../../../util/hooks";
 import AudioPlayer from "../shared/AudioPlayer";
 import Skills from "../shared/Skills";
@@ -87,7 +87,9 @@ const MusicThemeDesktop = ({
                 Software Developer
               </h1>
               <div className="flex items-center mt-1 text-sm font-medium">
-                <h3 className="text-[#949494]">Frontend/Backend • 2023</h3>
+                <h3 className="text-[#949494]">{`Frontend/Backend • ${
+                  getCurrentDate().year
+                }`}</h3>
               </div>
               <div className="flex items-center mt-8 gap-1">
                 <FaReact color="#999999" />

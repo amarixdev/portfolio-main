@@ -99,7 +99,7 @@ const Projects = ({
               >
                 <span className="font-extrabold hover:text-[#279bda]">
                   {" "}
-                  follow this link.
+                  visit this link.
                 </span>
               </Link>
             </p>

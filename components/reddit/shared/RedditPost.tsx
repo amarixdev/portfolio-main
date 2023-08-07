@@ -68,7 +68,7 @@ const RedditPost = ({
 
   return (
     <div
-      className={`lg:flex lg:border-[1px] rounded-sm  hover:lg:border-[#777]`}
+      className={`lg:flex lg:border-[1px] rounded-sm  hover:lg:border-[#777] relative`}
     >
       <div className="hidden lg:block bg-[#0c0c0c]">
         <div className="flex p-3 flex-col justify-center items-center">
@@ -219,7 +219,7 @@ const RedditPost = ({
           </div>
         </div>
 
-        <div className="">
+        <div>
           <p className="font-semibold text-lg lg:text-xl text-[#d2d2d2] px-4">
             {title}
           </p>

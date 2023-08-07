@@ -1,10 +1,8 @@
-import Image from "next/image";
-import { AiOutlineClose } from "react-icons/ai";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
-import style from "../../../styles/style.module.css";
-import { useMediaQuery } from "../../../util/hooks";
 import { Button } from "@chakra-ui/react";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { AiOutlineClose } from "react-icons/ai";
 import {
   BsChevronDoubleLeft,
   BsChevronDoubleRight,
@@ -12,8 +10,11 @@ import {
 } from "react-icons/bs";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
+import style from "../../../styles/style.module.css";
+import { revertIndex } from "../../../util/functions";
+import { useMediaQuery } from "../../../util/hooks";
+import PortfolioTweet, { PromoninjaTweet } from "./ProjectTweets";
 import Tweet from "./Tweet";
-import { desktopPreviews, mobilePreviews } from "../../../util/image-slider";
 
 const AppPreviews = ({
   setPreviewsOpen,
@@ -23,6 +24,7 @@ const AppPreviews = ({
   setImageIndex,
   setDisplayTweet,
   displayTweet,
+  projectPreviews,
 }: {
   setPreviewsOpen: (value: boolean) => void;
   previewsOpen: boolean;
@@ -31,6 +33,11 @@ const AppPreviews = ({
   setImageIndex: (value: any) => void;
   displayTweet: boolean;
   setDisplayTweet: (value: any) => void;
+  projectPreviews: {
+    desktop: StaticImageData[];
+    mobile: StaticImageData[];
+    project: string;
+  };
 }) => {
   const imageSliderRef = useRef<HTMLDivElement>(null);
   const [mobileView, setMobileView] = useState(false);
@@ -58,10 +65,12 @@ const AppPreviews = ({
 
   const displayRightArrow = Number(imageIndex) * -1 > 0;
   const displayLeftArrow =
-    Number(imageIndex) * -1 < desktopPreviews.length * 100 - 100;
+    Number(imageIndex) * -1 < projectPreviews?.desktop.length * 100 - 100;
   const handleToggle = (event: ChangeEvent<HTMLInputElement>) => {
     setMobileView(event.target.checked);
   };
+
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   return (
     <div
@@ -69,11 +78,23 @@ const AppPreviews = ({
         previewsOpen && theme === "twitter" ? "block z-[9999]" : "hidden z-0"
       } select-none fixed h-screen w-full bg-black flex items-center justify-center`}
     >
+      {isBreakPoint || (
+        <video
+          className="top w-full h-full top-0 absolute"
+          src={"/video/space-bg.mp4"}
+          muted
+          loop
+          playsInline
+          controls={false}
+          ref={videoRef}
+          autoPlay
+        ></video>
+      )}
       {isBreakPoint && (
         <div className="w-full absolute flex items-center justify-between">
           <div className="absolute top-[50%] right-0 rounded-3xl bg-[#0000007d] py-1 px-2 text-xs z-50">
             {`${1 + (Number(imageIndex) / 100) * -1}  / ${
-              desktopPreviews.length
+              projectPreviews?.desktop.length
             }`}
           </div>
         </div>
@@ -85,6 +106,7 @@ const AppPreviews = ({
             onClick={() => {
               setPreviewsOpen(false);
               setDisplayTweet(false);
+              setMobileView(false);
             }}
             className="p-4 rounded-full bg-black active:bg-[#202020] lg:hover:bg-[#202020]"
           >
@@ -105,6 +127,7 @@ const AppPreviews = ({
                   className={style.checkboxTwitter}
                   id="checkboxTwitter"
                   onChange={(e) => handleToggle(e)}
+                  checked={mobileView}
                 />
                 <label
                   className={style.switchTwitter}
@@ -122,6 +145,7 @@ const AppPreviews = ({
           onClick={() => {
             setPreviewsOpen(false);
             setDisplayTweet(true);
+            setMobileView(false);
           }}
           className="p-2 absolute top-28 left-8 rounded-full bg-black active:bg-[#202020] lg:hover:bg-[#202020]"
         >
@@ -171,6 +195,7 @@ const AppPreviews = ({
                     className={style.checkboxTwitter}
                     id="checkboxTwitter"
                     onChange={(e) => handleToggle(e)}
+                    checked={mobileView}
                   />
                   <label
                     className={style.switchTwitter}
@@ -231,7 +256,7 @@ const AppPreviews = ({
                 <div className="w-full flex items-center justify-between">
                   <div className="absolute top-10 right-20 rounded-3xl bg-[#000000b3] py-1 px-2 text-xs z-50">
                     {`${1 + (Number(imageIndex) / 100) * -1}  / ${
-                      desktopPreviews.length
+                      projectPreviews?.desktop.length
                     }`}
                   </div>
                 </div>
@@ -242,7 +267,7 @@ const AppPreviews = ({
                 ref={imageSliderRef}
               >
                 {mobileView
-                  ? mobilePreviews.map((preview, index) => (
+                  ? projectPreviews?.mobile.map((preview, index) => (
                       <div className={`flex items min-w-full `} key={index}>
                         <div className="w-full flex items-center justify-center">
                           <Image
@@ -255,7 +280,7 @@ const AppPreviews = ({
                         </div>
                       </div>
                     ))
-                  : desktopPreviews.map((preview, index) => (
+                  : projectPreviews?.desktop.map((preview, index) => (
                       <div
                         className={`flex items-center justify-center min-w-full`}
                         key={index}
@@ -276,43 +301,61 @@ const AppPreviews = ({
 
         {displayTweet && (
           <div className="min-h-full w-[30%] border-l border-[#41414183] px-4  top-24 relative ">
-            <Tweet title="promoninja" preview={true}>
-              <p className="pt-2 ">
-                PromoNinja is an an all-in-one application for anyone who enjoys
-                podcasts and saving money. If you are interested in learning
-                more about the project,
-                <Link
-                  href={"https://github.com/amarixdev/promoninja-FE"}
-                  target="_blank"
-                >
-                  <span
-                    className={`font-extrabold ${
-                      isBreakPoint
-                        ? "active:text-[#279bda]"
-                        : "hover:text-[#279bda]"
-                    }  `}
-                  >
-                    {" "}
-                    {isBreakPoint ? "tap" : "visit"} this link.
-                  </span>
-                </Link>
-              </p>
-            </Tweet>
-            <div className="flex flex-col gap-4 pt-5 items-center  ">
+            {projectPreviews.project === "All" ? (
+              <Tweet
+                title={
+                  revertIndex(imageIndex) > 8 ? "ThePortfolio" : "Promoninja"
+                }
+                preview={true}
+                altTitle={revertIndex(imageIndex) > 8 ? "meta" : ""}
+              >
+                {revertIndex(imageIndex) <= 8 ? (
+                  <PromoninjaTweet />
+                ) : (
+                  <PortfolioTweet />
+                )}
+              </Tweet>
+            ) : (
+              <Tweet
+                title={projectPreviews.project}
+                preview={true}
+                altTitle={
+                  projectPreviews.project === "ThePortfolio" ? "meta" : ""
+                }
+              >
+                {projectPreviews.project === "Promoninja" ? (
+                  <PromoninjaTweet />
+                ) : (
+                  <PortfolioTweet />
+                )}
+              </Tweet>
+            )}
+
+            <div className="flex flex-col gap-4 items-center  ">
               <div className=" gap-4 flex flex-col w-[80%] items-center justify-center">
-                <Link
-                  href={"https://promoninja.io"}
-                  target="_blank"
-                  className="w-full"
-                >
-                  <Button className="flex p-3 py-8  items-center justify-center w-full  gap-2 sm:gap-4">
-                    <FiExternalLink size={iconSize} />
-                    <p className="sm:text-lg">Visit Site</p>
-                  </Button>
-                </Link>
+                {(projectPreviews.project === "Promoninja" ||
+                  (projectPreviews.project === "All" &&
+                    revertIndex(imageIndex) <= 8)) && (
+                  <Link
+                    href={"https://promoninja.io"}
+                    target="_blank"
+                    className="w-full"
+                  >
+                    <Button className="flex p-3 py-8  items-center justify-center w-full  gap-2 sm:gap-4">
+                      <FiExternalLink size={iconSize} />
+                      <p className="sm:text-lg">Visit Site</p>
+                    </Button>
+                  </Link>
+                )}
 
                 <Link
-                  href={"https://github.com/amarixdev/promoninja-FE"}
+                  href={
+                    projectPreviews.project === "Promoninja" ||
+                    (projectPreviews.project === "All" &&
+                      revertIndex(imageIndex) <= 8)
+                      ? "https://github.com/amarixdev/promoninja-FE"
+                      : "https://github.com/amarixdev/portfolio-main"
+                  }
                   target="_blank"
                   className="w-full"
                 >

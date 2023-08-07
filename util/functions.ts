@@ -50,3 +50,8 @@ export const getCurrentDate = () => {
 export const transformIndex = (index: number) => {
   return (index * -100).toString();
 };
+
+export const revertIndex = (index: string) => {
+  return (Number(index) / 100) * -1 + 1;
+};
+

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
@@ -13,7 +13,7 @@ import {
   useContactIcon,
   useHeroDisplay,
   useMediaQuery,
-  useThemeSelection
+  useThemeSelection,
 } from "../../../util/hooks";
 import { RedditAwardsState } from "../../../util/types";
 import Banner from "../../misc/Banner";
@@ -42,6 +42,7 @@ const MobileApp = () => {
     Summary: [],
     "Beyond Tech": [],
     Promoninja: [],
+    "The Portfolio": [],
   });
   const [openAwardsMobile, setOpenAwardsMobile] = useState(false);
   const [section, setSection] = useState("about");
@@ -62,6 +63,15 @@ const MobileApp = () => {
 
   const [profileOpen, setProfileOpen] = useState(false);
   const [previewsOpen, setPreviewsOpen] = useState(false);
+  const [projectPreviews, setProjectPreviews] = useState<{
+    desktop: StaticImageData[];
+    mobile: StaticImageData[];
+    project: string;
+  }>({
+    desktop: [],
+    mobile: [],
+    project: "",
+  });
   const [imageIndex, setImageIndex] = useState("0");
   const extendRef = useRef<HTMLDivElement>(null);
   const [tutorial, setTutorial] = useState(true);
@@ -193,6 +203,7 @@ const MobileApp = () => {
         theme={theme}
         setImageIndex={setImageIndex}
         imageIndex={imageIndex}
+        projectPreviews={projectPreviews}
       />
       <Banner
         themeLoading={themeLoading}
@@ -450,6 +461,7 @@ const MobileApp = () => {
                       setDisplaySection={setDisplaySection}
                       audioLocked={audioLocked}
                       easeIn={easeIn}
+                      setProjectPreviews={setProjectPreviews}
                     />
                   )}
                 </div>

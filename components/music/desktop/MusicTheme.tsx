@@ -134,7 +134,16 @@ const MusicThemeDesktop = ({
           ""
         )}
       </div>
-      <div className="h-[40vh]"></div>
+      <div className="h-[40vh] flex items-center justify-center group">
+        <p
+          className="opacity-0 group-hover:opacity-100 font-medium cursor-pointer text-lg text-[#cecece] hover:text-white active:scale-90 transition-all duration-200 ease-in-out"
+          onClick={() =>
+            wrapperRef.current?.scrollTo({ top: 0, behavior: "smooth" })
+          }
+        >
+          Scroll To Top
+        </p>
+      </div>
     </div>
   );
 };

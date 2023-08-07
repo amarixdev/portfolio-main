@@ -1,5 +1,5 @@
 import { useDisclosure } from "@chakra-ui/react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { LuMailPlus } from "react-icons/lu";
@@ -37,6 +37,15 @@ const DesktopApp = () => {
   const [displayContact, setDisplayContact] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [previewsOpen, setPreviewsOpen] = useState(false);
+  const [projectPreviews, setProjectPreviews] = useState<{
+    desktop: StaticImageData[];
+    mobile: StaticImageData[];
+    project: string;
+  }>({
+    desktop: [],
+    mobile: [],
+    project: "",
+  });
   const [imageIndex, setImageIndex] = useState("0");
   const [selectedTitle, setSelectedTitle] = useState("");
   const [heroImageLoaded, setHeroImageLoaded] = useState({
@@ -48,6 +57,7 @@ const DesktopApp = () => {
     Summary: [],
     "Beyond Tech": [],
     Promoninja: [],
+    "The Portfolio": [],
   });
 
   const {
@@ -81,8 +91,8 @@ const DesktopApp = () => {
             ? "opacity-100"
             : "opacity-0 "
         } backdrop-blur-md active:scale-90 ${
-          style.contactForm
-        } fixed bottom-5 font-normal w-32 shadow-2xl text-lg hover:bg-[#0f0f0f] cursor-pointer transition-all duration-150 ease-in-out flex items-center justify-center right-10 h-10 rounded-full z-[9999]`}
+          style.borderGlow
+        } fixed rounded-2xl bottom-5 font-normal w-32 shadow-2xl text-lg hover:bg-[#0f0f0f] cursor-pointer transition-all duration-150 ease-in-out flex items-center justify-center right-10 h-10  z-[9999]`}
       >
         <p
           onClick={() => {
@@ -102,8 +112,8 @@ const DesktopApp = () => {
           displayContact
             ? "opacity-100 z-[9999] bottom-[80px] "
             : "opacity-0 z-0 bottom-[-200px] "
-        }  rounded-2xl fixed border-[0.5px] right-10 h-[550px] w-[400px] transition-all duration-300 ease-in-out ${
-          style.contactForm
+        }  rounded-2xl fixed border-[0.5px]  right-10 h-[550px] w-[400px] transition-all duration-300 ease-in-out ${
+          style.borderGlow
         } flex`}
       >
         {<Carousel displayContact={displayContact} />}
@@ -129,6 +139,7 @@ const DesktopApp = () => {
         theme={theme}
         imageIndex={imageIndex}
         setImageIndex={setImageIndex}
+        projectPreviews={projectPreviews}
       />
       <Banner
         themeLoading={themeLoading}
@@ -306,6 +317,7 @@ const DesktopApp = () => {
                     wrapperRef={wrapperRef}
                     setDisplayContact={setDisplayContact}
                     easeIn={easeIn}
+                    setProjectPreviews={setProjectPreviews}
                   />
                 )}
               </div>

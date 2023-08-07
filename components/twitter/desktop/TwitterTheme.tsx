@@ -9,7 +9,7 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { RefObject, useEffect, useRef, useState } from "react";
 import { AiOutlineLink } from "react-icons/ai";
 import { BsCalendar3 } from "react-icons/bs";
@@ -18,7 +18,7 @@ import { MdVerified } from "react-icons/md";
 import { RiUserUnfollowLine } from "react-icons/ri";
 import HomeIcon from "../../../public/images/twitter/twitter-home.png";
 import MessageIcon from "../../../public/images/twitter/twitter-message.png";
-import { twitterPreviews } from "../../../util/image-slider";
+import { projectMedia } from "../../../util/project-media";
 import Backdrop from "../../../public/images/twitter/twitter-backdrop.jpg";
 import { FaTwitter } from "react-icons/fa";
 import AppleProfile from "../../../public/images/twitter/apple-profile.jpeg";
@@ -44,6 +44,7 @@ const TwitterThemeDesktop = ({
   audioLocked,
   setDisplayContact,
   easeIn,
+  setProjectPreviews,
 }: {
   profileOpen: boolean;
   setProfileOpen: (profileOpen: boolean) => void;
@@ -57,6 +58,11 @@ const TwitterThemeDesktop = ({
   audioLocked?: boolean;
   setDisplayContact: (displayContact: any) => void;
   easeIn: boolean;
+  setProjectPreviews: (projectPreviews: {
+    desktop: StaticImageData[];
+    mobile: StaticImageData[];
+    project: string;
+  }) => void;
 }) => {
   const isBreakPoint = useMediaQuery(1023);
   const [following, setFollowing] = useState(false);
@@ -316,6 +322,7 @@ const TwitterThemeDesktop = ({
                   <Projects
                     setPreviewsOpen={setPreviewsOpen}
                     setImageIndex={setImageIndex}
+                    setProjectPreviews={setProjectPreviews}
                   />
                 </TabPanel>
                 <TabPanel padding={0}>
@@ -329,12 +336,13 @@ const TwitterThemeDesktop = ({
       <div className="max-w-[30%] min-h-full border-l-[1px] flex justify-start pl-6">
         <div className="w-[90%] flex flex-col items-center gap-5">
           <div className="h-[200px] cursor-pointer w-[90%] rounded-3xl grid grid-cols-3 grid-rows-2 gap-1 overflow-hidden">
-            {twitterPreviews.map((img, index) => (
+            {projectMedia.promoninja.previews.map((img, index) => (
               <div
                 key={index}
                 onClick={() => {
                   setImageIndex(transformIndex(index));
                   setPreviewsOpen(true);
+                  setProjectPreviews(projectMedia.all);
                 }}
               >
                 <Image

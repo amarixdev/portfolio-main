@@ -9,7 +9,7 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { RefObject, useEffect, useRef, useState } from "react";
 import { AiOutlineLink } from "react-icons/ai";
 import { BsCalendar3 } from "react-icons/bs";
@@ -22,6 +22,7 @@ import { useDisplaySection, useMediaQuery } from "../../../util/hooks";
 import About from "../shared/About";
 import Projects from "../shared/Projects";
 import Skills from "../shared/Skills";
+import { getCurrentDate } from "../../../util/functions";
 
 const TwitterTheme = ({
   profileOpen,
@@ -35,6 +36,7 @@ const TwitterTheme = ({
   wrapperRef,
   audioLocked,
   easeIn,
+  setProjectPreviews,
 }: {
   profileOpen: boolean;
   setProfileOpen: (profileOpen: boolean) => void;
@@ -47,6 +49,11 @@ const TwitterTheme = ({
   wrapperRef: RefObject<HTMLDivElement>;
   audioLocked?: boolean;
   easeIn: boolean;
+  setProjectPreviews: (projectPreviews: {
+    desktop: StaticImageData[];
+    mobile: StaticImageData[];
+    project: string;
+  }) => void;
 }) => {
   const isBreakPoint = useMediaQuery(1023);
   const [following, setFollowing] = useState(false);
@@ -162,7 +169,7 @@ const TwitterTheme = ({
                   <div className="flex gap-[3px] items-center">
                     <BsCalendar3 color="#777" size={10} />
                     <p className="text-xs text-[#777777]">
-                      Joined October 1996
+                      {`Joined ${getCurrentDate().monthYear}`}
                     </p>
                   </div>
                 </div>
@@ -246,6 +253,7 @@ const TwitterTheme = ({
                   <Projects
                     setPreviewsOpen={setPreviewsOpen}
                     setImageIndex={setImageIndex}
+                    setProjectPreviews={setProjectPreviews}
                   />
                 </TabPanel>
                 <TabPanel padding={0}>

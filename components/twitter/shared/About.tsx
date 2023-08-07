@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div className="flex flex-col">
       <Tweet title="summary">
-        <p className="text-xs xs:text-sm lg:text-base 2xl:text-lg mt-4">
+        <p className="text-xs xs:text-sm lg:text-base 2xl:text-lg pt-2">
           A 26 year-old software developer based in Greensboro, NC.
         </p>
         <p className="text-xs xs:text-sm lg:text-base 2xl:text-lg mt-4">
@@ -30,8 +30,8 @@ const About = () => {
           lower-right corner.
         </p>
       </Tweet>
-      <Tweet title="beyondTech">
-        <div className="text-xs xs:text-sm flex flex-col gap-2 lg:text-base 2xl:text-lg mt-4">
+      <Tweet title="beyondTech" bottom={true}>
+        <div className="text-xs xs:text-sm flex flex-col gap-2 lg:text-base 2xl:text-lg pt-2">
           <p>Published author in the American Heart Association</p>
           <p>Atlantic Coast Conference (ACC) Silver Medalist</p>
           <p>Nature Enthusiast and Pet Lover</p>

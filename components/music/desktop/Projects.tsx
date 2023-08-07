@@ -12,7 +12,7 @@ import {
   BsGithub,
 } from "react-icons/bs";
 import { FiExternalLink } from "react-icons/fi";
-import { desktopPreviews, mobilePreviews } from "../../../util/image-slider";
+import { projectMedia } from "../../../util/project-media";
 import style from "../../../styles/style.module.css";
 import { useMediaQuery } from "../../../util/hooks";
 
@@ -23,11 +23,19 @@ const Projects = ({
   opened: string[];
   setOpened: Dispatch<SetStateAction<string[]>>;
 }) => {
-  const [mobileView, setMobileView] = useState(false);
-  const [imageIndex, setImageIndex] = useState(0);
+  const [mobileView, setMobileView] = useState({
+    promoninja: false,
+    portfolio: true,
+  });
+  const [imageIndex, setImageIndex] = useState({ promoninja: 0, portfolio: 0 });
 
-  const handleToggle = (event: ChangeEvent<HTMLInputElement>) => {
-    setMobileView(event.target.checked);
+  const handleToggle = (
+    event: ChangeEvent<HTMLInputElement>,
+    project: string
+  ) => {
+    if (project === "promoninja" || project === "portfolio") {
+      setMobileView((prev) => ({ ...prev, [project]: event.target.checked }));
+    }
   };
 
   const isBreakPoint = useMediaQuery(1256);
@@ -37,6 +45,7 @@ const Projects = ({
         isBreakPoint ? "w-full" : "w-[93%]"
       } flex flex-col items-start justify-start mt-8 select-none`}
     >
+      {/* Promoninja */}
       <MusicCollapse
         title="Promoninja"
         top={true}
@@ -47,43 +56,47 @@ const Projects = ({
         <div className="w-full flex justify-between ">
           <div className="max-w-[800px] relative pt-5 w-full flex-col flex items-start justify-start">
             <div className="absolute bottom-[15%] left-[43%] flex">
-              {desktopPreviews.map((_, index) => (
+              {projectMedia.promoninja.desktop.map((_, index) => (
                 <BsDot
                   key={index}
                   size={16}
-                  color={`${index === imageIndex ? "#279bda" : ""}`}
+                  color={`${index === imageIndex.promoninja ? "#279bda" : ""}`}
                 />
               ))}
             </div>
 
-            {mobileView ? (
+            {mobileView.promoninja ? (
               <div
                 className={`${
                   isBreakPoint ? "min-w-[700px]" : "min-w-[800px]"
                 } flex items-center justify-center`}
               >
-                <Image
-                  alt="promoninja-previews"
-                  src={mobilePreviews[imageIndex]}
-                  width={200}
-                  className={` ${
-                    isBreakPoint
-                      ? "max-w-[150px] h-[300px]"
-                      : "min-w-[200px] h-[400px]"
-                  } select-none `}
-                />
+                <div className={`${style.borderGlow} rounded-lg`}>
+                  <Image
+                    alt="promoninja-previews"
+                    src={projectMedia.promoninja.mobile[imageIndex.promoninja]}
+                    width={200}
+                    className={` ${
+                      isBreakPoint
+                        ? "max-w-[150px] h-[300px]"
+                        : "min-w-[200px] h-[400px]"
+                    } select-none rounded-lg`}
+                  />
+                </div>
               </div>
             ) : (
-              <Image
-                alt="promoninja-previews"
-                src={desktopPreviews[imageIndex]}
-                width={800}
-                className={`${
-                  isBreakPoint
-                    ? "min-w-[700px] max-h-[300px]"
-                    : "min-w-[800px] max-h-[400px]"
-                } select-none object-cover object-top `}
-              />
+              <div className={`${style.borderGlow} rounded-lg `}>
+                <Image
+                  alt="promoninja-previews"
+                  src={projectMedia.promoninja.desktop[imageIndex.promoninja]}
+                  width={800}
+                  className={`${
+                    isBreakPoint
+                      ? "min-w-[700px] min-h-[300px]"
+                      : "min-w-[800px] max-h-[400px]"
+                  } select-none object-cover object-top rounded-lg`}
+                />
+              </div>
             )}
 
             <h1 className="font-extrabold text-lg py-3">Description</h1>
@@ -114,15 +127,15 @@ const Projects = ({
                   <input
                     type="checkbox"
                     className={style.checkbox}
-                    id="checkbox"
-                    onChange={(e) => handleToggle(e)}
+                    id="promoninja"
+                    onChange={(e) => handleToggle(e, "promoninja")}
                   />
-                  <label className={style.switch} htmlFor="checkbox">
+                  <label className={style.switch} htmlFor="promoninja">
                     <span className={style.slider}></span>
                   </label>
                 </div>
                 <p className="whitespace-nowrap">
-                  {mobileView ? "Mobile View" : "Desktop View"}
+                  {mobileView.promoninja ? "Mobile View" : "Desktop View"}
                 </p>
               </div>
               <div className="w-full border-blue-400 flex justify-center items-center">
@@ -132,10 +145,17 @@ const Projects = ({
                       className="cursor-pointer active:scale-90 transition-all duration-200 ease-in-out hover:fill-white"
                       size={40}
                       onClick={() => {
-                        if (imageIndex === 0) {
-                          setImageIndex(desktopPreviews.length - 1);
+                        if (imageIndex.promoninja === 0) {
+                          setImageIndex((prev) => ({
+                            ...prev,
+                            promoninja:
+                              projectMedia.promoninja.desktop.length - 1,
+                          }));
                         } else {
-                          setImageIndex((prev) => prev - 1);
+                          setImageIndex((prev) => ({
+                            ...prev,
+                            promoninja: prev.promoninja - 1,
+                          }));
                         }
                       }}
                     />
@@ -143,10 +163,19 @@ const Projects = ({
                       className="cursor-pointer active:scale-90 transition-all duration-200 ease-in-out hover:fill-white"
                       size={40}
                       onClick={() => {
-                        if (imageIndex === desktopPreviews.length - 1) {
-                          setImageIndex(0);
+                        if (
+                          imageIndex.promoninja ===
+                          projectMedia.promoninja.desktop.length - 1
+                        ) {
+                          setImageIndex((prev) => ({
+                            ...prev,
+                            promoninja: 0,
+                          }));
                         } else {
-                          setImageIndex((prev) => prev + 1);
+                          setImageIndex((prev) => ({
+                            ...prev,
+                            promoninja: prev.promoninja + 1,
+                          }));
                         }
                       }}
                     />
@@ -168,6 +197,158 @@ const Projects = ({
 
               <Link
                 href={"https://github.com/amarixdev/promoninja-FE"}
+                target="_blank"
+              >
+                <Button
+                  minW={140}
+                  className="flex p-3 items-center justify-start    gap-2"
+                >
+                  <BsGithub />
+                  View Code
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </MusicCollapse>
+
+      {/* The Portfolio */}
+      <MusicCollapse
+        title="The Portfolio"
+        top={true}
+        count={2}
+        setOpened={setOpened}
+        opened={opened}
+      >
+        <div className="w-full flex justify-between ">
+          <div className="max-w-[800px] relative pt-5 w-full flex-col flex items-start justify-start">
+            <div className="absolute bottom-[18%] left-[46%] flex">
+              {projectMedia.portfolio.desktop.map((_, index) => (
+                <BsDot
+                  key={index}
+                  size={16}
+                  color={`${index === imageIndex.portfolio ? "#279bda" : ""}`}
+                />
+              ))}
+            </div>
+
+            {mobileView.portfolio ? (
+              <div
+                className={` ${
+                  isBreakPoint ? "min-w-[700px]" : "min-w-[800px]"
+                } flex items-center justify-center rounded-lg`}
+              >
+                <div className={`${style.borderGlow} rounded-lg `}>
+                  <Image
+                    alt={"promoninja-previews"}
+                    src={projectMedia.portfolio.mobile[imageIndex.portfolio]}
+                    width={200}
+                    className={` ${
+                      isBreakPoint
+                        ? "max-w-[150px] h-[300px]"
+                        : "min-w-[200px] h-[400px]"
+                    } select-none rounded-lg `}
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className={`${style.borderGlow} rounded-lg`}>
+                <Image
+                  alt="portfolio-previews"
+                  src={projectMedia.portfolio.desktop[imageIndex.portfolio]}
+                  width={800}
+                  className={`${
+                    isBreakPoint
+                      ? "min-w-[700px] max-h-[300px]"
+                      : "min-w-[800px] max-h-[400px]"
+                  } select-none object-cover object-top rounded-lg`}
+                />
+              </div>
+            )}
+
+            <h1 className="font-extrabold text-lg py-3">Description</h1>
+            <p className="pb-2">
+              You’re already here! I had a great time creating this multi-themed
+              project. I initially learned frontend development through
+              replicating the user interface of popular websites such as
+              Netflix, Youtube, and Twitch. I figured it would be a fun
+              challenge to incorporate that principle into my personal
+              portfolio.
+            </p>
+          </div>
+          <div className="flex flex-col items-center justify-evenly gap-4 text-xl w-full ">
+            {/* Mobile Switch */}
+            <div className="flex gap-10 flex-col">
+              <div
+                className={`${
+                  isBreakPoint ? "min-w-[150px]" : "min-w-[200px]"
+                } flex items-center gap-2  justify-between`}
+              >
+                <div className={style.switchContainer}>
+                  <input
+                    type="checkbox"
+                    className={style.checkbox}
+                    id="portfolio"
+                    checked={mobileView.portfolio}
+                    onChange={(e) => handleToggle(e, "portfolio")}
+                  />
+                  <label className={style.switch} htmlFor="portfolio">
+                    <span className={style.slider}></span>
+                  </label>
+                </div>
+                <p className="whitespace-nowrap">
+                  {mobileView.portfolio ? "Mobile View" : "Desktop View"}
+                </p>
+              </div>
+              <div className="w-full border-blue-400 flex justify-center items-center">
+                <div className="w-[50%] flex flex-col items-center">
+                  <div className="flex w-full justify-between min-w-[140px]">
+                    <BsFillSkipBackwardFill
+                      className="cursor-pointer active:scale-90 transition-all duration-200 ease-in-out hover:fill-white"
+                      size={40}
+                      onClick={() => {
+                        if (imageIndex.portfolio === 0) {
+                          setImageIndex((prev) => ({
+                            ...prev,
+                            portfolio:
+                              projectMedia.portfolio.desktop.length - 1,
+                          }));
+                        } else {
+                          setImageIndex((prev) => ({
+                            ...prev,
+                            portfolio: prev.portfolio - 1,
+                          }));
+                        }
+                      }}
+                    />
+                    <BsFillSkipForwardFill
+                      className="cursor-pointer active:scale-90 transition-all duration-200 ease-in-out hover:fill-white"
+                      size={40}
+                      onClick={() => {
+                        if (
+                          imageIndex.portfolio ===
+                          projectMedia.portfolio.desktop.length - 1
+                        ) {
+                          setImageIndex((prev) => ({
+                            ...prev,
+                            portfolio: 0,
+                          }));
+                        } else {
+                          setImageIndex((prev) => ({
+                            ...prev,
+                            portfolio: prev.portfolio + 1,
+                          }));
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-3 items-center">
+              <Link
+                href={"https://github.com/amarixdev/portfolio-main"}
                 target="_blank"
               >
                 <Button

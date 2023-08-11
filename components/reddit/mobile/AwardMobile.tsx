@@ -100,6 +100,7 @@ const AwardMobile = ({
                     width={60}
                     height={60}
                     alt={`reddit-${award.name}`}
+                    placeholder="blur"
                   />
                   <p className="font-light text-xs">{award.coins}</p>
                 </button>

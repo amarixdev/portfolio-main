@@ -76,6 +76,7 @@ const MusicThemeDesktop = ({
               alt="avatar"
               src={AlbumCover}
               priority
+              placeholder="blur"
               className={`relative rounded-md transition-opacity duration-500 ease-in-out `}
             />
             <div className="absolute right-[200px] top-0">

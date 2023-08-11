@@ -64,6 +64,7 @@ const RedditTheme = ({
           priority
           alt="backdrop-grid"
           className="absolute top-0 w-full h-[280px]"
+          placeholder="blur"
         />
         <div className="absolute top-[140px] w-full bg-gradient-to-b from-[#00000000] to-black h-28"></div>
 
@@ -75,6 +76,7 @@ const RedditTheme = ({
             src={Avatar}
             priority
             className={`relative z-[100]`}
+            placeholder="blur"
           />
           <h1 className="text-2xl font-bold text-white px-4 relative bottom-2 ">
             Amari DeVaughn

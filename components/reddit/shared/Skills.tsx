@@ -156,7 +156,7 @@ const Skills = ({
               src={skills[skillKey].image}
               alt="html"
               className="min-h-[50px] lg:min-h-[30px] "
-              priority
+              placeholder="blur"
             />
           </div>
           <div className="flex flex-col">

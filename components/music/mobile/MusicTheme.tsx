@@ -80,6 +80,7 @@ const MusicThemeMobile = ({
           height={240}
           className="rounded-lg"
           priority
+          placeholder="blur"
         />
       </div>
       <div className="w-full flex flex-col items-center justify-center px-4 mt-6 mb-3">

@@ -174,6 +174,7 @@ const RedditPost = ({
               alt="software"
               priority
               className="max-h-[30px] max-w-[30px] rounded-full object-cover"
+              placeholder="blur"
             />
             <div>
               <p className="font-semibold text-xs lg:text-sm text-[#aaaaaa]">

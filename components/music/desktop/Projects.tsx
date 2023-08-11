@@ -73,6 +73,7 @@ const Projects = ({
               >
                 <div className={`${style.borderGlow} rounded-lg`}>
                   <Image
+                    placeholder="blur"
                     alt="promoninja-previews"
                     src={projectMedia.promoninja.mobile[imageIndex.promoninja]}
                     width={200}
@@ -87,6 +88,7 @@ const Projects = ({
             ) : (
               <div className={`${style.borderGlow} rounded-lg `}>
                 <Image
+                  placeholder="blur"
                   alt="promoninja-previews"
                   src={projectMedia.promoninja.desktop[imageIndex.promoninja]}
                   width={800}
@@ -222,7 +224,7 @@ const Projects = ({
       >
         <div className="w-full flex justify-between ">
           <div className="max-w-[800px] relative pt-5 w-full flex-col flex items-start justify-start">
-            <div className="absolute bottom-[18%] left-[46%] flex">
+            <div className="absolute bottom-[15%] left-[43%] flex">
               {projectMedia.portfolio.desktop.map((_, index) => (
                 <BsDot
                   key={index}
@@ -236,10 +238,11 @@ const Projects = ({
               <div
                 className={` ${
                   isBreakPoint ? "min-w-[700px]" : "min-w-[800px]"
-                } flex items-center justify-center rounded-lg`}
+                } flex items-center justify-center`}
               >
                 <div className={`${style.borderGlow} rounded-lg `}>
                   <Image
+                    placeholder="blur"
                     alt={"promoninja-previews"}
                     src={projectMedia.portfolio.mobile[imageIndex.portfolio]}
                     width={200}
@@ -254,12 +257,13 @@ const Projects = ({
             ) : (
               <div className={`${style.borderGlow} rounded-lg`}>
                 <Image
+                  placeholder="blur"
                   alt="portfolio-previews"
                   src={projectMedia.portfolio.desktop[imageIndex.portfolio]}
                   width={800}
                   className={`${
                     isBreakPoint
-                      ? "min-w-[700px] max-h-[300px]"
+                      ? "min-w-[700px] min-h-[300px]"
                       : "min-w-[800px] max-h-[400px]"
                   } select-none object-cover object-top rounded-lg`}
                 />

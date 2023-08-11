@@ -241,6 +241,7 @@ const MobileApp = () => {
         >
           <div className="flex items-center gap-2">
             <Image
+              placeholder="blur"
               src={Profile}
               alt="album-cover"
               width={60}
@@ -330,6 +331,7 @@ const MobileApp = () => {
         <div id="group1" className="parallax__group">
           <div className="parallax__layer parallax__layer--base">
             <Image
+              placeholder="blur"
               src={ParallaxFg}
               alt="fg"
               className={`${
@@ -343,6 +345,7 @@ const MobileApp = () => {
           </div>
           <div className="parallax__layer parallax__layer--back">
             <Image
+              placeholder="blur"
               src={ParallaxBg}
               alt="fg"
               className={` ${

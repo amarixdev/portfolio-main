@@ -137,7 +137,7 @@ const Skills = ({}: {}) => {
               src={skills[skillKey].image}
               alt={`${skills[skillKey].name}`}
               className="object-contain"
-              priority
+              placeholder="blur"
             />
           </div>
           <div className="absolute bottom-[-55px]">

@@ -15,6 +15,7 @@ const MusicFooter = ({ section }: { section: string }) => {
           width={40}
           height={40}
           className="rounded-lg"
+          placeholder="blur"
         />
         <p className=" text-base">{capitalizeString(section)}</p>
       </div>

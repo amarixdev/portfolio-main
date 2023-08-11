@@ -92,7 +92,7 @@ const TwitterTheme = ({
               alt="backdrop"
               className="object-cover object-top h-full w-full"
               priority
-              loading="eager"
+              placeholder="blur"
             />
           </div>
           <div className=" relative">
@@ -104,10 +104,10 @@ const TwitterTheme = ({
                 width={avatarSizeMain}
                 className="rounded-full cursor-pointer relative"
                 priority
-                loading="eager"
                 onClick={() => {
                   setProfileOpen(true);
                 }}
+                placeholder="blur"
               />
               {following ? (
                 <Menu>

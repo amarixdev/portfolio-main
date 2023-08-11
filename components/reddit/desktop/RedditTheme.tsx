@@ -137,6 +137,7 @@ const RedditTheme = ({
                   priority
                   alt="backdrop-grid"
                   className="w-full h-[125px]"
+                  placeholder="blur"
                 />
                 <div className="w-full flex flex-col items-center absolute top-4">
                   <Image
@@ -146,6 +147,7 @@ const RedditTheme = ({
                     src={avatarStyles[styleIndex]}
                     priority
                     className={`z-[100] right-2 relative `}
+                    placeholder="blur"
                   />
                   {/* <div className="bg-[#060606] w-[60px] h-[28px] right-[140px] top-[135px] rounded-[50%] absolute"></div> */}
                   <div className="w-full flex-col flex items-center relative">

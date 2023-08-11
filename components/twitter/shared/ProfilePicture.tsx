@@ -36,6 +36,7 @@ const ProfilePicture = ({
           width={300}
           height={300}
           className="max-w-[250px] lg:max-w-[300px] rounded-full"
+          placeholder="blur"
         />
       </div>
     </div>

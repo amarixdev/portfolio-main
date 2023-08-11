@@ -39,6 +39,7 @@ const Tweet = ({
           height={40}
           width={40}
           priority
+          placeholder="blur"
           className="rounded-full max-h-[40px] max-w-[40px]  lg:max-h-[45px] lg:max-w-[45px] object-cover h-full w-full"
         />
         {thread && <div className="h-full border-[1px]"></div>}

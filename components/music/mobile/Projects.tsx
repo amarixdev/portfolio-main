@@ -90,6 +90,7 @@ const Projects = ({
                     src={projectMedia.promoninja.mobile[imageIndex.promoninja]}
                     alt="promoninja"
                     className="rounded-lg object-contain object-top max-h-[200px] min-h-[200px] sm:max-h-[300px] md:max-h-[400px]"
+                    placeholder="blur"
                   />
                 </div>
               </div>
@@ -101,6 +102,7 @@ const Projects = ({
                   src={projectMedia.promoninja.desktop[imageIndex.promoninja]}
                   alt="promoninja"
                   className="rounded-lg object-contain xs:object-cover object-top max-h-[200px] min-h-[200px] sm:max-h-[300px] md:max-h-[400px]"
+                  placeholder="blur"
                 />
               </div>
             )}
@@ -241,6 +243,7 @@ const Projects = ({
                     src={projectMedia.portfolio.mobile[imageIndex.portfolio]}
                     alt="portfolio"
                     className="rounded-lg object-contain object-top max-h-[200px] min-h-[200px] sm:max-h-[300px] md:max-h-[400px]"
+                    placeholder="blur"
                   />
                 </div>
               </div>
@@ -252,6 +255,7 @@ const Projects = ({
                   src={projectMedia.portfolio.desktop[imageIndex.portfolio]}
                   alt="portfolio"
                   className="rounded-lg object-contain xs:object-cover object-top max-h-[200px] min-h-[200px] sm:max-h-[300px] md:max-h-[400px]"
+                  placeholder="blur"
                 />
               </div>
             )}

@@ -84,6 +84,7 @@ const AwardDesktop = ({
                         height={60}
                         alt={`reddit-${award.name}`}
                         className="min-w-[60px]"
+                        placeholder="blur"
                       />
                       <p className="font-light text-xs">{award.coins}</p>
                     </button>
@@ -100,7 +101,10 @@ const AwardDesktop = ({
                   width={80}
                   height={80}
                   className="max-w-[80px] max-h-[80px]"
-                  alt={`reddit-${"Gold"}`}
+                  alt={`reddit-${
+                    awards.filter((award) => award.name === selectedAward)[0]
+                      .name
+                  }`}
                 />
                 <h1 className="font-semibold">
                   {capitalizeString(selectedAward)} Award

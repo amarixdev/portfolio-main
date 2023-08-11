@@ -159,6 +159,7 @@ const TwitterThemeDesktop = ({
               className="object-cover object-top h-full w-full"
               priority
               quality={50}
+              placeholder="blur"
             />
           </div>
           <div className=" relative">
@@ -172,6 +173,7 @@ const TwitterThemeDesktop = ({
                 onClick={() => {
                   setProfileOpen(true);
                 }}
+                placeholder="blur"
                 quality={50}
                 priority
               />
@@ -351,6 +353,7 @@ const TwitterThemeDesktop = ({
                   className="w-full h-full object-cover"
                   quality={1}
                   priority
+                  placeholder="blur"
                 />
               </div>
             ))}
@@ -383,6 +386,7 @@ const TwitterThemeDesktop = ({
                     alt={account.title}
                     className="rounded-full"
                     priority
+                    placeholder="blur"
                   />
                   <div className="flex flex-col">
                     <div className="items-center flex gap-1">

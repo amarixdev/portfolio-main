@@ -192,27 +192,27 @@ const Projects = ({
                     >
                       <Image
                         src={preview}
-                        alt="portfolio-preview"
+                        alt="promoninja-preview"
                         className="object-contain rounded-lg"
-                        priority
+                        placeholder="blur"
                       />
                     </div>
                   </div>
                 ))
               : projectMedia.promoninja.desktop.map((preview, index) => (
                   <div
-                    className={`flex items-center justify-center min-w-full`}
+                    className={`flex items-center justify-center min-w-full `}
                     key={index}
                   >
-                    <div
-                      className={`max-w-[535px] h-[300px]  flex items-center justify-center border-4  border-[#00000000] lg:border-black  overflow-hidden shadow-none lg:shadow-black lg:shadow-lg mt-2 rounded-lg `}
-                    >
-                      <Image
-                        src={preview}
-                        alt="portfolio-preview"
-                        className="max-h-[300px] min-h-[300px] object-contain rounded-lg"
-                        priority
-                      />
+                    <div className={`flex items-center justify-center mt-2`}>
+                      <div className="border-black border-4 rounded-xl overflow-hidden max-w-[535px] shadow-black ">
+                        <Image
+                          src={preview}
+                          alt="promoninja-preview"
+                          className=" h-fit object-contain rounded-lg"
+                          placeholder="blur"
+                        />
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -338,25 +338,25 @@ const Projects = ({
                         src={preview}
                         alt="portfolio-preview"
                         className="object-contain rounded-lg"
-                        priority
+                        placeholder="blur"
                       />
                     </div>
                   </div>
                 ))
               : projectMedia.portfolio.desktop.map((preview, index) => (
                   <div
-                    className={`flex items-center justify-center min-w-full`}
+                    className={`flex items-center justify-center min-w-full `}
                     key={index}
                   >
-                    <div
-                      className={`flex items-center justify-center border-4 border-[#00000000] lg:border-black overflow-hidden shadow-none lg:shadow-black lg:shadow-lg mt-2 max-w-[535px] h-[300px] rounded-lg `}
-                    >
-                      <Image
-                        src={preview}
-                        alt="portfolio-preview"
-                        className="max-h-[300px] min-h-[300px] object-contain rounded-lg"
-                        priority
-                      />
+                    <div className={`flex items-center justify-center mt-2`}>
+                      <div className="border-black border-4 rounded-xl overflow-hidden max-w-[535px] shadow-black ">
+                        <Image
+                          src={preview}
+                          alt="portfolio-preview"
+                          className=" h-fit object-contain rounded-lg"
+                          placeholder="blur"
+                        />
+                      </div>
                     </div>
                   </div>
                 ))}

@@ -45,6 +45,7 @@ const Projects = ({
                 alt="promoninja-previews"
                 className="cursor-pointer transition-all duration-300"
                 priority
+                placeholder="blur"
               />
             </div>
           ))}
@@ -67,6 +68,7 @@ const Projects = ({
                   src={image}
                   alt="promoninja-previews"
                   className="cursor-pointer transition-all duration-300"
+                  placeholder="blur"
                 />
               </div>
             </div>
@@ -109,6 +111,7 @@ const Projects = ({
                   src={image}
                   alt="promoninja-previews"
                   className="cursor-pointer transition-all duration-300"
+                  placeholder="blur"
                 />
               </div>
             </div>

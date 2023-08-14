@@ -56,7 +56,13 @@ const AwardDesktop = ({
             {" "}
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-3 w-full">
-                <AiOutlineClose size={20} onClick={() => onClose()} />
+                <button>
+                  <AiOutlineClose
+                    size={20}
+                    onClick={() => onClose()}
+                    className="fill-[#aaaaaa] hover:fill-white"
+                  />
+                </button>
                 <p className="font-semibold text-lg"> Awards</p>
               </div>
               <div className="flex items-center gap-2 px-4 py-1 bg-[#151515] rounded-xl">
@@ -106,9 +112,9 @@ const AwardDesktop = ({
                       .name
                   }`}
                 />
-                <h1 className="font-semibold">
+                <h4 className="font-semibold">
                   {capitalizeString(selectedAward)} Award
-                </h1>
+                </h4>
                 <p className="px-3 my-4 text-center">
                   Do you like this portfolio? Award u/amarixdev with Reddit
                   {capitalizeString(selectedAward)}!

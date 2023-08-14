@@ -159,9 +159,9 @@ const Skills = () => {
   };
 
   return (
-    <div className="pt-6">
+    <section className="pt-6">
       {Object.keys(skills).map((skillKey, index) => (
-        <div
+        <section
           key={skills[skillKey].name}
           className={`w-full flex flex-col border-b-[1px] ${
             index === 0 ? "px-4 pb-4" : "p-4"
@@ -186,14 +186,14 @@ const Skills = () => {
               <div className=" w-full">
                 <div className="flex flex-col ">
                   <div className="flex items-center gap-1">
-                    <h1 className="font-bold text-xs xs:text-sm lg:text-base 2xl:text-lg whitespace-nowrap">
+                    <h3 className="font-bold text-xs xs:text-sm lg:text-base 2xl:text-lg whitespace-nowrap">
                       {skills[skillKey].name}
-                    </h1>
+                    </h3>
                     <MdVerified color="#ecc526" size={iconSize} />
                     {
-                      <p className="text-[#838383] text-xs xs:text-sm lg:text-base 2xl:text-lg whitespace-nowrap ">
+                      <h4 className="text-[#838383] text-xs xs:text-sm lg:text-base 2xl:text-lg whitespace-nowrap ">
                         {`@${skills[skillKey].name.toLowerCase()} • 10h`}
-                      </p>
+                      </h4>
                     }
                   </div>
                   <p className="text-xs xs:text-sm lg:text-base 2xl:text-lg">
@@ -206,9 +206,9 @@ const Skills = () => {
               </div>
             </div>
           </div>
-        </div>
+        </section>
       ))}
-    </div>
+    </section>
   );
 };
 

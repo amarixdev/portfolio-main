@@ -1,11 +1,11 @@
 const DesktopTitle = ({ displayTitle }: { displayTitle: boolean }) => {
   return (
-    <div
+    <header
       className={`${
         displayTitle ? "opacity-100" : "opacity-0 "
       }  transition-opacity duration-500 ease-in w-full flex flex-col items-center`}
     >
-      <div className="relative sm:flex text-7xl xl:text-8xl font-extralight 3xl:text-9xl px-0  text-center text-transparent ">
+      <h1 className="relative sm:flex text-7xl xl:text-8xl font-extralight 3xl:text-9xl px-0  text-center text-transparent ">
         <p className="bg-clip-text bg-gradient-to-r from-[#b5e0fa] to-[#29aaf4] ">
           Software
         </p>{" "}
@@ -15,8 +15,8 @@ const DesktopTitle = ({ displayTitle }: { displayTitle: boolean }) => {
             eloper
           </span>
         </div>
-      </div>
-    </div>
+      </h1>
+    </header>
   );
 };
 

@@ -77,7 +77,6 @@ const DesktopApp = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const displayRef = useRef<HTMLDivElement>(null);
 
-  console.log(easeIn);
   return (
     <div
       className={`${
@@ -85,7 +84,10 @@ const DesktopApp = () => {
       }  bg-black `}
     >
       <button
-        onClick={() => setDisplayContact((prev) => !prev)}
+        onClick={() => {
+          setDisplayContact((prev) => !prev);
+          setCopied(false);
+        }}
         className={`${
           (displayTitle && theme) || displayContact
             ? "opacity-100"
@@ -94,17 +96,11 @@ const DesktopApp = () => {
           style.borderGlow
         } fixed rounded-2xl bottom-5 font-normal w-32 shadow-2xl text-lg hover:bg-[#0f0f0f] cursor-pointer transition-all duration-150 ease-in-out flex items-center justify-center right-10 h-10  z-[9999]`}
       >
-        <p
-          onClick={() => {
-            setCopied(false);
-          }}
-        >
-          {displayContact ? (
-            <AiOutlineClose size={25} />
-          ) : (
-            <LuMailPlus size={25} />
-          )}{" "}
-        </p>
+        {displayContact ? (
+          <AiOutlineClose size={25} />
+        ) : (
+          <LuMailPlus size={25} />
+        )}{" "}
       </button>
 
       <div
@@ -170,7 +166,7 @@ const DesktopApp = () => {
           heroImageLoaded={heroImageLoaded}
           showBackdrop={showBackdrop}
         />
-        <section>
+        <main className="content">
           {
             <Image
               priority
@@ -206,16 +202,6 @@ const DesktopApp = () => {
               ref={displayRef}
               className={`w-full relative bottom-24 2xl:bottom-32 pt-10 bg-gradient-to-tr bg-black flex flex-col justify-top items-center `}
             >
-              <div className="absolute w-full top-3 pb-8 flex items-start justify-center">
-                {isBreakPoint && (
-                  <div
-                    className="w-10 h-1 bg-[#aaaaaa] rounded-2xl z-[999] relative"
-                    onClick={() =>
-                      titleRef.current?.scrollIntoView({ behavior: "smooth" })
-                    }
-                  ></div>
-                )}
-              </div>
               <div
                 ref={titleRef}
                 className={`w-full mt-2 relative z-10 ${
@@ -233,7 +219,7 @@ const DesktopApp = () => {
                   autoPlay
                 ></video>
                 <DesktopTitle displayTitle={displayTitle} />
-                <div
+                <section
                   ref={themeSelectionRef}
                   className={`${
                     displayTitle ? "opacity-100" : "opacity-0"
@@ -241,9 +227,9 @@ const DesktopApp = () => {
                 >
                   <div className="flex w-[30%] pb-10 ">
                     <div className="w-full justify-center items-center flex flex-col gap-14 ">
-                      <h1 className="  font-light whitespace-nowrap flex items-center mt-5 gap-2 relative left-2 justify-start text-3xl ">
+                      <h2 className="  font-light whitespace-nowrap flex items-center mt-5 gap-2 relative left-2 justify-start text-3xl ">
                         {"Select portfolio theme"}
-                      </h1>
+                      </h2>
                       <ThemeSelection
                         themes={themes}
                         handleThemeSelection={handleThemeSelection}
@@ -251,8 +237,8 @@ const DesktopApp = () => {
                       />
                     </div>
                   </div>
-                </div>
-                <div className="w-full flex items-center justify-center">
+                </section>
+                <section className="w-full flex items-center justify-center">
                   {themeLoading ? (
                     <span
                       className={`${loaders.loaderSlide} ${
@@ -266,18 +252,18 @@ const DesktopApp = () => {
                       } w-[80%] h-[1px] bg-[#444444] relative `}
                     ></div>
                   )}
-                </div>
+                </section>
               </div>
             </div>
             {themeLoading ? (
-              <div
+              <section
                 ref={themeRef}
                 className={` ${
                   displayBanner ? "opacity-100" : "opacity-100"
                 } w-full absolute h-screen flex items-center justify-center z-0`}
-              ></div>
+              ></section>
             ) : (
-              <div
+              <section
                 ref={themeRef}
                 className={`absolute
              w-full bg-black mt-[-350px] 2xl:mt-[-650px] z-[20]`}
@@ -320,10 +306,10 @@ const DesktopApp = () => {
                     setProjectPreviews={setProjectPreviews}
                   />
                 )}
-              </div>
+              </section>
             )}
           </div>
-        </section>
+        </main>
       </div>
     </div>
   );

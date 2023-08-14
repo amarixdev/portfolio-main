@@ -37,7 +37,7 @@ const RedditSort = ({
           onOpenDrawer ? "bottom-[0px]" : "bottom-[-500px]"
         } transition-all duration-300 ease-in-out bg-gradient-to-l fixed bottom-10 z-[200] w-full px-4 pt-2 pb-4 from-[#161616] via-[#151515] to-[#151515]`}
       >
-        <h1 className=" text-sm font-medium text-[#919191]">SORT POSTS BY</h1>
+        <h3 className=" text-sm font-medium text-[#919191]">SORT POSTS BY</h3>
         <div className="h-[1px] bg-[#aaaaaa72] w-full mt-3"></div>
         <div>
           <div

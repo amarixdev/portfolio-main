@@ -67,9 +67,9 @@ const MusicThemeDesktop = ({
         easeIn ? "opacity-40 " : "opacity-100"
       } transition-all duration-200 ease-in`}
     >
-      <div className="pb-28 pl-20  relative flex flex-col items-center justify-center overflow-auto bg-gradient-to-b bg-black">
-        <div className={`flex flex-col z-[100] relative w-full pl-12`}>
-          <div className="flex gap-14 items-center">
+      <section className="pb-28 pl-20  relative flex flex-col items-center justify-center overflow-auto bg-gradient-to-b bg-black">
+        <div className={` z-[100] relative w-full pl-12`}>
+          <header className="flex gap-14 items-center">
             <Image
               height={230}
               width={230}
@@ -83,10 +83,10 @@ const MusicThemeDesktop = ({
               <AudioPlayer />
             </div>
             <div className="w-[230px] h-[230px]">
-              <h1 className="font-bold text-2xl">Amari DeVaughn</h1>
-              <h1 className={`font-medium text-2xl text-[#279bda]`}>
+              <h2 className="font-bold text-2xl">Amari DeVaughn</h2>
+              <h2 className={`font-medium text-2xl text-[#279bda]`}>
                 Software Developer
-              </h1>
+              </h2>
               <div className="flex items-center mt-1 text-sm font-medium">
                 <h3 className="text-[#949494]">{`Frontend/Backend • ${
                   getCurrentDate().year
@@ -94,9 +94,9 @@ const MusicThemeDesktop = ({
               </div>
               <div className="flex items-center mt-8 gap-1">
                 <FaReact color="#999999" />
-                <p className="font-extralight text-xs text-[#c1c1c1]">
+                <h4 className="font-extralight text-xs text-[#c1c1c1]">
                   Made with React
-                </p>
+                </h4>
               </div>
               <div ref={sectionRef} className="flex gap-2 items-center mt-16">
                 {sections.map((sections) => (
@@ -123,7 +123,7 @@ const MusicThemeDesktop = ({
                 ))}
               </div>
             </div>
-          </div>
+          </header>
         </div>
         {section === "about" ? (
           <About opened={opened} setOpened={setOpened} />
@@ -134,7 +134,7 @@ const MusicThemeDesktop = ({
         ) : (
           ""
         )}
-      </div>
+      </section>
       <div className="h-[40vh] flex items-center justify-center group">
         <p
           className="opacity-0 group-hover:opacity-100 font-medium cursor-pointer text-lg text-[#cecece] hover:text-white active:scale-90 transition-all duration-200 ease-in-out"

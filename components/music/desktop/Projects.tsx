@@ -40,7 +40,7 @@ const Projects = ({
 
   const isBreakPoint = useMediaQuery(1256);
   return (
-    <div
+    <section
       className={` ${
         isBreakPoint ? "w-full" : "w-[93%]"
       } flex flex-col items-start justify-start mt-8 select-none`}
@@ -101,7 +101,7 @@ const Projects = ({
               </div>
             )}
 
-            <h1 className="font-extrabold text-lg py-3">Description</h1>
+            <h3 className="font-extrabold text-lg py-3">Description</h3>
             <p className="pb-2">
               PromoNinja is an an all-in-one application for anyone who enjoys
               podcasts and saving money. If you are interested in learning more
@@ -270,7 +270,7 @@ const Projects = ({
               </div>
             )}
 
-            <h1 className="font-extrabold text-lg py-3">Description</h1>
+            <h3 className="font-extrabold text-lg py-3">Description</h3>
             <p className="pb-2">
               You’re already here! I had a great time creating this multi-themed
               project. I initially learned frontend development through
@@ -367,7 +367,7 @@ const Projects = ({
           </div>
         </div>
       </MusicCollapse>
-    </div>
+    </section>
   );
 };
 

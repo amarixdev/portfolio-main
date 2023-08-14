@@ -27,9 +27,9 @@ const LoadingScreen = ({
           <div className={`flex flex-col justify-evenly`}>
             <span className={`${style.loaderBrackets}`}></span>
           </div>
-          <h1 className="text-center font-extrabold text-3xl text-[#aaaaaa]">
+          <h2 className="text-center font-extrabold text-3xl text-[#aaaaaa]">
             Portfolio Loading ...
-          </h1>
+          </h2>
         </div>
       )}
     </>

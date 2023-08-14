@@ -72,52 +72,55 @@ const MusicThemeMobile = ({
         easeIn ? "opacity-20" : "opacity-100"
       } transition-all duration-200 ease-in-out  bg-[black] pb-[200px] lg:pb-0`}
     >
-      <div className="flex items-center justify-center lg:pt-6">
-        <Image
-          alt="profile"
-          src={Profile}
-          width={240}
-          height={240}
-          className="rounded-lg"
-          priority
-          placeholder="blur"
-        />
-      </div>
-      <div className="w-full flex flex-col items-center justify-center px-4 mt-6 mb-3">
-        <p className="text-white font-medium text-xl">Amari DeVaughn</p>
-        <p className={`text-[#279bda] font-normal text-xl `}>
-          Software Developer
-        </p>
-        <div
-          ref={sectionRef}
-          className="mt-4 flex justify-center gap-4 scroll-smooth  scrollbar-hide py-4 w-full"
-        >
-          {sections.map((sections) => (
-            <button
-              key={sections.name}
-              className={`${
-                sections.name === section ? `bg-[#279bda]` : "bg-[#1f1f20]"
-              } w-[150px] active:scale-95 transition-transform duration-200 ease-in-out px-2 py-[10px] rounded-lg`}
-              onClick={() => {
-                setSection(sections.name);
-              }}
-            >
-              <div className="flex w-full items-center justify-center gap-1">
-                {sections.icon}
-                <p
-                  className={` ${
-                    sections.name === section
-                      ? "text-[#1f1f20]"
-                      : `text-[#279bda]`
-                  }  font-medium text-xs xs:text-sm`}
-                >
-                  {capitalizeString(sections.name)}
-                </p>
-              </div>
-            </button>
-          ))}
+      <header>
+        <div className="flex items-center justify-center lg:pt-6">
+          <Image
+            alt="profile"
+            src={Profile}
+            width={240}
+            height={240}
+            className="rounded-lg"
+            priority
+            placeholder="blur"
+          />
         </div>
-      </div>
+        <div className="w-full flex flex-col items-center justify-center px-4 mt-6 mb-3">
+          <h2 className="text-white font-medium text-xl">Amari DeVaughn</h2>
+          <h2 className={`text-[#279bda] font-normal text-xl `}>
+            Software Developer
+          </h2>
+          <div
+            ref={sectionRef}
+            className="mt-4 flex justify-center gap-4 scroll-smooth  scrollbar-hide py-4 w-full"
+          >
+            {sections.map((sections) => (
+              <button
+                key={sections.name}
+                className={`${
+                  sections.name === section ? `bg-[#279bda]` : "bg-[#1f1f20]"
+                } w-[150px] active:scale-95 transition-transform duration-200 ease-in-out px-2 py-[10px] rounded-lg`}
+                onClick={() => {
+                  setSection(sections.name);
+                }}
+              >
+                <div className="flex w-full items-center justify-center gap-1">
+                  {sections.icon}
+                  <p
+                    className={` ${
+                      sections.name === section
+                        ? "text-[#1f1f20]"
+                        : `text-[#279bda]`
+                    }  font-medium text-xs xs:text-sm`}
+                  >
+                    {capitalizeString(sections.name)}
+                  </p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </header>
+
       {section === "about" ? (
         <About
           tutorial={tutorial}

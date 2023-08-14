@@ -107,7 +107,7 @@ const TwitterThemeDesktop = ({
         easeIn ? "opacity-40" : "opacity-100 "
       } transition-all duration-200 ease-in relative`}
     >
-      <div className="w-full min-h-full max-w-[25%] border-r-[1px] clear-left flex justify-center">
+      <section className="w-full min-h-full max-w-[25%] border-r-[1px] clear-left flex justify-center">
         <div className=" select-none h-full  w-full flex flex-col items-center relative ">
           <div className=" flex flex-col items-start justify-center">
             <div className=" flex items-center relative  left-[22px] rounded-3xl">
@@ -145,8 +145,8 @@ const TwitterThemeDesktop = ({
             </button>
           </div>
         </div>
-      </div>
-      <div className={` w-[40%] flex items-center justify-center relative`}>
+      </section>
+      <section className={` w-[40%] flex items-center justify-center relative`}>
         <div
           className={`w-full bg-[#060606] ${
             profileOpen ? "opacity-0 z-0" : "opacity-100 z-50"
@@ -158,186 +158,190 @@ const TwitterThemeDesktop = ({
               alt="backdrop"
               className="object-cover object-top h-full w-full"
               priority
-              quality={50}
               placeholder="blur"
             />
           </div>
           <div className=" relative">
-            <div className=" bottom-8 px-4 relative mt-1 flex w-full justify-between items-center">
-              <Image
-                src={Profile}
-                alt="profile"
-                height={avatarSizeMain}
-                width={avatarSizeMain}
-                className="rounded-full cursor-pointer relative"
-                onClick={() => {
-                  setProfileOpen(true);
-                }}
-                placeholder="blur"
-                quality={50}
-                priority
-              />
-              {following ? (
-                <Menu>
-                  {
-                    <MenuButton
-                      as={"button"}
-                      className={`px-4 rounded-2xl mt-2  border-[1px] border-[#aaaaaa86] "bg-black w-[100px] h-[30px] text-black `}
+            <header>
+              <div className=" bottom-8 px-4 relative mt-1 flex w-full justify-between items-center">
+                <Image
+                  src={Profile}
+                  alt="profile"
+                  height={avatarSizeMain}
+                  width={avatarSizeMain}
+                  className="rounded-full cursor-pointer relative"
+                  onClick={() => {
+                    setProfileOpen(true);
+                  }}
+                  placeholder="blur"
+                  priority
+                />
+                {following ? (
+                  <Menu>
+                    {
+                      <MenuButton
+                        as={"button"}
+                        className={`px-4 rounded-2xl mt-2  border-[1px] border-[#aaaaaa86] "bg-black w-[100px] h-[30px] text-black `}
+                      >
+                        {" "}
+                        <p className={` ${"text-white"} text-sm font-semibold`}>
+                          Following
+                        </p>
+                      </MenuButton>
+                    }
+                    <MenuList
+                      bgColor={"#1f1f20"}
+                      border={"none"}
+                      display={"flex"}
+                      justifyContent={"center"}
+                      alignItems={"center"}
+                      gap={"4px"}
+                      cursor={"pointer"}
+                      onClick={() => setFollowing(false)}
                     >
-                      {" "}
-                      <p className={` ${"text-white"} text-sm font-semibold`}>
-                        Following
-                      </p>
-                    </MenuButton>
-                  }
-                  <MenuList
-                    bgColor={"#1f1f20"}
-                    border={"none"}
-                    display={"flex"}
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    gap={"4px"}
-                    cursor={"pointer"}
-                    onClick={() => setFollowing(false)}
-                  >
-                    <p className="text-[#ff3300]">Unfollow @amarixdev</p>
-                    <RiUserUnfollowLine color="#ff3300" />
-                  </MenuList>
-                </Menu>
-              ) : (
-                <button
-                  className={` rounded-2xl 
+                      <p className="text-[#ff3300]">Unfollow @amarixdev</p>
+                      <RiUserUnfollowLine color="#ff3300" />
+                    </MenuList>
+                  </Menu>
+                ) : (
+                  <button
+                    className={` rounded-2xl 
              bg-white
                w-[100px] h-[30px] mt-2 `}
-                  onClick={() => setFollowing((prev) => !prev)}
-                >
-                  <p className={` text-black text-sm font-semibold`}>
-                    {"Follow"}
-                  </p>
-                </button>
-              )}
-            </div>
-            <div className="px-4 w-full">
-              <div className="flex flex-col items-start justify-center mt-[-20px]">
-                <div className="flex items-center gap-1">
-                  <h1 className="font-extrabold text-xl ">Amari DeVaughn</h1>
-                  <MdVerified color="#26a7de" size={verifiedIconSize} />
-                </div>
-                <h3 className="text-[#777777]">@amarixdev</h3>
-                <p className="text-base">Software Developer. Tar Heel </p>
-                <div className="flex gap-2 w-full items-center mt-1">
-                  <div className="flex gap-[2px] items-center">
-                    <HiOutlineLocationMarker color="#777" size={13} />
-                    <p className="text-sm text-[#777777]">NC</p>
-                  </div>
-                  <div className="flex gap-[2px] items-center">
-                    <AiOutlineLink color="#777" size={13} />
-                    <p className="text-sm text-[#26a7de]">amaridevaughn.com</p>
-                  </div>
-                  <div className="flex gap-[3px] items-center">
-                    <BsCalendar3 color="#777" size={10} />
-                    <p className="text-sm text-[#777777]">
-                      {`Joined ${getCurrentDate().monthYear}`}
+                    onClick={() => setFollowing((prev) => !prev)}
+                  >
+                    <p className={` text-black text-sm font-semibold`}>
+                      {"Follow"}
                     </p>
+                  </button>
+                )}
+              </div>
+              <div className="px-4 w-full">
+                <div className="flex flex-col items-start justify-center mt-[-20px]">
+                  <div className="flex items-center gap-1">
+                    <h2 className="font-extrabold text-xl ">Amari DeVaughn</h2>
+                    <MdVerified color="#26a7de" size={verifiedIconSize} />
                   </div>
-                </div>
-                <div className="flex mt-2 gap-3">
-                  <div className="flex items-center">
-                    <p className="text-white font-bold mr-1 text-sm">999</p>
-                    <h1 className="text-sm text-[#777777]">Following</h1>
+                  <h3 className="text-[#777777]">@amarixdev</h3>
+                  <h4 className="text-base">Software Developer. Tar Heel </h4>
+                  <div className="flex gap-2 w-full items-center mt-1">
+                    <div className="flex gap-[2px] items-center">
+                      <HiOutlineLocationMarker color="#777" size={13} />
+                      <p className="text-sm text-[#777777]">NC</p>
+                    </div>
+                    <div className="flex gap-[2px] items-center">
+                      <AiOutlineLink color="#777" size={13} />
+                      <h4 className="text-sm text-[#26a7de]">
+                        amaridevaughn.com
+                      </h4>
+                    </div>
+                    <div className="flex gap-[3px] items-center">
+                      <BsCalendar3 color="#777" size={10} />
+                      <p className="text-sm text-[#777777]">
+                        {`Joined ${getCurrentDate().monthYear}`}
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex items-center">
-                    <p className="text-white font-bold mr-1 text-sm">
-                      {following ? "1000" : "999"}
-                    </p>
-                    <h1 className="text-sm text-[#777777]">Followers</h1>
+                  <div className="flex mt-2 gap-3">
+                    <div className="flex items-center">
+                      <p className="text-white font-bold mr-1 text-sm">999</p>
+                      <p className="text-sm text-[#777777]">Following</p>
+                    </div>
+                    <div className="flex items-center">
+                      <p className="text-white font-bold mr-1 text-sm">
+                        {following ? "1000" : "999"}
+                      </p>
+                      <p className="text-sm text-[#777777]">Followers</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <Tabs
-              ref={sectionRef}
-              position="relative"
-              variant="unstyled"
-              className="mt-3"
-            >
-              <TabList
-                display={"flex"}
-                w="full"
-                justifyContent={"space-evenly"}
+            </header>
+            <section>
+              <Tabs
+                ref={sectionRef}
+                position="relative"
+                variant="unstyled"
+                className="mt-3"
               >
-                <Tab
-                  onClick={() => handleSelect("about")}
-                  className="hover:bg-[#aaaaaa28] w-[80%]"
+                <TabList
+                  display={"flex"}
+                  w="full"
+                  justifyContent={"space-evenly"}
                 >
-                  <p
+                  <Tab
                     onClick={() => handleSelect("about")}
-                    className={`${
-                      section === "about" ? "text-white" : "text-[#777777]"
-                    }  font-semibold text-base  active:text-[#222222] transition-colors duration-[400ms] ease-in-out`}
+                    className="hover:bg-[#aaaaaa28] w-[80%]"
                   >
-                    About
-                  </p>
-                </Tab>
-                <Tab
-                  margin={0}
-                  onClick={() => handleSelect("projects")}
-                  className="hover:bg-[#aaaaaa28]  w-[80%]"
-                >
-                  {" "}
-                  <p
+                    <p
+                      onClick={() => handleSelect("about")}
+                      className={`${
+                        section === "about" ? "text-white" : "text-[#777777]"
+                      }  font-semibold text-base  active:text-[#222222] transition-colors duration-[400ms] ease-in-out`}
+                    >
+                      About
+                    </p>
+                  </Tab>
+                  <Tab
+                    margin={0}
                     onClick={() => handleSelect("projects")}
-                    className={`${
-                      section === "projects" ? "text-white" : "text-[#777777]"
-                    } font-semibold text-base  active:text-[#222222] transition-all duration-[400ms] ease-in-out`}
+                    className="hover:bg-[#aaaaaa28]  w-[80%]"
                   >
-                    Projects
-                  </p>
-                </Tab>
-                <Tab
-                  onClick={() => handleSelect("skills")}
-                  className="hover:bg-[#aaaaaa28] w-[80%]"
-                >
-                  {" "}
-                  <p
-                    className={`${
-                      section === "skills" ? "text-white" : "text-[#777777]"
-                    } font-semibold text-base  active:text-[#222222] transition-all duration-[400ms] ease-in-out`}
+                    {" "}
+                    <p
+                      onClick={() => handleSelect("projects")}
+                      className={`${
+                        section === "projects" ? "text-white" : "text-[#777777]"
+                      } font-semibold text-base  active:text-[#222222] transition-all duration-[400ms] ease-in-out`}
+                    >
+                      Projects
+                    </p>
+                  </Tab>
+                  <Tab
+                    onClick={() => handleSelect("skills")}
+                    className="hover:bg-[#aaaaaa28] w-[80%]"
                   >
-                    Skills
-                  </p>
-                </Tab>
-              </TabList>
-              <div className=" bg-[#aaaaaa71] min-h-[0.5px] relative"></div>
+                    {" "}
+                    <p
+                      className={`${
+                        section === "skills" ? "text-white" : "text-[#777777]"
+                      } font-semibold text-base  active:text-[#222222] transition-all duration-[400ms] ease-in-out`}
+                    >
+                      Skills
+                    </p>
+                  </Tab>
+                </TabList>
+                <div className=" bg-[#aaaaaa71] min-h-[0.5px] relative"></div>
 
-              <TabIndicator
-                mt="-1.5px"
-                height="3px"
-                bg="#26a7de"
-                borderRadius="5px"
-              />
-              <TabPanels>
-                <TabPanel padding={0}>
-                  <About />
-                </TabPanel>
-                <TabPanel padding={0}>
-                  <Projects
-                    setPreviewsOpen={setPreviewsOpen}
-                    setImageIndex={setImageIndex}
-                    setProjectPreviews={setProjectPreviews}
-                  />
-                </TabPanel>
-                <TabPanel padding={0}>
-                  <Skills />
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
+                <TabIndicator
+                  mt="-1.5px"
+                  height="3px"
+                  bg="#26a7de"
+                  borderRadius="5px"
+                />
+                <TabPanels>
+                  <TabPanel padding={0}>
+                    <About />
+                  </TabPanel>
+                  <TabPanel padding={0}>
+                    <Projects
+                      setPreviewsOpen={setPreviewsOpen}
+                      setImageIndex={setImageIndex}
+                      setProjectPreviews={setProjectPreviews}
+                    />
+                  </TabPanel>
+                  <TabPanel padding={0}>
+                    <Skills />
+                  </TabPanel>
+                </TabPanels>
+              </Tabs>
+            </section>
           </div>
         </div>
-      </div>
-      <div className="max-w-[30%] min-h-full border-l-[1px] flex justify-start pl-6">
+      </section>
+      <section className="max-w-[30%] min-h-full border-l-[1px] flex justify-start pl-6">
         <div className="w-[90%] flex flex-col items-center gap-5">
-          <div className="h-[200px] cursor-pointer w-[90%] rounded-3xl grid grid-cols-3 grid-rows-2 gap-1 overflow-hidden">
+          <section className="h-[200px] cursor-pointer w-[90%] rounded-3xl grid grid-cols-3 grid-rows-2 gap-1 overflow-hidden">
             {projectMedia.promoninja.previews.map((img, index) => (
               <div
                 key={index}
@@ -357,22 +361,20 @@ const TwitterThemeDesktop = ({
                 />
               </div>
             ))}
-          </div>
-          <div className="bg-[#16181C] rounded-3xl  w-[90%] flex flex-col p-4 pb-6">
-            <h1 className="text-xl font-extrabold">What&apos;s happening</h1>
+          </section>
+          <section className="bg-[#16181C] rounded-3xl  w-[90%] flex flex-col p-4 pb-6">
+            <h3 className="text-xl font-extrabold">What&apos;s happening</h3>
             {trendingTopics.map((trending) => (
               <div key={trending.topic}>
-                <h3 className="pt-6 text-sm text-[#999]">{trending.title}</h3>
-                <h1 className="font-bold">{trending.topic}</h1>
-                <h3 className="text-sm text-[#999]">
-                  {trending.tweets} Tweets
-                </h3>
+                <h4 className="pt-6 text-sm text-[#999]">{trending.title}</h4>
+                <h5 className="font-bold">{trending.topic}</h5>
+                <p className="text-sm text-[#999]">{trending.tweets} Tweets</p>
               </div>
             ))}
-          </div>
+          </section>
 
-          <div className="bg-[#16181C] rounded-3xl pb-5 w-[90%] flex flex-col ">
-            <h1 className="text-xl font-extrabold mb-6 p-4">Who to follow</h1>
+          <section className="bg-[#16181C] rounded-3xl pb-5 w-[90%] flex flex-col ">
+            <h3 className="text-xl font-extrabold mb-6 p-4">Who to follow</h3>
             {whoToFollow.map((account) => (
               <div
                 key={account.title}
@@ -390,12 +392,12 @@ const TwitterThemeDesktop = ({
                   />
                   <div className="flex flex-col">
                     <div className="items-center flex gap-1">
-                      <h3 className="font-bold text-xs xl:text-base">
+                      <h4 className="font-bold text-xs xl:text-base">
                         {account.title}
-                      </h3>
+                      </h4>
                       <MdVerified color="#ecc526" size={18} />
                     </div>
-                    <h3 className="text-[#999] text-xs xl:text-base">{`@${account.title.toLowerCase()} `}</h3>
+                    <h5 className="text-[#999] text-xs xl:text-base">{`@${account.title.toLowerCase()} `}</h5>
                   </div>
                 </div>
                 <button
@@ -464,9 +466,9 @@ const TwitterThemeDesktop = ({
                 </button>
               </div>
             ))}
-          </div>
+          </section>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

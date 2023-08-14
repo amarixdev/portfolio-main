@@ -1,10 +1,6 @@
 import { Button, Input, Spinner, Textarea } from "@chakra-ui/react";
 import emailjs from "@emailjs/browser";
-import {
-  useEffect,
-  useRef,
-  useState
-} from "react";
+import { useEffect, useRef, useState } from "react";
 import { AiOutlineCopy } from "react-icons/ai";
 import { ENV } from "../../environment";
 import { useMediaQuery } from "../../util/hooks";
@@ -12,7 +8,6 @@ import { useMediaQuery } from "../../util/hooks";
 const ContactForm = ({
   copied,
   setCopied,
-
 }: {
   copied: boolean;
   setCopied: (copied: boolean) => void;
@@ -21,7 +16,6 @@ const ContactForm = ({
   const simulateAPICall = () => {
     return new Promise((resolve: (value: void) => void) => {
       setTimeout(() => {
-        console.log("test");
         resolve();
       }, 2000);
     });
@@ -164,11 +158,11 @@ const ContactForm = ({
 
   return (
     <div className="w-full flex flex-col relative pt-24 lg:pt-16 items-center ">
-      <p className="font-bold text-4xl"> Let&apos;s Chat</p>
+      <h2 className="font-bold text-4xl"> Let&apos;s Chat</h2>
       <div className="flex items-center">
-        <p className="font-light text-lg text-[#bcbcbc] rounded-3xl px-4">
+        <h3 className="font-light text-lg text-[#bcbcbc] rounded-3xl px-4">
           amaridev@alumni.unc.edu
-        </p>
+        </h3>
         <button
           onClick={() => {
             handleCopyButton(false, "click");
@@ -219,7 +213,7 @@ const ContactForm = ({
           "Email copied to Clipboard"}
       </h3>
       <form className="pt-12" ref={formRef}>
-        <div className="flex flex-col gap-4">
+        <section className="flex flex-col gap-4">
           <div>
             <h3 className="font-medium"> What&apos;s your name?</h3>
             <Input
@@ -288,7 +282,7 @@ const ContactForm = ({
           >
             Send
           </Button>
-        </div>
+        </section>
       </form>
     </div>
   );

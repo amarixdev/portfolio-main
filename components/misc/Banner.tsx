@@ -98,7 +98,7 @@ const Banner = ({
       )}
       <div className={`${bannerStyle} select-none`}>
         {
-          <p
+          <h2
             onClick={() => {
               if (previewsOpen || profileOpen) {
                 return;
@@ -109,7 +109,7 @@ const Banner = ({
             className="font-extrabold text-sm xs:text-base lg:text-3xl text-center cursor-pointer "
           >
             Portfolio
-          </p>
+          </h2>
         }
         <Menu>
           <MenuButton>
@@ -128,16 +128,16 @@ const Banner = ({
                 {themes[theme]?.iconBanner}
               </div>
               {
-                <p
+                <h2
                   className={`text-[#26a7de] ${
                     displaySection ? "opacity-100" : "opacity-0"
                   }  absolute right-24 lg:right-[180px] transition-all duration-300 ease-in-out text-sm lg:text-2xl font-bold`}
                 >
                   {capitalizeString(section)}
-                </p>
+                </h2>
               }
               <div className="flex items-center lg:gap-2 lg:pr-10 ">
-                <h1 className=" font-medium text-sm lg:text-2xl">Theme</h1>
+                <h2 className=" font-medium text-sm lg:text-2xl">Theme</h2>
                 <FiChevronDown size={20} />
               </div>
             </div>
@@ -160,14 +160,12 @@ const Banner = ({
                       wrapperRef.current.scrollTop;
 
                     if (isBreakPoint) {
-                      console.log("running...");
                       wrapperRef.current.scrollTo({
                         top: scrollPosition + 150,
                         behavior: "instant",
                       });
                     }
                     if (!isBreakPoint) {
-                      console.log("running....");
                       wrapperRef.current.scrollTo({
                         top: scrollPosition - 260,
                         behavior: "instant",

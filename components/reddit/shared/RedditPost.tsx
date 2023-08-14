@@ -67,7 +67,7 @@ const RedditPost = ({
   };
 
   return (
-    <div
+    <section
       className={`lg:flex lg:border-[1px] rounded-sm  hover:lg:border-[#777] relative`}
     >
       <div className="hidden lg:block bg-[#0c0c0c]">
@@ -160,7 +160,7 @@ const RedditPost = ({
           </div>
         </div>
       </div>
-      <div
+      <section
         className={`w-full rounded-sm lg:rounded-none  bg-[#161616] ${
           topPost || "mt-3 lg:mt-0"
         }`}
@@ -177,12 +177,12 @@ const RedditPost = ({
               placeholder="blur"
             />
             <div>
-              <p className="font-semibold text-xs lg:text-sm text-[#aaaaaa]">
+              <h3 className="font-semibold text-xs lg:text-sm text-[#aaaaaa]">
                 {`r/${subreddit.name}`}
-              </p>
-              <p className="text-xs text-[#aaaaaa]">
+              </h3>
+              <h4 className="text-xs text-[#aaaaaa]">
                 {username} &#x2022; {time}
-              </p>
+              </h4>
             </div>
           </div>
           {/* Awards */}
@@ -220,12 +220,12 @@ const RedditPost = ({
           </div>
         </div>
 
-        <div>
-          <p className="font-semibold text-lg lg:text-xl text-[#d2d2d2] px-4">
+        <section>
+          <h2 className="font-semibold text-lg lg:text-xl text-[#d2d2d2] px-4">
             {title}
-          </p>
+          </h2>
           {children}
-        </div>
+        </section>
         <div className="w-full flex items-center py-3 px-4 justify-between lg:justify-end">
           {isBreakPoint && (
             <div className="flex items-center">
@@ -330,8 +330,8 @@ const RedditPost = ({
             <p className="text-[#777] font-semibold text-sm">Award</p>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </section>
   );
 };
 

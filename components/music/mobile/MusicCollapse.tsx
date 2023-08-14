@@ -89,9 +89,9 @@ const MusicCollapse = ({
               <p>{count}</p>
             )}
           </div>
-          <p className={`text-white absolute left-14 `}>
+          <h3 className={`text-white absolute left-14 `}>
             {capitalizeString(title)}
-          </p>
+          </h3>
           {top && (
             <div
               className={`absolute left-[200px] bottom-[-12px] ${
@@ -112,9 +112,9 @@ const MusicCollapse = ({
           <div className="h-screen animate-pulse bg-gradient-to-b from-[#131313]"></div>
         ) : (
           <Collapse in={isOpen && selectedCollapse === title} animateOpacity>
-            <div className={`w-full text-[#aaaaaa] flex flex-col mt-3 pb-6 `}>
+            <section className={`w-full text-[#aaaaaa] flex flex-col mt-3 pb-6 `}>
               {children}
-            </div>
+            </section>
           </Collapse>
         )}
       </div>

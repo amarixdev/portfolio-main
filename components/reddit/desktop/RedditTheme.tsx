@@ -74,135 +74,44 @@ const RedditTheme = ({
         {openDrawer && (
           <div className="h-screen bg-[#0000006b]  fixed z-[150] w-full"></div>
         )}
-        <div className={`flex flex-col relative `}>
-          <div className="flex w-full justify-center gap-4 ">
-            <div
-              ref={sectionRef}
-              className=" max-w-[700px] flex flex-col bg-black relative"
-            >
-              <RedditTabs section={section} handleSelect={handleSelect} />
-              <div>
-                <div
-                  className={`flex items-center w-full gap-1 py-3 ${
-                    section === "skills" ? "pl-4" : "pl-2"
-                  } bg-[#010101] `}
-                >
-                  {section === "skills" || <BsFire color="#aaaaaa" size={18} />}
-                  <div className="flex items-center gap-1">
-                    <p className="text-xs font-bold text-[#aaaaaa]">
-                      {section === "skills" ? "TROPHIES" : "HOT POSTS"}
-                    </p>
-                  </div>
-                </div>
 
-                {section === "about" ? (
-                  <About
-                    awardsArray={awardsArray}
-                    openAwards={openAwards}
-                    setSection={setSection}
-                    selectedTitle={selectedTitle}
-                    setSelectedTitle={setSelectedTitle}
-                  />
-                ) : section === "projects" ? (
-                  <Projects
-                    awardsArray={awardsArray}
-                    openAwards={openAwards}
-                    setSection={setSection}
-                    selectedTitle={selectedTitle}
-                    setSelectedTitle={setSelectedTitle}
-                  />
-                ) : section === "skills" ? (
-                  <Skills
-                    awardsArray={awardsArray}
-                    openAwards={openAwards}
-                    setSection={setSection}
-                    selectedTitle={selectedTitle}
-                    setSelectedTitle={setSelectedTitle}
-                  />
-                ) : (
-                  <About
-                    awardsArray={awardsArray}
-                    openAwards={openAwards}
-                    setSection={setSection}
-                    selectedTitle={selectedTitle}
-                    setSelectedTitle={setSelectedTitle}
-                  />
-                )}
+        <section className="flex w-full justify-center gap-4 ">
+          <div
+            ref={sectionRef}
+            className=" max-w-[700px] flex flex-col bg-black relative"
+          >
+            <RedditTabs section={section} handleSelect={handleSelect} />
+            <div>
+              <div
+                className={`flex items-center w-full gap-1 py-3 ${
+                  section === "skills" ? "pl-4" : "pl-2"
+                } bg-[#010101] `}
+              >
+                {section === "skills" || <BsFire color="#aaaaaa" size={18} />}
+                <div className="flex items-center gap-1">
+                  <p className="text-xs font-bold text-[#aaaaaa]">
+                    {section === "skills" ? "TROPHIES" : "HOT POSTS"}
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="flex flex-col gap-6">
-              <div className="border-[1px] h-[400px] overflow-hidden w-[350px] relative rounded-md mr-10 justify-center bg-[#161616]">
-                <Image
-                  src={Grid}
-                  priority
-                  alt="backdrop-grid"
-                  className="w-full h-[125px]"
-                  placeholder="blur"
+
+              {section === "about" ? (
+                <About
+                  awardsArray={awardsArray}
+                  openAwards={openAwards}
+                  setSection={setSection}
+                  selectedTitle={selectedTitle}
+                  setSelectedTitle={setSelectedTitle}
                 />
-                <div className="w-full flex flex-col items-center absolute top-4">
-                  <Image
-                    height={160}
-                    width={160}
-                    alt="avatar"
-                    src={avatarStyles[styleIndex]}
-                    priority
-                    className={`z-[100] right-2 relative `}
-                    placeholder="blur"
-                  />
-                  {/* <div className="bg-[#060606] w-[60px] h-[28px] right-[140px] top-[135px] rounded-[50%] absolute"></div> */}
-                  <div className="w-full flex-col flex items-center relative">
-                    <h1 className="text-2xl font-semibold text-[#c6c6c6] px-4">
-                      Amari DeVaughn
-                    </h1>
-                    <p className="px-4 text-xs font-medium  text-[#696969]">
-                      u/amarixdev
-                    </p>
-                    <button
-                      onClick={() => changeStyle()}
-                      className="w-[90%] cursor-pointer active:scale-95 transition-all duration-200 ease-in-out   rounded-full justify-center relative bg-[#333] flex items-center h-8 mt-1 bg-gradient-to-r from-[#0467f1] to-[#18a9fd] hover:from-[#0359d2] hover:to-[#1595df]"
-                    >
-                      <GiTShirt size={18} className="absolute left-5" />
-                      <p className="font-bold text-sm">Style Avatar</p>
-                    </button>
-                    <div className=" font-semibold text-sm w-full flex gap-20 mt-3 px-4 ">
-                      <div className="flex flex-col">
-                        <h3 className="">Karma</h3>
-                        <div className="flex items-center gap-1 mt-1">
-                          <GiTwirlyFlower size={12} color="#29aaf4" />
-                          <p className="text-[#8a8a8a] text-xs font-normal">
-                            2,132
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-col">
-                        <h3 className="">Cake Day</h3>
-                        <div className="flex items-center gap-1 mt-1">
-                          <GiCakeSlice size={12} color="#29aaf4" />
-                          <p className="text-[#8a8a8a] text-xs font-normal">
-                            {getCurrentDate().fullDate}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className=" font-semibold text-sm w-full flex gap-20 px-4 mt-5">
-                      <div className="flex flex-col">
-                        <h3 className="">Followers</h3>
-                        <div className="flex items-center gap-1 mt-1">
-                          <BsFillPersonFill size={12} color="#29aaf4" />
-                          <p className="text-[#8a8a8a] text-xs font-normal">
-                            15
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className=" border-[1px] hover:border-[#777] pb-5 w-[350px] h-[440px] overflow-y-scroll relative rounded-md mr-10 justify-center bg-[#161616]">
-                <h2 className="px-4 rounded-t-md font-bold text-[#777] text-base py-2 sticky top-0 bg-[#161616]">
-                  Skill Case (18)
-                </h2>
+              ) : section === "projects" ? (
+                <Projects
+                  awardsArray={awardsArray}
+                  openAwards={openAwards}
+                  setSection={setSection}
+                  selectedTitle={selectedTitle}
+                  setSelectedTitle={setSelectedTitle}
+                />
+              ) : section === "skills" ? (
                 <Skills
                   awardsArray={awardsArray}
                   openAwards={openAwards}
@@ -210,10 +119,98 @@ const RedditTheme = ({
                   selectedTitle={selectedTitle}
                   setSelectedTitle={setSelectedTitle}
                 />
-              </div>
+              ) : (
+                <About
+                  awardsArray={awardsArray}
+                  openAwards={openAwards}
+                  setSection={setSection}
+                  selectedTitle={selectedTitle}
+                  setSelectedTitle={setSelectedTitle}
+                />
+              )}
             </div>
           </div>
-        </div>
+          <div className="flex flex-col gap-6">
+            <section className="border-[1px] h-[400px] overflow-hidden w-[350px] relative rounded-md mr-10 justify-center bg-[#161616]">
+              <Image
+                src={Grid}
+                priority
+                alt="backdrop-grid"
+                className="w-full h-[125px]"
+                placeholder="blur"
+              />
+              <div className="w-full flex flex-col items-center absolute top-4">
+                <Image
+                  height={160}
+                  width={160}
+                  alt="avatar"
+                  src={avatarStyles[styleIndex]}
+                  priority
+                  className={`z-[100] right-2 relative `}
+                  placeholder="blur"
+                />
+                {/* <div className="bg-[#060606] w-[60px] h-[28px] right-[140px] top-[135px] rounded-[50%] absolute"></div> */}
+                <header className="w-full flex-col flex items-center relative">
+                  <h2 className="text-2xl font-semibold text-[#c6c6c6] px-4">
+                    Amari DeVaughn
+                  </h2>
+                  <h3 className="px-4 text-xs font-medium  text-[#696969]">
+                    u/amarixdev
+                  </h3>
+                  <button
+                    onClick={() => changeStyle()}
+                    className="w-[90%] cursor-pointer active:scale-95 transition-all duration-200 ease-in-out   rounded-full justify-center relative bg-[#333] flex items-center h-8 mt-1 bg-gradient-to-r from-[#0467f1] to-[#18a9fd] hover:from-[#0359d2] hover:to-[#1595df]"
+                  >
+                    <GiTShirt size={18} className="absolute left-5" />
+                    <p className="font-bold text-sm">Style Avatar</p>
+                  </button>
+                  <div className=" font-semibold text-sm w-full flex gap-20 mt-3 px-4 ">
+                    <div className="flex flex-col">
+                      <h3 className="">Karma</h3>
+                      <div className="flex items-center gap-1 mt-1">
+                        <GiTwirlyFlower size={12} color="#29aaf4" />
+                        <p className="text-[#8a8a8a] text-xs font-normal">
+                          2,132
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col">
+                      <h3 className="">Cake Day</h3>
+                      <div className="flex items-center gap-1 mt-1">
+                        <GiCakeSlice size={12} color="#29aaf4" />
+                        <p className="text-[#8a8a8a] text-xs font-normal">
+                          {getCurrentDate().fullDate}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" font-semibold text-sm w-full flex gap-20 px-4 mt-5">
+                    <div className="flex flex-col">
+                      <h3 className="">Followers</h3>
+                      <div className="flex items-center gap-1 mt-1">
+                        <BsFillPersonFill size={12} color="#29aaf4" />
+                        <p className="text-[#8a8a8a] text-xs font-normal">15</p>
+                      </div>
+                    </div>
+                  </div>
+                </header>
+              </div>
+            </section>
+            <section className=" border-[1px] hover:border-[#777] pb-5 w-[350px] h-[440px] overflow-y-scroll relative rounded-md mr-10 justify-center bg-[#161616]">
+              <h2 className="px-4 rounded-t-md font-bold text-[#777] text-base py-2 sticky top-0 bg-[#161616]">
+                Skill Case (18)
+              </h2>
+              <Skills
+                awardsArray={awardsArray}
+                openAwards={openAwards}
+                setSection={setSection}
+                selectedTitle={selectedTitle}
+                setSelectedTitle={setSelectedTitle}
+              />
+            </section>
+          </div>
+        </section>
       </div>
     </div>
   );

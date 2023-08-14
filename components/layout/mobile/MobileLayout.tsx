@@ -328,7 +328,7 @@ const MobileApp = () => {
         />
         <LoadingScreen heroImageLoaded={heroImageLoaded} />
 
-        <div id="group1" className="parallax__group">
+        <section id="group1" className="parallax__group">
           <div className="parallax__layer parallax__layer--base">
             <Image
               placeholder="blur"
@@ -359,9 +359,9 @@ const MobileApp = () => {
               }
             />
           </div>
-        </div>
+        </section>
         {background && foreground && (
-          <div id="group2" ref={extendRef} className="parallax__group relative">
+          <section id="group2" ref={extendRef} className="parallax__group relative">
             <div className="parallax__layer parallax__layer--base "></div>
             <div className="title w-full flex items-center justify-center">
               {
@@ -386,16 +386,16 @@ const MobileApp = () => {
                   ref={videoRef}
                 ></video>
                 <MobileTitle displayTitle={displayTitle} />
-                <div
+                <section
                   ref={themeSelectionRef}
                   className={`${
                     displayTitle ? "opacity-100" : "opacity-0"
                   } transition-opacity duration-500 ease-in z-50 w-full mt-10 flex flex-col items-center justify-center`}
                 >
                   <div className="w-full items-center justify-center flex flex-col ">
-                    <h1 className=" font-light flex items-center gap-2 relative left-2 justify-start text-xl min-w-[160px] ">
+                    <h2 className=" font-light flex items-center gap-2 relative left-2 justify-start text-xl min-w-[160px] ">
                       {"Select portfolio theme"}
-                    </h1>
+                    </h2>
                     <ThemeSelection
                       themes={themes}
                       handleThemeSelection={handleThemeSelection}
@@ -417,12 +417,12 @@ const MobileApp = () => {
                       } w-[90%] h-[1px] bg-[#444444] relative  top-[38px]`}
                     ></div>
                   )}
-                </div>
+                </section>
               </div>
               {themeLoading ? (
                 <div ref={themeRef}></div>
               ) : (
-                <div
+                <section
                   ref={themeRef}
                   className="w-full absolute top-[480px] z-[20]"
                 >
@@ -467,10 +467,10 @@ const MobileApp = () => {
                       setProjectPreviews={setProjectPreviews}
                     />
                   )}
-                </div>
+                </section>
               )}
             </div>
-          </div>
+          </section>
         )}
       </div>
     </>

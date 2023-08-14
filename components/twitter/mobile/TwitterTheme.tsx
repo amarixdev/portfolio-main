@@ -95,8 +95,8 @@ const TwitterTheme = ({
               placeholder="blur"
             />
           </div>
-          <div className=" relative">
-            <div className=" bottom-8 px-4 relative mt-1 flex w-full justify-between items-center">
+          <header>
+            <div className="bottom-8 px-4 relative mt-1 flex w-full justify-between items-center">
               <Image
                 src={Profile}
                 alt="profile"
@@ -149,119 +149,114 @@ const TwitterTheme = ({
                 </button>
               )}
             </div>
-            <div className="px-4 w-full">
-              <div className="flex flex-col items-start justify-center mt-[-20px]">
-                <div className="flex items-center gap-1">
-                  <h1 className="font-extrabold text-xl ">Amari DeVaughn</h1>
-                  <MdVerified color="#26a7de" size={verifiedIconSize} />
+
+            <div className="flex px-4 w-full flex-col items-start justify-center mt-[-20px]">
+              <div className="flex items-center gap-1">
+                <h2 className="font-extrabold text-xl ">Amari DeVaughn</h2>
+                <MdVerified color="#26a7de" size={verifiedIconSize} />
+              </div>
+              <h3 className="text-[#777777]">@amarixdev</h3>
+              <p className="text-sm ">Software Developer. Tar Heel </p>
+              <div className="flex gap-2 w-full items-center mt-1">
+                <div className="flex gap-[2px] items-center">
+                  <HiOutlineLocationMarker color="#777" size={13} />
+                  <p className="text-xs text-[#777777]">NC</p>
                 </div>
-                <h3 className="text-[#777777]">@amarixdev</h3>
-                <p className="text-sm ">Software Developer. Tar Heel </p>
-                <div className="flex gap-2 w-full items-center mt-1">
-                  <div className="flex gap-[2px] items-center">
-                    <HiOutlineLocationMarker color="#777" size={13} />
-                    <p className="text-xs text-[#777777]">NC</p>
-                  </div>
-                  <div className="flex gap-[2px] items-center">
-                    <AiOutlineLink color="#777" size={13} />
-                    <p className="text-xs text-[#26a7de]">amaridevaughn.com</p>
-                  </div>
-                  <div className="flex gap-[3px] items-center">
-                    <BsCalendar3 color="#777" size={10} />
-                    <p className="text-xs text-[#777777]">
-                      {`Joined ${getCurrentDate().monthYear}`}
-                    </p>
-                  </div>
+                <div className="flex gap-[2px] items-center">
+                  <AiOutlineLink color="#777" size={13} />
+                  <p className="text-xs text-[#26a7de]">amaridevaughn.com</p>
                 </div>
-                <div className="flex mt-2 gap-3">
-                  <div className="flex items-center">
-                    <p className="text-white font-bold mr-1 text-xs ">999</p>
-                    <h1 className="text-xs  text-[#777777]">Following</h1>
-                  </div>
-                  <div className="flex items-center">
-                    <p className="text-white font-bold mr-1 text-xs ">
-                      {following ? "1000" : "999"}
-                    </p>
-                    <h1 className="text-xs  text-[#777777]">Followers</h1>
-                  </div>
+                <div className="flex gap-[3px] items-center">
+                  <BsCalendar3 color="#777" size={10} />
+                  <p className="text-xs text-[#777777]">
+                    {`Joined ${getCurrentDate().monthYear}`}
+                  </p>
+                </div>
+              </div>
+              <div className="flex mt-2 gap-3">
+                <div className="flex items-center">
+                  <p className="text-white font-bold mr-1 text-xs ">999</p>
+                  <p className="text-xs  text-[#777777]">Following</p>
+                </div>
+                <div className="flex items-center">
+                  <p className="text-white font-bold mr-1 text-xs ">
+                    {following ? "1000" : "999"}
+                  </p>
+                  <p className="text-xs  text-[#777777]">Followers</p>
                 </div>
               </div>
             </div>
-            <Tabs
-              ref={sectionRef}
-              position="relative"
-              variant="unstyled"
-              className="mt-3"
-            >
-              <TabList
-                display={"flex"}
-                w="full"
-                justifyContent={"space-evenly"}
+          </header>
+          <section>
+               <Tabs
+            ref={sectionRef}
+            position="relative"
+            variant="unstyled"
+            className="mt-3"
+          >
+            <TabList display={"flex"} w="full" justifyContent={"space-evenly"}>
+              <Tab onClick={() => handleSelect("about")} className="w-[80%]">
+                <p
+                  onClick={() => handleSelect("about")}
+                  className={`${
+                    section === "about" ? "text-white" : "text-[#777777]"
+                  }  font-semibold text-xs xs:text-sm  active:text-[#222222] transition-colors duration-[400ms] ease-in-out`}
+                >
+                  About
+                </p>
+              </Tab>
+              <Tab
+                margin={0}
+                onClick={() => handleSelect("projects")}
+                className="w-[80%]"
               >
-                <Tab onClick={() => handleSelect("about")} className="w-[80%]">
-                  <p
-                    onClick={() => handleSelect("about")}
-                    className={`${
-                      section === "about" ? "text-white" : "text-[#777777]"
-                    }  font-semibold text-xs xs:text-sm  active:text-[#222222] transition-colors duration-[400ms] ease-in-out`}
-                  >
-                    About
-                  </p>
-                </Tab>
-                <Tab
-                  margin={0}
+                {" "}
+                <p
                   onClick={() => handleSelect("projects")}
-                  className="w-[80%]"
+                  className={`${
+                    section === "projects" ? "text-white" : "text-[#777777]"
+                  } font-semibold text-xs xs:text-sm  active:text-[#222222] transition-all duration-[400ms] ease-in-out`}
                 >
-                  {" "}
-                  <p
-                    onClick={() => handleSelect("projects")}
-                    className={`${
-                      section === "projects" ? "text-white" : "text-[#777777]"
-                    } font-semibold text-xs xs:text-sm  active:text-[#222222] transition-all duration-[400ms] ease-in-out`}
-                  >
-                    Projects
-                  </p>
-                </Tab>
-                <Tab
-                  onClick={() => handleSelect("skills")}
-                  className=" w-[80%]"
+                  Projects
+                </p>
+              </Tab>
+              <Tab onClick={() => handleSelect("skills")} className=" w-[80%]">
+                {" "}
+                <p
+                  className={`${
+                    section === "skills" ? "text-white" : "text-[#777777]"
+                  } font-semibold text-xs xs:text-sm active:text-[#222222] transition-all duration-[400ms] ease-in-out`}
                 >
-                  {" "}
-                  <p
-                    className={`${
-                      section === "skills" ? "text-white" : "text-[#777777]"
-                    } font-semibold text-xs xs:text-sm active:text-[#222222] transition-all duration-[400ms] ease-in-out`}
-                  >
-                    Skills
-                  </p>
-                </Tab>
-              </TabList>
-              <div className=" bg-[#aaaaaa71] min-h-[0.5px] relative"></div>
+                  Skills
+                </p>
+              </Tab>
+            </TabList>
+            <div className=" bg-[#aaaaaa71] min-h-[0.5px] relative"></div>
 
-              <TabIndicator
-                mt="-1.5px"
-                height="3px"
-                bg="#26a7de"
-                borderRadius="5px"
-              />
-              <TabPanels>
-                <TabPanel padding={0}>
-                  <About />
-                </TabPanel>
-                <TabPanel padding={0}>
-                  <Projects
-                    setPreviewsOpen={setPreviewsOpen}
-                    setImageIndex={setImageIndex}
-                    setProjectPreviews={setProjectPreviews}
-                  />
-                </TabPanel>
-                <TabPanel padding={0}>
-                  <Skills />
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
-          </div>
+            <TabIndicator
+              mt="-1.5px"
+              height="3px"
+              bg="#26a7de"
+              borderRadius="5px"
+            />
+            <TabPanels>
+              <TabPanel padding={0}>
+                <About />
+              </TabPanel>
+              <TabPanel padding={0}>
+                <Projects
+                  setPreviewsOpen={setPreviewsOpen}
+                  setImageIndex={setImageIndex}
+                  setProjectPreviews={setProjectPreviews}
+                />
+              </TabPanel>
+              <TabPanel padding={0}>
+                <Skills />
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+</section>
+       
         </div>
       </div>
     </div>

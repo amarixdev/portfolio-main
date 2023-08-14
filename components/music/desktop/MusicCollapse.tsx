@@ -89,9 +89,9 @@ const MusicCollapse = ({
               <p>{count}</p>
             )}
           </div>
-          <p className="text-white absolute left-[190px] text-sm">
+          <h3 className="text-white absolute left-[190px] text-sm">
             {capitalizeString(title)}
-          </p>
+          </h3>
         </div>
 
         <Collapse
@@ -99,9 +99,9 @@ const MusicCollapse = ({
           animateOpacity
           animate
         >
-          <div className="w-full text-[#aaaaaa] px-10 pt-2 flex flex-col gap-2">
+          <section className="w-full text-[#aaaaaa] px-10 pt-2 flex flex-col gap-2">
             {children}
-          </div>
+          </section>
         </Collapse>
       </div>
     </div>

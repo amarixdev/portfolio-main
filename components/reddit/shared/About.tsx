@@ -22,7 +22,7 @@ const About = ({
   const subreddit = { name: "aboutme", image: AboutGraphic };
 
   return (
-    <div className="flex flex-col gap-5">
+    <section className="flex flex-col gap-5">
       <RedditPost
         title="Summary"
         topPost={true}
@@ -36,7 +36,7 @@ const About = ({
         setSelectedTitle={setSelectedTitle}
         subreddit={subreddit}
       >
-        <div className="gap-4 flex flex-col ">
+        <section className="gap-4 flex flex-col ">
           <p className="text-sm lg:text-base text-[#d2d2d2] px-4">
             A 26 year-old software developer based in Greensboro, NC.
           </p>
@@ -61,7 +61,7 @@ const About = ({
             if you wish to connect, don&apos;t hesitate to click the icon in the
             lower-right corner.
           </p>
-        </div>
+        </section>
       </RedditPost>
       <RedditPost
         title="Beyond Tech"
@@ -75,13 +75,13 @@ const About = ({
         setSelectedTitle={setSelectedTitle}
         subreddit={subreddit}
       >
-        <div className="text-sm lg:text-base text-[#d2d2d2] px-4 flex flex-col gap-2">
+        <section className="text-sm lg:text-base text-[#d2d2d2] px-4 flex flex-col gap-2">
           <p>Published author in the American Heart Association</p>
           <p>Atlantic Coast Conference (ACC) Silver Medalist</p>
           <p>Nature Enthusiast and Pet Lover</p>
-        </div>
+        </section>
       </RedditPost>
-    </div>
+    </section>
   );
 };
 

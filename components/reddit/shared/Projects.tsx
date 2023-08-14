@@ -177,8 +177,8 @@ const Projects = ({
             )}
           </div>
 
-          <div
-            className="flex items-center w-full max-h-[310px] min-h-[310px] relative"
+          <section
+            className="flex items-center w-full  max-h-[320px] min-h-[320px] scrollbar-hide  relative"
             ref={sliderRef.promoninja}
           >
             {mobileView.promoninja
@@ -216,10 +216,10 @@ const Projects = ({
                     </div>
                   </div>
                 ))}
-          </div>
+          </section>
         </div>
-        <div className="w-full px-4 relative text-[#d2d2d2] text-sm lg:text-base ">
-          <h1 className="font-extrabold text-lg py-3">Description</h1>
+        <section className="w-full px-4 relative text-[#d2d2d2] text-sm lg:text-base ">
+          <h2 className="font-extrabold text-lg py-3">Description</h2>
           <p className="pb-2 ">
             PromoNinja is an an all-in-one application for anyone who enjoys
             podcasts and saving money. If you are interested in learning more
@@ -240,8 +240,8 @@ const Projects = ({
               </span>
             </Link>
           </p>
-        </div>
-        <div className="flex flex-col gap-4 pt-4 w-full">
+        </section>
+        <nav className="flex flex-col gap-4 pt-4 w-full">
           <Link
             href={"https://promoninja.io"}
             target="_blank"
@@ -262,7 +262,7 @@ const Projects = ({
               View Code
             </Button>
           </Link>
-        </div>
+        </nav>
       </RedditPost>
       <RedditPost
         title="The Portfolio"
@@ -321,8 +321,8 @@ const Projects = ({
             )}
           </div>
 
-          <div
-            className="flex items-center w-full max-h-[310px] min-h-[310px] relative"
+          <section
+            className="flex items-center w-full max-h-[320px] min-h-[320px] scrollbar-hide relative"
             ref={sliderRef.portfolio}
           >
             {mobileView.portfolio
@@ -348,7 +348,7 @@ const Projects = ({
                     className={`flex items-center justify-center min-w-full `}
                     key={index}
                   >
-                    <div className={`flex items-center justify-center mt-2`}>
+                    <div className={`flex items-center justify-center mt-2 `}>
                       <div className="border-black border-4 rounded-xl overflow-hidden max-w-[535px] shadow-black ">
                         <Image
                           src={preview}
@@ -360,10 +360,10 @@ const Projects = ({
                     </div>
                   </div>
                 ))}
-          </div>
+          </section>
         </div>
-        <div className="w-full px-4 relative text-[#d2d2d2] text-sm lg:text-base ">
-          <h1 className="font-extrabold text-lg py-3">Description</h1>
+        <section className="w-full px-4 relative text-[#d2d2d2] text-sm lg:text-base ">
+          <h2 className="font-extrabold text-lg py-3">Description</h2>
           <p className="pb-2 ">
             You’re already here! I had a great time creating this multi-themed
             project. I initially learned frontend development through trying to
@@ -371,7 +371,7 @@ const Projects = ({
             such as Netflix, Youtube, and Twitch. I thought it would be a fun
             challenge to incorporate that principle into my personal portfolio.
           </p>
-        </div>
+        </section>
         <div className="flex flex-col gap-4 pt-4 w-full">
           <Link
             href={"https://github.com/amarixdev/portfolio-main"}

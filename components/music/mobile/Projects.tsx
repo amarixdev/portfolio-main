@@ -182,7 +182,7 @@ const Projects = ({
             </div>
           </div>
           <div className="w-full px-4 relative">
-            <h1 className="font-extrabold text-lg py-3">Description</h1>
+            <h3 className="font-extrabold text-lg py-3">Description</h3>
             <p className="pb-2">
               PromoNinja is an an all-in-one application for anyone who enjoys
               podcasts and saving money. If you are interested in learning more
@@ -198,7 +198,7 @@ const Projects = ({
               </Link>
             </p>
           </div>
-          <div className="flex flex-col gap-4 w-full">
+          <nav className="flex flex-col gap-4 w-full">
             <Link
               href={"https://promoninja.io"}
               target="_blank"
@@ -220,7 +220,7 @@ const Projects = ({
                 View Code
               </Button>
             </Link>
-          </div>
+          </nav>
         </div>
       </MusicCollapse>
       <MusicCollapse
@@ -335,7 +335,7 @@ const Projects = ({
             </div>
           </div>
           <div className="w-full px-4 relative">
-            <h1 className="font-extrabold text-lg py-3">Description</h1>
+            <h3 className="font-extrabold text-lg py-3">Description</h3>
             <p className="pb-2">
               You’re already here! I had a great time creating this multi-themed
               project. I initially learned frontend development through
@@ -345,7 +345,7 @@ const Projects = ({
               portfolio.
             </p>
           </div>
-          <div className="w-full">
+          <nav className="w-full">
             <Link
               href={"https://github.com/amarixdev/portfolio-main"}
               target="_blank"
@@ -356,7 +356,7 @@ const Projects = ({
                 View Code
               </Button>
             </Link>
-          </div>
+          </nav>
         </div>
       </MusicCollapse>
     </div>

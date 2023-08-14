@@ -24,7 +24,6 @@ const ThemeSelection = ({
     }
   };
   const isBreakPoint = useMediaQuery(1023);
-  console.log(videoRef.current);
   return (
     <div className="flex mt-10 lg:mt-0 lg:gap-14 justify-evenly  w-full ">
       {Object.keys(themes).map((theme) => (

@@ -143,7 +143,7 @@ const Skills = ({
   const isBreakPoint = useMediaQuery(1023);
   const iconSize = isBreakPoint ? 50 : 30;
   return (
-    <div className=" bg-[#161616] flex flex-col gap-5 pt-4">
+    <section className=" bg-[#161616] flex flex-col gap-5 pt-4">
       {Object.keys(skills).map((skillKey) => (
         <div
           key={skills[skillKey].name}
@@ -160,16 +160,16 @@ const Skills = ({
             />
           </div>
           <div className="flex flex-col">
-            <p className="font-semibold text-xl text-[#d2d2d2]">
+            <h3 className="font-semibold text-xl text-[#d2d2d2]">
               {skills[skillKey].award}
-            </p>
-            <p className="font-normal text-base text-[#aaaaaa]">
+            </h3>
+            <h4 className="font-normal text-base text-[#aaaaaa]">
               {skills[skillKey].name}
-            </p>
+            </h4>
           </div>
         </div>
       ))}
-    </div>
+    </section>
   );
 };
 

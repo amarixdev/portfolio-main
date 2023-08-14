@@ -126,7 +126,7 @@ const Skills = ({}: {}) => {
   };
 
   return (
-    <div className="px-4 lg:pt-4 w-full gap-x-[5%] gap-y-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 3xl:grid-cols-6 place-items-center ">
+    <section className="px-4 lg:pt-4 w-full gap-x-[5%] gap-y-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 3xl:grid-cols-6 place-items-center ">
       {Object.keys(skills).map((skillKey: string) => (
         <div
           key={skills[skillKey].name}
@@ -142,17 +142,17 @@ const Skills = ({}: {}) => {
           </div>
           <div className="absolute bottom-[-55px]">
             <div className="flex items-center gap-2">
-              <p className="text-white font-medium">{skills[skillKey].name}</p>
+              <h3 className="text-white font-medium">{skills[skillKey].name}</h3>
               <BsExplicitFill size={15} color="#aaaaaa" />{" "}
             </div>
 
-            <p className="text-[#aaaaaa] whitespace-nowrap">
+            <h4 className="text-[#aaaaaa] whitespace-nowrap">
               {truncateString(skills[skillKey].type, 15)}
-            </p>
+            </h4>
           </div>
         </div>
       ))}
-    </div>
+    </section>
   );
 };
 

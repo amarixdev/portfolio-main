@@ -14,7 +14,7 @@ const About = ({
   setOpened: Dispatch<SetStateAction<string[]>>;
 }) => {
   return (
-    <div className="w-full flex flex-col justify-center ">
+    <section className="w-full flex flex-col justify-center ">
       <MusicCollapse
         opened={opened}
         setOpened={setOpened}
@@ -24,7 +24,7 @@ const About = ({
         count={1}
         top={true}
       >
-        <div className="flex flex-col gap-4 pt-2 px-10">
+        <section className="flex flex-col gap-4 pt-2 px-10">
           <p className="">
             A 26 year-old software developer based in Greensboro, NC.
           </p>
@@ -49,7 +49,7 @@ const About = ({
             if you wish to connect, don&apos;t hesitate to click the icon in the
             lower-right corner.
           </p>
-        </div>
+        </section>
       </MusicCollapse>
       <MusicCollapse
         opened={opened}
@@ -59,13 +59,13 @@ const About = ({
         tutorial={tutorial}
         setTutorial={setTutorial}
       >
-        <div className="flex flex-col gap-4 pt-2 px-10">
+        <section className="flex flex-col gap-4 pt-2 px-10">
           <p>Published author in the American Heart Association</p>
           <p>Atlantic Coast Conference (ACC) Silver Medalist</p>
           <p>Nature Enthusiast and Pet Lover</p>
-        </div>
+        </section>
       </MusicCollapse>
-    </div>
+    </section>
   );
 };
 

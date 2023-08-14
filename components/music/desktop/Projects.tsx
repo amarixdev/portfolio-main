@@ -55,51 +55,56 @@ const Projects = ({
       >
         <div className="w-full flex justify-between ">
           <div className="max-w-[800px] relative pt-5 w-full flex-col flex items-start justify-start">
-            <div className="absolute bottom-[15%] left-[43%] flex">
-              {projectMedia.promoninja.desktop.map((_, index) => (
-                <BsDot
-                  key={index}
-                  size={16}
-                  color={`${index === imageIndex.promoninja ? "#279bda" : ""}`}
-                />
-              ))}
-            </div>
-
-            {mobileView.promoninja ? (
-              <div
-                className={`${
-                  isBreakPoint ? "min-w-[700px]" : "min-w-[800px]"
-                } flex items-center justify-center`}
-              >
-                <div className={`${style.borderGlow} rounded-lg`}>
+            <div className="flex flex-col items-center gap-2">
+              {mobileView.promoninja ? (
+                <div
+                  className={` ${
+                    isBreakPoint ? "min-w-[700px]" : "min-w-[800px]"
+                  } flex items-center justify-center`}
+                >
+                  <div className={`${style.borderGlow} rounded-lg`}>
+                    <Image
+                      placeholder="blur"
+                      alt="promoninja-previews"
+                      src={
+                        projectMedia.promoninja.mobile[imageIndex.promoninja]
+                      }
+                      width={200}
+                      className={` ${
+                        isBreakPoint
+                          ? "max-w-[150px] h-fit min-h-[320px] max-h-[320px]"
+                          : "min-w-[200px] h-[400px]"
+                      } select-none rounded-lg`}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className={`${style.borderGlow} rounded-lg `}>
                   <Image
                     placeholder="blur"
                     alt="promoninja-previews"
-                    src={projectMedia.promoninja.mobile[imageIndex.promoninja]}
-                    width={200}
-                    className={` ${
+                    src={projectMedia.promoninja.desktop[imageIndex.promoninja]}
+                    width={800}
+                    className={`${
                       isBreakPoint
-                        ? "max-w-[150px] h-[300px]"
-                        : "min-w-[200px] h-[400px]"
-                    } select-none rounded-lg`}
+                        ? "min-w-[700px] max-h-[320px] min-h-[320px] "
+                        : "min-w-[800px] max-h-[400px]"
+                    } select-none object-cover object-top rounded-lg`}
                   />
                 </div>
+              )}
+              <div className="flex">
+                {projectMedia.promoninja.desktop.map((_, index) => (
+                  <BsDot
+                    key={index}
+                    size={16}
+                    color={`${
+                      index === imageIndex.promoninja ? "#279bda" : ""
+                    }`}
+                  />
+                ))}
               </div>
-            ) : (
-              <div className={`${style.borderGlow} rounded-lg `}>
-                <Image
-                  placeholder="blur"
-                  alt="promoninja-previews"
-                  src={projectMedia.promoninja.desktop[imageIndex.promoninja]}
-                  width={800}
-                  className={`${
-                    isBreakPoint
-                      ? "min-w-[700px] min-h-[300px]"
-                      : "min-w-[800px] max-h-[400px]"
-                  } select-none object-cover object-top rounded-lg`}
-                />
-              </div>
-            )}
+            </div>
 
             <h3 className="font-extrabold text-lg py-3">Description</h3>
             <p className="pb-2">
@@ -117,7 +122,7 @@ const Projects = ({
               </Link>
             </p>
           </div>
-          <div className="flex flex-col items-center justify-evenly gap-4 text-xl w-full ">
+          <div className="flex flex-col items-center justify-evenly px-3 gap-4 text-xl w-full ">
             {/* Mobile Switch */}
             <div className="flex gap-10 flex-col">
               <div
@@ -224,51 +229,52 @@ const Projects = ({
       >
         <div className="w-full flex justify-between ">
           <div className="max-w-[800px] relative pt-5 w-full flex-col flex items-start justify-start">
-            <div className="absolute bottom-[15%] left-[43%] flex">
-              {projectMedia.portfolio.desktop.map((_, index) => (
-                <BsDot
-                  key={index}
-                  size={16}
-                  color={`${index === imageIndex.portfolio ? "#279bda" : ""}`}
-                />
-              ))}
-            </div>
-
-            {mobileView.portfolio ? (
-              <div
-                className={` ${
-                  isBreakPoint ? "min-w-[700px]" : "min-w-[800px]"
-                } flex items-center justify-center`}
-              >
-                <div className={`${style.borderGlow} rounded-lg `}>
+            <div className="flex flex-col items-center gap-2">
+              {mobileView.portfolio ? (
+                <div
+                  className={` ${
+                    isBreakPoint ? "min-w-[700px]" : "min-w-[800px]"
+                  } flex items-center justify-center`}
+                >
+                  <div className={`${style.borderGlow} rounded-lg `}>
+                    <Image
+                      placeholder="blur"
+                      alt={"promoninja-previews"}
+                      src={projectMedia.portfolio.mobile[imageIndex.portfolio]}
+                      width={200}
+                      className={` ${
+                        isBreakPoint
+                          ? "max-w-[150px] min-h-[320px] max-h-[320px]"
+                          : "min-w-[200px] h-[400px]"
+                      } select-none rounded-lg `}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className={`${style.borderGlow} rounded-lg`}>
                   <Image
                     placeholder="blur"
-                    alt={"promoninja-previews"}
-                    src={projectMedia.portfolio.mobile[imageIndex.portfolio]}
-                    width={200}
-                    className={` ${
+                    alt="portfolio-previews"
+                    src={projectMedia.portfolio.desktop[imageIndex.portfolio]}
+                    width={800}
+                    className={`${
                       isBreakPoint
-                        ? "max-w-[150px] h-[300px]"
-                        : "min-w-[200px] h-[400px]"
-                    } select-none rounded-lg `}
+                        ? "min-w-[700px] min-h-[320px] max-h-[320px]"
+                        : "min-w-[800px] max-h-[400px]"
+                    } select-none object-cover object-top rounded-lg`}
                   />
                 </div>
+              )}
+              <div className="flex">
+                {projectMedia.portfolio.desktop.map((_, index) => (
+                  <BsDot
+                    key={index}
+                    size={16}
+                    color={`${index === imageIndex.portfolio ? "#279bda" : ""}`}
+                  />
+                ))}
               </div>
-            ) : (
-              <div className={`${style.borderGlow} rounded-lg`}>
-                <Image
-                  placeholder="blur"
-                  alt="portfolio-previews"
-                  src={projectMedia.portfolio.desktop[imageIndex.portfolio]}
-                  width={800}
-                  className={`${
-                    isBreakPoint
-                      ? "min-w-[700px] min-h-[300px]"
-                      : "min-w-[800px] max-h-[400px]"
-                  } select-none object-cover object-top rounded-lg`}
-                />
-              </div>
-            )}
+            </div>
 
             <h3 className="font-extrabold text-lg py-3">Description</h3>
             <p className="pb-2">
@@ -280,7 +286,7 @@ const Projects = ({
               portfolio.
             </p>
           </div>
-          <div className="flex flex-col items-center justify-evenly gap-4 text-xl w-full ">
+          <div className="flex flex-col items-center justify-evenly px-3 gap-4 text-xl w-full ">
             {/* Mobile Switch */}
             <div className="flex gap-10 flex-col">
               <div

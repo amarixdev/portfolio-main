@@ -22,12 +22,12 @@ const About = ({
             A 26 year-old software developer based in Greensboro, NC.
           </p>
           <p>
-            I attended the University of North Carolina from 2015 to 2019, where
-            I competed in track and field, pursued a pre-dental course of study,
-            and engaged in medical research. While navigating the 2020 pandemic,
-            I began to teach myself programming and, eventually, decided against
-            enrolling in dental school to pursue a career in software
-            development full-time.
+            I attended the University of North Carolina - Chapel Hill from 2015
+            to 2019, where I competed in track and field, pursued a pre-dental
+            course of study, and engaged in medical research. While navigating
+            the 2020 pandemic, I began to teach myself programming and,
+            eventually, decided against enrolling in dental school to pursue a
+            career in software development full-time.
           </p>
           <p>
             Since changing career paths, I have created various websites and

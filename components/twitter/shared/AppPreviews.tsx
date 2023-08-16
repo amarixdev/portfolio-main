@@ -101,7 +101,7 @@ const AppPreviews = ({
       )}
 
       {isBreakPoint && (
-        <div className="w-full top-24 flex items-center justify-between absolute px-4">
+        <div className="w-full top-10 flex items-center justify-between absolute px-4">
           <div
             onClick={() => {
               setPreviewsOpen(false);
@@ -166,7 +166,7 @@ const AppPreviews = ({
           <div>
             {displayRightArrow && (
               <div
-                className="active:scale-95 lg:active:scale-100 absolute cursor-pointer h-fit rounded-full bg-black hover:bg-[#202020] p-4 lg:p-3  z-50 bottom-[15%] left-[20%]"
+                className="active:scale-95 lg:active:scale-100 absolute cursor-pointer h-fit rounded-full bg-black hover:bg-[#202020] p-4 lg:p-3  z-50 bottom-[15%] left-[10%]"
                 onClick={() => swipe("left")}
               >
                 <FaArrowLeft size={arrowSize} color="white" />
@@ -174,7 +174,7 @@ const AppPreviews = ({
             )}
             {displayLeftArrow && (
               <div
-                className="active:scale-95 lg:active:scale-100 absolute cursor-pointer rounded-full h-fit bg-black hover:bg-[#202020] p-4 lg:p-3 z-50 bottom-[15%]  right-[20%]"
+                className="active:scale-95 lg:active:scale-100 absolute cursor-pointer rounded-full h-fit bg-black hover:bg-[#202020] p-4 lg:p-3 z-50 bottom-[15%]  right-[10%]"
                 onClick={() => swipe("right")}
               >
                 <FaArrowRight size={arrowSize} color="white" />

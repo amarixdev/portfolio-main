@@ -80,7 +80,7 @@ const AwardDesktop = ({
                       key={award.name}
                       className={`${
                         selectedAward === award.name && "bg-[#444444d6]"
-                      } items-center hover:bg-[#444444d6] p-1 rounded-lg flex flex-col`}
+                      } items-center hover:bg-[#444444d6] p-1 rounded-lg flex flex-col font-light text-xs`}
                       onClick={() => selectAward(award.name)}
                     >
                       <Image
@@ -92,7 +92,7 @@ const AwardDesktop = ({
                         className="min-w-[60px]"
                         placeholder="blur"
                       />
-                      <p className="font-light text-xs">{award.coins}</p>
+                      {award.coins}
                     </button>
                   ))}
                 </div>
@@ -130,9 +130,9 @@ const AwardDesktop = ({
                 </div>
                 <button
                   onClick={() => giveAward()}
-                  className=" bg-gradient-to-r hover:grayscale-[20%] from-[#3aafe0] via-[#2a6cdd] to-[#b866c7] mt-10 py-2 rounded-3xl w-[180px]"
+                  className="font-bold bg-gradient-to-r hover:grayscale-[20%] from-[#3aafe0] via-[#2a6cdd] to-[#b866c7] mt-10 py-2 rounded-3xl w-[180px]"
                 >
-                  <p className="font-bold">Give</p>
+                  Give
                 </button>
               </div>
             </div>

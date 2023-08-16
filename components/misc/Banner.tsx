@@ -1,7 +1,15 @@
-import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+} from "@chakra-ui/react";
 import { RefObject, useEffect } from "react";
 import { FiChevronDown } from "react-icons/fi";
-import style from "../../styles/style.module.css";
+import loaders from "../../styles/loaders.module.css";
 import { capitalizeString } from "../../util/functions";
 import { useMediaQuery } from "../../util/hooks";
 import { Theme } from "../../util/types";
@@ -88,11 +96,11 @@ const Banner = ({
       {displayBanner && themeLoading && (
         <div
           className={`${
-            isBreakPoint ? " top-[27px] xs:top-[30.5px]" : "top-[59px]"
+            isBreakPoint ? " top-[46.5px]" : "hidden"
           } min-w-full absolute z-[9999] `}
         >
           <span
-            className={`${style.loaderSlide} w-full h-[0.5px] bg-[#444444]`}
+            className={`${loaders.loaderSlide}  w-full h-[0.5px] bg-[#444444]`}
           ></span>
         </div>
       )}
@@ -112,35 +120,38 @@ const Banner = ({
           </h2>
         }
         <Menu>
-          <MenuButton>
-            <div className="flex items-center gap-4 lg:gap-6 cursor-pointer">
-              <div
-                className={`flex ${themes[theme]?.style} absolute ${
-                  displaySection && section === "about"
-                    ? "right-[154px] lg:right-[275px]"
-                    : displaySection && section === "projects"
-                    ? "right-[170px] lg:right-[300px]"
-                    : displaySection && section === "skills"
-                    ? "right-[150px] lg:right-[260px]"
-                    : "right-24 lg:right-[180px]"
-                } transition-all duration-300 ease-in-out items-center justify-center w-8 h-8  xs:w-10 xs:h-10  lg:w-14 lg:h-14`}
-              >
-                {themes[theme]?.iconBanner}
-              </div>
-              {
-                <h2
-                  className={`text-[#26a7de] ${
-                    displaySection ? "opacity-100" : "opacity-0"
-                  }  absolute right-24 lg:right-[180px] transition-all duration-300 ease-in-out text-sm lg:text-2xl font-bold`}
-                >
-                  {capitalizeString(section)}
-                </h2>
-              }
-              <div className="flex items-center lg:gap-2 lg:pr-10 ">
-                <h2 className=" font-medium text-sm lg:text-2xl">Theme</h2>
-                <FiChevronDown size={20} />
-              </div>
+          <div className="flex items-center gap-4 lg:gap-6 cursor-pointer">
+            <div
+              className={`flex ${themes[theme]?.style} absolute ${
+                displaySection && section === "about"
+                  ? "right-[188px] lg:right-[265px]"
+                  : displaySection && section === "projects"
+                  ? "right-[203px] lg:right-[290px]"
+                  : displaySection && section === "skills"
+                  ? "right-[183px] lg:right-[250px]"
+                  : "right-[132px] lg:right-[170px]"
+              } transition-all duration-300 ease-in-out items-center justify-center w-8 h-8  xs:w-10 xs:h-10  lg:w-14 lg:h-14`}
+            >
+              {themes[theme]?.iconBanner}
             </div>
+            {
+              <h2
+                className={`text-[#26a7de] ${
+                  displaySection ? "opacity-100" : "opacity-0"
+                }  absolute right-[132px] lg:right-[170px] transition-all duration-300 ease-in-out text-sm lg:text-2xl font-bold`}
+              >
+                {capitalizeString(section)}
+              </h2>
+            }
+          </div>
+          <MenuButton
+            as={Button}
+            rightIcon={<FiChevronDown />}
+            className="lg:gap-2 lg:pr-10"
+            fontSize={isBreakPoint ? "sm" : "xl"}
+            fontWeight={"medium"}
+          >
+            Theme
           </MenuButton>
           <MenuList bgColor={"#101010"}>
             {menuItems.map((item) => (

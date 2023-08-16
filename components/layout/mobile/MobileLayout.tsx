@@ -154,6 +154,7 @@ const MobileApp = () => {
         onClick={() => {
           handleTap("chat");
           setDisplayContact((prev) => !prev);
+          setCopied(false);
         }}
         className={`  ${
           (displayTitle && theme && displayContactIcon) || displayContact
@@ -165,13 +166,11 @@ const MobileApp = () => {
           tapEffect.chat ? "scale-90 bg-[#29aaf4]" : "scale-100 bg-[#29aaf4a0]"
         } text-base font-medium shadow-2xl shadow-black transition-all duration-150 ease-in-out flex items-center justify-center right-5 w-16 h-10 rounded-full `}
       >
-        <p onClick={() => setCopied(false)}>
-          {displayContact ? (
-            <AiOutlineClose size={20} />
-          ) : (
-            <LuMailPlus size={20} />
-          )}
-        </p>
+        {displayContact ? (
+          <AiOutlineClose size={20} />
+        ) : (
+          <LuMailPlus size={20} />
+        )}
       </button>
 
       {/* LinkedIn */}
@@ -342,7 +341,7 @@ const MobileApp = () => {
         />
         <LoadingScreen heroImageLoaded={heroImageLoaded} />
 
-        <section id="group1" className="parallax__group">
+        <div id="group1" className="parallax__group">
           <div className="parallax__layer parallax__layer--base">
             <Image
               placeholder="blur"
@@ -373,13 +372,9 @@ const MobileApp = () => {
               }
             />
           </div>
-        </section>
+        </div>
         {background && foreground && (
-          <section
-            id="group2"
-            ref={extendRef}
-            className="parallax__group relative"
-          >
+          <div id="group2" ref={extendRef} className="parallax__group relative">
             <div className="parallax__layer parallax__layer--base "></div>
             <div className="title w-full flex items-center justify-center">
               {
@@ -488,7 +483,7 @@ const MobileApp = () => {
                 </section>
               )}
             </div>
-          </section>
+          </div>
         )}
       </div>
     </>

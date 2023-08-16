@@ -184,7 +184,7 @@ const ContactForm = ({
           />
         </button>
       </div>
-      <h3
+      <p
         className={`${
           copied
             ? "opacity-100"
@@ -211,7 +211,7 @@ const ContactForm = ({
           copied &&
           !form.submitAttempt &&
           "Email copied to Clipboard"}
-      </h3>
+      </p>
       <form className="pt-12" ref={formRef}>
         <section className="flex flex-col gap-4">
           <div>

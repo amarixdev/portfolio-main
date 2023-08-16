@@ -91,7 +91,7 @@ const AwardMobile = ({
               {awards.map((award) => (
                 <button
                   key={award.name}
-                  className="items-center flex flex-col active:scale-95 transition-transform duration-150 ease-in-out"
+                  className="font-light text-xs items-center flex flex-col active:scale-95 transition-transform duration-150 ease-in-out"
                   onClick={() => selectAward(award.name)}
                 >
                   <Image
@@ -102,7 +102,7 @@ const AwardMobile = ({
                     alt={`reddit-${award.name}`}
                     placeholder="blur"
                   />
-                  <p className="font-light text-xs">{award.coins}</p>
+                  {award.coins}
                 </button>
               ))}
             </div>
@@ -119,9 +119,9 @@ const AwardMobile = ({
               </p>
               <button
                 onClick={() => giveAward()}
-                className=" w-[90%] bg-gradient-to-b from-[#ff8401] via-[#ff5500] to-[#ff5500] active:scale-95 duration-150 transition-all  flex items-center justify-center py-2 rounded-3xl"
+                className="font-semibold w-[90%] bg-gradient-to-b from-[#ff8401] via-[#ff5500] to-[#ff5500] active:scale-95 duration-150 transition-all  flex items-center justify-center py-2 rounded-3xl"
               >
-                <p className="font-semibold">Give</p>
+                Give
               </button>
             </div>
           </div>

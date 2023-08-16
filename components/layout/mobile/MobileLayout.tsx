@@ -2,7 +2,7 @@ import Image, { StaticImageData } from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
-import { FaLock, FaUnlockAlt } from "react-icons/fa";
+import { FaLinkedin, FaLock, FaUnlockAlt } from "react-icons/fa";
 import { LuMailPlus } from "react-icons/lu";
 import ParallaxBg from "../../../public/images/hero-bg.jpg";
 import ParallaxFg from "../../../public/images/hero-fg.png";
@@ -30,6 +30,7 @@ import AppPreviews from "../../twitter/shared/AppPreviews";
 import ProfilePicture from "../../twitter/shared/ProfilePicture";
 import ThemeSelection from "../shared/ThemeSelection";
 import MobileTitle from "./MobileTitle";
+import Link from "next/link";
 
 const MobileApp = () => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -172,6 +173,19 @@ const MobileApp = () => {
           )}
         </p>
       </button>
+
+      {/* LinkedIn */}
+      <Link
+        href={"https://www.linkedin.com/in/amaridevaughn/"}
+        target="_blank"
+        className={`${
+          displayContact ? "opacity-100 z-[9999]" : "opacity-0 z-0"
+        } ${
+          theme === "music" || audioLocked ? "bottom-20" : "bottom-5"
+        } fixed backdrop-blur-md  text-base font-medium shadow-2xl shadow-black transition-all duration-150 ease-in-out flex items-center justify-center left-5 w-16 h-10 rounded-full `}
+      >
+        <FaLinkedin color="#555" size={40} />
+      </Link>
       <div
         className={`${
           displayContact ? "opacity-100 z-[9998] " : "opacity-0 z-0"
@@ -361,7 +375,11 @@ const MobileApp = () => {
           </div>
         </section>
         {background && foreground && (
-          <section id="group2" ref={extendRef} className="parallax__group relative">
+          <section
+            id="group2"
+            ref={extendRef}
+            className="parallax__group relative"
+          >
             <div className="parallax__layer parallax__layer--base "></div>
             <div className="title w-full flex items-center justify-center">
               {

@@ -26,6 +26,8 @@ import ProfilePicture from "../../twitter/shared/ProfilePicture";
 import TwitterThemeDesktop from "../../twitter/desktop/TwitterTheme";
 import DesktopTitle from "./DesktopTitle";
 import ThemeSelection from "../shared/ThemeSelection";
+import { FaLinkedinIn } from "react-icons/fa";
+import Link from "next/link";
 
 const DesktopApp = () => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -83,6 +85,7 @@ const DesktopApp = () => {
         profileOpen && theme === "twitter" && "h-screen fixed z-[500]"
       }  bg-black `}
     >
+      {/* Message */}
       <button
         onClick={() => {
           setDisplayContact((prev) => !prev);
@@ -94,7 +97,7 @@ const DesktopApp = () => {
             : "opacity-0 "
         } backdrop-blur-md active:scale-90 ${
           style.borderGlow
-        } fixed rounded-2xl bottom-5 font-normal w-32 shadow-2xl text-lg hover:bg-[#0f0f0f] cursor-pointer transition-all duration-150 ease-in-out flex items-center justify-center right-10 h-10  z-[9999]`}
+        } bg-black fixed rounded-2xl bottom-5 font-normal w-32 shadow-2xl text-lg hover:bg-[#0f0f0f] cursor-pointer transition-all duration-150 ease-in-out flex items-center justify-center right-10 h-10  z-[9999]`}
       >
         {displayContact ? (
           <AiOutlineClose size={25} />
@@ -103,12 +106,27 @@ const DesktopApp = () => {
         )}{" "}
       </button>
 
+      {/* LinkedIn */}
+      <Link
+        href={"https://www.linkedin.com/in/amaridevaughn/"}
+        target="_blank"
+        className={`  ${
+          displayContact
+            ? "right-[180px] opacity-100 z-[9999]"
+            : " opacity-0 z-0 right-10"
+        } backdrop-blur-md active:scale-90 ${
+          style.borderGlow
+        } fixed rounded-2xl bottom-5 font-normal w-32 shadow-2xl text-lg bg-[#0077b5] hover:bg-[#1686c3] cursor-pointer transition-all duration-150 ease-in-out flex items-center justify-center h-10 `}
+      >
+        <FaLinkedinIn size={25} />
+      </Link>
+
       <div
         className={`${
           displayContact
             ? "opacity-100 z-[9999] bottom-[80px] "
             : "opacity-0 z-0 bottom-[-200px] "
-        }  rounded-2xl fixed border-[0.5px]  right-10 h-[550px] w-[400px] transition-all duration-300 ease-in-out ${
+        } bg-black rounded-2xl fixed border-[0.5px]  right-10 h-[550px] w-[400px] transition-all duration-300 ease-in-out ${
           style.borderGlow
         } flex`}
       >

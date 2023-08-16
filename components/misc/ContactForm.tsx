@@ -157,10 +157,10 @@ const ContactForm = ({
   };
 
   return (
-    <div className="w-full flex flex-col relative pt-24 lg:pt-16 items-center ">
-      <h2 className="font-bold text-4xl"> Let&apos;s Chat</h2>
+    <div className="w-full flex flex-col relative pt-5 lg:pt-16 items-center ">
+      <h2 className="font-bold text-2xl xs:text-4xl"> Let&apos;s Chat</h2>
       <div className="flex items-center">
-        <h3 className="font-light text-lg text-[#bcbcbc] rounded-3xl px-4">
+        <h3 className="font-light text-base xs:text-lg text-[#bcbcbc] rounded-3xl px-4">
           amaridev@alumni.unc.edu
         </h3>
         <button
@@ -201,7 +201,7 @@ const ContactForm = ({
           isBreakPoint && tapEffect.copy
             ? "scale-95 opacity-60"
             : "scale-100 opacity-100"
-        } absolute top-[172px] lg:top-[140px] font-extrabold transition-all ${
+        } absolute top-[90px] xs:top-[100px] lg:top-[140px] xs:text-base text-sm font-extrabold transition-all ${
           isBreakPoint ? "duration-150" : "duration-100"
         }  ease-out`}
       >
@@ -215,7 +215,10 @@ const ContactForm = ({
       <form className="pt-12" ref={formRef}>
         <section className="flex flex-col gap-4">
           <div>
-            <h3 className="font-medium"> What&apos;s your name?</h3>
+            <h3 className="font-medium xs:text-base text-sm pb-1">
+              {" "}
+              What&apos;s your name?
+            </h3>
             <Input
               onChange={(e) => {
                 setFormText((prev) => ({ ...prev, name: e.target.value }));
@@ -231,7 +234,10 @@ const ContactForm = ({
             />
           </div>
           <div>
-            <h3 className="font-medium"> How should I get back to you? </h3>
+            <h3 className="font-medium xs:text-base text-sm pb-1">
+              {" "}
+              How should I get back to you?{" "}
+            </h3>
             <Input
               onChange={(e) => {
                 setFormText((prev) => ({
@@ -247,7 +253,7 @@ const ContactForm = ({
             />
           </div>
           <div>
-            <h3 className="font-medium"> Message </h3>
+            <h3 className="font-medium xs:text-base text-sm pb-1"> Message </h3>
             <Textarea
               onChange={(e) => {
                 setFormText((prev) => ({
@@ -263,7 +269,7 @@ const ContactForm = ({
             />
           </div>
           <Button
-            className="mt-10 py-8 lg:mt-4 lg:py-0"
+            className="mt-5 py-5 xs:py-8 lg:mt-3 lg:py-0"
             onClick={(e) => {
               if (form.error && isBreakPoint) {
                 setFlashHeader(true);

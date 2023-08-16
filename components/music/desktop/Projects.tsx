@@ -62,7 +62,7 @@ const Projects = ({
                     isBreakPoint ? "min-w-[700px]" : "min-w-[800px]"
                   } flex items-center justify-center`}
                 >
-                  <div className={`${style.borderGlow} rounded-lg`}>
+                  <div className={`${style.borderGlow}  rounded-lg`}>
                     <Image
                       placeholder="blur"
                       alt="promoninja-previews"
@@ -79,7 +79,7 @@ const Projects = ({
                   </div>
                 </div>
               ) : (
-                <div className={`${style.borderGlow} rounded-lg `}>
+                <div className={`${style.borderGlow}  rounded-lg `}>
                   <Image
                     placeholder="blur"
                     alt="promoninja-previews"

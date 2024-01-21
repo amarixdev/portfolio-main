@@ -261,7 +261,7 @@ const MobileApp = () => {
               priority
               className="rounded-xl p-2 md:min-w-[80px]"
             />
-            <p className=" font-medium md:text-lg">Coding Music </p>
+            <p className=" font-medium md:text-lg text-white">Coding Music </p>
           </div>
 
           <button
@@ -270,7 +270,7 @@ const MobileApp = () => {
               tapEffect.lock
                 ? "bg-[#84848487] scale-90"
                 : "bg-[#00000000] scale-100"
-            } min-h-[50px] transition-all duration-150 ease-in-out group rounded-full min-w-[50px] flex items-center justify-center `}
+            } text-white min-h-[50px] transition-all duration-150 ease-in-out group rounded-full min-w-[50px] flex items-center justify-center `}
             onClick={() => {
               handleTap("lock");
               if (audioLocked && theme !== "music") {
@@ -312,7 +312,7 @@ const MobileApp = () => {
               tapEffect.play
                 ? "bg-[#84848487] scale-90"
                 : "bg-[#00000000] scale-100"
-            } min-h-[50px] transition-all duration-150 ease-in-out group rounded-full min-w-[50px] flex items-center justify-center `}
+            } text-white min-h-[50px] transition-all duration-150 ease-in-out group rounded-full min-w-[50px] flex items-center justify-center `}
             onClick={() => togglePlay()}
           >
             {isPlaying ? (

@@ -6,6 +6,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  useColorMode,
 } from "@chakra-ui/react";
 import { RefObject, useEffect } from "react";
 import { FiChevronDown } from "react-icons/fi";
@@ -81,6 +82,11 @@ const Banner = ({
     };
   }, [themeSelectionRef, wrapperRef, setDisplayBanner, isBreakPoint, theme]);
 
+
+  // const { setColorMode } = useColorMode();
+  //   setColorMode("dark")
+
+
   const bannerStyle = `${
     displayBanner && !displayContact
       ? `z-[9998] opacity-100`
@@ -114,13 +120,13 @@ const Banner = ({
                 wrapperRef.current?.scrollTo({ top: 0, behavior: "smooth" });
               }
             }}
-            className="font-extrabold text-sm xs:text-base lg:text-3xl text-center cursor-pointer "
+            className="text-white font-extrabold text-sm xs:text-base lg:text-3xl text-center cursor-pointer "
           >
             Portfolio
           </h2>
         }
         <Menu>
-          <div className="flex items-center gap-4 lg:gap-6 cursor-pointer">
+          <div className="text-white flex items-center gap-4 lg:gap-6 cursor-pointer">
             <div
               className={`flex ${themes[theme]?.style} absolute ${
                 displaySection && section === "about"

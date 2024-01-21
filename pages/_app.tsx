@@ -1,7 +1,7 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, ColorModeProvider } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 import React from "react";
-import { theme } from "../styles/chakra/theme";
+import { ForceDarkMode, theme } from "../styles/chakra/theme";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -9,7 +9,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
+      <ForceDarkMode>
+        <Component {...pageProps} />
+      </ForceDarkMode>
     </ChakraProvider>
   );
 }

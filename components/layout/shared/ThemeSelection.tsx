@@ -1,3 +1,4 @@
+import { useColorMode } from "@chakra-ui/react";
 import { RefObject } from "react";
 import style from "../../../styles/style.module.css";
 import { useMediaQuery } from "../../../util/hooks";
@@ -24,6 +25,10 @@ const ThemeSelection = ({
     }
   };
   const isBreakPoint = useMediaQuery(1023);
+
+
+
+
   return (
     <div className="flex mt-10 lg:mt-0 lg:gap-14 justify-evenly  w-full ">
       {Object.keys(themes).map((theme) => (

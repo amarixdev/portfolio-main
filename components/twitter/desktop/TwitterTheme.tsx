@@ -24,7 +24,7 @@ import { FaTwitter } from "react-icons/fa";
 import AppleProfile from "../../../public/images/twitter/apple-profile.jpeg";
 import GoogleProfile from "../../../public/images/twitter/google-profile.jpeg";
 import MicrosoftProfile from "../../../public/images/twitter/microsoft-profile.jpeg";
-import Profile from "../../../public/images/twitter/twitter-profile.jpg";
+import Profile from "../../../public/images/twitter/twitter-profile1.jpg";
 import { useDisplaySection, useMediaQuery } from "../../../util/hooks";
 import About from "../shared/About";
 import Projects from "../shared/Projects";
@@ -164,18 +164,19 @@ const TwitterThemeDesktop = ({
           <div className=" relative">
             <header>
               <div className=" bottom-8 px-4 relative mt-1 flex w-full justify-between items-center">
-                <Image
-                  src={Profile}
-                  alt="profile"
-                  height={avatarSizeMain}
-                  width={avatarSizeMain}
-                  className="rounded-full cursor-pointer relative"
-                  onClick={() => {
-                    setProfileOpen(true);
-                  }}
-                  placeholder="blur"
-                  priority
-                />
+  
+                  <Image
+                    src={Profile}
+                    alt="profile"
+                    height={avatarSizeMain}
+                    width={avatarSizeMain}
+                    className="rounded-full object-contain cursor-pointer relative"
+                    onClick={() => {
+                      setProfileOpen(true);
+                    }}
+                    placeholder="blur"
+                    priority
+                  />
                 {following ? (
                   <Menu>
                     {
@@ -367,7 +368,15 @@ const TwitterThemeDesktop = ({
             {trendingTopics.map((trending) => (
               <div key={trending.topic}>
                 <h4 className="pt-6 text-sm text-[#999]">{trending.title}</h4>
-                <h5 className="font-bold">{trending.topic}</h5>
+                <h5
+                  onClick={() => {
+                    if (trending.topic == "X") {
+                    }
+                  }}
+                  className="font-bold"
+                >
+                  {trending.topic}
+                </h5>
                 <p className="text-sm text-[#999]">{trending.tweets} Tweets</p>
               </div>
             ))}

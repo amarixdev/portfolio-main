@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { AiOutlineClose } from "react-icons/ai";
-import Profile from "../../../public/images/twitter/twitter-profile.jpg";
+import Profile from "../../../public/images/twitter/twitter-profile1.jpg";
 import { useMediaQuery } from "../../../util/hooks";
 
 const ProfilePicture = ({

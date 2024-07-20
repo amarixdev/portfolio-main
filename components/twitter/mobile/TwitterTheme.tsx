@@ -17,7 +17,7 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { MdVerified } from "react-icons/md";
 import { RiUserUnfollowLine } from "react-icons/ri";
 import Backdrop from "../../../public/images/twitter/twitter-backdrop.jpg";
-import Profile from "../../../public/images/twitter/twitter-profile.jpg";
+import Profile from "../../../public/images/twitter/twitter-profile1.jpg";
 import { useDisplaySection, useMediaQuery } from "../../../util/hooks";
 import About from "../shared/About";
 import Projects from "../shared/Projects";

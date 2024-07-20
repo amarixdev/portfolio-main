@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ReactNode } from "react";
 import { MdVerified } from "react-icons/md";
-import Profile from "../../../public/images/twitter/twitter-profile.jpg";
+import Profile from "../../../public/images/twitter/twitter-profile1.jpg";
 import { capitalizeString } from "../../../util/functions";
 import { useMediaQuery } from "../../../util/hooks";
 
